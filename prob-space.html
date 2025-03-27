@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./summary.html" rel="next">
-<link href="./intro.html" rel="prev">
+<link href="./sets.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -110,7 +110,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sets.html">確率論</a></li><li class="breadcrumb-item"><a href="./prob-space.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">確率空間</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">確率論</a></li><li class="breadcrumb-item"><a href="./prob-space.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">確率空間</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
@@ -155,14 +155,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">集合論</span></span></a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">はじめに</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">はじめに</span></span></a>
+  <a href="./sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">集合論</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -217,7 +217,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sets.html">確率論</a></li><li class="breadcrumb-item"><a href="./prob-space.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">確率空間</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">確率論</a></li><li class="breadcrumb-item"><a href="./prob-space.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">確率空間</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">確率空間</span></h1>
 </div>
@@ -287,6 +287,14 @@ A+c\coloneqq\{a+c-\lfloor a+c\rfloor\mid a\in A\}
 </section>
 <section id="確率論の公理" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="確率論の公理"><span class="header-section-number">3.5</span> 確率論の公理</h2>
+<p><a href="#thm-vitali" class="quarto-xref">定理&nbsp;<span>3.1</span></a> より、</p>
+<ol type="1">
+<li>選択公理</li>
+<li>確率測度の完全加法性</li>
+<li><span class="math inline">\([0, 1)\)</span> 上の平行移動不変な確率測度</li>
+<li><span class="math inline">\(\Omega\)</span> のすべての部分集合に確率を与える</li>
+</ol>
+<p>のどれかを諦めないといけない。 標準的な確率論では4を諦める。</p>
 <div id="def-prob" class="theorem definition">
 <p><span class="theorem-title"><strong>定義 3.1 (確率空間)</strong></span> <span class="math inline">\(\Omega\)</span> を集合とする。 <span class="math inline">\(\mathcal{F}\subseteq 2^\Omega\)</span> が以下を満たすとする。</p>
 <ol type="1">
@@ -299,7 +307,7 @@ A+c\coloneqq\{a+c-\lfloor a+c\rfloor\mid a\in A\}
 <li><span class="math inline">\(P(\Omega)=1\)</span>.</li>
 <li><span class="math inline">\(\forall (A_n\in \mathcal{F})_{n\ge 0},\quad \forall i\ne j,\, A_i\cap A_j=\varnothing\implies P\left(\bigcup_{n\ge 0}A_n\right) = \sum_{n\ge 0} P(A_n)\)</span>.</li>
 </ol>
-<p>このとき、<span class="math inline">\((\Omega,\, \mathcal{F},\, P)\)</span> を確率空間という。 また、<span class="math inline">\(\Omega\)</span> を標本空間、<span class="math inline">\(\mathcal{F}\)</span> を可測集合族、<span class="math inline">\(P\)</span> を確率測度という。</p>
+<p>このとき、<span class="math inline">\((\Omega,\, \mathcal{F},\, P)\)</span> を確率空間という。 また、<span class="math inline">\(\Omega\)</span> を標本空間、<span class="math inline">\(\mathcal{F}\)</span> を事象集合、<span class="math inline">\(P\)</span> を確率測度という。</p>
 </div>
 
 
@@ -725,8 +733,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro.html" class="pagination-link" aria-label="はじめに">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">はじめに</span></span>
+      <a href="./sets.html" class="pagination-link" aria-label="集合論">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">集合論</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
