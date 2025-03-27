@@ -33,6 +33,9 @@ format:
     documentclass: ltjsreport
     classoption: [a4paper]
     papersize: a4paper
+    include-in-header:
+      -text: |
+        \usepackage{mathtools}
     toc-title: "目次"
 
 execute:

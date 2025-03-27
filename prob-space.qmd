@@ -45,9 +45,14 @@ $$
 
 ::: {#thm-vitali}
 $\Omega=[0,1)$ とする。
-以下の条件を満たす確率測度 $P\colon 2^{[0,1)}\to \mathbb{R}_{\ge 0}$ は存在しない。
+また、集合の平行移動を
+$$
+A+c\coloneqq\{a+c-\lfloor a+c\rfloor\mid a\in A\}
+$$
+と定義する。
+このとき、以下の条件を満たす確率測度 $P\colon 2^{[0,1)}\to \mathbb{R}_{\ge 0}$ は存在しない。
 
-*. $\forall c\in\Omega,\, A\subseteq\Omega,\, P(A+c) = P(A)$ where $A+c\coloneqq\{a+c-\lfloor a+c\rfloor\mid a\in A\}$.
+* $\forall c\in\Omega,\, A\subseteq\Omega,\, P(A+c) = P(A)$.
 :::
 ::: {.proof}
 $\Omega$ 上の同値関係を $x\sim y \stackrel{\mathrm{def}}{\iff} x-y\in\mathbb{Q}$ と定義する。
