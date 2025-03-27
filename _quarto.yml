@@ -4,7 +4,7 @@ project:
 book:
   title: "確率・統計基礎"
   author: "Ryuhei Mori"
-  date: "3/27/2025"
+  downloads: [pdf]
   chapters:
     - index.qmd
     - intro.qmd
