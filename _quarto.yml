@@ -7,8 +7,12 @@ book:
   downloads: [pdf]
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
+    - part: "確率論"
+      chapters:
+        - intro.qmd
+    - part: "統計学"
+      chapters:
+        - summary.qmd
     - references.qmd
 
 bibliography: references.bib
