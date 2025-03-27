@@ -260,13 +260,14 @@ P(\{\text{"晴れ"}, \text{"雨"}\}) = P(\{\text{"晴れ"}\}) + P(\{\text{"雨"}
 <div id="thm-vitali" class="theorem">
 <p><span class="theorem-title"><strong>定理 2.1 (非可測集合の存在)</strong></span> <span class="math inline">\(\Omega=[0,1)\)</span> とする。 また、集合の平行移動を <span class="math display">\[
 A+c\coloneqq\{a+c-\lfloor a+c\rfloor\mid a\in A\}
-\]</span> と定義する。 このとき、以下の条件を満たす確率測度 <span class="math inline">\(P\colon 2^{[0,1)}\to \mathbb{R}_{\ge 0}\)</span> は存在しない。</p>
-<ul>
-<li><span class="math inline">\(\forall c\in\Omega,\, A\subseteq\Omega,\quad P(A+c) = P(A)\)</span>.</li>
-</ul>
+\]</span> と定義する。 このとき、 <span class="math display">\[
+\forall c\in\Omega,\, A\subseteq\Omega,\quad P(A+c) = P(A).
+\]</span> を満たす確率測度 <span class="math inline">\(P\colon 2^{[0,1)}\to \mathbb{R}_{\ge 0}\)</span> は存在しない。</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span><span class="math inline">\(\Omega\)</span> 上の同値関係を <span class="math inline">\(x\sim y \stackrel{\mathrm{def}}{\iff} x-y\in\mathbb{Q}\)</span> と定義する。 選択公理より、この同値関係の同値類から一つずつ要素を含む集合 <span class="math inline">\(V\)</span> が存在する。 任意の <span class="math inline">\(x\in[0, 1)\)</span> について、ある <span class="math inline">\(z\in V\)</span> が唯一存在して <span class="math inline">\(x\sim z\)</span> である。 よって、 <span class="math display">\[\begin{align*}
+<p><span class="proof-title"><em>証明</em>. </span><span class="math inline">\(\Omega\)</span> 上の同値関係を <span class="math inline">\(x\sim y \stackrel{\mathrm{def}}{\iff} x-y\in\mathbb{Q}\)</span> と定義する。 選択公理より、この同値関係の同値類から一つずつ要素を含む集合 <span class="math inline">\(V\)</span> が存在する。 ここで <span class="math display">\[\begin{align*}
+[0, 1) &amp;= \bigcup_{q\in\mathbb{Q}} (V + q)
+\end{align*}\]</span> であり、右辺は互いに排反である。 このことは任意の <span class="math inline">\(x\in[0, 1)\)</span> について、ある <span class="math inline">\(z\in V\)</span> が<strong>唯一</strong>存在して <span class="math inline">\(x\sim z\)</span> であることから分かる。 よって <span class="math display">\[\begin{align*}
 [0, 1) &amp;= \bigcup_{z\in V} \{x \mid x\sim z\}\\
 &amp;= \bigcup_{z\in V} \bigcup_{q\in\mathbb{Q}} (\{z\} + q)\\
 &amp;= \bigcup_{q\in\mathbb{Q}} \bigcup_{z\in V}  (\{z\} + q)\\
