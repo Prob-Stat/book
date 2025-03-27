@@ -24,7 +24,7 @@ format:
       - '--no-shell-escape'
       - '--halt-on-error'
     documentclass: ltjsreport
-    papersieze: a4
+    papersieze: a4paper
 
 execute:
   freeze: auto
