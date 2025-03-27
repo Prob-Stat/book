@@ -5,11 +5,15 @@
 確率を考える集合を$\Omega$とする。
 例えば明日の天気の確率を考えたいときは
 $$
-\Omega = \{\"晴れ\", \"雨\", \"曇り\"\}
+\Omega = \{\text{"晴れ"}, \text{"雨"}, \text{"曇り"}\}
 $$
 とする。
 この$\Omega$のことを **標本空間** という。
 そして、$\Omega$の部分集合について確率を与える関数$P\colon 2^\Omega\to\mathbb{R}_{\ge 0}$を**確率測度**という。
+確率測度は以下の条件を満たす。
+
+1. $P(\Omega)=1$.
+2. $P(A\cup B) = P(A) + P(B)$ for all $A,\, B\subseteq \Omega$ satisfying $A\cap B=\varnothing$.
 
 ## 可算無限集合上の確率
 
