@@ -20,8 +20,11 @@ format:
       - brand
   pdf:
     pdf-engine: lualatex
+    pdf-engine-opts:
+      - '--no-shell-escape'
+      - '--halt-on-error'
     documentclass: ltjsreport
-    papersize: a4
+    classoption: [jafont=noto-otf, a4paper]
 
 execute:
   freeze: auto
