@@ -1,11 +1,12 @@
 project:
   type: book
 
+lang: ja
+
 book:
   title: "確率・統計入門"
   author: "Ryuhei Mori"
   date: last-modified
-  lang: ja
   downloads: [pdf]
   chapters:
     - index.qmd
