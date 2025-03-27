@@ -21,6 +21,14 @@ jobs:
         with:
           tinytex: true
 
+      - name: Install TexLive
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          sudo apt update
+          sudo apt install -y texlive-lang-japanese texlive-luatex
+          sudo fc-cache -fv
+
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
