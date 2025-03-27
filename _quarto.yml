@@ -19,7 +19,10 @@ format:
       - cosmo
       - brand
   pdf:
+    pdf-engine: lualatex
     documentclass: scrreprt
 
+execute:
+  freeze: auto
 
 
