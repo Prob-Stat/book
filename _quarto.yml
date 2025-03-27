@@ -3,15 +3,15 @@ project:
 
 book:
   title: "確率・統計入門"
-  author: "Ryuhei Mori"
+  author: "森 立平"
   date: last-modified
   downloads: [pdf]
   chapters:
     - index.qmd
     - part: "確率論"
       chapters:
-        - sets.qmd
         - intro.qmd
+        - sets.qmd
         - prob-space.qmd
     - part: "統計学"
       chapters:

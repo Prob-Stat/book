@@ -94,6 +94,16 @@ $\Omega$ 上の同値関係を $x\sim y \stackrel{\mathrm{def}}{\iff} x-y\in\mat
 
 ## 確率論の公理
 
+@thm-vitali より、
+
+1. 選択公理
+2. 確率測度の完全加法性
+3. $[0, 1)$ 上の平行移動不変な確率測度
+4. $\Omega$ のすべての部分集合に確率を与える
+
+のどれかを諦めないといけない。
+標準的な確率論では4を諦める。
+
 ::: {#def-prob}
 
 ## 確率空間
@@ -111,5 +121,5 @@ $\mathcal{F}\subseteq 2^\Omega$ が以下を満たすとする。
 2. $\forall (A_n\in \mathcal{F})_{n\ge 0},\quad \forall i\ne j,\, A_i\cap A_j=\varnothing\implies P\left(\bigcup_{n\ge 0}A_n\right) = \sum_{n\ge 0} P(A_n)$.
 
 このとき、$(\Omega,\, \mathcal{F},\, P)$ を確率空間という。
-また、$\Omega$ を標本空間、$\mathcal{F}$ を可測集合族、$P$ を確率測度という。
+また、$\Omega$ を標本空間、$\mathcal{F}$ を事象集合、$P$ を確率測度という。
 :::
