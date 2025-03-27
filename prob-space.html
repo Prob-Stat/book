@@ -267,16 +267,11 @@ A+c\coloneqq\{a+c-\lfloor a+c\rfloor\mid a\in A\}
 <div class="proof">
 <p><span class="proof-title"><em>証明</em>. </span><span class="math inline">\(\Omega\)</span> 上の同値関係を <span class="math inline">\(x\sim y \stackrel{\mathrm{def}}{\iff} x-y\in\mathbb{Q}\)</span> と定義する。 選択公理より、この同値関係の同値類から一つずつ要素を含む集合 <span class="math inline">\(V\)</span> が存在する。 ここで <span class="math display">\[\begin{align*}
 [0, 1) &amp;= \bigcup_{q\in\mathbb{Q}} (V + q)
-\end{align*}\]</span> であり、右辺は互いに排反である。 このことは任意の <span class="math inline">\(x\in[0, 1)\)</span> について、ある <span class="math inline">\(z\in V\)</span> が<strong>唯一</strong>存在して <span class="math inline">\(x\sim z\)</span> であることから分かる。 よって <span class="math display">\[\begin{align*}
-[0, 1) &amp;= \bigcup_{z\in V} \{x \mid x\sim z\}\\
-&amp;= \bigcup_{z\in V} \bigcup_{q\in\mathbb{Q}} (\{z\} + q)\\
-&amp;= \bigcup_{q\in\mathbb{Q}} \bigcup_{z\in V}  (\{z\} + q)\\
-&amp;= \bigcup_{q\in\mathbb{Q}} (V + q)\\
-\end{align*}\]</span> である。よって、 <span class="math display">\[\begin{align*}
-1 = P([0, 1)) &amp;= P\left(\bigcup_{q\in\mathbb{Q}} V+q\right)\\
+\end{align*}\]</span> であり、右辺は互いに排反である。 このことは任意の <span class="math inline">\(x\in[0, 1)\)</span> について、ある <span class="math inline">\(z\in V\)</span> が<strong>唯一</strong>存在して <span class="math inline">\(x\sim z\)</span> であることから分かる。 よって条件を満たす <span class="math inline">\(P\)</span> が存在すると仮定すると、 <span class="math display">\[\begin{align*}
+1 = P([0, 1)) &amp;= P\left(\bigcup_{q\in\mathbb{Q}} (V+q)\right)\\
 &amp;= \sum_{q\in\mathbb{Q}} P\left(V+q\right)\\
 &amp;= \sum_{q\in\mathbb{Q}} P\left(V\right)
-\end{align*}\]</span></p>
+\end{align*}\]</span> ここで <span class="math inline">\(P(V)\)</span> をどのように定めても、それを無限回足して 1 にすることはできない。 よって <span class="math inline">\(P\)</span> は存在しない。</p>
 </div>
 
 
