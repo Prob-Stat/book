@@ -20,7 +20,8 @@ format:
       - brand
   pdf:
     pdf-engine: lualatex
-    documentclass: scrreprt
+    documentclass: ltjsreport
+    papersize: a4
 
 execute:
   freeze: auto
