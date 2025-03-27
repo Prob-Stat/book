@@ -47,7 +47,18 @@
     "href": "prob-space.html",
     "title": "2  確率空間",
     "section": "",
-    "text": "2.1 有限集合上の確率\n確率を考える集合を\\(\\Omega\\)とする。 例えば明日の天気の確率を考えたいときは \\[\n\\Omega = \\{\\\"晴れ\\\", \\\"雨\\\", \\\"曇り\\\"\\}\n\\] とする。 この\\(\\Omega\\)のことを 標本空間 という。 そして、\\(\\Omega\\)の部分集合について確率を与える関数\\(P\\colon 2^\\Omega\\to\\mathbb{R}_{\\ge 0}\\)を確率測度という。",
+    "text": "2.1 有限集合上の確率\n確率を考える集合を\\(\\Omega\\)とする。 例えば明日の天気の確率を考えたいときは \\[\n\\Omega = \\{\\text{\"晴れ\"}, \\text{\"雨\"}, \\text{\"曇り\"}\\}\n\\] とする。 この\\(\\Omega\\)のことを 標本空間 という。 そして、\\(\\Omega\\)の部分集合について確率を与える関数\\(P\\colon 2^\\Omega\\to\\mathbb{R}_{\\ge 0}\\)を確率測度という。 確率測度は以下の条件を満たす。",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>確率空間</span>"
+    ]
+  },
+  {
+    "objectID": "prob-space.html#有限集合上の確率",
+    "href": "prob-space.html#有限集合上の確率",
+    "title": "2  確率空間",
+    "section": "",
+    "text": "\\(P(\\Omega)=1\\).\n\\(P(A\\cup B) = P(A) + P(B)\\) for all \\(A,\\, B\\subseteq \\Omega\\) satisfying \\(A\\cap B=\\varnothing\\).",
     "crumbs": [
       "確率論",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>確率空間</span>"
