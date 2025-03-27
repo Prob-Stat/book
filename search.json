@@ -80,7 +80,7 @@
     "href": "prob-space.html#確率論の公理",
     "title": "2  確率空間",
     "section": "2.3 確率論の公理",
-    "text": "2.3 確率論の公理\nより一般に \\(\\Omega\\) が非可算無限集合の場合を考えよう。例えば \\(\\Omega = \\mathbb{R}\\) の場合である。\n\nTheorem 2.1 \\(\\Omega=[0,1)\\) とする。 また、集合の平行移動を \\[\nA+c\\coloneqq\\{a+c-\\lfloor a+c\\rfloor\\mid a\\in A\\}\n\\] と定義する。 このとき、以下の条件を満たす確率測度 \\(P\\colon 2^{[0,1)}\\to \\mathbb{R}_{\\ge 0}\\) は存在しない。\n\n\\(\\forall c\\in\\Omega,\\, A\\subseteq\\Omega,\\, P(A+c) = P(A)\\).\n\n\n\nProof. \\(\\Omega\\) 上の同値関係を \\(x\\sim y \\stackrel{\\mathrm{def}}{\\iff} x-y\\in\\mathbb{Q}\\) と定義する。",
+    "text": "2.3 確率論の公理\nより一般に \\(\\Omega\\) が非可算無限集合の場合を考えよう。例えば \\(\\Omega = \\mathbb{R}\\) の場合である。\n\nTheorem 2.1 \\(\\Omega=[0,1)\\) とする。 また、集合の平行移動を \\[\nA+c\\coloneqq\\{a+c-\\lfloor a+c\\rfloor\\mid a\\in A\\}\n\\] と定義する。 このとき、以下の条件を満たす確率測度 \\(P\\colon 2^{[0,1)}\\to \\mathbb{R}_{\\ge 0}\\) は存在しない。\n\n\\(\\forall c\\in\\Omega,\\, A\\subseteq\\Omega,\\quad P(A+c) = P(A)\\).\n\n\n\nProof. \\(\\Omega\\) 上の同値関係を \\(x\\sim y \\stackrel{\\mathrm{def}}{\\iff} x-y\\in\\mathbb{Q}\\) と定義する。",
     "crumbs": [
       "確率論",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>確率空間</span>"
