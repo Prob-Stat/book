@@ -10,6 +10,7 @@ book:
     - index.qmd
     - part: "確率論"
       chapters:
+        - sets.qmd
         - intro.qmd
         - prob-space.qmd
     - part: "統計学"
