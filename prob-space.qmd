@@ -80,17 +80,12 @@ $\Omega$ 上の同値関係を $x\sim y \stackrel{\mathrm{def}}{\iff} x-y\in\mat
 \end{align*}
 であり、右辺は互いに排反である。
 このことは任意の $x\in[0, 1)$ について、ある $z\in V$ が**唯一**存在して $x\sim z$ であることから分かる。
-よって
+よって条件を満たす $P$ が存在すると仮定すると、
 \begin{align*}
-[0, 1) &= \bigcup_{z\in V} \{x \mid x\sim z\}\\
-&= \bigcup_{z\in V} \bigcup_{q\in\mathbb{Q}} (\{z\} + q)\\
-&= \bigcup_{q\in\mathbb{Q}} \bigcup_{z\in V}  (\{z\} + q)\\
-&= \bigcup_{q\in\mathbb{Q}} (V + q)\\
-\end{align*}
-である。よって、
-\begin{align*}
-1 = P([0, 1)) &= P\left(\bigcup_{q\in\mathbb{Q}} V+q\right)\\
+1 = P([0, 1)) &= P\left(\bigcup_{q\in\mathbb{Q}} (V+q)\right)\\
  &= \sum_{q\in\mathbb{Q}} P\left(V+q\right)\\
  &= \sum_{q\in\mathbb{Q}} P\left(V\right)
 \end{align*}
+ここで $P(V)$ をどのように定めても、それを無限回足して 1 にすることはできない。
+よって $P$ は存在しない。
 :::
