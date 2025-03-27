@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; 確率空間 – 確率・統計入門</title>
+<title>3&nbsp; 確率空間 – 確率・統計入門</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -110,7 +110,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">確率論</a></li><li class="breadcrumb-item"><a href="./prob-space.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">確率空間</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sets.html">確率論</a></li><li class="breadcrumb-item"><a href="./prob-space.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">確率空間</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
@@ -155,14 +155,20 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">集合論</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">はじめに</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">はじめに</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prob-space.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">確率空間</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">確率空間</span></span></a>
   </div>
 </li>
       </ul>
@@ -179,7 +185,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
       </ul>
@@ -200,18 +206,19 @@ window.Quarto = {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#有限集合上の確率空間" id="toc-有限集合上の確率空間" class="nav-link active" data-scroll-target="#有限集合上の確率空間"><span class="header-section-number">2.1</span> 有限集合上の確率空間</a></li>
-  <li><a href="#可算無限集合上の確率" id="toc-可算無限集合上の確率" class="nav-link" data-scroll-target="#可算無限集合上の確率"><span class="header-section-number">2.2</span> 可算無限集合上の確率</a></li>
-  <li><a href="#確率論の公理" id="toc-確率論の公理" class="nav-link" data-scroll-target="#確率論の公理"><span class="header-section-number">2.3</span> 確率論の公理</a></li>
+  <li><a href="#確率論を数学的に定式化するには" id="toc-確率論を数学的に定式化するには" class="nav-link active" data-scroll-target="#確率論を数学的に定式化するには"><span class="header-section-number">3.1</span> 確率論を数学的に定式化するには</a></li>
+  <li><a href="#有限集合上の確率空間" id="toc-有限集合上の確率空間" class="nav-link" data-scroll-target="#有限集合上の確率空間"><span class="header-section-number">3.2</span> 有限集合上の確率空間</a></li>
+  <li><a href="#可算無限集合上の確率" id="toc-可算無限集合上の確率" class="nav-link" data-scroll-target="#可算無限集合上の確率"><span class="header-section-number">3.3</span> 可算無限集合上の確率</a></li>
+  <li><a href="#確率論の公理" id="toc-確率論の公理" class="nav-link" data-scroll-target="#確率論の公理"><span class="header-section-number">3.4</span> 確率論の公理</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">確率論</a></li><li class="breadcrumb-item"><a href="./prob-space.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">確率空間</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sets.html">確率論</a></li><li class="breadcrumb-item"><a href="./prob-space.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">確率空間</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">確率空間</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">確率空間</span></h1>
 </div>
 
 
@@ -228,8 +235,11 @@ window.Quarto = {
 </header>
 
 
-<section id="有限集合上の確率空間" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="有限集合上の確率空間"><span class="header-section-number">2.1</span> 有限集合上の確率空間</h2>
+<section id="確率論を数学的に定式化するには" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="確率論を数学的に定式化するには"><span class="header-section-number">3.1</span> 確率論を数学的に定式化するには</h2>
+</section>
+<section id="有限集合上の確率空間" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="有限集合上の確率空間"><span class="header-section-number">3.2</span> 有限集合上の確率空間</h2>
 <p>確率を考える集合を <span class="math inline">\(\Omega\)</span> とする。 例えば明日の天気の確率を考えたいときは <span class="math display">\[
 \Omega = \{\text{"晴れ"}, \text{"雨"}, \text{"曇り"}\}
 \]</span> とする。 この <span class="math inline">\(\Omega\)</span> のことを<strong>標本空間</strong>という。 また、<span class="math inline">\(\Omega\)</span> の部分集合のことを<strong>事象</strong>という。 そして、事象に確率を与える関数 <span class="math inline">\(P\colon 2^\Omega\to\mathbb{R}_{\ge 0}\)</span> を<strong>確率測度</strong>という。 確率測度は以下の条件を満たす。</p>
@@ -241,8 +251,8 @@ window.Quarto = {
 P(\{\text{"晴れ"}, \text{"雨"}\}) = P(\{\text{"晴れ"}\}) + P(\{\text{"雨"}\})
 \]</span> という等式は「晴れもしくは雨になる確率 <span class="math inline">\(=\)</span> 晴れになる確率 <span class="math inline">\(+\)</span> 雨になる確率」という意味の等式になる。 よって有限加法性が自然な条件であることが分かるだろう。 また、これらのことから、<span class="math inline">\(P\)</span> は各要素 <span class="math inline">\(\omega\in\Omega\)</span> に対する確率 <span class="math inline">\(P(\{\omega\})\)</span> から一意に定まることが分かる。 この標本空間と確率測度のペア <span class="math inline">\((\Omega,\, P)\)</span> を<strong>確率空間</strong>という。</p>
 </section>
-<section id="可算無限集合上の確率" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="可算無限集合上の確率"><span class="header-section-number">2.2</span> 可算無限集合上の確率</h2>
+<section id="可算無限集合上の確率" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="可算無限集合上の確率"><span class="header-section-number">3.3</span> 可算無限集合上の確率</h2>
 <p>標本空間 <span class="math inline">\(\Omega\)</span> が可算無限集合のときも、同様に確率測度を定義することもできるが、ここではより強い以下の条件を考える。</p>
 <ol type="1">
 <li><span class="math inline">\(P(\Omega)=1\)</span>.</li>
@@ -254,11 +264,11 @@ P(\{\text{"晴れ"}, \text{"雨"}\}) = P(\{\text{"晴れ"}\}) + P(\{\text{"雨"}
 \sum_{n\ge 0} P(A_n)
 \]</span> も事象列 <span class="math inline">\((A_n)_{n\ge 0}\)</span> の並び順に依存しない。 そもそも <span class="math inline">\(P(A_n)\ge 0\)</span> なので、無限和 <span class="math inline">\(\sum_{n\ge 0} P(A_n)\)</span> が存在するということはこれは絶対収束するので、無限和は事象列の並び順に依存しないことが分かる。 完全加法性ではなく有限加法性だけを使って確率論を構築する試みもあるが、確率測度の連続性などの性質が失なわれるため 標準的な確率論では完全加法性を課す。</p>
 </section>
-<section id="確率論の公理" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="確率論の公理"><span class="header-section-number">2.3</span> 確率論の公理</h2>
+<section id="確率論の公理" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="確率論の公理"><span class="header-section-number">3.4</span> 確率論の公理</h2>
 <p>より一般に <span class="math inline">\(\Omega\)</span> が非可算無限集合の場合を考えよう。例えば <span class="math inline">\(\Omega = \mathbb{R}\)</span> の場合である。</p>
 <div id="thm-vitali" class="theorem">
-<p><span class="theorem-title"><strong>定理 2.1 (非可測集合の存在)</strong></span> <span class="math inline">\(\Omega=[0,1)\)</span> とする。 また、集合の平行移動を <span class="math display">\[
+<p><span class="theorem-title"><strong>定理 3.1 (非可測集合の存在)</strong></span> <span class="math inline">\(\Omega=[0,1)\)</span> とする。 また、集合の平行移動を <span class="math display">\[
 A+c\coloneqq\{a+c-\lfloor a+c\rfloor\mid a\in A\}
 \]</span> と定義する。 このとき、 <span class="math display">\[
 \forall c\in\Omega,\, A\subseteq\Omega,\quad P(A+c) = P(A).
@@ -698,12 +708,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./intro.html" class="pagination-link" aria-label="はじめに">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">はじめに</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">はじめに</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

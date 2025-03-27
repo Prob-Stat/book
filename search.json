@@ -12,89 +12,89 @@
   {
     "objectID": "intro.html",
     "href": "intro.html",
-    "title": "1  はじめに",
+    "title": "2  はじめに",
     "section": "",
-    "text": "1.1 なぜ確率論と統計学を学ぶか？\nThis is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.",
+    "text": "2.1 なぜ確率論と統計学を学ぶか？\nThis is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.",
     "crumbs": [
       "確率論",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>はじめに</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>はじめに</span>"
     ]
   },
   {
     "objectID": "intro.html#本書の構成",
     "href": "intro.html#本書の構成",
-    "title": "1  はじめに",
-    "section": "1.2 本書の構成",
-    "text": "1.2 本書の構成",
+    "title": "2  はじめに",
+    "section": "2.2 本書の構成",
+    "text": "2.2 本書の構成",
     "crumbs": [
       "確率論",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>はじめに</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>はじめに</span>"
     ]
   },
   {
     "objectID": "intro.html#その他の参考文献",
     "href": "intro.html#その他の参考文献",
-    "title": "1  はじめに",
-    "section": "1.3 その他の参考文献",
-    "text": "1.3 その他の参考文献\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "title": "2  はじめに",
+    "section": "2.3 その他の参考文献",
+    "text": "2.3 その他の参考文献\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
     "crumbs": [
       "確率論",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>はじめに</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>はじめに</span>"
     ]
   },
   {
     "objectID": "prob-space.html",
     "href": "prob-space.html",
-    "title": "2  確率空間",
+    "title": "3  確率空間",
     "section": "",
-    "text": "2.1 有限集合上の確率空間\n確率を考える集合を \\(\\Omega\\) とする。 例えば明日の天気の確率を考えたいときは \\[\n\\Omega = \\{\\text{\"晴れ\"}, \\text{\"雨\"}, \\text{\"曇り\"}\\}\n\\] とする。 この \\(\\Omega\\) のことを標本空間という。 また、\\(\\Omega\\) の部分集合のことを事象という。 そして、事象に確率を与える関数 \\(P\\colon 2^\\Omega\\to\\mathbb{R}_{\\ge 0}\\) を確率測度という。 確率測度は以下の条件を満たす。\n一つ目の条件は全体の確率が1であるという意味の条件である。 二つ目の条件は排反な二つの事象の確率はそれぞれの事象の確率の和であるという意味の条件である。 この二つ目の条件を有限加法性という。 例えば \\[\nP(\\{\\text{\"晴れ\"}, \\text{\"雨\"}\\}) = P(\\{\\text{\"晴れ\"}\\}) + P(\\{\\text{\"雨\"}\\})\n\\] という等式は「晴れもしくは雨になる確率 \\(=\\) 晴れになる確率 \\(+\\) 雨になる確率」という意味の等式になる。 よって有限加法性が自然な条件であることが分かるだろう。 また、これらのことから、\\(P\\) は各要素 \\(\\omega\\in\\Omega\\) に対する確率 \\(P(\\{\\omega\\})\\) から一意に定まることが分かる。 この標本空間と確率測度のペア \\((\\Omega,\\, P)\\) を確率空間という。",
+    "text": "3.1 確率論を数学的に定式化するには",
     "crumbs": [
       "確率論",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>確率空間</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>確率空間</span>"
     ]
   },
   {
     "objectID": "prob-space.html#有限集合上の確率空間",
     "href": "prob-space.html#有限集合上の確率空間",
-    "title": "2  確率空間",
-    "section": "",
-    "text": "\\(P(\\Omega)=1\\).\n\\(\\forall A,\\,B\\subseteq\\Omega,\\quad A\\cap B = \\varnothing \\implies P(A\\cup B) = P(A) + P(B)\\).",
+    "title": "3  確率空間",
+    "section": "3.2 有限集合上の確率空間",
+    "text": "3.2 有限集合上の確率空間\n確率を考える集合を \\(\\Omega\\) とする。 例えば明日の天気の確率を考えたいときは \\[\n\\Omega = \\{\\text{\"晴れ\"}, \\text{\"雨\"}, \\text{\"曇り\"}\\}\n\\] とする。 この \\(\\Omega\\) のことを標本空間という。 また、\\(\\Omega\\) の部分集合のことを事象という。 そして、事象に確率を与える関数 \\(P\\colon 2^\\Omega\\to\\mathbb{R}_{\\ge 0}\\) を確率測度という。 確率測度は以下の条件を満たす。\n\n\\(P(\\Omega)=1\\).\n\\(\\forall A,\\,B\\subseteq\\Omega,\\quad A\\cap B = \\varnothing \\implies P(A\\cup B) = P(A) + P(B)\\).\n\n一つ目の条件は全体の確率が1であるという意味の条件である。 二つ目の条件は排反な二つの事象の確率はそれぞれの事象の確率の和であるという意味の条件である。 この二つ目の条件を有限加法性という。 例えば \\[\nP(\\{\\text{\"晴れ\"}, \\text{\"雨\"}\\}) = P(\\{\\text{\"晴れ\"}\\}) + P(\\{\\text{\"雨\"}\\})\n\\] という等式は「晴れもしくは雨になる確率 \\(=\\) 晴れになる確率 \\(+\\) 雨になる確率」という意味の等式になる。 よって有限加法性が自然な条件であることが分かるだろう。 また、これらのことから、\\(P\\) は各要素 \\(\\omega\\in\\Omega\\) に対する確率 \\(P(\\{\\omega\\})\\) から一意に定まることが分かる。 この標本空間と確率測度のペア \\((\\Omega,\\, P)\\) を確率空間という。",
     "crumbs": [
       "確率論",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>確率空間</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>確率空間</span>"
     ]
   },
   {
     "objectID": "prob-space.html#可算無限集合上の確率",
     "href": "prob-space.html#可算無限集合上の確率",
-    "title": "2  確率空間",
-    "section": "2.2 可算無限集合上の確率",
-    "text": "2.2 可算無限集合上の確率\n標本空間 \\(\\Omega\\) が可算無限集合のときも、同様に確率測度を定義することもできるが、ここではより強い以下の条件を考える。\n\n\\(P(\\Omega)=1\\).\n\\(\\forall (A_n\\subseteq \\Omega)_{n\\ge 0},\\quad \\forall i\\ne j,\\, A_i\\cap A_j=\\varnothing\\implies P\\left(\\bigcup_{n\\ge 0}A_n\\right) = \\sum_{n\\ge 0} P(A_n)\\).\n\nこの二つ目の条件を完全加法性もしくは \\(\\sigma\\)-加法性という。 ここで \\[\n\\bigcup_{n\\ge 0} A_n = \\{\\omega\\in\\Omega\\mid \\exists n\\ge 0,\\, \\omega\\in A_n\\}\n\\] は事象列 \\((A_n)_{n\\ge 0}\\) の並び順に依存しない。 よって、完全加法性が成り立つとき \\[\n\\sum_{n\\ge 0} P(A_n)\n\\] も事象列 \\((A_n)_{n\\ge 0}\\) の並び順に依存しない。 そもそも \\(P(A_n)\\ge 0\\) なので、無限和 \\(\\sum_{n\\ge 0} P(A_n)\\) が存在するということはこれは絶対収束するので、無限和は事象列の並び順に依存しないことが分かる。 完全加法性ではなく有限加法性だけを使って確率論を構築する試みもあるが、確率測度の連続性などの性質が失なわれるため 標準的な確率論では完全加法性を課す。",
+    "title": "3  確率空間",
+    "section": "3.3 可算無限集合上の確率",
+    "text": "3.3 可算無限集合上の確率\n標本空間 \\(\\Omega\\) が可算無限集合のときも、同様に確率測度を定義することもできるが、ここではより強い以下の条件を考える。\n\n\\(P(\\Omega)=1\\).\n\\(\\forall (A_n\\subseteq \\Omega)_{n\\ge 0},\\quad \\forall i\\ne j,\\, A_i\\cap A_j=\\varnothing\\implies P\\left(\\bigcup_{n\\ge 0}A_n\\right) = \\sum_{n\\ge 0} P(A_n)\\).\n\nこの二つ目の条件を完全加法性もしくは \\(\\sigma\\)-加法性という。 ここで \\[\n\\bigcup_{n\\ge 0} A_n = \\{\\omega\\in\\Omega\\mid \\exists n\\ge 0,\\, \\omega\\in A_n\\}\n\\] は事象列 \\((A_n)_{n\\ge 0}\\) の並び順に依存しない。 よって、完全加法性が成り立つとき \\[\n\\sum_{n\\ge 0} P(A_n)\n\\] も事象列 \\((A_n)_{n\\ge 0}\\) の並び順に依存しない。 そもそも \\(P(A_n)\\ge 0\\) なので、無限和 \\(\\sum_{n\\ge 0} P(A_n)\\) が存在するということはこれは絶対収束するので、無限和は事象列の並び順に依存しないことが分かる。 完全加法性ではなく有限加法性だけを使って確率論を構築する試みもあるが、確率測度の連続性などの性質が失なわれるため 標準的な確率論では完全加法性を課す。",
     "crumbs": [
       "確率論",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>確率空間</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>確率空間</span>"
     ]
   },
   {
     "objectID": "prob-space.html#確率論の公理",
     "href": "prob-space.html#確率論の公理",
-    "title": "2  確率空間",
-    "section": "2.3 確率論の公理",
-    "text": "2.3 確率論の公理\nより一般に \\(\\Omega\\) が非可算無限集合の場合を考えよう。例えば \\(\\Omega = \\mathbb{R}\\) の場合である。\n\n定理 2.1 (非可測集合の存在) \\(\\Omega=[0,1)\\) とする。 また、集合の平行移動を \\[\nA+c\\coloneqq\\{a+c-\\lfloor a+c\\rfloor\\mid a\\in A\\}\n\\] と定義する。 このとき、 \\[\n\\forall c\\in\\Omega,\\, A\\subseteq\\Omega,\\quad P(A+c) = P(A).\n\\] を満たす確率測度 \\(P\\colon 2^{[0,1)}\\to \\mathbb{R}_{\\ge 0}\\) は存在しない。\n\n\n証明. \\(\\Omega\\) 上の同値関係を \\(x\\sim y \\stackrel{\\mathrm{def}}{\\iff} x-y\\in\\mathbb{Q}\\) と定義する。 選択公理より、この同値関係の同値類から一つずつ要素を含む集合 \\(V\\) が存在する。 ここで \\[\\begin{align*}\n[0, 1) &= \\bigcup_{q\\in\\mathbb{Q}} (V + q)\n\\end{align*}\\] であり、右辺は互いに排反である。 このことは任意の \\(x\\in[0, 1)\\) について、ある \\(z\\in V\\) が唯一存在して \\(x\\sim z\\) であることから分かる。 よって条件を満たす \\(P\\) が存在すると仮定すると、 \\[\\begin{align*}\n1 = P([0, 1)) &= P\\left(\\bigcup_{q\\in\\mathbb{Q}} (V+q)\\right)\\\\\n&= \\sum_{q\\in\\mathbb{Q}} P\\left(V+q\\right)\\\\\n&= \\sum_{q\\in\\mathbb{Q}} P\\left(V\\right)\n\\end{align*}\\] ここで \\(P(V)\\) をどのように定めても、それを無限回足して 1 にすることはできない。 よって \\(P\\) は存在しない。",
+    "title": "3  確率空間",
+    "section": "3.4 確率論の公理",
+    "text": "3.4 確率論の公理\nより一般に \\(\\Omega\\) が非可算無限集合の場合を考えよう。例えば \\(\\Omega = \\mathbb{R}\\) の場合である。\n\n定理 3.1 (非可測集合の存在) \\(\\Omega=[0,1)\\) とする。 また、集合の平行移動を \\[\nA+c\\coloneqq\\{a+c-\\lfloor a+c\\rfloor\\mid a\\in A\\}\n\\] と定義する。 このとき、 \\[\n\\forall c\\in\\Omega,\\, A\\subseteq\\Omega,\\quad P(A+c) = P(A).\n\\] を満たす確率測度 \\(P\\colon 2^{[0,1)}\\to \\mathbb{R}_{\\ge 0}\\) は存在しない。\n\n\n証明. \\(\\Omega\\) 上の同値関係を \\(x\\sim y \\stackrel{\\mathrm{def}}{\\iff} x-y\\in\\mathbb{Q}\\) と定義する。 選択公理より、この同値関係の同値類から一つずつ要素を含む集合 \\(V\\) が存在する。 ここで \\[\\begin{align*}\n[0, 1) &= \\bigcup_{q\\in\\mathbb{Q}} (V + q)\n\\end{align*}\\] であり、右辺は互いに排反である。 このことは任意の \\(x\\in[0, 1)\\) について、ある \\(z\\in V\\) が唯一存在して \\(x\\sim z\\) であることから分かる。 よって条件を満たす \\(P\\) が存在すると仮定すると、 \\[\\begin{align*}\n1 = P([0, 1)) &= P\\left(\\bigcup_{q\\in\\mathbb{Q}} (V+q)\\right)\\\\\n&= \\sum_{q\\in\\mathbb{Q}} P\\left(V+q\\right)\\\\\n&= \\sum_{q\\in\\mathbb{Q}} P\\left(V\\right)\n\\end{align*}\\] ここで \\(P(V)\\) をどのように定めても、それを無限回足して 1 にすることはできない。 よって \\(P\\) は存在しない。",
     "crumbs": [
       "確率論",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>確率空間</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>確率空間</span>"
     ]
   },
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "3  Summary",
+    "title": "4  Summary",
     "section": "",
     "text": "In summary, this book has no content whatsoever.",
     "crumbs": [
       "統計学",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Summary</span>"
     ]
   },
   {
