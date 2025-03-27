@@ -1,5 +1,12 @@
-# Introduction
+# はじめに
+
+## なぜ確率論と統計学を学ぶか？
 
 This is a book created from markdown and executable code.
 
 See @knuth84 for additional discussion of literate programming.
+
+## 本書の構成
+
+
+## その他の参考文献
