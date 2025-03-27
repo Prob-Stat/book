@@ -200,7 +200,7 @@ window.Quarto = {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#有限集合上の確率" id="toc-有限集合上の確率" class="nav-link active" data-scroll-target="#有限集合上の確率"><span class="header-section-number">2.1</span> 有限集合上の確率</a></li>
+  <li><a href="#有限集合上の確率空間" id="toc-有限集合上の確率空間" class="nav-link active" data-scroll-target="#有限集合上の確率空間"><span class="header-section-number">2.1</span> 有限集合上の確率空間</a></li>
   <li><a href="#可算無限集合上の確率" id="toc-可算無限集合上の確率" class="nav-link" data-scroll-target="#可算無限集合上の確率"><span class="header-section-number">2.2</span> 可算無限集合上の確率</a></li>
   <li><a href="#確率論の公理" id="toc-確率論の公理" class="nav-link" data-scroll-target="#確率論の公理"><span class="header-section-number">2.3</span> 確率論の公理</a></li>
   </ul>
@@ -228,15 +228,18 @@ window.Quarto = {
 </header>
 
 
-<section id="有限集合上の確率" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="有限集合上の確率"><span class="header-section-number">2.1</span> 有限集合上の確率</h2>
-<p>確率を考える集合を<span class="math inline">\(\Omega\)</span>とする。 例えば明日の天気の確率を考えたいときは <span class="math display">\[
+<section id="有限集合上の確率空間" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="有限集合上の確率空間"><span class="header-section-number">2.1</span> 有限集合上の確率空間</h2>
+<p>確率を考える集合を <span class="math inline">\(\Omega\)</span> とする。 例えば明日の天気の確率を考えたいときは <span class="math display">\[
 \Omega = \{\text{"晴れ"}, \text{"雨"}, \text{"曇り"}\}
-\]</span> とする。 この<span class="math inline">\(\Omega\)</span>のことを <strong>標本空間</strong> という。 そして、<span class="math inline">\(\Omega\)</span>の部分集合について確率を与える関数<span class="math inline">\(P\colon 2^\Omega\to\mathbb{R}_{\ge 0}\)</span>を<strong>確率測度</strong>という。 確率測度は以下の条件を満たす。</p>
+\]</span> とする。 この <span class="math inline">\(\Omega\)</span> のことを<strong>標本空間</strong>という。 また、<span class="math inline">\(\Omega\)</span> の部分集合のことを<strong>事象</strong>という。 そして、事象に確率を与える関数 <span class="math inline">\(P\colon 2^\Omega\to\mathbb{R}_{\ge 0}\)</span> を<strong>確率測度</strong>という。 確率測度は以下の条件を満たす。</p>
 <ol type="1">
 <li><span class="math inline">\(P(\Omega)=1\)</span>.</li>
 <li><span class="math inline">\(P(A\cup B) = P(A) + P(B)\)</span> for all <span class="math inline">\(A,\, B\subseteq \Omega\)</span> satisfying <span class="math inline">\(A\cap B=\varnothing\)</span>.</li>
 </ol>
+<p>一つ目の条件は全体の確率が1であるという意味の条件である。 二つ目の条件は排反な二つの事象の確率はそれぞれの事象の確率の和であるという意味の条件である。 例えば <span class="math display">\[
+P(\{\text{"晴れ"}, \text{"雨"}\}) = P(\{\text{"晴れ"}) + P(\text{"雨"}\})
+\]</span> という等式は「晴れもしくは雨になる確率 <span class="math inline">\(=\)</span> 晴れになる確率 <span class="math inline">\(+\)</span> 雨になる確率」という意味の等式になる。 これらのことから、<span class="math inline">\(P\)</span> は各要素 <span class="math inline">\(\omega\in\Omega\)</span> に対する確率 <span class="math inline">\(P(\omega)\)</span> から定まることが分かる。 この標本空間と確率測度のペア <span class="math inline">\((\Omega, P)\)</span> を<strong>確率空間</strong>という。</p>
 </section>
 <section id="可算無限集合上の確率" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="可算無限集合上の確率"><span class="header-section-number">2.2</span> 可算無限集合上の確率</h2>
