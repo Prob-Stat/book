@@ -14,6 +14,11 @@ book:
         - sets.qmd
         - prob-space.qmd
         - rv.qmd
+        - moments.qmd
+        - large_numbers.qmd
+        - clt.qmd
+        - multivariate.qmd
+        - sanov.qmd
     - part: "統計学"
       chapters:
         - summary.qmd
