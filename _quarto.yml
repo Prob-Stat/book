@@ -2,7 +2,7 @@ project:
   type: book
 
 book:
-  title: "確率・統計基礎"
+  title: "確率・統計入門"
   author: "Ryuhei Mori"
   downloads: [pdf]
   chapters:
@@ -24,7 +24,7 @@ format:
       - '--no-shell-escape'
       - '--halt-on-error'
     documentclass: ltjsreport
-    papersieze: a4paper
+    classoption: [a4paper]
 
 execute:
   freeze: auto
