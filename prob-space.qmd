@@ -36,6 +36,17 @@ $$
 2. $\forall (A_n\subseteq \Omega)_{n\ge 0},\quad \forall i\ne j,\, A_i\cap A_j=\varnothing\implies P\left(\bigcup_{n\ge 0}A_n\right) = \sum_{n\ge 0} P(A_n)$.
 
 この二つ目の条件を**完全加法性**もしくは **$\sigma$-加法性**という。
+ここで
+$$
+\bigcup_{n\ge 0} A_n = \{\omega\in\Omega\mid \exists n\ge 0,\, \omega\in A_n\}
+$$
+は事象列 $(A_n)_{n\ge 0}$ の並び順に依存しない。
+よって、完全加法性が成り立つとき
+$$
+\sum_{n\ge 0} P(A_n)
+$$
+も事象列 $(A_n)_{n\ge 0}$ の並び順に依存しない。
+そもそも $P(A_n)\ge 0$ なので、無限和 $\sum_{n\ge 0} P(A_n)$ が存在するということはこれは絶対収束するので、無限和は事象列の並び順に依存しないことが分かる。
 完全加法性ではなく有限加法性だけを使って確率論を構築する試みもあるが、確率測度の連続性などの性質が失なわれるため
 標準的な確率論では完全加法性を課す。
 
@@ -44,6 +55,8 @@ $$
 より一般に $\Omega$ が非可算無限集合の場合を考えよう。例えば $\Omega = \mathbb{R}$ の場合である。
 
 ::: {#thm-vitali}
+
+## 非可測集合の存在
 
 $\Omega=[0,1)$ とする。
 また、集合の平行移動を
@@ -57,4 +70,19 @@ $$
 :::
 ::: {.proof}
 $\Omega$ 上の同値関係を $x\sim y \stackrel{\mathrm{def}}{\iff} x-y\in\mathbb{Q}$ と定義する。
+選択公理より、この同値関係の同値類から一つずつ要素を含む集合 $V$ が存在する。
+任意の $x\in[0, 1)$ について、ある $z\in V$ が唯一存在して $x\sim z$ である。
+よって、
+\begin{align*}
+[0, 1) &= \bigcup_{z\in V} \{x \mid x\sim z\}\\
+&= \bigcup_{z\in V} \bigcup_{q\in\mathbb{Q}} (\{z\} + q)\\
+&= \bigcup_{q\in\mathbb{Q}} \bigcup_{z\in V}  (\{z\} + q)\\
+&= \bigcup_{q\in\mathbb{Q}} (V + q)\\
+\end{align*}
+である。よって、
+\begin{align*}
+1 = P([0, 1)) &= P\left(\bigcup_{q\in\mathbb{Q}} V+q\right)\\
+ &= \sum_{q\in\mathbb{Q}} P\left(V+q\right)\\
+ &= \sum_{q\in\mathbb{Q}} P\left(V\right)
+\end{align*}
 :::
