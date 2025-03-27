@@ -25,6 +25,8 @@ format:
       - '--halt-on-error'
     documentclass: ltjsreport
     classoption: [a4paper]
+    papersize: a4paper
+    toc-title: "目次"
 
 execute:
   freeze: auto
