@@ -4,6 +4,7 @@ project:
 book:
   title: "確率・統計入門"
   author: "Ryuhei Mori"
+  date: last-modified
   downloads: [pdf]
   chapters:
     - index.qmd
@@ -22,6 +23,7 @@ format:
     theme:
       - cosmo
       - brand
+    toc-title: "目次"
   pdf:
     pdf-engine: lualatex
     pdf-engine-opts:
