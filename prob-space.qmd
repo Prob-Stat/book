@@ -64,15 +64,23 @@ $$
 A+c\coloneqq\{a+c-\lfloor a+c\rfloor\mid a\in A\}
 $$
 と定義する。
-このとき、以下の条件を満たす確率測度 $P\colon 2^{[0,1)}\to \mathbb{R}_{\ge 0}$ は存在しない。
+このとき、
+$$
+\forall c\in\Omega,\, A\subseteq\Omega,\quad P(A+c) = P(A).
+$$
+を満たす確率測度 $P\colon 2^{[0,1)}\to \mathbb{R}_{\ge 0}$ は存在しない。
 
-* $\forall c\in\Omega,\, A\subseteq\Omega,\quad P(A+c) = P(A)$.
 :::
 ::: {.proof}
 $\Omega$ 上の同値関係を $x\sim y \stackrel{\mathrm{def}}{\iff} x-y\in\mathbb{Q}$ と定義する。
 選択公理より、この同値関係の同値類から一つずつ要素を含む集合 $V$ が存在する。
-任意の $x\in[0, 1)$ について、ある $z\in V$ が唯一存在して $x\sim z$ である。
-よって、
+ここで
+\begin{align*}
+[0, 1) &= \bigcup_{q\in\mathbb{Q}} (V + q)
+\end{align*}
+であり、右辺は互いに排反である。
+このことは任意の $x\in[0, 1)$ について、ある $z\in V$ が**唯一**存在して $x\sim z$ であることから分かる。
+よって
 \begin{align*}
 [0, 1) &= \bigcup_{z\in V} \{x \mid x\sim z\}\\
 &= \bigcup_{z\in V} \bigcup_{q\in\mathbb{Q}} (\{z\} + q)\\
