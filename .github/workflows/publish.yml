@@ -16,16 +16,9 @@ jobs:
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tinytex: true
 
       - name: Install TexLive
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          sudo apt update
           sudo apt install -y texlive-lang-japanese texlive-luatex
           sudo fc-cache -fv
 
