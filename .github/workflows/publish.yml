@@ -19,7 +19,7 @@ jobs:
 
       - name: Install Jupyter
         run: |
-          python3 -m pip install jupyter
+          python3 -m pip install numpy scipy jupyter
 
       - name: Install Tex packages
         run: |
