@@ -102,7 +102,7 @@
     "href": "prob-space.html#確率の性質",
     "title": "3  確率空間",
     "section": "3.6 確率の性質",
-    "text": "3.6 確率の性質\n\n補題 3.1 (確率のいくつかの性質) 確率空間 \\((\\Omega,\\, P)\\) と任意の \\(A,\\,B\\subseteq \\Omega\\) について以下が成り立つ。 ただし、\\(A^c = \\Omega\\setminus A\\) とする。\n\n\\(P(\\varnothing) = 0\\).\n\\(P(A^c) = 1 - P(A)\\).\n\\(B\\subseteq A\\implies P(B)\\le P(A)\\)\n\\(P(A\\cup B) = P(A) + P(B) - P(A\\cap B)\\).\n\\(P(A\\cup B) \\le P(A) + P(B)\\) (ブールの不等式、union bound).",
+    "text": "3.6 確率の性質\n\n補題 3.1 (確率のいくつかの性質) 確率空間 \\((\\Omega,\\, P)\\) と任意の \\(A,\\,B\\subseteq \\Omega\\) について以下が成り立つ。 ただし、\\(A^c = \\Omega\\setminus A\\) とする。\n\n\\(P(A^c) = 1 - P(A)\\).\n\\(B\\subseteq A\\implies P(B)\\le P(A)\\)\n\\(P(A\\cup B) = P(A) + P(B) - P(A\\cap B)\\).\n\\(P(A\\cup B) \\le P(A) + P(B)\\) (ブールの不等式、union bound).\n\n\n\n証明. \n\n\\[\n1 = P(\\Omega) = P(A \\cup A^c) = P(A) + P(A^c).\n\\]\n\\[\nP(A) = P(B\\cup (A\\setminus B)) = P(B) + P(A\\setminus B) \\ge P(B).\n\\]\n\\[\\begin{align*}\nP(A\\cup B) &= P(A \\cup (B\\setminus A)) = P(A) + P(B\\setminus A)\\\\\nP(B) &= P((B\\setminus A) \\cup (A\\cap B)) = P(B\\setminus A) + P(A\\cap B)\n\\end{align*}\\] より、 \\(P(B\\setminus A)\\) を消去することで得られる。\n3 より自明",
     "crumbs": [
       "確率論",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>確率空間</span>"
@@ -135,7 +135,7 @@
     "href": "rv.html#確率変数",
     "title": "4  確率変数と確率分布",
     "section": "",
-    "text": "定義 4.1 (確率変数) 確率空間 \\((\\Omega,\\, P)\\) について、 関数 \\(X\\colon \\Omega\\to\\mathbb{R}\\) を確率変数という。\nまた、任意の \\(A\\subseteq\\mathbb{R}\\) について \\[\n\\Pr(X\\in A) \\coloneqq P(\\{\\omega\\in\\Omega\\mid X(\\omega)\\in A\\})\n\\] と定義する。 さらに、任意の \\(a\\in\\mathbb{R}\\) について \\[\n\\Pr(X\\ge a) \\coloneqq P(X\\in \\{x\\in\\mathbb{R}\\mid x\\ge a\\}) = P(\\{\\omega\\in\\Omega\\mid X(\\omega)\\ge a\\})\n\\] と定義する。 同様に \\(\\Pr(X &gt; a),\\, \\Pr(X \\le a),\\, \\Pr(X &lt; a),\\, \\Pr(X = a)\\) なども定義される。\n\n\n\n\n\n\n\nノート\n\n\n\n本当の確率論では確率変数は「確率空間から位相空間への写像で開集合の逆像が可測集合になるような関数」として定義される。 また、文献によっては確率変数は「確率空間から可測空間への写像で可測集合の逆像が可測集合になるような関数」として定義されることもある。 開集合族が生成する完全加法族をボレル集合族と呼ぶが、この方法で位相空間から可測空間を作ることができる。 そうすると前者の定義は「確率空間から位相空間への写像でボレル集合の逆像が可測集合になるような関数」と等価なので、後者の定義に含まれる。 後者の定義の中の可測空間が位相空間由来のものに限定したのが前者の定義であると言える。\n\n\n\n\n\n\n\n\n\nノート\n\n\n\n本当の確率論の言葉で述べると任意のボレル関数(開集合(ボレル集合としても等価)の逆像がボレル集合) \\(f\\) について \\(f\\circ X\\) は確率変数である。",
+    "text": "定義 4.1 (確率変数) 確率空間 \\((\\Omega,\\, P)\\) について、 関数 \\(X\\colon \\Omega\\to\\mathbb{R}\\) を確率変数という。\nまた、任意の \\(A\\subseteq\\mathbb{R}\\) について \\[\n\\Pr(X\\in A) \\coloneqq P(\\{\\omega\\in\\Omega\\mid X(\\omega)\\in A\\})\n\\] と定義する。 さらに、任意の \\(a\\in\\mathbb{R}\\) について \\[\n\\Pr(X\\ge a) \\coloneqq P(X\\in \\{x\\in\\mathbb{R}\\mid x\\ge a\\}) = P(\\{\\omega\\in\\Omega\\mid X(\\omega)\\ge a\\})\n\\] と定義する。 同様に \\(\\Pr(X &gt; a),\\, \\Pr(X \\le a),\\, \\Pr(X &lt; a),\\, \\Pr(X = a)\\) なども定義される。\n\n\n\n\n\n\n\nノート\n\n\n\n本当の確率論では確率変数は「確率空間から位相空間への写像で開集合の逆像が可測集合になるような関数」として定義される。 また、文献によっては確率変数は「確率空間から可測空間への写像で可測集合の逆像が可測集合になるような関数」として定義されることもある。 開集合族が生成する完全加法族をボレル集合族と呼ぶが、この方法で位相空間から可測空間を作ることができる。 そうすると前者の定義は「確率空間から位相空間への写像でボレル集合の逆像が可測集合になるような関数」と等価なので、後者の定義に含まれる。 後者の定義の中の可測空間が位相空間由来のものに限定したのが前者の定義であると言える。\n\n\n\n\n\n\n\n\n\nノート\n\n\n\n本当の確率論の言葉で述べると任意のボレル関数(開集合(ボレル集合としても等価)の逆像がボレル集合となる関数) \\(f\\) について \\(f\\circ X\\) は確率変数である。",
     "crumbs": [
       "確率論",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>確率変数と確率分布</span>"
