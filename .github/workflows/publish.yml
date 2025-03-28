@@ -21,7 +21,8 @@ jobs:
 
       - name: Install Tex packages
         run: |
-          .TinyTex/bin/x86_64-linux/tlmgr install luatexja collection-langjaapanese haranoaji
+          quarto install tinytex --update-path
+          tlmgr install luatexja collection-langjaapanese haranoaji
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
