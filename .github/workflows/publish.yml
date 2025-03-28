@@ -20,6 +20,7 @@ jobs:
       - name: Install Tex packages
         run: |
           quarto install tinytex --update-path
+          tlmgr update --self
           tlmgr install luatexja collection-langjaapanese haranoaji
 
       - name: Render and Publish
