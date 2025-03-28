@@ -155,12 +155,22 @@ y = np.piecewise(
 # グラフの描画
 plt.figure(figsize=(8, 5))
 plt.plot(x, y, label='$f(x)$', color='blue')
-plt.title('$X$ の累積分布関数')
+plt.title('cpf of $X$')
 plt.xlabel('$x$')
 plt.ylabel('$f(x)$')
 plt.grid(True)
 plt.axhline(0, color='black', linewidth=0.5)
 plt.axvline(0, color='black', linewidth=0.5)
+
+# x = 1/2 の左極限（穴あき）
+x_left = 0.5 - 1e-5  # 少しだけ左
+y_left = x_left / 2
+plt.plot(0.5, y_left, 'o', color='white', markeredgecolor='blue', markersize=8)
+
+# x = 1/2 の値（右からの定義値）
+y_right = 0.5 / 2 + 0.5
+plt.plot(0.5, y_right, 'o', color='blue', markersize=6)
+
 plt.legend()
 plt.show()
 ```
