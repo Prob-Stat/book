@@ -33,24 +33,22 @@ filters:
 custom-numbered-blocks:
   groups:
     thmlike:
-      colors: [cce7b1, 86b754]
+      colors: [948bde, 584eab]
       boxstyle: foldbox.simple
       collapse: false
+      listin: [mathstuff]
+    todos: default  
   classes:
     Theorem:
-      label: "定理"
       group: thmlike
     Lemma:
-      label: "補題"
       group: thmlike
     Corollary:
-      label: "系"
       group: thmlike
     Conjecture:
       group: thmlike
       collapse: true  
     Definition:
-      label: "定義"
       group: thmlike
       colors: [d999d3, a01793]
 
