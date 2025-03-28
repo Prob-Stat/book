@@ -17,10 +17,6 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Install costom-numbered-blocks
-        run: |
-          quarto add ute/custom-numbered-blocks
-
       - name: Install Tex packages
         run: |
           quarto install tinytex --update-path --no-prompt --log-level warning
