@@ -13,9 +13,16 @@
 
 また、任意の $A\subseteq\mathbb{R}$ について
 $$
-\Pr(X\in A) \coloneq P(\{\omega\in\Omega\mid X(\omega)\in A\})
+\Pr(X\in A) \coloneqq P(\{\omega\in\Omega\mid X(\omega)\in A\})
 $$
 と定義する。
+
+さらに、任意の $a\in\mathbb{R}$ について
+$$
+\Pr(X\ge a) \coloneqq P(X\in \{x\mid x\ge a\}) = P(\{\omega\in\Omega\mid X(\omega)\ge a\})
+$$
+と定義する。
+同様に $\Pr(X > a),\, \Pr(X \le a),\, \Pr(X < a),\, \Pr(X = a)$ なども定義される。
 :::
 
 ## 確率分布
