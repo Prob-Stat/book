@@ -115,9 +115,9 @@ pmf = binom.pmf(x, n, p)
 # プロット
 plt.figure(figsize=(8, 5))
 plt.bar(x, pmf, tick_label=x)
-plt.title(f'二項分布(n={n}, p={p}) の確率質量関数')
+plt.title(f'Pmf of binomial distribution with n={n}, p={p}')
 plt.xlabel('$k$')
-plt.ylabel('$Pr(X=k)$')
+plt.ylabel('$\Pr(X=k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 ```
