@@ -58,10 +58,14 @@ $X$ が離散型確率変数のとき、$A$ を $X$ の像の部分集合とす�
 であるので、
 
 $$
-f_X(x) \coloneqq \Pr(X=x) \forall x\in\mathbb{R}
+f_X(x) \coloneqq \Pr(X=x) \qquad \forall x\in\mathbb{R}
 $$
 
-という関数を用いて $\Pr(X\in A) = \sum_{x\in A} f_X(x)$ と表せる。
+という関数を用いて
+$$
+\Pr(X\in A) = \sum_{x\in A} f_X(x)
+$$
+と表せる。
 この $f_X(x)$ を**確率質量関数**という。
 
 $X$ が連続型確率変数のとき、
@@ -80,3 +84,23 @@ $X$ が連続型確率変数のとき、
 ## 確率分布の例
 
 ### 二項分布
+
+二項分布の確率質量関数は
+
+```{python}
+#| label: fig-binom
+#| fig-cap: "二項分布の確率質量関数"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * r
+fig, ax = plt.subplots(
+  subplot_kw = {'projection': 'polar'} 
+)
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
+```
