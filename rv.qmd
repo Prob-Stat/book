@@ -84,14 +84,14 @@ $$
 X(\omega) =
 \begin{cases}
 2\omega& \text{if }\omega < \frac12\\
-1& \text{otherwise.}
+\frac12& \text{otherwise.}
 \end{cases}
 $$
 と定義する。
 
 この時 $X$ の像は $[0,1]$ であるので $X$ は連続型確率変数である。
 
-また、$\Pr(X=1) = P([\frac12, 1)) = \frac12$ である。
+また、$\Pr(X=\frac12) = P([\frac12, 1)) = \frac12$ である。
 よって $X$ の確率密度関数は存在しない。
 :::
 
@@ -127,6 +127,43 @@ $$
 &= \Pr(\{\omega\mid X(\omega) \le x\})
 \end{align*}
 
+@exm-contdisc の確率変数 $X$ の確率密度関数は
+
+```{python}
+#| label: fig-x
+#| fig-cap: "$X$の累積分布関数"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# xの範囲を定義（-1から2までを細かく分けて計算）
+x = np.linspace(-1, 2, 1000)
+
+# 区間ごとの関数定義
+y = np.piecewise(
+    x,
+    [x < 0,
+     (0 <= x) & (x < 0.5),
+     (0.5 <= x) & (x < 1),
+     x >= 1],
+    [0,
+     lambda x: x / 2,
+     lambda x: x / 2 + 0.5,
+     1]
+)
+
+# グラフの描画
+plt.figure(figsize=(8, 5))
+plt.plot(x, y, label='$f(x)$', color='blue')
+plt.title('$X$ の累積分布関数')
+plt.xlabel('$x$')
+plt.ylabel('$f(x)$')
+plt.grid(True)
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.legend()
+plt.show()
+```
 
 
 ## 確率分布の例
