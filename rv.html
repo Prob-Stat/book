@@ -303,7 +303,7 @@ window.Quarto = {
 <p>本当の確率論では確率変数は「確率空間から位相空間への写像で開集合の逆像が可測集合になるような関数」として定義される。 また、文献によっては確率変数は「確率空間から可測空間への写像で可測集合の逆像が可測集合になるような関数」として定義されることもある。 開集合族が生成する完全加法族をボレル集合族と呼ぶが、この方法で位相空間から可測空間を作ることができる。 そうすると前者の定義は「確率空間から位相空間への写像でボレル集合の逆像が可測集合になるような関数」と等価なので、後者の定義に含まれる。 後者の定義の中の可測空間が位相空間由来のものに限定したのが前者の定義であると言える。</p>
 </div>
 </div>
-<p>任意の関数 <span class="math inline">\(f\colon \mathbb{R}\to\mathbb{R}\)</span> について <span class="math inline">\(f(X)\)</span> は確率変数である。</p>
+<p>任意の関数 <span class="math inline">\(f\colon \mathbb{R}\to\mathbb{R}\)</span> について <span class="math inline">\(f\circ X\)</span> は確率変数である。 このとき、<span class="math inline">\(\Pr(f\circ X \in A)\)</span> と書く代わりに <span class="math inline">\(\Pr(f(X)\in A)\)</span> と書く。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -314,7 +314,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>本当の確率論の言葉で述べると任意のボレル関数(開集合(ボレル集合としても等価)の逆像がボレル集合) <span class="math inline">\(f\)</span> について <span class="math inline">\(f(X)\)</span> は確率変数である。</p>
+<p>本当の確率論の言葉で述べると任意のボレル関数(開集合(ボレル集合としても等価)の逆像がボレル集合) <span class="math inline">\(f\)</span> について <span class="math inline">\(f\circ X\)</span> は確率変数である。</p>
 </div>
 </div>
 <p>共通の確率空間 <span class="math inline">\((\Omega,\, P)\)</span> 上の確率変数 <span class="math inline">\(X,\,Y\)</span> についてその和 <span class="math inline">\(X + Y\)</span> や積 <span class="math inline">\(XY\)</span> も確率変数である。</p>

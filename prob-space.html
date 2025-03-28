@@ -253,6 +253,8 @@ window.Quarto = {
   <li><a href="#可算無限集合上の確率" id="toc-可算無限集合上の確率" class="nav-link" data-scroll-target="#可算無限集合上の確率"><span class="header-section-number">3.3</span> 可算無限集合上の確率</a></li>
   <li><a href="#すべての部分集合を可測にはできない" id="toc-すべての部分集合を可測にはできない" class="nav-link" data-scroll-target="#すべての部分集合を可測にはできない"><span class="header-section-number">3.4</span> すべての部分集合を可測にはできない</a></li>
   <li><a href="#確率論の公理" id="toc-確率論の公理" class="nav-link" data-scroll-target="#確率論の公理"><span class="header-section-number">3.5</span> 確率論の公理</a></li>
+  <li><a href="#確率の性質" id="toc-確率の性質" class="nav-link" data-scroll-target="#確率の性質"><span class="header-section-number">3.6</span> 確率の性質</a></li>
+  <li><a href="#条件付き確率" id="toc-条件付き確率" class="nav-link" data-scroll-target="#条件付き確率"><span class="header-section-number">3.7</span> 条件付き確率</a></li>
   </ul>
 </nav>
     </div>
@@ -380,8 +382,24 @@ A+x\coloneqq\{a+x-\lfloor a+x\rfloor\mid a\in A\}
 <p>ペア <span class="math inline">\((\Omega,\, \mathcal{F})\)</span> を可測空間という。 確率空間 <span class="math inline">\((\Omega,\, \mathcal{F},\, P)\)</span> から <span class="math inline">\(P(\Omega)=1\)</span> の条件を除いたものが一般の測度空間である。</p>
 </div>
 </div>
-<p><a href="#thm-vitali" class="quarto-xref">定理&nbsp;<span>3.1</span></a> の証明では選択公理を用いたが、実際に選択公理を認めないと <a href="#thm-vitali" class="quarto-xref">定理&nbsp;<span>3.1</span></a> が成立しないことが分かっている。 以降、<span class="math inline">\(\Omega\)</span> が非可算無限集合である場合も含めて、<span class="math inline">\(\mathcal{F} = 2^\Omega\)</span> だと思うことにする。 これは正しくない場合もあるのだが、選択公理を使わない限り矛盾は導かれないので、問題になることはほとんどない。</p>
-<p>よって、以降は <span class="math inline">\((\Omega,\, P)\)</span> を確率空間とする。</p>
+<p><a href="#thm-vitali" class="quarto-xref">定理&nbsp;<span>3.1</span></a> の証明では選択公理を用いたが、実際に選択公理を認めないと <a href="#thm-vitali" class="quarto-xref">定理&nbsp;<span>3.1</span></a> が成立しないことが分かっている。 以降、<span class="math inline">\(\Omega\)</span> が非可算無限集合である場合も含めて、<span class="math inline">\(\mathcal{F} = 2^\Omega\)</span> だと思うことにする。 これは正しくない場合もあるのだが、選択公理を使わない限り矛盾は導かれないので、問題になることはほとんどない。 よって、以降は <span class="math inline">\((\Omega,\, P)\)</span> を確率空間とする。</p>
+<p><span class="math inline">\(\Omega = [0, 1)\)</span> で任意の <span class="math inline">\(0\le a &lt; b\le 1\)</span> について <span class="math inline">\(P([a, b)) = b-a\)</span> であるような確率空間はとても基本的なものである。 今後この性質を満たす確率空間が存在すると仮定して話を進める。</p>
+</section>
+<section id="確率の性質" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="確率の性質"><span class="header-section-number">3.6</span> 確率の性質</h2>
+<div id="lem-probs" class="theorem lemma">
+<p><span class="theorem-title"><strong>補題 3.1 (確率のいくつかの性質)</strong></span> 確率空間 <span class="math inline">\((\Omega,\, P)\)</span> と任意の <span class="math inline">\(A,\,B\subseteq \Omega\)</span> について以下が成り立つ。 ただし、<span class="math inline">\(A^c = \Omega\setminus A\)</span> とする。</p>
+<ol type="1">
+<li><span class="math inline">\(P(\varnothing) = 0\)</span>.</li>
+<li><span class="math inline">\(P(A^c) = 1 - P(A)\)</span>.</li>
+<li><span class="math inline">\(B\subseteq A\implies P(B)\le P(A)\)</span></li>
+<li><span class="math inline">\(P(A\cup B) = P(A) + P(B) - P(A\cap B)\)</span>.</li>
+<li><span class="math inline">\(P(A\cup B) \le P(A) + P(B)\)</span> (ブールの不等式、union bound).</li>
+</ol>
+</div>
+</section>
+<section id="条件付き確率" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="条件付き確率"><span class="header-section-number">3.7</span> 条件付き確率</h2>
 
 
 </section>
