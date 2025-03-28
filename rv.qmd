@@ -137,7 +137,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # xの範囲を定義（-1から2までを細かく分けて計算）
-x = np.linspace(-1, 2, 1000)
+x = np.linspace(-0.5, 1.5, 1000)
 
 # 区間ごとの関数定義
 y = np.piecewise(
