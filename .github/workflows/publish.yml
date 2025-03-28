@@ -18,10 +18,14 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Install Jupyter
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python3 -m pip install numpy scipy matplotlib jupyter
 
       - name: Install Tex packages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           quarto install tinytex --update-path --no-prompt --log-level warning
           tlmgr update --self
