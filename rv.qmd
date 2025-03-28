@@ -41,20 +41,40 @@ $$
 
 共通の確率空間 $(\Omega,\, P)$ 上の確率変数 $X,\,Y$ についてその和 $X + Y$ や積 $XY$ も確率変数である。
 
+## 確率分布
+
 確率変数 $X$ の像が高々可算のとき、$X$ を**離散型確率変数**という。
 離散型確率変数でない確率変数を**連続型確率変数**という。
 
-$X$ が離散型確率変数のとき、
+$X$ が離散型確率変数のとき、$A$ を $X$ の像の部分集合とすると
 
 \begin{align*}
-\Pr(X\in A) &= \Pr\left(\bigcup_{x\in A} \{x\}\right)\\
-&= \sum_{x\in A} \Pr\left(\{x\}\right)
+\Pr(X\in A) &= \Pr\left(\{\omega\in\Omega\mid X(\omega)\in A\}\right)\\
+&= \Pr\left(\bigcup_{x\in A} \{\omega\in\Omega\mid X(\omega)=x\}\right)\\
+&= \sum_{x\in A} \Pr\left(\{\omega\in\Omega\mid X(\omega)=x\}\right)\\
+&= \sum_{x\in A} \Pr\left(X=x\right)
 \end{align*}
 
-であるので
+であるので、
 
+$$
+f_X(x) \coloneqq \Pr(X=x) \forall x\in\mathbb{R}
+$$
 
-## 確率分布
+という関数を用いて $\Pr(X\in A) = \sum_{x\in A} f_X(x)$ と表せる。
+この $f_X(x)$ を**確率質量関数**という。
+
+$X$ が連続型確率変数のとき、
+
+\begin{align*}
+\Pr(X\in A) &= \int_{x\in A} f_X(x) \mathrm{d}x
+\end{align*}
+
+が存在するとき、この $f_X(x)$ を**確率密度関数**という。
+しかし、確率密度関数は常に存在するとは限らない。
+
+例えば
+
 
 
 ## 確率分布の例
