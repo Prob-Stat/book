@@ -284,7 +284,7 @@ window.Quarto = {
 <p>まず、確率を考える集合について考えよう。 例えばコインを投げて表もしくは裏が出る確率を考えたいときは <span class="math display">\[
 \Omega = \{\mathrm{H},\,\mathrm{T}\}
 \]</span> という集合になる。 また、明日の天気の確率を考えたいときは <span class="math display">\[
-\Omega = \{\text{"晴れ"},\, \text{"雨"},\, \text{"曇り"}\}
+\Omega = \{\text{"晴"},\, \text{"雨"},\, \text{"雪"}\}
 \]</span> という集合になるだろう。 この <span class="math inline">\(\Omega\)</span> の部分集合に確率を与える関数 <span class="math inline">\(P\colon 2^\Omega\to\mathbb{R}\)</span> を定義しよう。 偏りのないコインの場合は以下のようになる。 <span class="math display">\[\begin{align*}
 P(\varnothing) &amp;= 0,&amp; P(\{\mathrm{H}\}) &amp;= \frac12,&amp;
 P(\{\mathrm{T}\}) &amp;= \frac12,&amp; P(\{\mathrm{H},\,\mathrm{T}\}) &amp;= 1.
@@ -302,7 +302,7 @@ P(\{晴,雨\})&amp;=0.9,&amp; P(\{雨,雪\})&amp;=0.3,&amp; P(\{雪,晴\})&amp;=
 <li><span class="math inline">\(\forall A,\,B\subseteq\Omega,\quad A\cap B = \varnothing \implies P(A\cup B) = P(A) + P(B)\)</span>.</li>
 </ol>
 <p>一つ目の条件は全体の確率が1であるという意味の条件である。 二つ目の条件は排反な二つの事象の和集合の確率はそれぞれの事象の確率の和であるという意味の条件である。 この二つ目の条件を<strong>有限加法性</strong>という。 例えば <span class="math display">\[
-P(\{\text{"晴れ"}, \text{"雨"}\}) = P(\{\text{"晴れ"}\}) + P(\{\text{"雨"}\})
+P(\{\text{"晴"}, \text{"雨"}\}) = P(\{\text{"晴"}\}) + P(\{\text{"雨"}\})
 \]</span> という等式は「晴れもしくは雨になる確率 <span class="math inline">\(=\)</span> 晴れになる確率 <span class="math inline">\(+\)</span> 雨になる確率」という意味の等式になる。 よって有限加法性が自然な条件であることが分かるだろう。 また、これらのことから、<span class="math inline">\(P\)</span> は各要素 <span class="math inline">\(\omega\in\Omega\)</span> に対する確率 <span class="math inline">\(P(\{\omega\})\)</span> から一意に定まることが分かる。 この標本空間と確率測度のペア <span class="math inline">\((\Omega,\, P)\)</span> を<strong>確率空間</strong>という。</p>
 </section>
 <section id="可算無限集合上の確率" class="level2" data-number="3.3">
@@ -366,7 +366,7 @@ A+x\coloneqq\{a+x-\lfloor a+x\rfloor\mid a\in A\}
 </ol>
 <p>このとき、<span class="math inline">\((\Omega,\, \mathcal{F},\, P)\)</span> を確率空間という。 また、<span class="math inline">\(\Omega\)</span> を標本空間、<span class="math inline">\(\mathcal{F}\)</span> を事象集合、<span class="math inline">\(P\)</span> を確率測度という。</p>
 </div>
-<p>このように事象集合 <span class="math inline">\(\mathcal{F}\)</span> の元についてのみ確率が与えられる。 <a href="#thm-vitali" class="quarto-xref">定理&nbsp;<span>3.1</span></a> の証明では選択公理を用いたが、実際に選択公理を認めないと <a href="#thm-vitali" class="quarto-xref">定理&nbsp;<span>3.1</span></a> は成立しない。</p>
+<p>このように事象集合 <span class="math inline">\(\mathcal{F}\)</span> の元についてのみ確率が与えられる。 <a href="#thm-vitali" class="quarto-xref">定理&nbsp;<span>3.1</span></a> の証明では選択公理を用いたが、実際に選択公理を認めないと <a href="#thm-vitali" class="quarto-xref">定理&nbsp;<span>3.1</span></a> が成立しないことが分かっている。</p>
 <p>以降、<span class="math inline">\(\Omega\)</span> が非可算無限集合である場合も含めて、<span class="math inline">\(\mathcal{F} = 2^\Omega\)</span> だと思うことにする。 これは正しくない場合もあるのだが、選択公理を使わない限り矛盾は導かれないので、問題になることはほとんどない。</p>
 <p>よって、以降は <span class="math inline">\((\Omega,\, P)\)</span> を確率空間とする。</p>
 
