@@ -16,12 +16,10 @@ jobs:
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          tinytex: true
 
       - name: Install Tex packages
         run: |
-          tlmgr install luatexja haranoaji
+          sudo apt install -y texlive-luatex texlive-lang-japanese texlive-latex-extra
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
