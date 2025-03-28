@@ -29,17 +29,28 @@ bibliography: references.bib
 
 filters:
   - custom-numbered-blocks
+
 custom-numbered-blocks:
   groups:
-    thmgroup:
+    thmlike:
+      colors: [948bde, 584eab]
       boxstyle: foldbox.simple
       collapse: false
+      listin: [mathstuff]
+    todos: default  
   classes:
     Theorem:
-      group: thmgroup
+      group: thmlike
+    Lemma:
+      group: thmlike
+    Corollary:
+      group: thmlike
+    Conjecture:
+      group: thmlike
+      collapse: true  
     Definition:
-      group: thmgroup
-      colors: [cce7b1, 86b754]
+      group: thmlike
+      colors: [d999d3, a01793]
 
 format:
   html:
