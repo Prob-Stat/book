@@ -77,7 +77,23 @@ $X$ が連続型確率変数のとき、
 が存在するとき、この $f_X(x)$ を**確率密度関数**という。
 しかし、確率密度関数は常に存在するとは限らない。
 
-例えば
+::: {#exm-contdisc}
+$\Omega = [0, 1)$とし、$P\colon 2^\Omega\to\mathbb{R}_{\ge 0}$ を $P([a, b)) = b-a$ を満たす確率測度とする。
+確率空間 $(\Omega,\, P)$ 上の確率変数 $X\colon [0,1)\to\mathbb{R}$ を
+$$
+X(\omega) =
+\begin{cases}
+2\omega& \text{if }\omega < \frac12\\
+1& \text{otherwise.}
+\end{cases}
+$$
+と定義する。
+
+この時 $X$ の像は $[0,1]$ であるので $X$ は連続型確率変数である。
+
+また、$\Pr(X=1) = P([\frac12, 1)) = \frac12$ である。
+よって $X$ の確率密度関数は存在しない。
+:::
 
 
 
