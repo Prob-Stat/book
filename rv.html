@@ -281,8 +281,11 @@ window.Quarto = {
 <div id="def-rv" class="theorem definition">
 <p><span class="theorem-title"><strong>定義 4.1 (確率変数)</strong></span> 確率空間 <span class="math inline">\((\Omega, P)\)</span> について、 関数 <span class="math inline">\(X\colon \Omega\to\mathbb{R}\)</span> を<strong>確率変数</strong>という。</p>
 <p>また、任意の <span class="math inline">\(A\subseteq\mathbb{R}\)</span> について <span class="math display">\[
-\Pr(X\in A) \coloneq P(\{\omega\in\Omega\mid X(\omega)\in A\})
+\Pr(X\in A) \coloneqq P(\{\omega\in\Omega\mid X(\omega)\in A\})
 \]</span> と定義する。</p>
+<p>さらに、任意の <span class="math inline">\(a\in\mathbb{R}\)</span> について <span class="math display">\[
+\Pr(X\ge a) \coloneqq P(X\in \{x\mid x\ge a\}) = P(\{\omega\in\Omega\mid X(\omega)\ge a\})
+\]</span> と定義する。 同様に <span class="math inline">\(\Pr(X &gt; a),\, \Pr(X \le a),\, \Pr(X &lt; a),\, \Pr(X = a)\)</span> なども定義される。</p>
 </div>
 </section>
 <section id="確率分布" class="level2" data-number="4.2">

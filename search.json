@@ -113,7 +113,7 @@
     "href": "rv.html#確率変数",
     "title": "4  確率変数と確率分布",
     "section": "",
-    "text": "定義 4.1 (確率変数) 確率空間 \\((\\Omega, P)\\) について、 関数 \\(X\\colon \\Omega\\to\\mathbb{R}\\) を確率変数という。\nまた、任意の \\(A\\subseteq\\mathbb{R}\\) について \\[\n\\Pr(X\\in A) \\coloneq P(\\{\\omega\\in\\Omega\\mid X(\\omega)\\in A\\})\n\\] と定義する。",
+    "text": "定義 4.1 (確率変数) 確率空間 \\((\\Omega, P)\\) について、 関数 \\(X\\colon \\Omega\\to\\mathbb{R}\\) を確率変数という。\nまた、任意の \\(A\\subseteq\\mathbb{R}\\) について \\[\n\\Pr(X\\in A) \\coloneqq P(\\{\\omega\\in\\Omega\\mid X(\\omega)\\in A\\})\n\\] と定義する。\nさらに、任意の \\(a\\in\\mathbb{R}\\) について \\[\n\\Pr(X\\ge a) \\coloneqq P(X\\in \\{x\\mid x\\ge a\\}) = P(\\{\\omega\\in\\Omega\\mid X(\\omega)\\ge a\\})\n\\] と定義する。 同様に \\(\\Pr(X &gt; a),\\, \\Pr(X \\le a),\\, \\Pr(X &lt; a),\\, \\Pr(X = a)\\) なども定義される。",
     "crumbs": [
       "確率論",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>確率変数と確率分布</span>"
