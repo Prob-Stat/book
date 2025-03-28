@@ -375,7 +375,17 @@ f_X(x) \coloneqq \Pr(X=x) \qquad \forall x\in\mathbb{R}
 \Pr(X\in A) &amp;= \int_{x\in A} f_X(x) \mathrm{d}x
 \end{align*}\]</span></p>
 <p>が存在するとき、この <span class="math inline">\(f_X(x)\)</span> を<strong>確率密度関数</strong>という。 しかし、確率密度関数は常に存在するとは限らない。</p>
-<p>例えば</p>
+<div id="exm-contdisc" class="theorem example">
+<p><span class="theorem-title"><strong>例 4.1</strong></span> <span class="math inline">\(\Omega = [0, 1)\)</span>とし、<span class="math inline">\(P\colon 2^\Omega\to\mathbb{R}_{\ge 0}\)</span> を <span class="math inline">\(P([a, b)) = b-a\)</span> を満たす確率測度とする。 確率空間 <span class="math inline">\((\Omega,\, P)\)</span> 上の確率変数 <span class="math inline">\(X\colon [0,1)\to\mathbb{R}\)</span> を <span class="math display">\[
+X(\omega) =
+\begin{cases}
+2\omega&amp; \text{if }\omega &lt; \frac12\\
+1&amp; \text{otherwise.}
+\end{cases}
+\]</span> と定義する。</p>
+<p>この時 <span class="math inline">\(X\)</span> の像は <span class="math inline">\([0,1]\)</span> であるので <span class="math inline">\(X\)</span> は連続型確率変数である。</p>
+<p>また、<span class="math inline">\(\Pr(X=1) = P([\frac12, 1)) = \frac12\)</span> である。 よって <span class="math inline">\(X\)</span> の確率密度関数は存在しない。</p>
+</div>
 </section>
 <section id="確率分布の例" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="確率分布の例"><span class="header-section-number">4.3</span> 確率分布の例</h2>
