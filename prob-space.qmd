@@ -192,11 +192,31 @@ $\Omega = [0, 1)$ で任意の $0\le a < b\le 1$ について $P([a, b)) = b-a$ 
 確率空間 $(\Omega,\, P)$ と任意の $A,\,B\subseteq \Omega$ について以下が成り立つ。
 ただし、$A^c = \Omega\setminus A$ とする。
 
-1. $P(\varnothing) = 0$.
-2. $P(A^c) = 1 - P(A)$.
-3. $B\subseteq A\implies P(B)\le P(A)$
-4. $P(A\cup B) = P(A) + P(B) - P(A\cap B)$.
-5. $P(A\cup B) \le P(A) + P(B)$ (ブールの不等式、union bound).
+1. $P(A^c) = 1 - P(A)$.
+2. $B\subseteq A\implies P(B)\le P(A)$
+3. $P(A\cup B) = P(A) + P(B) - P(A\cap B)$.
+4. $P(A\cup B) \le P(A) + P(B)$ (ブールの不等式、union bound).
+:::
+::: {.proof}
+1.
+$$
+1 = P(\Omega) = P(A \cup A^c) = P(A) + P(A^c).
+$$
+
+2.
+$$
+P(A) = P(B\cup (A\setminus B)) = P(B) + P(A\setminus B) \ge P(B).
+$$
+
+3.
+\begin{align*}
+P(A\cup B) &= P(A \cup (B\setminus A)) = P(A) + P(B\setminus A)\\
+P(B) &= P((B\setminus A) \cup (A\cap B)) = P(B\setminus A) + P(A\cap B)
+\end{align*}
+より、 $P(B\setminus A)$ を消去することで得られる。
+
+4.
+3 より自明
 :::
 
 ## 条件付き確率
