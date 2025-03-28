@@ -154,10 +154,10 @@ y = np.piecewise(
 
 # グラフの描画
 plt.figure(figsize=(8, 5))
-plt.plot(x, y, label='$f(x)$', color='blue')
-plt.title('cpf of $X$')
+plt.plot(x, y, label='$F_X(x)$', color='blue')
+plt.title('Cpf of $X$')
 plt.xlabel('$x$')
-plt.ylabel('$f(x)$')
+plt.ylabel('$F_X(x)$')
 plt.grid(True)
 plt.axhline(0, color='black', linewidth=0.5)
 plt.axvline(0, color='black', linewidth=0.5)
@@ -171,7 +171,6 @@ plt.plot(0.5, y_left, 'o', color='white', markeredgecolor='blue', markersize=8)
 y_right = 0.5 / 2 + 0.5
 plt.plot(0.5, y_right, 'o', color='blue', markersize=6)
 
-plt.legend()
 plt.show()
 ```
 
