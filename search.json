@@ -98,6 +98,39 @@
     ]
   },
   {
+    "objectID": "rv.html",
+    "href": "rv.html",
+    "title": "4  確率変数と確率分布",
+    "section": "",
+    "text": "4.1 確率変数\n確率空間の上の様々な部分集合の確率を調べたい。 そのためには確率変数を導入すると便利である。",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>確率変数と確率分布</span>"
+    ]
+  },
+  {
+    "objectID": "rv.html#確率変数",
+    "href": "rv.html#確率変数",
+    "title": "4  確率変数と確率分布",
+    "section": "",
+    "text": "定義 4.1 (確率変数) 確率空間 \\((\\Omega, P)\\) について、 関数 \\(X\\colon \\Omega\\to\\mathbb{R}\\) を確率変数という。\nまた、任意の \\(A\\subseteq\\mathbb{R}\\) について \\[\n\\Pr(X\\in A) \\coloneq P(\\{\\omega\\in\\Omega\\mid X(\\omega)\\in A\\})\n\\] と定義する。",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>確率変数と確率分布</span>"
+    ]
+  },
+  {
+    "objectID": "rv.html#確率分布",
+    "href": "rv.html#確率分布",
+    "title": "4  確率変数と確率分布",
+    "section": "4.2 確率分布",
+    "text": "4.2 確率分布",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>確率変数と確率分布</span>"
+    ]
+  },
+  {
     "objectID": "references.html",
     "href": "references.html",
     "title": "参考文献",

@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -214,8 +243,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#確率変数" id="toc-確率変数" class="nav-link active" data-scroll-target="#確率変数"><span class="header-section-number">4.1</span> 確率変数</a></li>
+  <li><a href="#確率分布" id="toc-確率分布" class="nav-link" data-scroll-target="#確率分布"><span class="header-section-number">4.2</span> 確率分布</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -239,8 +275,21 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="確率変数" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="確率変数"><span class="header-section-number">4.1</span> 確率変数</h2>
+<p>確率空間の上の様々な部分集合の確率を調べたい。 そのためには確率変数を導入すると便利である。</p>
+<div id="def-rv" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 4.1 (確率変数)</strong></span> 確率空間 <span class="math inline">\((\Omega, P)\)</span> について、 関数 <span class="math inline">\(X\colon \Omega\to\mathbb{R}\)</span> を<strong>確率変数</strong>という。</p>
+<p>また、任意の <span class="math inline">\(A\subseteq\mathbb{R}\)</span> について <span class="math display">\[
+\Pr(X\in A) \coloneq P(\{\omega\in\Omega\mid X(\omega)\in A\})
+\]</span> と定義する。</p>
+</div>
+</section>
+<section id="確率分布" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="確率分布"><span class="header-section-number">4.2</span> 確率分布</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
