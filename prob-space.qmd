@@ -127,7 +127,7 @@ $\Omega$ 上の同値関係を $x\sim y \stackrel{\mathrm{def}}{\iff} x-y\in\mat
 
 ## 確率論の公理
 
-@thm:vitali より、
+定理 \ref{thm:vitali} より、
 
 1. 選択公理
 2. 確率測度の完全加法性
@@ -176,7 +176,7 @@ $\mathcal{F}\subseteq 2^\Omega$ を $\Omega$ 上の完全加法族とする。
 :::
 
 
-@thm:vitali の証明では選択公理を用いたが、実際に選択公理を認めないと @thm:vitali が成立しないことが分かっている。
+定理 \ref{thm:vitali} の証明では選択公理を用いたが、実際に選択公理を認めないと 定理 \ref{thm:vitali} が成立しないことが分かっている。
 以降、$\Omega$ が非可算無限集合である場合も含めて、$\mathcal{F} = 2^\Omega$ だと思うことにする。
 これは正しくない場合もあるのだが、選択公理を使わない限り矛盾は導かれないので、問題になることはほとんどない。
 
