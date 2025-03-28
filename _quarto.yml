@@ -32,6 +32,7 @@ format:
     theme:
       - cosmo
       - brand
+    code-fold: true
   pdf:
     pdf-engine: lualatex
     pdf-engine-opts:
@@ -43,6 +44,8 @@ format:
     include-in-header:
       text: |
         \usepackage{mathtools}
+    execute:
+      echo: false
 
 execute:
   freeze: auto
