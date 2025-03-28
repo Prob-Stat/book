@@ -101,7 +101,7 @@ $$
 と定義する。
 このとき、
 $$
-\forall x\in\Omega,\, A\subseteq\Omega,\quad P(A+x) = P(A)\qquad\text{平行移動不変性}
+\forall x\in\Omega,\, A\subseteq\Omega,\quad P(A+x) = P(A)\qquad\text{(平行移動不変性)}
 $$
 を満たす確率測度 $P\colon 2^{[0,1)}\to \mathbb{R}_{\ge 0}$ は存在しない。
 
