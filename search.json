@@ -146,7 +146,7 @@
     "href": "rv.html#確率分布",
     "title": "4  確率変数と確率分布",
     "section": "4.2 確率分布",
-    "text": "4.2 確率分布\n確率変数 \\(X\\) の像が高々可算のとき、\\(X\\) を離散型確率変数という。 離散型確率変数でない確率変数を連続型確率変数という。\n\\(X\\) が離散型確率変数のとき、\\(A\\) を \\(X\\) の像の部分集合とすると\n\\[\\begin{align*}\n\\Pr(X\\in A) &= \\Pr\\left(\\{\\omega\\in\\Omega\\mid X(\\omega)\\in A\\}\\right)\\\\\n&= \\Pr\\left(\\bigcup_{x\\in A} \\{\\omega\\in\\Omega\\mid X(\\omega)=x\\}\\right)\\\\\n&= \\sum_{x\\in A} \\Pr\\left(\\{\\omega\\in\\Omega\\mid X(\\omega)=x\\}\\right)\\\\\n&= \\sum_{x\\in A} \\Pr\\left(X=x\\right)\n\\end{align*}\\]\nであるので、\n\\[\nf_X(x) \\coloneqq \\Pr(X=x) \\forall x\\in\\mathbb{R}\n\\]\nという関数を用いて \\(\\Pr(X\\in A) = \\sum_{x\\in A} f_X(x)\\) と表せる。 この \\(f_X(x)\\) を確率質量関数という。\n\\(X\\) が連続型確率変数のとき、\n\\[\\begin{align*}\n\\Pr(X\\in A) &= \\int_{x\\in A} f_X(x) \\mathrm{d}x\n\\end{align*}\\]\nが存在するとき、この \\(f_X(x)\\) を確率密度関数という。 しかし、確率密度関数は常に存在するとは限らない。\n例えば",
+    "text": "4.2 確率分布\n確率変数 \\(X\\) の像が高々可算のとき、\\(X\\) を離散型確率変数という。 離散型確率変数でない確率変数を連続型確率変数という。\n\\(X\\) が離散型確率変数のとき、\\(A\\) を \\(X\\) の像の部分集合とすると\n\\[\\begin{align*}\n\\Pr(X\\in A) &= \\Pr\\left(\\{\\omega\\in\\Omega\\mid X(\\omega)\\in A\\}\\right)\\\\\n&= \\Pr\\left(\\bigcup_{x\\in A} \\{\\omega\\in\\Omega\\mid X(\\omega)=x\\}\\right)\\\\\n&= \\sum_{x\\in A} \\Pr\\left(\\{\\omega\\in\\Omega\\mid X(\\omega)=x\\}\\right)\\\\\n&= \\sum_{x\\in A} \\Pr\\left(X=x\\right)\n\\end{align*}\\]\nであるので、\n\\[\nf_X(x) \\coloneqq \\Pr(X=x) \\qquad \\forall x\\in\\mathbb{R}\n\\]\nという関数を用いて \\[\n\\Pr(X\\in A) = \\sum_{x\\in A} f_X(x)\n\\] と表せる。 この \\(f_X(x)\\) を確率質量関数という。\n\\(X\\) が連続型確率変数のとき、\n\\[\\begin{align*}\n\\Pr(X\\in A) &= \\int_{x\\in A} f_X(x) \\mathrm{d}x\n\\end{align*}\\]\nが存在するとき、この \\(f_X(x)\\) を確率密度関数という。 しかし、確率密度関数は常に存在するとは限らない。\n例えば",
     "crumbs": [
       "確率論",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>確率変数と確率分布</span>"
@@ -157,7 +157,7 @@
     "href": "rv.html#確率分布の例",
     "title": "4  確率変数と確率分布",
     "section": "4.3 確率分布の例",
-    "text": "4.3 確率分布の例\n\n4.3.1 二項分布",
+    "text": "4.3 確率分布の例\n\n4.3.1 二項分布\n二項分布の確率質量関数は\n\n\nコード\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n図 4.1: 二項分布の確率質量関数",
     "crumbs": [
       "確率論",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>確率変数と確率分布</span>"
