@@ -70,13 +70,25 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-.Definition {
-  --color1: #cce7b1;
-  --color2: #86b754;
+.Conjecture {
+  --color1: #948bde;
+  --color2: #584eab;
+}
+.Corollary {
+  --color1: #948bde;
+  --color2: #584eab;
 }
 .Theorem {
-  --color1: #c0c0c0;
-  --color2: #808080;
+  --color1: #948bde;
+  --color2: #584eab;
+}
+.Definition {
+  --color1: #d999d3;
+  --color2: #a01793;
+}
+.Lemma {
+  --color1: #948bde;
+  --color2: #584eab;
 }
 </style>
 
@@ -332,8 +344,8 @@ P(\{\text{"晴"}, \text{"雨"}\}) = P(\{\text{"晴"}\}) + P(\{\text{"雨"}\})
 <section id="すべての部分集合を可測にはできない" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="すべての部分集合を可測にはできない"><span class="header-section-number">3.4</span> すべての部分集合を可測にはできない</h2>
 <p>より一般に <span class="math inline">\(\Omega\)</span> が非可算無限集合の場合を考えよう。例えば <span class="math inline">\(\Omega = [0, 1)\)</span> の場合が考えられる。 このとき、すべての <span class="math inline">\(A\subseteq\Omega\)</span> に確率を与えることができるのだろうか？ そうすると、ごく自然な性質を持つような確率測度が存在しないことが、選択公理を認めると示される。</p>
-<div id="thm-vitali" class="Theorem theorem">
-<p><span class="theorem-title"><strong>定理 3.1 (非可測集合の存在)</strong></span> </p><details class="Theorem fbx-simplebox fbx-default" open=""><summary><strong>Theorem</strong></summary><div><span class="math inline">\(\Omega=[0,1)\)</span> とする。 また、集合の平行移動を <span class="math display">\[
+<div id="thm:vitali" class="Theorem" title="非可測集合の存在">
+<p></p><details class="Theorem fbx-simplebox fbx-default" open=""><summary><strong>Theorem 3.1: </strong>非可測集合の存在</summary><div><span class="math inline">\(\Omega=[0,1)\)</span> とする。 また、集合の平行移動を <span class="math display">\[
 A+x\coloneqq\{a+x-\lfloor a+x\rfloor\mid a\in A\}
 \]</span> と定義する。 このとき、 <span class="math display">\[
 \forall x\in\Omega,\, A\subseteq\Omega,\quad P(A+x) = P(A)\qquad\text{平行移動不変性}
@@ -352,7 +364,7 @@ A+x\coloneqq\{a+x-\lfloor a+x\rfloor\mid a\in A\}
 </section>
 <section id="確率論の公理" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="確率論の公理"><span class="header-section-number">3.5</span> 確率論の公理</h2>
-<p><a href="#thm-vitali" class="quarto-xref">定理&nbsp;<span>3.1</span></a> より、</p>
+<p><span class="citation" data-cites="thm:vitali">(<a href="references.html#ref-thm:vitali" role="doc-biblioref"><strong>thm:vitali?</strong></a>)</span> より、</p>
 <ol type="1">
 <li>選択公理</li>
 <li>確率測度の完全加法性</li>
@@ -360,8 +372,8 @@ A+x\coloneqq\{a+x-\lfloor a+x\rfloor\mid a\in A\}
 <li><span class="math inline">\(\Omega\)</span> のすべての部分集合に確率を与える</li>
 </ol>
 <p>のどれかを諦めないといけない。 標準的な確率論では4を諦める。 以下に確率空間の厳密な定義を述べる。</p>
-<div id="def-sigma" class="Definition theorem definition">
-<p><span class="theorem-title"><strong>定義 3.1 (完全加法族)</strong></span> </p><details class="Definition fbx-simplebox fbx-default" open=""><summary><strong>Definition</strong></summary><div><span class="math inline">\(\Omega\)</span> を集合とする。 <span class="math inline">\(\mathcal{F}\subseteq 2^\Omega\)</span> が以下を満たすとする。<p></p>
+<div id="def:sigma" class="Definition" title="完全加法族">
+<p></p><details class="Definition fbx-simplebox fbx-default" open=""><summary><strong>Definition 3.2: </strong>完全加法族</summary><div><span class="math inline">\(\Omega\)</span> を集合とする。 <span class="math inline">\(\mathcal{F}\subseteq 2^\Omega\)</span> が以下を満たすとする。<p></p>
 <ol type="1">
 <li><span class="math inline">\(\Omega\in\mathcal{F}\)</span>.</li>
 <li><span class="math inline">\(\forall A\in\mathcal{F},\quad \Omega\setminus A\in\mathcal{F}\)</span>.</li>
@@ -370,8 +382,8 @@ A+x\coloneqq\{a+x-\lfloor a+x\rfloor\mid a\in A\}
 <p>このとき、<span class="math inline">\(\mathcal{F}\)</span> を <span class="math inline">\(\Omega\)</span> 上の完全加法族もしくは <span class="math inline">\(\sigma\)</span>-加法族という。</p>
 </div></details>
 </div>
-<div id="def-prob" class="Definition theorem definition">
-<p><span class="theorem-title"><strong>定義 3.2 (確率空間)</strong></span> </p><details class="Definition fbx-simplebox fbx-default" open=""><summary><strong>Definition</strong></summary><div><span class="math inline">\(\Omega\)</span> を集合とし、 <span class="math inline">\(\mathcal{F}\subseteq 2^\Omega\)</span> を <span class="math inline">\(\Omega\)</span> 上の完全加法族とする。<p></p>
+<div id="def:prob" class="Definition" title="確率空間">
+<p></p><details class="Definition fbx-simplebox fbx-default" open=""><summary><strong>Definition 3.3: </strong>確率空間</summary><div><span class="math inline">\(\Omega\)</span> を集合とし、 <span class="math inline">\(\mathcal{F}\subseteq 2^\Omega\)</span> を <span class="math inline">\(\Omega\)</span> 上の完全加法族とする。<p></p>
 <p>また、<span class="math inline">\(P\colon\mathcal{F}\to\mathbb{R}_{\ge 0}\)</span> が以下を満たすとする。</p>
 <ol type="1">
 <li><span class="math inline">\(P(\Omega)=1\)</span>.</li>
@@ -394,7 +406,7 @@ A+x\coloneqq\{a+x-\lfloor a+x\rfloor\mid a\in A\}
 <p>ペア <span class="math inline">\((\Omega,\, \mathcal{F})\)</span> を可測空間という。 確率空間 <span class="math inline">\((\Omega,\, \mathcal{F},\, P)\)</span> から <span class="math inline">\(P(\Omega)=1\)</span> の条件を除いたものが一般の測度空間である。</p>
 </div>
 </div>
-<p><a href="#thm-vitali" class="quarto-xref">定理&nbsp;<span>3.1</span></a> の証明では選択公理を用いたが、実際に選択公理を認めないと <a href="#thm-vitali" class="quarto-xref">定理&nbsp;<span>3.1</span></a> が成立しないことが分かっている。 以降、<span class="math inline">\(\Omega\)</span> が非可算無限集合である場合も含めて、<span class="math inline">\(\mathcal{F} = 2^\Omega\)</span> だと思うことにする。 これは正しくない場合もあるのだが、選択公理を使わない限り矛盾は導かれないので、問題になることはほとんどない。</p>
+<p><span class="citation" data-cites="thm:vitali">(<a href="references.html#ref-thm:vitali" role="doc-biblioref"><strong>thm:vitali?</strong></a>)</span> の証明では選択公理を用いたが、実際に選択公理を認めないと <span class="citation" data-cites="thm:vitali">(<a href="references.html#ref-thm:vitali" role="doc-biblioref"><strong>thm:vitali?</strong></a>)</span> が成立しないことが分かっている。 以降、<span class="math inline">\(\Omega\)</span> が非可算無限集合である場合も含めて、<span class="math inline">\(\mathcal{F} = 2^\Omega\)</span> だと思うことにする。 これは正しくない場合もあるのだが、選択公理を使わない限り矛盾は導かれないので、問題になることはほとんどない。</p>
 <p>よって、以降は <span class="math inline">\((\Omega,\, P)\)</span> を確率空間とする。</p>
 
 
