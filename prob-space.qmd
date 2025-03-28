@@ -229,7 +229,7 @@ $$
 :::
 :::{.proof}
 
-$B_0 \coloneqq A_0$, $B_n \coloneqq A_n \setminus \bigcup_{k=0}^{n-1} A_n$ とおくと、
+$B_0 \coloneqq A_0$, $B_n \coloneqq A_n \setminus \bigcup_{k=0}^{n-1} A_k$ とおくと、
 
 \begin{align*}
 P\left(\bigcup_{n\ge 0} A_n\right) &= P\left(\bigcup_{n\ge 0} B_n\right)\\
@@ -243,18 +243,18 @@ P\left(\bigcup_{n\ge 0} A_n\right) &= P\left(\bigcup_{n\ge 0} B_n\right)\\
 
 確率空間 $(\Omega,\, P)$ と事象列 $A_0\subseteq A_1\subseteq \dotsb \subseteq \Omega$ について
 \begin{align*}
-P\left(\bigcup_{i=1}^\infty A_i\right) = \lim_{n\to\infty} P(A_n).
+P\left(\bigcup_{k=1}^\infty A_k\right) = \lim_{n\to\infty} P(A_n).
 \end{align*}
 :::
 ::: {.proof}
-$B_0\coloneq A_0$, $i\ge 1$について$B_i\coloneq A_i\setminus A_{i-1}$とおく。
-このとき、$i\ne j$について $B_i\cap B_j=\emptyset$。また、$\bigcup_{i=1}^n B_i = \bigcup_{i=1}^nA_i = A_n$.
+$B_0\coloneqq A_0$, $n\ge 1$について$B_n\coloneqq A_n\setminus A_{n-1}$とおく。
+このとき、$i\ne j$について $B_i\cap B_j=\varnothing$。また、$\bigcup_{k=1}^n B_k = \bigcup_{k=1}^nA_k = A_n$.
 
 \begin{align*}
-P\left(\bigcup_{i=1}^\infty A_i\right)&= P\left(\bigcup_{i=1}^\infty B_i\right) =\sum_{i=1}^\infty P(B_i)\\
-&=\lim_{n\to\infty} \sum_{i=1}^n P(B_i)
-=\lim_{n\to\infty} P\left(\bigcup_{i=1}^n B_i\right)
-=\lim_{n\to\infty} P(A_n).\qedhere
+P\left(\bigcup_{k=1}^\infty A_k\right)&= P\left(\bigcup_{k=1}^\infty B_k\right) =\sum_{k=1}^\infty P(B_k)\\
+&=\lim_{n\to\infty} \sum_{k=1}^n P(B_k)
+=\lim_{n\to\infty} P\left(\bigcup_{k=1}^n B_k\right)
+=\lim_{n\to\infty} P(A_n).
 \end{align*}
 :::
 
