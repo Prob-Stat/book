@@ -27,6 +27,20 @@ book:
 
 bibliography: references.bib
 
+filters:
+  - custom-numbered-blocks
+custom-numbered-blocks:
+  groups:
+    thmgroup:
+      boxstyle: foldbox.simple
+      collapse: false
+  classes:
+    Theorem:
+      group: thmgroup
+    Definition:
+      group: thmgroup
+      colors: [cce7b1, 86b754]
+
 format:
   html:
     theme:
