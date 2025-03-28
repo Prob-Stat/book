@@ -19,7 +19,7 @@ jobs:
 
       - name: Install costom-numbered-blocks
         run: |
-          quarto add ute/custom-numbered-blocks
+          yes | quarto add ute/custom-numbered-blocks
 
       - name: Install Tex packages
         run: |
