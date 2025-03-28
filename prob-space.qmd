@@ -251,7 +251,7 @@ $B_0\coloneq A_0$, $i\ge 1$について$B_i\coloneq A_i\setminus A_{i-1}$とお�
 このとき、$i\ne j$について $B_i\cap B_j=\emptyset$。また、$\bigcup_{i=1}^n B_i = \bigcup_{i=1}^nA_i = A_n$.
 
 \begin{align*}
-P\left(\bigcup_{i=1}^\infty A_i\right)&= P\left(\bigcup_{i=1}^\infty B_i\right) \emm{=}\sum_{i=1}^\infty P(B_i)\\
+P\left(\bigcup_{i=1}^\infty A_i\right)&= P\left(\bigcup_{i=1}^\infty B_i\right) =\sum_{i=1}^\infty P(B_i)\\
 &=\lim_{n\to\infty} \sum_{i=1}^n P(B_i)
 =\lim_{n\to\infty} P\left(\bigcup_{i=1}^n B_i\right)
 =\lim_{n\to\infty} P(A_n).\qedhere
