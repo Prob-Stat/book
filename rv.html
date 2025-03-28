@@ -380,11 +380,11 @@ f_X(x) \coloneqq \Pr(X=x) \qquad \forall x\in\mathbb{R}
 X(\omega) =
 \begin{cases}
 2\omega&amp; \text{if }\omega &lt; \frac12\\
-1&amp; \text{otherwise.}
+\frac12&amp; \text{otherwise.}
 \end{cases}
 \]</span> と定義する。</p>
 <p>この時 <span class="math inline">\(X\)</span> の像は <span class="math inline">\([0,1]\)</span> であるので <span class="math inline">\(X\)</span> は連続型確率変数である。</p>
-<p>また、<span class="math inline">\(\Pr(X=1) = P([\frac12, 1)) = \frac12\)</span> である。 よって <span class="math inline">\(X\)</span> の確率密度関数は存在しない。</p>
+<p>また、<span class="math inline">\(\Pr(X=\frac12) = P([\frac12, 1)) = \frac12\)</span> である。 よって <span class="math inline">\(X\)</span> の確率密度関数は存在しない。</p>
 </div>
 <p><span class="math display">\[
 F_X(x) \coloneqq \Pr(X\le x)\qquad\forall x\in\mathbb{R}
@@ -405,37 +405,101 @@ F_X(x) = \int_{-\infty}^x f_X(y) \mathrm{d}y
 &amp;= \Pr(\bigcap_{n=0}^\infty \{\omega\mid X(\omega) \le x + \frac1n\})\\
 &amp;= \Pr(\{\omega\mid X(\omega) \le x\})
 \end{align*}\]</span></p>
+<p><a href="#exm-contdisc" class="quarto-xref">例&nbsp;<span>4.1</span></a> の確率変数 <span class="math inline">\(X\)</span> の確率密度関数は</p>
+<div id="cell-fig-x" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>コード</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># xの範囲を定義（-1から2までを細かく分けて計算）</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1000</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 区間ごとの関数定義</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.piecewise(</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    x,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    [x <span class="op">&lt;</span> <span class="dv">0</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>     (<span class="dv">0</span> <span class="op">&lt;=</span> x) <span class="op">&amp;</span> (x <span class="op">&lt;</span> <span class="fl">0.5</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>     (<span class="fl">0.5</span> <span class="op">&lt;=</span> x) <span class="op">&amp;</span> (x <span class="op">&lt;</span> <span class="dv">1</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>     x <span class="op">&gt;=</span> <span class="dv">1</span>],</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>     <span class="kw">lambda</span> x: x <span class="op">/</span> <span class="dv">2</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>     <span class="kw">lambda</span> x: x <span class="op">/</span> <span class="dv">2</span> <span class="op">+</span> <span class="fl">0.5</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>     <span class="dv">1</span>]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># グラフの描画</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, label<span class="op">=</span><span class="st">'$f(x)$'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'$X$ の累積分布関数'</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$x$'</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$f(x)$'</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Font 'default' does not have a glyph for '\u306e' [U+306e], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u7d2f' [U+7d2f], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u7a4d' [U+7a4d], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u5206' [U+5206], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u5e03' [U+5e03], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u95a2' [U+95a2], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u6570' [U+6570], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u306e' [U+306e], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u7d2f' [U+7d2f], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u7a4d' [U+7a4d], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u5206' [U+5206], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u5e03' [U+5e03], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u95a2' [U+95a2], substituting with a dummy symbol.
+Font 'default' does not have a glyph for '\u6570' [U+6570], substituting with a dummy symbol.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-x" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-x-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="rv_files/figure-html/fig-x-output-2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-x-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;4.1: <span class="math inline">\(X\)</span>の累積分布関数
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="確率分布の例" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="確率分布の例"><span class="header-section-number">4.3</span> 確率分布の例</h2>
 <section id="二項分布" class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="二項分布"><span class="header-section-number">4.3.1</span> 二項分布</h3>
 <p>二項分布の確率質量関数は</p>
-<div id="cell-fig-binom" class="cell" data-execution_count="1">
+<div id="cell-fig-binom" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>コード</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binom</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># パラメータの設定</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">12</span>       <span class="co"># 試行回数</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.6</span>      <span class="co"># 成功確率</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 取りうる値の範囲</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, n<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 二項分布のPMFの計算</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>pmf <span class="op">=</span> binom.pmf(x, n, p)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># プロット</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.bar(x, pmf, tick_label<span class="op">=</span>x)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Pmf of binomial distribution with n=</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">, p=</span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$k$'</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$</span><span class="ch">\\</span><span class="st">Pr(X=k)$'</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binom</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># パラメータの設定</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">12</span>       <span class="co"># 試行回数</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.6</span>      <span class="co"># 成功確率</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 取りうる値の範囲</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, n<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 二項分布のPMFの計算</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>pmf <span class="op">=</span> binom.pmf(x, n, p)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># プロット</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.bar(x, pmf, tick_label<span class="op">=</span>x)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Pmf of binomial distribution with n=</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">, p=</span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$k$'</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$</span><span class="ch">\\</span><span class="st">Pr(X=k)$'</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-binom" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -444,7 +508,7 @@ F_X(x) = \int_{-\infty}^x f_X(y) \mathrm{d}y
 <img src="rv_files/figure-html/fig-binom-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-binom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;4.1: 二項分布の確率質量関数
+図&nbsp;4.2: 二項分布の確率質量関数
 </figcaption>
 </figure>
 </div>
