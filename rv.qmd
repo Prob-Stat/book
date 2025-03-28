@@ -98,16 +98,26 @@ $X$ が連続型確率変数のとき、
 #| label: fig-binom
 #| fig-cap: "二項分布の確率質量関数"
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+from scipy.stats import binom
 
-r = np.arange(0, 2, 0.01)
-theta = 2 * np.pi * r
-fig, ax = plt.subplots(
-  subplot_kw = {'projection': 'polar'} 
-)
-ax.plot(theta, r)
-ax.set_rticks([0.5, 1, 1.5, 2])
-ax.grid(True)
+# パラメータの設定
+n = 12       # 試行回数
+p = 0.6      # 成功確率
+
+# 取りうる値の範囲
+x = np.arange(0, n+1)
+
+# 二項分布のPMFの計算
+pmf = binom.pmf(x, n, p)
+
+# プロット
+plt.figure(figsize=(8, 5))
+plt.bar(x, pmf, tick_label=x)
+plt.title(f'二項分布(n={n}, p={p}) の確率質量関数')
+plt.xlabel('$k$')
+plt.ylabel('$Pr(X=k)$')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 ```
