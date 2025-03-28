@@ -279,14 +279,41 @@ window.Quarto = {
 <h2 data-number="4.1" class="anchored" data-anchor-id="確率変数"><span class="header-section-number">4.1</span> 確率変数</h2>
 <p>確率空間の上の様々な部分集合の確率を調べたい。 そのためには確率変数を導入すると便利である。</p>
 <div id="def-rv" class="theorem definition">
-<p><span class="theorem-title"><strong>定義 4.1 (確率変数)</strong></span> 確率空間 <span class="math inline">\((\Omega, P)\)</span> について、 関数 <span class="math inline">\(X\colon \Omega\to\mathbb{R}\)</span> を<strong>確率変数</strong>という。</p>
+<p><span class="theorem-title"><strong>定義 4.1 (確率変数)</strong></span> 確率空間 <span class="math inline">\((\Omega,\, P)\)</span> について、 関数 <span class="math inline">\(X\colon \Omega\to\mathbb{R}\)</span> を<strong>確率変数</strong>という。</p>
 <p>また、任意の <span class="math inline">\(A\subseteq\mathbb{R}\)</span> について <span class="math display">\[
 \Pr(X\in A) \coloneqq P(\{\omega\in\Omega\mid X(\omega)\in A\})
-\]</span> と定義する。</p>
-<p>さらに、任意の <span class="math inline">\(a\in\mathbb{R}\)</span> について <span class="math display">\[
-\Pr(X\ge a) \coloneqq P(X\in \{x\mid x\ge a\}) = P(\{\omega\in\Omega\mid X(\omega)\ge a\})
+\]</span> と定義する。 さらに、任意の <span class="math inline">\(a\in\mathbb{R}\)</span> について <span class="math display">\[
+\Pr(X\ge a) \coloneqq P(X\in \{x\in\mathbb{R}\mid x\ge a\}) = P(\{\omega\in\Omega\mid X(\omega)\ge a\})
 \]</span> と定義する。 同様に <span class="math inline">\(\Pr(X &gt; a),\, \Pr(X \le a),\, \Pr(X &lt; a),\, \Pr(X = a)\)</span> なども定義される。</p>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+ノート
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>本当の確率論では確率変数は「確率空間から位相空間への写像で開集合の逆像が可測集合になるような関数」として定義される。 また、文献によっては確率変数は「確率空間から可測空間への写像で可測集合の逆像が可測集合になるような関数」として定義されることもある。 開集合族が生成する完全加法族をボレル集合族と呼ぶが、この方法で位相空間から可測空間を作ることができる。 そうすると前者の定義は「確率空間から位相空間への写像でボレル集合の逆像が可測集合になるような関数」と等価なので、後者の定義に含まれる。 後者の定義の中の可測空間が位相空間由来のものに限定したのが前者の定義であると言える。</p>
+</div>
+</div>
+<p>任意の関数 <span class="math inline">\(f\colon \mathbb{R}\to\mathbb{R}\)</span> について <span class="math inline">\(f(X)\)</span> は確率変数である。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+ノート
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>本当の確率論の言葉で述べると任意のボレル関数(開集合(ボレル集合としても等価)の逆像がボレル集合) <span class="math inline">\(f\)</span> について <span class="math inline">\(f(X)\)</span> は確率変数である。</p>
+</div>
+</div>
+<p>共通の確率空間 <span class="math inline">\((\Omega,\, P)\)</span> 上の確率変数 <span class="math inline">\(X,\,Y\)</span> についてその和 <span class="math inline">\(X + Y\)</span> や積 <span class="math inline">\(XY\)</span> も確率変数である。</p>
 </section>
 <section id="確率分布" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="確率分布"><span class="header-section-number">4.2</span> 確率分布</h2>
