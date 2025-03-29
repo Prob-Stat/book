@@ -122,7 +122,7 @@ $$
 
 \begin{align*}
 \lim_{n\to\infty} \Pr\left(X \le x + \frac1n\right) &=
-\lim_{n\to\infty} \Pr\left(\{\omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
+\lim_{n\to\infty} \Pr\left(\left\{\omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
 &= \Pr\left(\bigcap_{n=0}^\infty \left\{\omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
 &= \Pr\left(\left\{\omega\mid X(\omega) \le x\right\}\right)
 \end{align*}
