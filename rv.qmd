@@ -89,9 +89,9 @@ X(\omega) =
 $$
 と定義する。
 
-この時 $X$ の像は $[0,1]$ であるので $X$ は連続型確率変数である。
+この時 $X$ の像は $[0,1)$ であるので $X$ は連続型確率変数である。
 
-また、$\Pr(X=\frac12) = P([\frac12, 1)) = \frac12$ である。
+また、$\Pr(X=\frac12) = P([\frac12, 1)\cup\{\frac14\}) = \frac12$ である。
 よって $X$ の確率密度関数は存在しない。
 :::
 
@@ -121,10 +121,10 @@ $$
 累積分布関数は連続とは限らないが右連続であることは以下のように確認できる。
 
 \begin{align*}
-\lim_{n\to\infty} \Pr(X \le x + \frac1n) &=
-\lim_{n\to\infty} \Pr(\{\omega\mid X(\omega) \le x + \frac1n\})\\
-&= \Pr(\bigcap_{n=0}^\infty \{\omega\mid X(\omega) \le x + \frac1n\})\\
-&= \Pr(\{\omega\mid X(\omega) \le x\})
+\lim_{n\to\infty} \Pr\left(X \le x + \frac1n\right) &=
+\lim_{n\to\infty} \Pr\left(\{\omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
+&= \Pr\left(\bigcap_{n=0}^\infty \left\{\omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
+&= \Pr\left(\left\{\omega\mid X(\omega) \le x\right\}\right)
 \end{align*}
 
 @exm-contdisc の確率変数 $X$ の確率密度関数は
