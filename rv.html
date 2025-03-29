@@ -383,8 +383,8 @@ X(\omega) =
 \frac12&amp; \text{otherwise.}
 \end{cases}
 \]</span> と定義する。</p>
-<p>この時 <span class="math inline">\(X\)</span> の像は <span class="math inline">\([0,1]\)</span> であるので <span class="math inline">\(X\)</span> は連続型確率変数である。</p>
-<p>また、<span class="math inline">\(\Pr(X=\frac12) = P([\frac12, 1)) = \frac12\)</span> である。 よって <span class="math inline">\(X\)</span> の確率密度関数は存在しない。</p>
+<p>この時 <span class="math inline">\(X\)</span> の像は <span class="math inline">\([0,1)\)</span> であるので <span class="math inline">\(X\)</span> は連続型確率変数である。</p>
+<p>また、<span class="math inline">\(\Pr(X=\frac12) = P([\frac12, 1)\cup\{\frac14\}) = \frac12\)</span> である。 よって <span class="math inline">\(X\)</span> の確率密度関数は存在しない。</p>
 </div>
 <p><span class="math display">\[
 F_X(x) \coloneqq \Pr(X\le x)\qquad\forall x\in\mathbb{R}
@@ -400,10 +400,10 @@ F_X(x) = \int_{-\infty}^x f_X(y) \mathrm{d}y
 <p>である。</p>
 <p>累積分布関数は定義より単調非減少関数であることが分かる。 累積分布関数は連続とは限らないが右連続であることは以下のように確認できる。</p>
 <p><span class="math display">\[\begin{align*}
-\lim_{n\to\infty} \Pr(X \le x + \frac1n) &amp;=
-\lim_{n\to\infty} \Pr(\{\omega\mid X(\omega) \le x + \frac1n\})\\
-&amp;= \Pr(\bigcap_{n=0}^\infty \{\omega\mid X(\omega) \le x + \frac1n\})\\
-&amp;= \Pr(\{\omega\mid X(\omega) \le x\})
+\lim_{n\to\infty} \Pr\left(X \le x + \frac1n\right) &amp;=
+\lim_{n\to\infty} \Pr\left(\left\{\omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
+&amp;= \Pr\left(\bigcap_{n=0}^\infty \left\{\omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
+&amp;= \Pr\left(\left\{\omega\mid X(\omega) \le x\right\}\right)
 \end{align*}\]</span></p>
 <p><a href="#exm-contdisc" class="quarto-xref">例&nbsp;<span>4.1</span></a> の確率変数 <span class="math inline">\(X\)</span> の確率密度関数は</p>
 <div id="cell-fig-x" class="cell" data-execution_count="1">
