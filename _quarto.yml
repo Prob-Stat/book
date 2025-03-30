@@ -15,14 +15,15 @@ book:
         - prob-space.qmd
         - rv.qmd
         - moments.qmd
-        - large_numbers.qmd
-        - clt.qmd
         - multivariate.qmd
-        - sanov.qmd
     - part: "統計学"
       chapters:
         - bayes.qmd
         - testings.qmd
+    - part: "漸近論"
+        - large_numbers.qmd
+        - clt.qmd
+        - sanov.qmd
     - references.qmd
 
 bibliography: references.bib
