@@ -21,6 +21,7 @@ book:
         - bayes.qmd
         - testings.qmd
     - part: "漸近論"
+      chapters:
         - large_numbers.qmd
         - clt.qmd
         - sanov.qmd
