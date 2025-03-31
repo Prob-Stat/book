@@ -383,9 +383,9 @@ f_X(x) \coloneqq \Pr(X=x) \qquad \forall x\in\mathbb{R}
 \]</span> と表せる。 この <span class="math inline">\(f_X(x)\)</span> を <span class="math inline">\(X\)</span> の<strong>確率質量関数</strong>という。</p>
 <p><span class="math inline">\(X\)</span> が連続型確率変数のとき、</p>
 <p><span class="math display">\[\begin{align*}
-\Pr(X\in A) &amp;= \int_{x\in A} f_X(x) \mathrm{d}x
+\Pr(X\in A) &amp;= \int_{x\in A} f_X(x) \mathrm{d}x\qquad\forall A\subseteq\mathbb{R}
 \end{align*}\]</span></p>
-<p>が存在するとき、この <span class="math inline">\(f_X(x)\)</span> を <span class="math inline">\(X\)</span> の<strong>確率密度関数</strong>という。 しかし、確率密度関数は常に存在するとは限らない。</p>
+<p>を満たす <span class="math inline">\(f_X\colon\mathbb{R}\to\mathbb{R}\)</span> が存在するとき、この <span class="math inline">\(f_X(x)\)</span> を <span class="math inline">\(X\)</span> の<strong>確率密度関数</strong>という。 しかし、確率密度関数は常に存在するとは限らない。</p>
 <div id="exm-contdisc" class="theorem example">
 <p><span class="theorem-title"><strong>例 4.1</strong></span> <span class="math inline">\(\Omega = [0, 1)\)</span>とし、<span class="math inline">\(P\colon 2^\Omega\to\mathbb{R}_{\ge 0}\)</span> を <span class="math inline">\(P([a, b)) = b-a\)</span> を満たす確率測度とする。 確率空間 <span class="math inline">\((\Omega,\, P)\)</span> 上の確率変数 <span class="math inline">\(X\colon [0,1)\to\mathbb{R}\)</span> を <span class="math display">\[
 X(\omega) =
@@ -397,6 +397,7 @@ X(\omega) =
 <p>この時 <span class="math inline">\(X\)</span> の像は <span class="math inline">\([0,1)\)</span> であるので <span class="math inline">\(X\)</span> は連続型確率変数である。</p>
 <p>また、<span class="math inline">\(\Pr(X=\frac12) = P([\frac12, 1)\cup\{\frac14\}) = \frac12\)</span> である。 よって <span class="math inline">\(X\)</span> の確率密度関数は存在しない。</p>
 </div>
+<p>一方で、任意の確率変数 <span class="math inline">\(X\)</span> について</p>
 <p><span class="math display">\[
 F_X(x) \coloneqq \Pr(X\le x)\qquad\forall x\in\mathbb{R}
 \]</span></p>
@@ -406,9 +407,9 @@ F_X(x) = \int_{-\infty}^x f_X(y) \mathrm{d}y
 \]</span></p>
 <p>という関係が成り立つ。 よって</p>
 <p><span class="math display">\[
-\frac{\mathrm{d}F_X}{\mathrm{d}x} = f_X(x)
+f_X(x) = \frac{\mathrm{d}F_X}{\mathrm{d}x}
 \]</span></p>
-<p>である。</p>
+<p>とおいても構わない。確率密度関数はその積分値にのみ意味を持つ。そのため確率密度関数は一意には定まらない。</p>
 <p>累積分布関数は定義より単調非減少関数であることが分かる。 累積分布関数は連続とは限らないが右連続であることは以下のように確認できる。</p>
 <p><span class="math display">\[\begin{align*}
 \lim_{n\to\infty} \Pr\left(X \le x + \frac1n\right) &amp;=
