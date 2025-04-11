@@ -34,8 +34,8 @@ jupyter: python3
 format:
   html:
     theme:
-      - cosmo
-      - brand
+      light: cosmo
+      dark: darkly
     code-fold: true
   pdf:
     pdf-engine: lualatex
