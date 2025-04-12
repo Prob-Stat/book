@@ -36,6 +36,7 @@ format:
     theme:
       light: cosmo
       dark: darkly
+    html-math-method: mathjax
     code-fold: true
   pdf:
     pdf-engine: lualatex
