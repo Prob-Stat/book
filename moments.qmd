@@ -1,2 +1,44 @@
 # 期待値、分散、モーメント
 
+::: {#def-exp}
+## 期待値
+
+離散確率変数 $X$ が$A\subseteq\mathbb{R}$に値を取るとき、その期待値は
+
+$$
+\expt{X}= \sum_{x\in A} f_X(x) x
+$$
+
+と定義される。ここで、右辺の和が絶対収束しない場合は期待値は定義されない。
+連続確率変数 $X$ が確率密度関数 $f_X$ を持つとき、その期待値は
+
+$$
+\expt{X}= \int_{-\infty}^\infty f_X(x) x \mathrm{d}x
+$$
+
+と定義される。
+
+:::
+
+
+
+::: {#thm-markov}
+## マルコフの不等式
+
+非負確率変数 $X$ と $a>0$ について
+$$
+\Pr(X\ge a)\le\frac{\expt{X}}{a}
+$$
+:::
+::: {.proof}
+$$
+\begin{align*}
+\expt{X} &= \sum_{x\in A} f_X(x) x\\
+&= \sum_{x\ge a} f_X(x) x + \sum_{x < a} f_X(x) x\\
+&\ge \sum_{x\ge a} f_X(x) x\qquad\qquad (X\ge 0)\\
+&\ge \sum_{x\ge a} f_X(x) a\\
+&= \Pr(X\ge a) a\\
+\end{align*}
+$$
+:::
+

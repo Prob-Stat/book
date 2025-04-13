@@ -38,6 +38,7 @@ format:
       dark: darkly
     html-math-method: mathjax
     code-fold: true
+    include-in-header: macros.qmd
   pdf:
     pdf-engine: lualatex
     pdf-engine-opts:
@@ -47,8 +48,7 @@ format:
     classoption: [a4paper]
     papersize: a4paper
     include-in-header:
-      text: |
-        \usepackage{mathtools}
+      file: macros.tex
     execute:
       echo: false
 
