@@ -31,7 +31,6 @@ $$
 $$
 :::
 ::: {.proof}
-$$
 \begin{align*}
 \expt{X} &= \sum_{x\in A} f_X(x) x\\
 &= \sum_{x\ge a} f_X(x) x + \sum_{x < a} f_X(x) x\\
@@ -39,6 +38,5 @@ $$
 &\ge \sum_{x\ge a} f_X(x) a\\
 &= \Pr(X\ge a) a\\
 \end{align*}
-$$
 :::
 

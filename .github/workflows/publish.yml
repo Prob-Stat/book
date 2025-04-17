@@ -31,6 +31,10 @@ jobs:
       - name: Install the project
         run: uv sync --all-extras --dev
 
+      - name: Add .venv/bin to PATH (Workaround)
+        run: echo "$(pwd)/.venv/bin" >> $GITHUB_PATH
+        shell: bash
+
       - name: Install Tex packages
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

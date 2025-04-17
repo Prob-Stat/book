@@ -3,8 +3,6 @@ project:
 
 jupyter: python3
 
-python: ./.venv/bin/python
-
 book:
   title: "確率・統計入門"
   author: "森 立平"
