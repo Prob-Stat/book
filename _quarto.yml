@@ -1,6 +1,10 @@
 project:
   type: book
 
+jupyter: python
+
+python: ./.venv/bin/python
+
 book:
   title: "確率・統計入門"
   author: "森 立平"
@@ -29,7 +33,6 @@ book:
 
 bibliography: references.bib
 
-jupyter: python3
 
 format:
   html:
