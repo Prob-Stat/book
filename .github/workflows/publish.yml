@@ -35,13 +35,24 @@ jobs:
         run: echo "$(pwd)/.venv/bin" >> $GITHUB_PATH
         shell: bash
 
-      - name: Install Tex packages
+      - name: Cache TinyTeX directory
+        id: cache-tinytex
+        uses: actions/cache@v4
+        with:
+          path: ~/.TinyTeX
+          key: tinytex-${{ runner.os }}-${{ hashFiles('tinytex_packages.txt') }}
+          restore-keys: |
+            tinytex-${{ runner.os }}-
+
+      - name: Install TinyTeX and packages (if cache miss)
+        if: steps.cache-tinytex.outputs.cache-hit != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          quarto install tinytex --update-path --no-prompt --log-level warning
+          echo "Cache miss. Installing TinyTeX and packages..."
+          quarto install tinytex --no-prompt --log-level warning
           tlmgr update --self
-          tlmgr install luatexja collection-langjapanese haranoaji
+          tlmgr install $(cat tinytex_packages.txt)
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
