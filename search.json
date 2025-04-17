@@ -164,6 +164,17 @@
     ]
   },
   {
+    "objectID": "moments.html",
+    "href": "moments.html",
+    "title": "5  期待値、分散、モーメント",
+    "section": "",
+    "text": "定義 5.1 (期待値) 離散確率変数 \\(X\\) が\\(A\\subseteq\\mathbb{R}\\)に値を取るとき、その期待値は\n\\[\n\\expt{X}= \\sum_{x\\in A} f_X(x) x\n\\]\nと定義される。ここで、右辺の和が絶対収束しない場合は期待値は定義されない。 連続確率変数 \\(X\\) が確率密度関数 \\(f_X\\) を持つとき、その期待値は\n\\[\n\\expt{X}= \\int_{-\\infty}^\\infty f_X(x) x \\mathrm{d}x\n\\]\nと定義される。\n\n\n定理 5.1 (マルコフの不等式) 非負確率変数 \\(X\\) と \\(a&gt;0\\) について \\[\n\\Pr(X\\ge a)\\le\\frac{\\expt{X}}{a}\n\\]\n\n\n証明. \\[\\begin{align*}\n\\expt{X} &= \\sum_{x\\in A} f_X(x) x\\\\\n&= \\sum_{x\\ge a} f_X(x) x + \\sum_{x &lt; a} f_X(x) x\\\\\n&\\ge \\sum_{x\\ge a} f_X(x) x\\qquad\\qquad (X\\ge 0)\\\\\n&\\ge \\sum_{x\\ge a} f_X(x) a\\\\\n&= \\Pr(X\\ge a) a\\\\\n\\end{align*}\\]",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>期待値、分散、モーメント</span>"
+    ]
+  },
+  {
     "objectID": "references.html",
     "href": "references.html",
     "title": "参考文献",
