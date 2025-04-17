@@ -1,7 +1,7 @@
 project:
   type: book
 
-jupyter: python
+jupyter: python3
 
 python: ./.venv/bin/python
 
