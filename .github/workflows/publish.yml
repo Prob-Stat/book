@@ -50,7 +50,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Cache miss. Installing TinyTeX and packages..."
-          quarto install tinytex --no-prompt --log-level warning
+          quarto install tinytex --update-path --no-prompt --log-level warning
           tlmgr update --self
           tlmgr install $(cat tinytex_packages.txt)
 
