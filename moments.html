@@ -238,6 +238,7 @@ ul.task-list li input[type="checkbox"] {
     }
   </script>$$
 \newcommand{\expt}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\var}[1]{\mathbb{V}\left[#1\right]}
 $$
 
 
@@ -429,8 +430,16 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#期待値" id="toc-期待値" class="nav-link active" data-scroll-target="#期待値"><span class="header-section-number">5.1</span> 期待値</a></li>
+  <li><a href="#分散" id="toc-分散" class="nav-link" data-scroll-target="#分散"><span class="header-section-number">5.2</span> 分散</a></li>
+  <li><a href="#モーメントとモーメント母関数" id="toc-モーメントとモーメント母関数" class="nav-link" data-scroll-target="#モーメントとモーメント母関数"><span class="header-section-number">5.3</span> モーメントとモーメント母関数</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -455,6 +464,8 @@ window.Quarto = {
 </header>
 
 
+<section id="期待値" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="期待値"><span class="header-section-number">5.1</span> 期待値</h2>
 <div id="def-exp" class="theorem definition">
 <p><span class="theorem-title"><strong>定義 5.1 (期待値)</strong></span> 離散確率変数 <span class="math inline">\(X\)</span> が<span class="math inline">\(A\subseteq\mathbb{R}\)</span>に値を取るとき、その期待値は</p>
 <p><span class="math display">\[
@@ -466,9 +477,16 @@ window.Quarto = {
 \]</span></p>
 <p>と定義される。</p>
 </div>
+<div id="lem-exp" class="theorem lemma">
+<p><span class="theorem-title"><strong>補題 5.1 (期待値の性質)</strong></span> &nbsp;</p>
+<ol type="1">
+<li>任意の <span class="math inline">\(a\in\mathbb{C}\)</span> について <span class="math inline">\(\expt{aX} = a\expt{X}\)</span>.</li>
+<li>任意の 確率変数 <span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> について <span class="math inline">\(\expt{X+Y} = \expt{X}+\expt{Y}\)</span>.</li>
+</ol>
+</div>
 <div id="thm-markov" class="theorem">
 <p><span class="theorem-title"><strong>定理 5.1 (マルコフの不等式)</strong></span> 非負確率変数 <span class="math inline">\(X\)</span> と <span class="math inline">\(a&gt;0\)</span> について <span class="math display">\[
-\Pr(X\ge a)\le\frac{\expt{X}}{a}
+\Pr(X\ge a)\le\frac{\expt{X}}{a}.
 \]</span></p>
 </div>
 <div class="proof">
@@ -477,18 +495,75 @@ window.Quarto = {
 &amp;= \sum_{x\ge a} f_X(x) x + \sum_{x &lt; a} f_X(x) x\\
 &amp;\ge \sum_{x\ge a} f_X(x) x\qquad\qquad (X\ge 0)\\
 &amp;\ge \sum_{x\ge a} f_X(x) a\\
-&amp;= \Pr(X\ge a) a\\
+&amp;= \Pr(X\ge a) a.
 \end{align*}\]</span></p>
 </div>
-<div id="lem-exp" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 5.1 (期待値の性質)</strong></span> &nbsp;</p>
-<ol type="1">
-<li>任意の <span class="math inline">\(a\in\mathbb{C}\)</span> について <span class="math inline">\(\expt{aX} = a\expt{X}\)</span>.</li>
-<li>任意の 確率変数 <span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> について <span class="math inline">\(\expt{X+Y} = \expt{X}+\expt{Y}\)</span>.</li>
-</ol>
+<div id="exm-exp" class="theorem example">
+<p><span class="theorem-title"><strong>例 5.1 (確率変数と期待値の例)</strong></span> 非負整数に値を取る確率変数が</p>
+<p><span class="math display">\[
+\Pr(X = n) = \frac1{2^{n+1}}
+\]</span></p>
+<p>を満たすとき、</p>
+<p><span class="math display">\[\begin{align*}
+\expt{X} &amp;= \sum_{n\ge 0}\frac{n}{2^{n+1}}\\
+&amp;= \left.\sum_{n\ge 0}\frac{n}{x^{n+1}}\right|_{x=2}\\
+&amp;= \left.\left(-\sum_{n\ge 0}\frac{1}{x^{n}}\right)'\right|_{x=2}\\
+&amp;= \left.\left(-\frac{1}{1-x^{-1}}\right)'\right|_{x=2}\\
+\end{align*}\]</span></p>
+</div>
+</section>
+<section id="分散" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="分散"><span class="header-section-number">5.2</span> 分散</h2>
+<div id="def-exp" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 5.2 (分散)</strong></span> 確率変数 <span class="math inline">\(X\)</span> が期待値を持つとき、その分散を</p>
+<p><span class="math display">\[
+\var{X}= \expt{(X-\expt{X})^2}
+\]</span></p>
+<p>と定義する。</p>
+</div>
+<p>確率変数 <span class="math inline">\(X\)</span> が分散を持つとき、</p>
+<p><span class="math display">\[\begin{align*}
+\var{X} &amp;= \expt{(X-\expt{X})^2}\\
+&amp;= \expt{X^2-2X\expt{X}+\expt{X}^2}\\
+&amp;= \expt{X^2}-2\expt{X}\expt{X}+\expt{X}^2\\
+&amp;= \expt{X^2}-\expt{X}^2
+\end{align*}\]</span></p>
+<p>である。 分散は直感的には期待値からのはずれ具合を表す値である。</p>
+<div id="thm-chebyshev" class="theorem">
+<p><span class="theorem-title"><strong>定理 5.2 (チェビシェフの不等式)</strong></span> 非負確率変数 <span class="math inline">\(X\)</span> と <span class="math inline">\(a&gt;0\)</span> について <span class="math display">\[
+\Pr(|X-\expt{X}|\ge a)\le\frac{\var{X}}{a^2}.
+\]</span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>証明</em>. </span><span class="math display">\[\begin{align*}
+\Pr(|X-\expt{X}|\ge a)&amp;= \Pr((X-\expt{X})^2\ge a^2)\\
+&amp;\le
+\frac{\expt{(X-\expt{X})^2}}{a^2} = \frac{\var{X}}{a^2}
+\end{align*}\]</span></p>
+</div>
+</section>
+<section id="モーメントとモーメント母関数" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="モーメントとモーメント母関数"><span class="header-section-number">5.3</span> モーメントとモーメント母関数</h2>
+<div id="def-moment" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 5.3 (モーメント)</strong></span> 確率変数 <span class="math inline">\(X\)</span> と正の整数 <span class="math inline">\(k\in\mathbb{Z}_{\ge 1}\)</span> について、</p>
+<p><span class="math display">\[
+\expt{X^k}
+\]</span></p>
+<p>を <span class="math inline">\(X\)</span> の <span class="math inline">\(k\)</span> 次モーメントという。</p>
+</div>
+<div id="def-mg" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 5.4 (モーメント母関数(積率母関数))</strong></span> 確率変数 <span class="math inline">\(X\)</span> について、</p>
+<p><span class="math display">\[
+M_X(t) \coloneqq \expt{\mathrm{e}^{tX}}\qquad t\in\mathbb{R}
+\]</span></p>
+<p>を <span class="math inline">\(X\)</span> の<strong>モーメント母関数</strong>という。 また、</p>
+<p><span class="math display">\[
+K_X(t) \coloneqq \log M_X(t)
+\]</span> を <span class="math inline">\(X\)</span> の<strong>キュムラント母関数</strong>という。</p>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

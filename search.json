@@ -43,6 +43,17 @@
     ]
   },
   {
+    "objectID": "sets.html",
+    "href": "sets.html",
+    "title": "2  集合論",
+    "section": "",
+    "text": "2.1 集合\n\\[\nx\\in \\bigcup_{\\lambda\\in\\Lambda} A_\\lambda\n\\iff\n\\exists \\lambda\\in\\Lambda\\quad x\\in A_\\lambda\n\\]\n\\[\nx\\in \\bigcap_{\\lambda\\in\\Lambda} A_\\lambda\n\\iff\n\\forall \\lambda\\in\\Lambda\\quad x\\in A_\\lambda\n\\]",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>集合論</span>"
+    ]
+  },
+  {
     "objectID": "prob-space.html",
     "href": "prob-space.html",
     "title": "3  確率空間",
@@ -109,17 +120,6 @@
     ]
   },
   {
-    "objectID": "prob-space.html#条件付き確率",
-    "href": "prob-space.html#条件付き確率",
-    "title": "3  確率空間",
-    "section": "3.7 条件付き確率",
-    "text": "3.7 条件付き確率",
-    "crumbs": [
-      "確率論",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>確率空間</span>"
-    ]
-  },
-  {
     "objectID": "rv.html",
     "href": "rv.html",
     "title": "4  確率変数と確率分布",
@@ -168,10 +168,76 @@
     "href": "moments.html",
     "title": "5  期待値、分散、モーメント",
     "section": "",
-    "text": "定義 5.1 (期待値) 離散確率変数 \\(X\\) が\\(A\\subseteq\\mathbb{R}\\)に値を取るとき、その期待値は\n\\[\n\\expt{X}= \\sum_{x\\in A} f_X(x) x\n\\]\nと定義される。ここで、右辺の和が絶対収束しない場合は期待値は定義されない。 連続確率変数 \\(X\\) が確率密度関数 \\(f_X\\) を持つとき、その期待値は\n\\[\n\\expt{X}= \\int_{-\\infty}^\\infty f_X(x) x \\mathrm{d}x\n\\]\nと定義される。\n\n\n定理 5.1 (マルコフの不等式) 非負確率変数 \\(X\\) と \\(a&gt;0\\) について \\[\n\\Pr(X\\ge a)\\le\\frac{\\expt{X}}{a}\n\\]\n\n\n証明. \\[\\begin{align*}\n\\expt{X} &= \\sum_{x\\in A} f_X(x) x\\\\\n&= \\sum_{x\\ge a} f_X(x) x + \\sum_{x &lt; a} f_X(x) x\\\\\n&\\ge \\sum_{x\\ge a} f_X(x) x\\qquad\\qquad (X\\ge 0)\\\\\n&\\ge \\sum_{x\\ge a} f_X(x) a\\\\\n&= \\Pr(X\\ge a) a\\\\\n\\end{align*}\\]\n\n\n補題 5.1 (期待値の性質)  \n\n任意の \\(a\\in\\mathbb{C}\\) について \\(\\expt{aX} = a\\expt{X}\\).\n任意の 確率変数 \\(X\\) と \\(Y\\) について \\(\\expt{X+Y} = \\expt{X}+\\expt{Y}\\).",
+    "text": "5.1 期待値",
     "crumbs": [
       "確率論",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>期待値、分散、モーメント</span>"
+    ]
+  },
+  {
+    "objectID": "moments.html#期待値",
+    "href": "moments.html#期待値",
+    "title": "5  期待値、分散、モーメント",
+    "section": "",
+    "text": "定義 5.1 (期待値) 離散確率変数 \\(X\\) が\\(A\\subseteq\\mathbb{R}\\)に値を取るとき、その期待値は\n\\[\n\\expt{X}= \\sum_{x\\in A} f_X(x) x\n\\]\nと定義される。ここで、右辺の和が絶対収束しない場合は期待値は定義されない。 連続確率変数 \\(X\\) が確率密度関数 \\(f_X\\) を持つとき、その期待値は\n\\[\n\\expt{X}= \\int_{-\\infty}^\\infty f_X(x) x \\mathrm{d}x\n\\]\nと定義される。\n\n\n補題 5.1 (期待値の性質)  \n\n任意の \\(a\\in\\mathbb{C}\\) について \\(\\expt{aX} = a\\expt{X}\\).\n任意の 確率変数 \\(X\\) と \\(Y\\) について \\(\\expt{X+Y} = \\expt{X}+\\expt{Y}\\).\n\n\n\n定理 5.1 (マルコフの不等式) 非負確率変数 \\(X\\) と \\(a&gt;0\\) について \\[\n\\Pr(X\\ge a)\\le\\frac{\\expt{X}}{a}.\n\\]\n\n\n証明. \\[\\begin{align*}\n\\expt{X} &= \\sum_{x\\in A} f_X(x) x\\\\\n&= \\sum_{x\\ge a} f_X(x) x + \\sum_{x &lt; a} f_X(x) x\\\\\n&\\ge \\sum_{x\\ge a} f_X(x) x\\qquad\\qquad (X\\ge 0)\\\\\n&\\ge \\sum_{x\\ge a} f_X(x) a\\\\\n&= \\Pr(X\\ge a) a.\n\\end{align*}\\]\n\n\n例 5.1 (確率変数と期待値の例) 非負整数に値を取る確率変数が\n\\[\n\\Pr(X = n) = \\frac1{2^{n+1}}\n\\]\nを満たすとき、\n\\[\\begin{align*}\n\\expt{X} &= \\sum_{n\\ge 0}\\frac{n}{2^{n+1}}\\\\\n&= \\left.\\sum_{n\\ge 0}\\frac{n}{x^{n+1}}\\right|_{x=2}\\\\\n&= \\left.\\left(-\\sum_{n\\ge 0}\\frac{1}{x^{n}}\\right)'\\right|_{x=2}\\\\\n&= \\left.\\left(-\\frac{1}{1-x^{-1}}\\right)'\\right|_{x=2}\\\\\n\\end{align*}\\]",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>期待値、分散、モーメント</span>"
+    ]
+  },
+  {
+    "objectID": "moments.html#分散",
+    "href": "moments.html#分散",
+    "title": "5  期待値、分散、モーメント",
+    "section": "5.2 分散",
+    "text": "5.2 分散\n\n定義 5.2 (分散) 確率変数 \\(X\\) が期待値を持つとき、その分散を\n\\[\n\\var{X}= \\expt{(X-\\expt{X})^2}\n\\]\nと定義する。\n\n確率変数 \\(X\\) が分散を持つとき、\n\\[\\begin{align*}\n\\var{X} &= \\expt{(X-\\expt{X})^2}\\\\\n&= \\expt{X^2-2X\\expt{X}+\\expt{X}^2}\\\\\n&= \\expt{X^2}-2\\expt{X}\\expt{X}+\\expt{X}^2\\\\\n&= \\expt{X^2}-\\expt{X}^2\n\\end{align*}\\]\nである。 分散は直感的には期待値からのはずれ具合を表す値である。\n\n定理 5.2 (チェビシェフの不等式) 非負確率変数 \\(X\\) と \\(a&gt;0\\) について \\[\n\\Pr(|X-\\expt{X}|\\ge a)\\le\\frac{\\var{X}}{a^2}.\n\\]\n\n\n証明. \\[\\begin{align*}\n\\Pr(|X-\\expt{X}|\\ge a)&= \\Pr((X-\\expt{X})^2\\ge a^2)\\\\\n&\\le\n\\frac{\\expt{(X-\\expt{X})^2}}{a^2} = \\frac{\\var{X}}{a^2}\n\\end{align*}\\]",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>期待値、分散、モーメント</span>"
+    ]
+  },
+  {
+    "objectID": "moments.html#モーメントとモーメント母関数",
+    "href": "moments.html#モーメントとモーメント母関数",
+    "title": "5  期待値、分散、モーメント",
+    "section": "5.3 モーメントとモーメント母関数",
+    "text": "5.3 モーメントとモーメント母関数\n\n定義 5.3 (モーメント) 確率変数 \\(X\\) と正の整数 \\(k\\in\\mathbb{Z}_{\\ge 1}\\) について、\n\\[\n\\expt{X^k}\n\\]\nを \\(X\\) の \\(k\\) 次モーメントという。\n\n\n定義 5.4 (モーメント母関数(積率母関数)) 確率変数 \\(X\\) について、\n\\[\nM_X(t) \\coloneqq \\expt{\\mathrm{e}^{tX}}\\qquad t\\in\\mathbb{R}\n\\]\nを \\(X\\) のモーメント母関数という。 また、\n\\[\nK_X(t) \\coloneqq \\log M_X(t)\n\\] を \\(X\\) のキュムラント母関数という。",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>期待値、分散、モーメント</span>"
+    ]
+  },
+  {
+    "objectID": "multivariate.html",
+    "href": "multivariate.html",
+    "title": "6  複数の確率変数、多変量正規分布",
+    "section": "",
+    "text": "6.1 複数の確率変数",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>複数の確率変数、多変量正規分布</span>"
+    ]
+  },
+  {
+    "objectID": "multivariate.html#条件付き確率",
+    "href": "multivariate.html#条件付き確率",
+    "title": "6  複数の確率変数、多変量正規分布",
+    "section": "6.2 条件付き確率",
+    "text": "6.2 条件付き確率",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>複数の確率変数、多変量正規分布</span>"
+    ]
+  },
+  {
+    "objectID": "multivariate.html#多変量正規分布",
+    "href": "multivariate.html#多変量正規分布",
+    "title": "6  複数の確率変数、多変量正規分布",
+    "section": "6.3 多変量正規分布",
+    "text": "6.3 多変量正規分布",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>複数の確率変数、多変量正規分布</span>"
     ]
   },
   {
