@@ -24,9 +24,9 @@ jobs:
           cache-dependency-glob: "uv.lock"
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version-file: ".python-version"
+          python-version-file: "pyproject.toml"
 
       - name: Install the project
         run: uv sync --all-extras --dev
