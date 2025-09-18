@@ -258,4 +258,3 @@ P\left(\bigcup_{k=1}^\infty A_k\right)&= P\left(\bigcup_{k=1}^\infty B_k\right) 
 \end{align*}
 :::
 
-## 条件付き確率

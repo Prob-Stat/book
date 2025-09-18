@@ -1,5 +1,7 @@
 # 期待値、分散、モーメント
 
+## 期待値
+
 ::: {#def-exp}
 ## 期待値
 
@@ -19,6 +21,12 @@ $$
 と定義される。
 :::
 
+::: {#lem-exp}
+## 期待値の性質
+
+1. 任意の $a\in\mathbb{C}$ について $\expt{aX} = a\expt{X}$.
+2. 任意の 確率変数 $X$ と $Y$ について $\expt{X+Y} = \expt{X}+\expt{Y}$.
+:::
 
 
 ::: {#thm-markov}
@@ -26,7 +34,7 @@ $$
 
 非負確率変数 $X$ と $a>0$ について
 $$
-\Pr(X\ge a)\le\frac{\expt{X}}{a}
+\Pr(X\ge a)\le\frac{\expt{X}}{a}.
 $$
 :::
 ::: {.proof}
@@ -35,13 +43,98 @@ $$
 &= \sum_{x\ge a} f_X(x) x + \sum_{x < a} f_X(x) x\\
 &\ge \sum_{x\ge a} f_X(x) x\qquad\qquad (X\ge 0)\\
 &\ge \sum_{x\ge a} f_X(x) a\\
-&= \Pr(X\ge a) a\\
+&= \Pr(X\ge a) a.
 \end{align*}
 :::
 
-::: {#lem-exp}
-## 期待値の性質
+::: {#exm-exp}
+## 確率変数と期待値の例
 
-1. 任意の $a\in\mathbb{C}$ について $\expt{aX} = a\expt{X}$.
-2. 任意の 確率変数 $X$ と $Y$ について $\expt{X+Y} = \expt{X}+\expt{Y}$.
+非負整数に値を取る確率変数が
+
+$$
+\Pr(X = n) = \frac1{2^{n+1}}
+$$
+
+を満たすとき、
+
+\begin{align*}
+\expt{X} &= \sum_{n\ge 0}\frac{n}{2^{n+1}}\\
+&= \left.\sum_{n\ge 0}\frac{n}{x^{n+1}}\right|_{x=2}\\
+&= \left.\left(-\sum_{n\ge 0}\frac{1}{x^{n}}\right)'\right|_{x=2}\\
+&= \left.\left(-\frac{1}{1-x^{-1}}\right)'\right|_{x=2}\\
+\end{align*}
+:::
+
+## 分散
+::: {#def-exp}
+## 分散
+
+確率変数 $X$ が期待値を持つとき、その分散を
+
+$$
+\var{X}= \expt{(X-\expt{X})^2}
+$$
+
+と定義する。
+:::
+
+確率変数 $X$ が分散を持つとき、
+
+\begin{align*}
+\var{X} &= \expt{(X-\expt{X})^2}\\
+&= \expt{X^2-2X\expt{X}+\expt{X}^2}\\
+&= \expt{X^2}-2\expt{X}\expt{X}+\expt{X}^2\\
+&= \expt{X^2}-\expt{X}^2
+\end{align*}
+
+である。
+分散は直感的には期待値からのはずれ具合を表す値である。
+
+::: {#thm-chebyshev}
+## チェビシェフの不等式
+
+非負確率変数 $X$ と $a>0$ について
+$$
+\Pr(|X-\expt{X}|\ge a)\le\frac{\var{X}}{a^2}.
+$$
+:::
+::: {.proof}
+\begin{align*}
+\Pr(|X-\expt{X}|\ge a)&= \Pr((X-\expt{X})^2\ge a^2)\\
+&\le
+\frac{\expt{(X-\expt{X})^2}}{a^2} = \frac{\var{X}}{a^2}
+\end{align*}
+:::
+
+## モーメントとモーメント母関数
+
+::: {#def-moment}
+## モーメント
+
+確率変数 $X$ と正の整数 $k\in\mathbb{Z}_{\ge 1}$ について、
+
+$$
+\expt{X^k}
+$$
+
+を $X$ の $k$ 次モーメントという。
+:::
+
+::: {#def-mg}
+## モーメント母関数(積率母関数)
+
+確率変数 $X$ について、
+
+$$
+M_X(t) \coloneqq \expt{\mathrm{e}^{tX}}\qquad t\in\mathbb{R}
+$$
+
+を $X$ の**モーメント母関数**という。
+また、
+
+$$
+K_X(t) \coloneqq \log M_X(t)
+$$
+を $X$ の**キュムラント母関数**という。
 :::

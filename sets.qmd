@@ -1,1 +1,15 @@
 # 集合論
+
+## 集合
+
+$$
+x\in \bigcup_{\lambda\in\Lambda} A_\lambda
+\iff
+\exists \lambda\in\Lambda\quad x\in A_\lambda
+$$
+
+$$
+x\in \bigcap_{\lambda\in\Lambda} A_\lambda
+\iff
+\forall \lambda\in\Lambda\quad x\in A_\lambda
+$$
