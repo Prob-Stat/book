@@ -237,6 +237,7 @@ ul.task-list li input[type="checkbox"] {
       toggleColorMode(false);
     }
   </script>$$
+\newcommand{\defiff}{\overset{\text{def}}{\iff}}
 \newcommand{\expt}[1]{\mathbb{E}\left[#1\right]}
 \newcommand{\var}[1]{\mathbb{V}\left[#1\right]}
 $$
@@ -436,6 +437,9 @@ window.Quarto = {
    
   <ul>
   <li><a href="#集合" id="toc-集合" class="nav-link active" data-scroll-target="#集合"><span class="header-section-number">2.1</span> 集合</a></li>
+  <li><a href="#集合の関係" id="toc-集合の関係" class="nav-link" data-scroll-target="#集合の関係"><span class="header-section-number">2.2</span> 集合の関係</a></li>
+  <li><a href="#集合の演算" id="toc-集合の演算" class="nav-link" data-scroll-target="#集合の演算"><span class="header-section-number">2.3</span> 集合の演算</a></li>
+  <li><a href="#集合族" id="toc-集合族" class="nav-link" data-scroll-target="#集合族"><span class="header-section-number">2.4</span> 集合族</a></li>
   </ul>
 </nav>
     </div>
@@ -464,16 +468,119 @@ window.Quarto = {
 
 <section id="集合" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="集合"><span class="header-section-number">2.1</span> 集合</h2>
+<p>集合は対象の集まりである。例えば</p>
+<p><span class="math display">\[\begin{align*}
+A&amp;=\{1,2,3\},&amp; B&amp;=\{赤,青,黄,緑\}
+\end{align*}\]</span></p>
+<p>のように表す。</p>
+<ul>
+<li><span class="math inline">\(x\in A\)</span> で要素 <span class="math inline">\(x\)</span> は集合 <span class="math inline">\(A\)</span> に含まれる</li>
+<li><span class="math inline">\(x\notin A\)</span> で要素 <span class="math inline">\(x\)</span> は集合 <span class="math inline">\(A\)</span> に含まれない</li>
+</ul>
+<p>を表す。</p>
+<p><span class="math inline">\(|A|\)</span> で集合 <span class="math inline">\(A\)</span> の要素数を表すことにする。 要素数が無限の集合を考えることもできる。 例えば</p>
+<p><span class="math display">\[\begin{align*}
+A&amp;=\{n\in\mathbb{N}\mid \text{$n$ は偶数}\},&amp; B&amp;=\{x\in\mathbb{R}\mid \text{$x$ は無理数} \}
+\end{align*}\]</span></p>
+<p>という集合は無限集合の例となる。 何も要素を持たない集合(要素数が零の集合)を<strong>空集合</strong>といい、<span class="math inline">\(\varnothing\)</span> で表す。</p>
+</section>
+<section id="集合の関係" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="集合の関係"><span class="header-section-number">2.2</span> 集合の関係</h2>
+<p>集合 <span class="math inline">\(A\)</span> の要素がすべて集合 <span class="math inline">\(B\)</span> に含まれるとき、<span class="math inline">\(A\)</span> を <span class="math inline">\(B\)</span> の<strong>部分集合</strong> という。 部分集合に関連する集合関係について記号を以下のように定義する。</p>
+<p><span class="math display">\[\begin{align*}
+A\subseteq B &amp;\defiff (x\in A\implies x \in B)&amp;\text{($A$ は $B$ の部分集合)}\\
+A\supseteq B &amp;\defiff B\subseteq A&amp;\text{($A$ は $B$ の上位集合)}\\
+A = B &amp;\defiff (A\subseteq B\land A\supseteq B)&amp; \text{($A$ と $B$ は等しい)}\\
+A \ne B &amp;\defiff \lnot(A = B)&amp; \text{($A$ と $B$ は等しくない)}
+\end{align*}\]</span></p>
+<p>また、</p>
+<p><span class="math display">\[\begin{align*}
+A\subsetneq B &amp;\defiff (A\subseteq B \land A\ne B)&amp;\text{($A$ は $B$ の真部分集合)}\\
+A\supsetneq B &amp;\defiff B\subsetneq A&amp;\text{($A$ は $B$ の真上位集合)}
+\end{align*}\]</span></p>
+<p>とする。 部分集合や上位集合のような集合間の関係を<strong>包含関係</strong>という。 集合 <span class="math inline">\(A,\,B\)</span> について、<span class="math inline">\(A\subseteq B\)</span> と <span class="math inline">\(B\subseteq A\)</span> のどちらかが成り立つとき、「<span class="math inline">\(A\)</span> と <span class="math inline">\(B\)</span> の間に包含関係が成り立つ」という。</p>
+<p>包含関係は以下の三条件を満たす。</p>
+<ul>
+<li>(反射律) <span class="math inline">\(\quad A\subseteq A\)</span>.</li>
+<li>(反対称律) <span class="math inline">\(\quad (A\subseteq B\land B\subseteq A) \iff A = B\)</span>.</li>
+<li>(推移律) <span class="math inline">\(\quad (A\subseteq B\land B\subseteq C)\implies A\subseteq C\)</span>.</li>
+</ul>
+</section>
+<section id="集合の演算" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="集合の演算"><span class="header-section-number">2.3</span> 集合の演算</h2>
+<p>複数の集合から新しい集合を作る演算がある。</p>
+<p><span class="math display">\[\begin{align*}
+A\cup B &amp;\coloneqq\left\{x\mid x\in A \text{ または } x \in B\right\}\qquad\text{(和集合)}\\
+A\cap B &amp;\coloneqq \left\{x\mid x\in A \text{ かつ } x \in B\right\}\qquad\text{(積集合)}\\
+A\setminus B &amp;\coloneqq \left\{x\mid x\in A \text{ かつ } x \notin B\right\}\qquad\text{(差集合)}
+\end{align*}\]</span></p>
+<p>また、全体の集合 <span class="math inline">\(\Omega\)</span> というのが文脈上存在する場合は、</p>
+<p><span class="math display">\[\begin{align*}
+A^\mathrm{c} &amp;\coloneqq \Omega\setminus A\qquad\text{(補集合)}
+\end{align*}\]</span></p>
+<p>と定義する。 これらの演算は以下の法則を満たす。</p>
+<ul>
+<li>(交換法則) <span class="math inline">\(\quad A\cup B = B\cup A, \quad A\cap B = B\cap A\)</span>.</li>
+<li>(結合法則) <span class="math inline">\(\quad (A\cup B)\cup C = A\cup (B\cup C), \quad (A\cap B)\cap C=A\cap(B\cap C)\)</span>.</li>
+<li>(分配法則) <span class="math inline">\(\quad A\cup(B\cap C) = (A\cup B)\cap (A\cup C),\quad A\cap (B\cup C) = (A\cap B)\cup (A\cap C)\)</span>.</li>
+<li>(冪等法則) <span class="math inline">\(\quad A \cup A = A, \quad A\cap A = A\)</span>.</li>
+<li>(吸収法則) <span class="math inline">\(\quad A \cup (A\cap B) = A, \quad A\cap (A\cup B) = A\)</span>.</li>
+<li><span class="math inline">\(A\cup \varnothing = A,\quad A\cap\varnothing = \varnothing\)</span>.</li>
+</ul>
+<p>補集合に関連して以下の法則を満たす。</p>
+<ul>
+<li><span class="math inline">\(A\cup \Omega = \Omega,\quad A\cap\Omega = A\)</span>.</li>
+<li><span class="math inline">\(A\cup A^\mathrm{c} = \Omega,\quad A\cap A^\mathrm{c} =\varnothing\)</span>.</li>
+<li>(ド・モルガンの法則) <span class="math inline">\(\quad(A\cup B)^\mathrm{c} = A^\mathrm{c} \cap B^\mathrm{c},\quad(A\cap B)^\mathrm{c} = A^\mathrm{c} \cup B^\mathrm{c}\)</span></li>
+<li>(二重補集合の法則) <span class="math inline">\(\quad (A^\mathrm{c})^\mathrm{c} = A\)</span>.</li>
+<li><span class="math inline">\(\Omega^\mathrm{c} = \varnothing,\quad \varnothing^\mathrm{c} = \Omega\)</span>.</li>
+</ul>
+<p>和集合と積集合は結合法則満たすことから、括弧を使わずに <span class="math inline">\(A\cup B\cup C\)</span> と表すことができる。</p>
+</section>
+<section id="集合族" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="集合族"><span class="header-section-number">2.4</span> 集合族</h2>
+<p>集合 <span class="math inline">\(\Omega\)</span> について <span class="math inline">\(2^\Omega\)</span> を <span class="math inline">\(\Omega\)</span> の部分集合からなる集合を表す。</p>
+<p><span class="math display">\[\begin{align*}
+2^\Omega &amp;\coloneqq \left\{A\subseteq\Omega\right\}.
+\end{align*}\]</span></p>
+<p>このような集合を要素に持つ集合を<strong>集合族</strong>と呼ぶ。</p>
+<p>集合 <span class="math inline">\(\Lambda\)</span> の各 <span class="math inline">\(\lambda\in\Lambda\)</span> に対して集合 <span class="math inline">\(A_\lambda\)</span> が存在するとき、集合族</p>
+<p><span class="math display">\[
+\left\{A_\lambda\mid \lambda\in\Lambda\right\}
+\]</span></p>
+<p>を<strong>添字集合 <span class="math inline">\(\Lambda\)</span> で添字付けられた集合族</strong>という。 添字集合が有限集合の場合は和集合や積集合は二つの集合の和集合と積集合の定義を繰り返し用いることで定義できる。 それらは以下のように表す。</p>
+<p><span class="math display">\[
+\bigcup_{\lambda\in\Lambda} A_\lambda \quad,\quad
+\bigcap_{\lambda\in\Lambda} A_\lambda
+\]</span></p>
+<p>添字集合 <span class="math inline">\(\Lambda\)</span> が無限集合の場合は和集合と積集合を以下で定義する。</p>
 <p><span class="math display">\[
 x\in \bigcup_{\lambda\in\Lambda} A_\lambda
-\iff
-\exists \lambda\in\Lambda\quad x\in A_\lambda
+\defiff
+\exists \lambda\in\Lambda,\quad x\in A_\lambda
 \]</span></p>
 <p><span class="math display">\[
 x\in \bigcap_{\lambda\in\Lambda} A_\lambda
-\iff
-\forall \lambda\in\Lambda\quad x\in A_\lambda
+\defiff
+\forall \lambda\in\Lambda,\quad x\in A_\lambda
 \]</span></p>
+<p>この場合もド・モルガンの法則は成り立つ。つまり、</p>
+<p><span class="math display">\[\begin{align*}
+\left(\bigcup_{\lambda\in\Lambda} A_\lambda\right)^\mathrm{c}
+&amp;=
+\bigcap_{\lambda\in\Lambda} A_\lambda^\mathrm{c}\\
+\left(\bigcap_{\lambda\in\Lambda} A_\lambda\right)^\mathrm{c}
+&amp;=
+\bigcup_{\lambda\in\Lambda} A_\lambda^\mathrm{c}
+\end{align*}\]</span></p>
+<p>が成り立つ。</p>
+<p>証明: <span class="math inline">\(x\in\Omega\)</span> について、 <span class="math display">\[\begin{align*}
+x\in\left(\bigcup_{\lambda\in\Lambda} A_\lambda\right)^\mathrm{c}
+&amp;\iff x\notin\left(\bigcup_{\lambda\in\Lambda} A_\lambda\right)\\
+&amp;\iff \forall\lambda\in\Lambda,\quad x\notin A_\lambda\\
+&amp;\iff \forall\lambda\in\Lambda,\quad x\in A_\lambda^\mathrm{c}\\
+&amp;\iff x\in\bigcap_{\lambda\in\Lambda} A_\lambda^{\mathrm{c}}.
+\end{align*}\]</span></p>
 
 
 </section>
