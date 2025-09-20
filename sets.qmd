@@ -100,14 +100,20 @@ A^\mathrm{c} &\coloneqq \Omega\setminus A\qquad\text{(補集合)}
 \end{align*}
 
 このような集合を要素に持つ集合を**集合族**と呼ぶ。
-
-集合 $\Lambda$ の各 $\lambda\in\Lambda$ に対して集合 $A_\lambda$ が存在するとき、集合族
+例えば $\Omega=\{1,2,3\}$ のとき、
 
 $$
-\left\{A_\lambda\mid \lambda\in\Lambda\right\}
+2^\Omega = \left\{\varnothing, \{1\}, \{2\}, \{3\}, \{1,2\},\{2,3\},\{1,3\},\{1,2,3\}\right\}
 $$
 
-を**添字集合 $\Lambda$ で添字付けられた集合族**という。
+である。
+集合 $\Lambda$ の各 $\lambda\in\Lambda$ に対して集合 $A_\lambda\subseteq\Omega$ が存在するとき、集合族
+
+$$
+\left\{A_\lambda\subseteq\Omega\mid \lambda\in\Lambda\right\}\subseteq 2^\Omega
+$$
+
+を**添字集合 $\Lambda$ で添字付けられた $\Omega$ 上の集合族**という。
 添字集合が有限集合の場合は和集合や積集合は二つの集合の和集合と積集合の定義を繰り返し用いることで定義できる。
 それらは以下のように表す。
 
@@ -118,17 +124,14 @@ $$
 
 添字集合 $\Lambda$ が無限集合の場合は和集合と積集合を以下で定義する。
 
-$$
-x\in \bigcup_{\lambda\in\Lambda} A_\lambda
-\defiff
-\exists \lambda\in\Lambda,\quad x\in A_\lambda
-$$
-
-$$
-x\in \bigcap_{\lambda\in\Lambda} A_\lambda
-\defiff
-\forall \lambda\in\Lambda,\quad x\in A_\lambda
-$$
+\begin{align*}
+\bigcup_{\lambda\in\Lambda} A_\lambda
+&\coloneqq
+\left\{x\in\Omega\mid \exists \lambda\in\Lambda,\quad x\in A_\lambda\right\}\\
+\bigcap_{\lambda\in\Lambda} A_\lambda
+&\coloneqq
+\left\{x\in\Omega\mid \forall \lambda\in\Lambda,\quad x\in A_\lambda\right\}
+\end{align*}
 
 この場合もド・モルガンの法則は成り立つ。つまり、
 
@@ -148,6 +151,7 @@ $x\in\Omega$ について、
 \begin{align*}
 x\in\left(\bigcup_{\lambda\in\Lambda} A_\lambda\right)^\mathrm{c}
 &\iff x\notin\left(\bigcup_{\lambda\in\Lambda} A_\lambda\right)\\
+&\iff \lnot\left(\exists\lambda\in\Lambda,\quad x\in A_\lambda\right)\\
 &\iff \forall\lambda\in\Lambda,\quad x\notin A_\lambda\\
 &\iff \forall\lambda\in\Lambda,\quad x\in A_\lambda^\mathrm{c}\\
 &\iff x\in\bigcap_{\lambda\in\Lambda} A_\lambda^{\mathrm{c}}.

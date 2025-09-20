@@ -182,6 +182,10 @@ plt.show()
 
 二項分布の確率質量関数は
 
+$$
+\Pr(X=k) = \binom{N}{k} p^k(1-p)^{N-k}
+$$
+
 ```{python}
 #| label: fig-binom
 #| fig-cap: "二項分布の確率質量関数"
