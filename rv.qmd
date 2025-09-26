@@ -231,8 +231,8 @@ plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 
 plt.figure(figsize=(8, 5))
-plt.bar(x, cdf, tick_label=x)
-plt.title(f'Pmf of binomial distribution with n={n}, p={p}')
+plt.step(x, cdf)
+plt.title(f'Cmf of binomial distribution with n={n}, p={p}')
 plt.xlabel('$k$')
 plt.ylabel('$\\Pr(X=k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -276,8 +276,8 @@ plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 
 plt.figure(figsize=(8, 5))
-plt.bar(k, cdf, tick_label=k)
-plt.title(f'Pmf of geometric distribution with n={n}, p={p}')
+plt.step(k, cdf)
+plt.title(f'Cmf of geometric distribution with n={n}, p={p}')
 plt.xlabel('$k$')
 plt.ylabel('$\\Pr(X=k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -292,7 +292,9 @@ $$
 
 ```{python}
 #| label: fig-hypergeom
-#| fig-cap: "超幾何分布の確率質量関数"
+#| fig-cap:
+#|  - "超幾何分布の確率質量関数"
+#|  - "超幾何分布の累積分布関数"
 
 import numpy as np
 from scipy.stats import hypergeom
@@ -308,11 +310,20 @@ k = np.arange(0, K+1)
 
 # 超幾何分布のPMFの計算
 pmf = hypergeom.pmf(k, N, K, n)
+cdf = hypergeom.cdf(k, N, K, n)
 
 # プロット
 plt.figure(figsize=(8, 5))
 plt.bar(k, pmf, tick_label=k)
 plt.title(f'Pmf of hypergeometric distribution with K={K}, N={N}, n = {n}')
+plt.xlabel('$k$')
+plt.ylabel('$\\Pr(X=k)$')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+
+plt.figure(figsize=(8, 5))
+plt.step(k, cdf)
+plt.title(f'Cmf of hypergeometric distribution with K={K}, N={N}, n = {n}')
 plt.xlabel('$k$')
 plt.ylabel('$\\Pr(X=k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -327,7 +338,9 @@ $$
 
 ```{python}
 #| label: fig-poisson
-#| fig-cap: "ポアソン分布の確率質量関数"
+#| fig-cap:
+#|  - "ポアソン分布の確率質量関数"
+#|  - "ポアソン分布の累積分布関数"
 
 import numpy as np
 from scipy.stats import poisson
@@ -341,11 +354,20 @@ k = np.arange(0, 3*lam)
 
 # ポアソン分布のPMFの計算
 pmf = poisson.pmf(k, lam)
+cdf = poisson.cdf(k, lam)
 
 # プロット
 plt.figure(figsize=(8, 5))
 plt.bar(k, pmf, tick_label=k)
 plt.title(f'Pmf of Poisson distribution with $\\lambda$={lam}')
+plt.xlabel('$k$')
+plt.ylabel('$\\Pr(X=k)$')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+
+plt.figure(figsize=(8, 5))
+plt.step(k, cdf)
+plt.title(f'Cmf of Poisson distribution with $\\lambda$={lam}')
 plt.xlabel('$k$')
 plt.ylabel('$\\Pr(X=k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -362,7 +384,9 @@ $$
 
 ```{python}
 #| label: fig-uniform
-#| fig-cap: "一様分布の確率密度関数"
+#| fig-cap:
+#|  - "一様分布の確率密度関数"
+#|  - "一様分布の累積分布関数"
 
 import numpy as np
 from scipy.stats import uniform
@@ -376,11 +400,20 @@ x = np.linspace(-0.1, +1.1, 1000)
 
 # 一様分布のPMFの計算
 pdf = uniform.pdf(x)
+cdf = uniform.cdf(x)
 
 # プロット
 plt.figure(figsize=(8, 5))
 plt.plot(x, pdf)
 plt.title(f'Pdf of Uniform distribution on $[0,1]$')
+plt.xlabel('$x$')
+plt.ylabel('$f_X(x)$')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+
+plt.figure(figsize=(8, 5))
+plt.plot(x, cdf)
+plt.title(f'Cdf of Uniform distribution on $[0,1]$')
 plt.xlabel('$x$')
 plt.ylabel('$f_X(x)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -395,7 +428,9 @@ $$
 
 ```{python}
 #| label: fig-normal
-#| fig-cap: "正規分布の確率密度関数"
+#| fig-cap:
+#|  - "正規分布の確率密度関数"
+#|  - "正規分布の累積分布関数"
 
 import numpy as np
 from scipy.stats import norm
@@ -408,6 +443,7 @@ x = np.linspace(norm.ppf(0.001), norm.ppf(0.999), 100)
 
 # 一様分布のPMFの計算
 pdf = norm.pdf(x)
+cdf = norm.cdf(x)
 
 # プロット
 plt.figure(figsize=(8, 5))
@@ -417,4 +453,82 @@ plt.xlabel('$x$')
 plt.ylabel('$f_X(x)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
+
+plt.figure(figsize=(8, 5))
+plt.plot(x, cdf)
+plt.title(f'Cdf of normal distribution with $\\mu = 0$ and $\\sigma = 1$')
+plt.xlabel('$x$')
+plt.ylabel('$f_X(x)$')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
 ```
+
+### 指数分布
+
+$$
+f_X(x) = \lambda\mathrm{e}^{-\lambda x}
+$$
+
+```{python}
+#| label: fig-exp
+#| fig-cap:
+#|  - "指数分布の確率密度関数"
+#|  - "指数分布の累積分布関数"
+
+import numpy as np
+from scipy.stats import expon
+import matplotlib.pyplot as plt
+
+# パラメータの設定
+
+# 取りうる値の範囲
+x = np.linspace(expon.ppf(0.001), expon.ppf(0.999), 100)
+
+# PMFの計算
+pdf = expon.pdf(x)
+cdf = expon.cdf(x)
+
+# プロット
+plt.figure(figsize=(8, 5))
+plt.plot(x, pdf)
+plt.title(f'Pdf of exponential distribution with $\\lambda = 1$')
+plt.xlabel('$x$')
+plt.ylabel('$f_X(x)$')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+
+plt.figure(figsize=(8, 5))
+plt.plot(x, cdf)
+plt.title(f'Cdf of exponential distribution with $\\lambda = 1$')
+plt.xlabel('$x$')
+plt.ylabel('$f_X(x)$')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+
+## 確率密度関数
+
+::: {#lem-pdf}
+確率変数 $X$ について、
+\begin{align*}
+f_{X+a}(x) &= f_X(x-a)\\
+f_{aX}(x) &= \frac1{a} f_X(x/a)
+\end{align*}
+と取れる。
+:::
+::: {.proof}
+\begin{align*}
+f_{X+a}(x) &= \frac{\mathrm d\Pr(X+a\le x)}{\mathrm{d} x}\\
+&= \frac{\mathrm d\Pr(X\le x-a)}{\mathrm{d} x}\\
+&= \frac{\mathrm d\Pr(X\le x')}{\mathrm{d}x'} \frac{\mathrm{d}x'}{\mathrm{d} x}\qquad (x' = x-a)\\
+&= f_X(x')\\
+&= f_X(x-a).
+\end{align*}
+\begin{align*}
+f_{aX}(x) &= \frac{\mathrm d\Pr(aX\le x)}{\mathrm{d} x}\\
+&= \frac{\mathrm d\Pr(X\le x/a)}{\mathrm{d} x}\\
+&= \frac{\mathrm d\Pr(X\le x')}{\mathrm{d} x'} \frac{\mathrm{d} x'}{\mathrm{d} x}\qquad (x' = x/a)\\
+&= f_X(x') \cdot \frac1{a}\\
+&= \frac1{a}f_X(x/a).
+\end{align*}
+:::
