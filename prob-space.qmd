@@ -69,17 +69,8 @@ $$
 2. $\forall (A_n\subseteq \Omega)_{n\ge 0},\quad \forall i\ne j,\, A_i\cap A_j=\varnothing\implies P\left(\bigcup_{n\ge 0}A_n\right) = \sum_{n\ge 0} P(A_n)$.
 
 この二つ目の条件を**完全加法性**もしくは **$\sigma$-加法性**という。
-ここで
-$$
-\bigcup_{n\ge 0} A_n = \{\omega\in\Omega\mid \exists n\ge 0,\, \omega\in A_n\}
-$$
-は事象列 $(A_n)_{n\ge 0}$ の並び順に依存しない。
-よって、$P$ の完全加法性が成り立つとき
-$$
-\sum_{n\ge 0} P(A_n)
-$$
-も事象列 $(A_n)_{n\ge 0}$ の並び順に依存しない。
-そもそも $P(A_n)\ge 0$ なので、無限和 $\sum_{n\ge 0} P(A_n)$ が存在するときこれは絶対収束することから、この無限和は事象列の並び順に依存しないことが分かる。
+右辺の無限和において $P(A_n)\ge 0$ なので、無限和 $\sum_{n\ge 0} P(A_n)$ が存在するときこれは絶対収束する。
+よって、この無限和は事象列の並び順に依存しないことが分かる。
 完全加法性ではなく有限加法性だけを使って確率論を構築する試みもあるが、確率測度の連続性などの性質が失なわれるため
 標準的な確率論では完全加法性を課す。
 
@@ -87,7 +78,7 @@ $$
 
 より一般に $\Omega$ が非可算無限集合の場合を考えよう。例えば $\Omega = [0, 1)$ の場合が考えられる。
 このとき、すべての $A\subseteq\Omega$ に確率を与えることができるのだろうか？
-そうすると、ごく自然な性質を持つような確率測度が存在しないことが、選択公理を認めると示される。
+そうすると、ごく自然な性質を持つような確率測度が**存在しない**ことが、選択公理を認めると示される。
 
 ::: {#thm-vitali}
 
@@ -143,10 +134,10 @@ $\Omega$ 上の同値関係を $x\sim y \stackrel{\mathrm{def}}{\iff} x-y\in\mat
 ## 完全加法族
 
 $\Omega$ を集合とする。
-$\mathcal{F}\subseteq 2^\Omega$ が以下を満たすとする。
+$\Omega$ 上の集合族 $\mathcal{F}\subseteq 2^\Omega$ が以下を満たすとする。
 
 1. $\Omega\in\mathcal{F}$.
-2. $\forall A\in\mathcal{F},\quad \Omega\setminus A\in\mathcal{F}$.
+2. $\forall A\in\mathcal{F},\quad A^\mathrm{c} = \Omega\setminus A\in\mathcal{F}$.
 3. $\forall (A_n\in\mathcal{F})_{n\ge 0},\quad \bigcup_{n\ge 0} A_n\in\mathcal{F}$.
 
 このとき、$\mathcal{F}$ を $\Omega$ 上の完全加法族もしくは $\sigma$-加法族という。
@@ -190,17 +181,16 @@ $\Omega = [0, 1)$ で任意の $0\le a < b\le 1$ について $P([a, b)) = b-a$ 
 ## 確率のいくつかの性質
 
 確率空間 $(\Omega,\, P)$ と任意の $A,\,B\subseteq \Omega$ について以下が成り立つ。
-ただし、$A^c = \Omega\setminus A$ とする。
 
-1. $P(A^c) = 1 - P(A)$.
+1. $P(A^\mathrm{c}) = 1 - P(A)$.
 2. $B\subseteq A\implies P(B)\le P(A)$
 3. $P(A\cup B) = P(A) + P(B) - P(A\cap B)$.
-4. $P(A\cup B) \le P(A) + P(B)$ (ブールの不等式、union bound).
+4. $P(A\cup B) \le P(A) + P(B)\qquad$ (ブールの不等式、union bound).
 :::
 ::: {.proof}
 1.
 $$
-1 = P(\Omega) = P(A \cup A^c) = P(A) + P(A^c).
+1 = P(\Omega) = P(A \cup A^\mathrm{c}) = P(A) + P(A^\mathrm{c}).
 $$
 
 2.
@@ -243,18 +233,40 @@ P\left(\bigcup_{n\ge 0} A_n\right) &= P\left(\bigcup_{n\ge 0} B_n\right)\\
 
 確率空間 $(\Omega,\, P)$ と事象列 $A_0\subseteq A_1\subseteq \dotsb \subseteq \Omega$ について
 \begin{align*}
-P\left(\bigcup_{k=1}^\infty A_k\right) = \lim_{n\to\infty} P(A_n).
+P\left(\bigcup_{n\ge 0} A_n\right) = \lim_{n\to\infty} P(A_n).
+\end{align*}
+また、事象列 $\Omega\supseteq A_0\supseteq A_1\supseteq \dotsb$ について
+\begin{align*}
+P\left(\bigcap_{n\ge 0} A_n\right) = \lim_{n\to\infty} P(A_n).
 \end{align*}
 :::
 ::: {.proof}
+事象列 $A_0\subseteq A_1\subseteq \dotsb \subseteq \Omega$ について考える。
 $B_0\coloneqq A_0$, $n\ge 1$について$B_n\coloneqq A_n\setminus A_{n-1}$とおく。
-このとき、$i\ne j$について $B_i\cap B_j=\varnothing$。また、$\bigcup_{k=1}^n B_k = \bigcup_{k=1}^nA_k = A_n$.
+このとき、$i\ne j$について $B_i\cap B_j=\varnothing$。
+また $k\ge 0$ について、$\bigcup_{n=0}^k B_n = \bigcup_{n=0}^kA_n = A_k$ が成り立つ.
 
 \begin{align*}
-P\left(\bigcup_{k=1}^\infty A_k\right)&= P\left(\bigcup_{k=1}^\infty B_k\right) =\sum_{k=1}^\infty P(B_k)\\
-&=\lim_{n\to\infty} \sum_{k=1}^n P(B_k)
-=\lim_{n\to\infty} P\left(\bigcup_{k=1}^n B_k\right)
-=\lim_{n\to\infty} P(A_n).
+P\left(\bigcup_{n\ge 0} A_n\right)&= P\left(\bigcup_{n\ge 0} B_n\right) =\sum_{n\ge 0} P(B_n)\\
+&=\lim_{k\to\infty} \sum_{n=0}^k P(B_n)
+=\lim_{k\to\infty} P\left(\bigcup_{n=0}^k B_n\right)
+=\lim_{k\to\infty} P(A_k).
+\end{align*}
+
+事象列 $\Omega\supseteq A_0\supseteq A_1\supseteq \dotsb$ について考える。
+このとき、 $A'_n \coloneqq A_n^\mathrm{c}$ とおくと、$A'_0\subseteq A'_1\subseteq \dotsb \subseteq \Omega$ を満たす。
+よって、
+
+\begin{align*}
+P\left(\bigcup_{n\ge 0} A'_n\right) &= \lim_{n\to\infty} P(A'_n)
+\end{align*}
+
+である。ド・モルガンの公式より、
+
+\begin{align*}
+P\left(\left(\bigcap_{n\ge 0} A_n\right)^\mathrm{c}\right) &= \lim_{n\to\infty} P(A^\mathrm{c}_n)\\
+\iff 1-P\left(\bigcap_{n\ge 0} A_n\right) &= \lim_{n\to\infty} \bigl( 1-P(A_n)\bigr)\\
+\iff P\left(\bigcap_{n\ge 0} A_n\right) &= \lim_{n\to\infty} P(A_n).
 \end{align*}
 :::
 

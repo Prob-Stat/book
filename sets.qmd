@@ -93,13 +93,13 @@ A^\mathrm{c} &\coloneqq \Omega\setminus A\qquad\text{(補集合)}
 
 ## 集合族
 
-集合 $\Omega$ について $2^\Omega$ を $\Omega$ の部分集合からなる集合を表す。
+集合 $\Omega$ について $2^\Omega$ を $\Omega$ のすべての部分集合からなる集合を表す。
 
 \begin{align*}
 2^\Omega &\coloneqq \left\{A\subseteq\Omega\right\}.
 \end{align*}
 
-このような集合を要素に持つ集合を**集合族**と呼ぶ。
+これを $\Omega$ の**冪集合**という。
 例えば $\Omega=\{1,2,3\}$ のとき、
 
 $$
@@ -107,6 +107,8 @@ $$
 $$
 
 である。
+$|2^\Omega|=2^{|\Omega|}$ が成り立つ。
+また、$2^\Omega$ の部分集合を **$\Omega$ 上の(部分)集合族**と呼ぶ。
 集合 $\Lambda$ の各 $\lambda\in\Lambda$ に対して集合 $A_\lambda\subseteq\Omega$ が存在するとき、集合族
 
 $$
@@ -114,7 +116,7 @@ $$
 $$
 
 を**添字集合 $\Lambda$ で添字付けられた $\Omega$ 上の集合族**という。
-添字集合が有限集合の場合は和集合や積集合は二つの集合の和集合と積集合の定義を繰り返し用いることで定義できる。
+添字集合が有限集合の場合は集合族全体の和集合や積集合は二つの集合の和集合と積集合の定義を繰り返し用いることで定義できる。
 それらは以下のように表す。
 
 $$
@@ -133,6 +135,7 @@ $$
 \left\{x\in\Omega\mid \forall \lambda\in\Lambda,\quad x\in A_\lambda\right\}
 \end{align*}
 
+この定義は $\Lambda$ が有限集合の場合も正しいものである。
 この場合もド・モルガンの法則は成り立つ。つまり、
 
 \begin{align*}

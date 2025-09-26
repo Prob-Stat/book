@@ -43,15 +43,15 @@ $$
 
 ## 確率分布
 
-確率変数 $X$ の像が高々可算のとき、$X$ を**離散型確率変数**という。
+確率変数 $X$ の像が高々可算集合のとき、$X$ を**離散型確率変数**という。
 離散型確率変数でない確率変数を**連続型確率変数**という。
 
 $X$ が離散型確率変数のとき、$A$ を $X$ の像の部分集合とすると
 
 \begin{align*}
-\Pr(X\in A) &= \Pr\left(\{\omega\in\Omega\mid X(\omega)\in A\}\right)\\
-&= \Pr\left(\bigcup_{x\in A} \{\omega\in\Omega\mid X(\omega)=x\}\right)\\
-&= \sum_{x\in A} \Pr\left(\{\omega\in\Omega\mid X(\omega)=x\}\right)\\
+\Pr(X\in A) &= P\left(\{\omega\in\Omega\mid X(\omega)\in A\}\right)\\
+&= P\left(\bigcup_{x\in A} \{\omega\in\Omega\mid X(\omega)=x\}\right)\\
+&= \sum_{x\in A} P\left(\{\omega\in\Omega\mid X(\omega)=x\}\right)\\
 &= \sum_{x\in A} \Pr\left(X=x\right)
 \end{align*}
 
@@ -110,7 +110,7 @@ F_X(x) = \int_{-\infty}^x f_X(y) \mathrm{d}y
 $$
 
 という関係が成り立つ。
-よって
+よって累積分布関数が微分可能なときは
 
 $$
 f_X(x) = \frac{\mathrm{d}F_X}{\mathrm{d}x}
@@ -123,12 +123,13 @@ $$
 
 \begin{align*}
 \lim_{n\to\infty} \Pr\left(X \le x + \frac1n\right) &=
-\lim_{n\to\infty} \Pr\left(\left\{\omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
-&= \Pr\left(\bigcap_{n=0}^\infty \left\{\omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
-&= \Pr\left(\left\{\omega\mid X(\omega) \le x\right\}\right)
+\lim_{n\to\infty} P\left(\left\{\omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
+&= P\left(\bigcap_{n=0}^\infty \left\{\omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
+&= P\left(\left\{\omega\mid X(\omega) \le x\right\}\right)\\
+&= \Pr\left(X\le x\right)
 \end{align*}
 
-@exm-contdisc の確率変数 $X$ の確率密度関数は
+@exm-contdisc の確率変数 $X$ の累積分布関数は以下のようになる。
 
 ```{python}
 #| label: fig-x
@@ -176,19 +177,34 @@ plt.show()
 ```
 
 
-## 確率分布の例
+## 離散確率分布の例
+
+### 様々な離散確率分布
+
+* 二項分布: 表が出る確率が $p$ のコインを $n$ 回独立に投げたとき、表が出る回数の分布
+$$\Pr(X=k) = \binom{n}{k} p^k (1-p)^{n-k}.$$
+* 幾何分布: 表が出るまでに投げるコインの回数の分布
+$$\Pr(X=k) = (1-p)^{k-1}p.$$
+* 超幾何分布: 袋の中に $N$ 個のボールがあって、そのうち $K$ 個が当たりとし、 $n$ 個引いたときの当たりの個数の分布
+$$\Pr(X=k) = \frac{\binom{k}{k}\binom{N-K}{n-k}}{\binom{N}{n}}.$$
+* ポアソン分布:
+$$
+\Pr(X=k) = \frac{\lambda^k}{k!}\mathrm{e}^{-\lambda}.
+$$
 
 ### 二項分布
 
 二項分布の確率質量関数は
 
 $$
-\Pr(X=k) = \binom{N}{k} p^k(1-p)^{N-k}
+f_X(k) = \binom{n}{k} p^k(1-p)^{n-k}
 $$
 
 ```{python}
 #| label: fig-binom
-#| fig-cap: "二項分布の確率質量関数"
+#| fig-cap:
+#|  - "二項分布の確率質量関数"
+#|  - "二項分布の累積分布関数"
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -203,6 +219,7 @@ x = np.arange(0, n+1)
 
 # 二項分布のPMFの計算
 pmf = binom.pmf(x, n, p)
+cdf = binom.cdf(x, n, p)
 
 # プロット
 plt.figure(figsize=(8, 5))
@@ -210,6 +227,194 @@ plt.bar(x, pmf, tick_label=x)
 plt.title(f'Pmf of binomial distribution with n={n}, p={p}')
 plt.xlabel('$k$')
 plt.ylabel('$\\Pr(X=k)$')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+
+plt.figure(figsize=(8, 5))
+plt.bar(x, cdf, tick_label=x)
+plt.title(f'Pmf of binomial distribution with n={n}, p={p}')
+plt.xlabel('$k$')
+plt.ylabel('$\\Pr(X=k)$')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+
+### 幾何分布
+
+$$
+f_X(k) = (1-p)^{k-1}p,\qquad\forall k\ge 1
+$$
+
+```{python}
+#| label: fig-geom
+#| fig-cap:
+#|  - "幾何分布の確率質量関数"
+#|  - "幾何分布の累積分布関数"
+
+import numpy as np
+from scipy.stats import geom
+import matplotlib.pyplot as plt
+
+# パラメータの設定
+n = 12       # 試行回数
+p = 0.6      # 成功確率
+
+# 取りうる値の範囲
+k = np.arange(1, n+1)
+
+# 幾何分布のPMFの計算
+pmf = geom.pmf(k, p)
+cdf = geom.cdf(k, p)
+
+# プロット
+plt.figure(figsize=(8, 5))
+plt.bar(k, pmf, tick_label=k)
+plt.title(f'Pmf of geometric distribution with n={n}, p={p}')
+plt.xlabel('$k$')
+plt.ylabel('$\\Pr(X=k)$')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+
+plt.figure(figsize=(8, 5))
+plt.bar(k, cdf, tick_label=k)
+plt.title(f'Pmf of geometric distribution with n={n}, p={p}')
+plt.xlabel('$k$')
+plt.ylabel('$\\Pr(X=k)$')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+
+### 超幾何分布
+
+$$
+f_X(k) = \frac{\binom{K}{k}\binom{N-K}{n-k}}{\binom{N}{n}},\qquad\forall k\in \{0,\dotsc,\min\{K, n\}\}
+$$
+
+```{python}
+#| label: fig-hypergeom
+#| fig-cap: "超幾何分布の確率質量関数"
+
+import numpy as np
+from scipy.stats import hypergeom
+import matplotlib.pyplot as plt
+
+# パラメータの設定
+N = 100
+n = 40
+K = 30
+
+# 取りうる値の範囲
+k = np.arange(0, K+1)
+
+# 超幾何分布のPMFの計算
+pmf = hypergeom.pmf(k, N, K, n)
+
+# プロット
+plt.figure(figsize=(8, 5))
+plt.bar(k, pmf, tick_label=k)
+plt.title(f'Pmf of hypergeometric distribution with K={K}, N={N}, n = {n}')
+plt.xlabel('$k$')
+plt.ylabel('$\\Pr(X=k)$')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+
+### ポアソン分布
+
+$$
+f_X(k) = \frac{\lambda^k}{k!}\mathrm{e}^{-\lambda},\qquad \forall k\ge 0
+$$
+
+```{python}
+#| label: fig-poisson
+#| fig-cap: "ポアソン分布の確率質量関数"
+
+import numpy as np
+from scipy.stats import poisson
+import matplotlib.pyplot as plt
+
+# パラメータの設定
+lam = 10
+
+# 取りうる値の範囲
+k = np.arange(0, 3*lam)
+
+# ポアソン分布のPMFの計算
+pmf = poisson.pmf(k, lam)
+
+# プロット
+plt.figure(figsize=(8, 5))
+plt.bar(k, pmf, tick_label=k)
+plt.title(f'Pmf of Poisson distribution with $\\lambda$={lam}')
+plt.xlabel('$k$')
+plt.ylabel('$\\Pr(X=k)$')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+
+## 連続確率分布の例
+
+### 一様分布
+
+$$
+f_X(x) = \frac1{b-a}\qquad \forall
+$$
+
+```{python}
+#| label: fig-uniform
+#| fig-cap: "一様分布の確率密度関数"
+
+import numpy as np
+from scipy.stats import uniform
+import matplotlib.pyplot as plt
+
+# パラメータの設定
+
+# 取りうる値の範囲
+#x = np.linspace(uniform.ppf(0.01), uniform.ppf(0.99), 100)
+x = np.linspace(-0.1, +1.1, 1000)
+
+# 一様分布のPMFの計算
+pdf = uniform.pdf(x)
+
+# プロット
+plt.figure(figsize=(8, 5))
+plt.plot(x, pdf)
+plt.title(f'Pdf of Uniform distribution on $[0,1]$')
+plt.xlabel('$x$')
+plt.ylabel('$f_X(x)$')
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+
+### 正規分布 (ガウス分布)
+
+$$
+f_X(x) = \frac1{\sqrt{2\pi\sigma^2}}\mathrm{e}^{-\frac{(x-\mu)^2}{2\sigma^2}},\qquad \forall x\in\mathbb{R}.
+$$
+
+```{python}
+#| label: fig-normal
+#| fig-cap: "正規分布の確率密度関数"
+
+import numpy as np
+from scipy.stats import norm
+import matplotlib.pyplot as plt
+
+# パラメータの設定
+
+# 取りうる値の範囲
+x = np.linspace(norm.ppf(0.001), norm.ppf(0.999), 100)
+
+# 一様分布のPMFの計算
+pdf = norm.pdf(x)
+
+# プロット
+plt.figure(figsize=(8, 5))
+plt.plot(x, pdf)
+plt.title(f'Pdf of normal distribution with $\\mu = 0$ and $\\sigma = 1$')
+plt.xlabel('$x$')
+plt.ylabel('$f_X(x)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 ```
