@@ -74,7 +74,7 @@ $X$ が連続型確率変数のとき、
 \Pr(X\in A) &= \int_{x\in A} f_X(x) \mathrm{d}x\qquad\forall A\subseteq\mathbb{R}
 \end{align*}
 
-を満たす $f_X\colon\mathbb{R}\to\mathbb{R}$ が存在するとき、この $f_X(x)$ を $X$ の**確率密度関数**という。
+を満たす $f_X\colon\mathbb{R}\to\mathbb{R}_{\ge 0}$ が存在するとき、この $f_X(x)$ を $X$ の**確率密度関数**という。
 しかし、確率密度関数は常に存在するとは限らない。
 
 ::: {#exm-contdisc}
@@ -518,29 +518,37 @@ plt.show()
 ::: {#lem-pdf}
 確率変数 $X$ について、
 \begin{align*}
-f_{X+a}(x) &= f_X(x-a)\\
-f_{aX}(x) &= \frac1{a} f_X(x/a)
+f_{X+a}(x) &= f_X(x-a)\qquad\forall a\in\mathbb{R}\\
+f_{aX}(x) &= \frac1{|a|} f_X(x/a)\qquad\forall a\in\mathbb{R}_{\ne 0}
 \end{align*}
 と取れる。
 :::
 ::: {.proof}
+関数 $f_Z\colon \mathbb{R}\to\mathbb{R}_{\ge 0}$ が
+
+$$
+\Pr(Z\le x) = \int_{-\infty}^x f_Z(z)\mathrm{d} z
+$$
+
+を満たすとき、$f_Z$ は確率変数 $Z$ の確率密度関数となる。
+
+任意の $a\in\mathbb{R}$ について、
 \begin{align*}
-\int_{-\infty}^x f_{X+a}(x)\mathrm{d}x &= \Pr(X+a\le x)\\
-&= \Pr(X\le x-a)\\
-&= \int_{-\infty}^{x-a} f_{X}(x)\mathrm{d}x\\
+\Pr(X+a\le x) &= \Pr(X\le x-a)\\
+&= \int_{-\infty}^{x-a} f_{X}(z)\mathrm{d}z\\
+&= \int_{-\infty}^{x} f_{X}(z'-a)\mathrm{d}z'\qquad (z'=z+a).
 \end{align*}
+任意の $a>0$ について、
 \begin{align*}
-f_{X+a}(x) &= \frac{\mathrm d\Pr(X+a\le x)}{\mathrm{d} x}\\
-&= \frac{\mathrm d\Pr(X\le x-a)}{\mathrm{d} x}\\
-&= \frac{\mathrm d\Pr(X\le x')}{\mathrm{d}x'} \frac{\mathrm{d}x'}{\mathrm{d} x}\qquad (x' = x-a)\\
-&= f_X(x')\\
-&= f_X(x-a).
+\Pr(aX\le x) &= \Pr(X\le x/a)\\
+&= \int_{-\infty}^{x/a} f_{X}(z)\mathrm{d}z\\
+&= \int_{-\infty}^{x} \frac1{a} f_{X}(z'/a)\mathrm{d}z'\qquad (z'=az).
 \end{align*}
+任意の $a<0$ について、
 \begin{align*}
-f_{aX}(x) &= \frac{\mathrm d\Pr(aX\le x)}{\mathrm{d} x}\\
-&= \frac{\mathrm d\Pr(X\le x/a)}{\mathrm{d} x}\\
-&= \frac{\mathrm d\Pr(X\le x')}{\mathrm{d} x'} \frac{\mathrm{d} x'}{\mathrm{d} x}\qquad (x' = x/a)\\
-&= f_X(x') \cdot \frac1{a}\\
-&= \frac1{a}f_X(x/a).
+\Pr(aX\le x) &= \Pr(X\ge x/a)\\
+&= \int_{x/a}^{\infty} f_{X}(z)\mathrm{d}z\\
+&= \int_{x}^{-\infty} \frac1{a} f_{X}(z'/a)\mathrm{d}z'\qquad (z'=az)\\
+&= -\int_{-\infty}^{x} \frac1{a} f_{X}(z'/a)\mathrm{d}z'.
 \end{align*}
 :::

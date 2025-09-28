@@ -7,15 +7,17 @@
 
 離散確率変数 $X$ が$A\subseteq\mathbb{R}$に値を取るとき、その期待値は
 
-$$
-\expt{X}= \sum_{x\in A} f_X(x) x
-$$
+\begin{align*}
+\expt{X} &= \sum_{\omega \in \Omega} X(\omega) P(\{\omega\})\\
+&= \sum_{x\in A} x P(\{\omega\mid X(\omega)=x\})\\
+&= \sum_{x\in A} x \Pr(X=x)\\
+\end{align*}
 
 と定義される。ここで、右辺の和が絶対収束しない場合は期待値は定義されない。
 連続確率変数 $X$ が確率密度関数 $f_X$ を持つとき、その期待値は
 
 $$
-\expt{X}= \int_{-\infty}^\infty f_X(x) x \mathrm{d}x
+\expt{X}= \int_{-\infty}^\infty x f_X(x) \mathrm{d}x
 $$
 
 と定義される。
@@ -24,8 +26,50 @@ $$
 ::: {#lem-exp}
 ## 期待値の性質
 
-1. 任意の $a\in\mathbb{C}$ について $\expt{aX} = a\expt{X}$.
-2. 任意の 確率変数 $X$ と $Y$ について $\expt{X+Y} = \expt{X}+\expt{Y}$.
+1. 任意の $c\in\mathbb{R}$ について $\expt{X+c} = \expt{X}+c$.
+1. 任意の $c\in\mathbb{R}$ について $\expt{cX} = c\expt{X}$.
+:::
+::: {.proof}
+
+$X$ が離散確率変数のとき、$X$ の値域を $A$ とすると $X+c$ の値域は $A+c\coloneqq\{a+c\mid a\in A\}$ なので、
+\begin{align*}
+\expt{X+c} &= \sum_{x\in A+c} x f_{X+c}(x)\\
+&= \sum_{x\in A+c} x \Pr(X+c = x)\\
+&= \sum_{x'\in A} (x'+c) \Pr(X = x')\qquad(x' = x-c)\\
+&= \expt{X}+c.
+\end{align*}
+
+$X$ が連続確率変数のとき、
+\begin{align*}
+\expt{X+c} &= \int_{-\infty}^\infty x f_{X+c}(x) \mathrm{d} x\\
+&= \int_{-\infty}^\infty x f_{X}(x-c) \mathrm{d} x\\
+&= \int_{-\infty}^\infty (x'+c) f_{X}(x') \mathrm{d} x'\qquad(x'=x-c)\\
+&= \expt{X}+c.
+\end{align*}
+
+$c=0$ のとき $cX = 0$ なので、$\expt{cX} = 0 = c\expt{X}$.
+
+$X$ が離散確率変数のとき、$X$ の値域を $A$ とすると $cX$ の値域は $cA\coloneqq\{ca\mid a\in A\}$ なので、
+\begin{align*}
+\expt{cX} &= \sum_{x\in cA} x f_{cX}(x) \\
+&= \sum_{x\in cA} x \Pr(cX = x)\\
+&= \sum_{x'\in A} cx' \Pr(X = x') \qquad(x' = x/c)\\
+&= c\expt{X}
+\end{align*}
+
+$X$ が連続確率変数のとき、
+\begin{align*}
+\expt{cX} &= \int_{-\infty}^\infty x f_{cX}(x) \mathrm{d} x\\
+&= \int_{-\infty}^\infty x \frac1{|c|} f_{X}(x/c) \mathrm{d} x\\
+&=
+\begin{cases}
+ \int_{-\infty}^\infty cx'f_{X}(x') \mathrm{d} x& \text{if } c > 0\\
+ \int_{\infty}^{-\infty} -cx'f_{X}(x') \mathrm{d} x& \text{if } c < 0\\
+\end{cases}
+\qquad (x' = x/c)\\
+&= \int_{-\infty}^\infty c x' f_{X}(x') \mathrm{d} x'\\
+&= c\expt{X}
+\end{align*}
 :::
 
 
