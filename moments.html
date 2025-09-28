@@ -469,21 +469,56 @@ window.Quarto = {
 <h2 data-number="5.1" class="anchored" data-anchor-id="期待値"><span class="header-section-number">5.1</span> 期待値</h2>
 <div id="def-exp" class="theorem definition">
 <p><span class="theorem-title"><strong>定義 5.1 (期待値)</strong></span> 離散確率変数 <span class="math inline">\(X\)</span> が<span class="math inline">\(A\subseteq\mathbb{R}\)</span>に値を取るとき、その期待値は</p>
-<p><span class="math display">\[
-\expt{X}= \sum_{x\in A} f_X(x) x
-\]</span></p>
+<p><span class="math display">\[\begin{align*}
+\expt{X} &amp;= \sum_{\omega \in \Omega} X(\omega) P(\{\omega\})\\
+&amp;= \sum_{x\in A} x P(\{\omega\mid X(\omega)=x\})\\
+&amp;= \sum_{x\in A} x \Pr(X=x)\\
+\end{align*}\]</span></p>
 <p>と定義される。ここで、右辺の和が絶対収束しない場合は期待値は定義されない。 連続確率変数 <span class="math inline">\(X\)</span> が確率密度関数 <span class="math inline">\(f_X\)</span> を持つとき、その期待値は</p>
 <p><span class="math display">\[
-\expt{X}= \int_{-\infty}^\infty f_X(x) x \mathrm{d}x
+\expt{X}= \int_{-\infty}^\infty x f_X(x) \mathrm{d}x
 \]</span></p>
 <p>と定義される。</p>
 </div>
 <div id="lem-exp" class="theorem lemma">
 <p><span class="theorem-title"><strong>補題 5.1 (期待値の性質)</strong></span> &nbsp;</p>
 <ol type="1">
-<li>任意の <span class="math inline">\(a\in\mathbb{C}\)</span> について <span class="math inline">\(\expt{aX} = a\expt{X}\)</span>.</li>
-<li>任意の 確率変数 <span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> について <span class="math inline">\(\expt{X+Y} = \expt{X}+\expt{Y}\)</span>.</li>
+<li>任意の <span class="math inline">\(c\in\mathbb{R}\)</span> について <span class="math inline">\(\expt{X+c} = \expt{X}+c\)</span>.</li>
+<li>任意の <span class="math inline">\(c\in\mathbb{R}\)</span> について <span class="math inline">\(\expt{cX} = c\expt{X}\)</span>.</li>
 </ol>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>証明</em>. </span><span class="math inline">\(X\)</span> が離散確率変数のとき、<span class="math inline">\(X\)</span> の値域を <span class="math inline">\(A\)</span> とすると <span class="math inline">\(X+c\)</span> の値域は <span class="math inline">\(A+c\coloneqq\{a+c\mid a\in A\}\)</span> なので、 <span class="math display">\[\begin{align*}
+\expt{X+c} &amp;= \sum_{x\in A+c} x f_{X+c}(x)\\
+&amp;= \sum_{x\in A+c} x \Pr(X+c = x)\\
+&amp;= \sum_{x'\in A} (x'+c) \Pr(X = x')\qquad(x' = x-c)\\
+&amp;= \expt{X}+c.
+\end{align*}\]</span></p>
+<p><span class="math inline">\(X\)</span> が連続確率変数のとき、 <span class="math display">\[\begin{align*}
+\expt{X+c} &amp;= \int_{-\infty}^\infty x f_{X+c}(x) \mathrm{d} x\\
+&amp;= \int_{-\infty}^\infty x f_{X}(x-c) \mathrm{d} x\\
+&amp;= \int_{-\infty}^\infty (x'+c) f_{X}(x') \mathrm{d} x'\qquad(x'=x-c)\\
+&amp;= \expt{X}+c.
+\end{align*}\]</span></p>
+<p><span class="math inline">\(c=0\)</span> のとき <span class="math inline">\(cX = 0\)</span> なので、<span class="math inline">\(\expt{cX} = 0 = c\expt{X}\)</span>.</p>
+<p><span class="math inline">\(X\)</span> が離散確率変数のとき、<span class="math inline">\(X\)</span> の値域を <span class="math inline">\(A\)</span> とすると <span class="math inline">\(cX\)</span> の値域は <span class="math inline">\(cA\coloneqq\{ca\mid a\in A\}\)</span> なので、 <span class="math display">\[\begin{align*}
+\expt{cX} &amp;= \sum_{x\in cA} x f_{cX}(x) \\
+&amp;= \sum_{x\in cA} x \Pr(cX = x)\\
+&amp;= \sum_{x'\in A} cx' \Pr(X = x') \qquad(x' = x/c)\\
+&amp;= c\expt{X}
+\end{align*}\]</span></p>
+<p><span class="math inline">\(X\)</span> が連続確率変数のとき、 <span class="math display">\[\begin{align*}
+\expt{cX} &amp;= \int_{-\infty}^\infty x f_{cX}(x) \mathrm{d} x\\
+&amp;= \int_{-\infty}^\infty x \frac1{|c|} f_{X}(x/c) \mathrm{d} x\\
+&amp;=
+\begin{cases}
+\int_{-\infty}^\infty cx'f_{X}(x') \mathrm{d} x&amp; \text{if } c &gt; 0\\
+\int_{\infty}^{-\infty} -cx'f_{X}(x') \mathrm{d} x&amp; \text{if } c &lt; 0\\
+\end{cases}
+\qquad (x' = x/c)\\
+&amp;= \int_{-\infty}^\infty c x' f_{X}(x') \mathrm{d} x'\\
+&amp;= c\expt{X}
+\end{align*}\]</span></p>
 </div>
 <div id="thm-markov" class="theorem">
 <p><span class="theorem-title"><strong>定理 5.1 (マルコフの不等式)</strong></span> 非負確率変数 <span class="math inline">\(X\)</span> と <span class="math inline">\(a&gt;0\)</span> について <span class="math display">\[
