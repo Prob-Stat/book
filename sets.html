@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -39,9 +39,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -488,7 +488,7 @@ A&amp;=\{n\in\mathbb{N}\mid \text{$n$ は偶数}\},&amp; B&amp;=\{x\in\mathbb{R}
 <h2 data-number="2.2" class="anchored" data-anchor-id="集合の関係"><span class="header-section-number">2.2</span> 集合の関係</h2>
 <p>集合 <span class="math inline">\(A\)</span> の要素がすべて集合 <span class="math inline">\(B\)</span> に含まれるとき、<span class="math inline">\(A\)</span> を <span class="math inline">\(B\)</span> の<strong>部分集合</strong> という。 部分集合に関連する集合関係について記号を以下のように定義する。</p>
 <p><span class="math display">\[\begin{align*}
-A\subseteq B &amp;\defiff (x\in A\implies x \in B)&amp;\text{($A$ は $B$ の部分集合)}\\
+A\subseteq B &amp;\defiff \forall x\,(x\in A\implies x \in B)&amp;\text{($A$ は $B$ の部分集合)}\\
 A\supseteq B &amp;\defiff B\subseteq A&amp;\text{($A$ は $B$ の上位集合)}\\
 A = B &amp;\defiff (A\subseteq B\land A\supseteq B)&amp; \text{($A$ と $B$ は等しい)}\\
 A \ne B &amp;\defiff \lnot(A = B)&amp; \text{($A$ と $B$ は等しくない)}
@@ -527,15 +527,14 @@ A^\mathrm{c} &amp;\coloneqq \Omega\setminus A\qquad\text{(補集合)}
 <li>(吸収法則) <span class="math inline">\(\quad A \cup (A\cap B) = A, \quad A\cap (A\cup B) = A\)</span>.</li>
 <li><span class="math inline">\(A\cup \varnothing = A,\quad A\cap\varnothing = \varnothing\)</span>.</li>
 </ul>
-<p>補集合に関連して以下の法則を満たす。</p>
+<p>和集合と積集合は結合法則満たすことから、括弧を使わずに <span class="math inline">\(A\cup B\cup C\)</span> と表すことができる。 補集合に関連して以下の法則を満たす。</p>
 <ul>
+<li><span class="math inline">\(\Omega^\mathrm{c} = \varnothing,\quad \varnothing^\mathrm{c} = \Omega\)</span>.</li>
 <li><span class="math inline">\(A\cup \Omega = \Omega,\quad A\cap\Omega = A\)</span>.</li>
 <li><span class="math inline">\(A\cup A^\mathrm{c} = \Omega,\quad A\cap A^\mathrm{c} =\varnothing\)</span>.</li>
 <li>(ド・モルガンの法則) <span class="math inline">\(\quad(A\cup B)^\mathrm{c} = A^\mathrm{c} \cap B^\mathrm{c},\quad(A\cap B)^\mathrm{c} = A^\mathrm{c} \cup B^\mathrm{c}\)</span></li>
 <li>(二重補集合の法則) <span class="math inline">\(\quad (A^\mathrm{c})^\mathrm{c} = A\)</span>.</li>
-<li><span class="math inline">\(\Omega^\mathrm{c} = \varnothing,\quad \varnothing^\mathrm{c} = \Omega\)</span>.</li>
 </ul>
-<p>和集合と積集合は結合法則満たすことから、括弧を使わずに <span class="math inline">\(A\cup B\cup C\)</span> と表すことができる。</p>
 </section>
 <section id="集合族" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="集合族"><span class="header-section-number">2.4</span> 集合族</h2>
@@ -547,14 +546,14 @@ A^\mathrm{c} &amp;\coloneqq \Omega\setminus A\qquad\text{(補集合)}
 <p><span class="math display">\[
 2^\Omega = \left\{\varnothing, \{1\}, \{2\}, \{3\}, \{1,2\},\{2,3\},\{1,3\},\{1,2,3\}\right\}
 \]</span></p>
-<p>である。 <span class="math inline">\(|2^\Omega|=2^{|\Omega|}\)</span> が成り立つ。 また、<span class="math inline">\(2^\Omega\)</span> の部分集合を <strong><span class="math inline">\(\Omega\)</span> 上の(部分)集合族</strong>と呼ぶ。 集合 <span class="math inline">\(\Lambda\)</span> の各 <span class="math inline">\(\lambda\in\Lambda\)</span> に対して集合 <span class="math inline">\(A_\lambda\subseteq\Omega\)</span> が存在するとき、集合族</p>
+<p>である。 <span class="math inline">\(\Omega\)</span> が有限集合のとき、<span class="math inline">\(|2^\Omega|=2^{|\Omega|}\)</span> が成り立つ。 また、<span class="math inline">\(2^\Omega\)</span> の部分集合を <strong><span class="math inline">\(\Omega\)</span> 上の(部分)集合族</strong>と呼ぶ。 集合 <span class="math inline">\(\Lambda\)</span> の各 <span class="math inline">\(\lambda\in\Lambda\)</span> に対して集合 <span class="math inline">\(A_\lambda\subseteq\Omega\)</span> が存在するとき、集合族</p>
 <p><span class="math display">\[
 \left\{A_\lambda\subseteq\Omega\mid \lambda\in\Lambda\right\}\subseteq 2^\Omega
 \]</span></p>
 <p>を<strong>添字集合 <span class="math inline">\(\Lambda\)</span> で添字付けられた <span class="math inline">\(\Omega\)</span> 上の集合族</strong>という。 添字集合が有限集合の場合は集合族全体の和集合や積集合は二つの集合の和集合と積集合の定義を繰り返し用いることで定義できる。 それらは以下のように表す。</p>
 <p><span class="math display">\[
 \bigcup_{\lambda\in\Lambda} A_\lambda \quad,\quad
-\bigcap_{\lambda\in\Lambda} A_\lambda
+\bigcap_{\lambda\in\Lambda} A_\lambda.
 \]</span></p>
 <p>添字集合 <span class="math inline">\(\Lambda\)</span> が無限集合の場合は和集合と積集合を以下で定義する。</p>
 <p><span class="math display">\[\begin{align*}
@@ -583,6 +582,14 @@ x\in\left(\bigcup_{\lambda\in\Lambda} A_\lambda\right)^\mathrm{c}
 &amp;\iff \forall\lambda\in\Lambda,\quad x\in A_\lambda^\mathrm{c}\\
 &amp;\iff x\in\bigcap_{\lambda\in\Lambda} A_\lambda^{\mathrm{c}}.
 \end{align*}\]</span></p>
+<!--
+
+## 集合の濃度
+
+無限集合についても要素数の大小を議論することができる。
+集合 $A$ と $B$ の間に全単射があるとき、
+
+-->
 
 
 </section>
