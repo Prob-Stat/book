@@ -68,6 +68,8 @@ $$
 1. $P(\Omega)=1$.
 2. $\forall (A_n\subseteq \Omega)_{n\ge 0},\quad \forall i\ne j,\, A_i\cap A_j=\varnothing\implies P\left(\bigcup_{n\ge 0}A_n\right) = \sum_{n\ge 0} P(A_n)$.
 
+ここで二つ目の条件における ${}_{n\ge 0}$ という添字で $n$ は非負整数全体をわたる。
+今後もこの記法を用いる。
 この二つ目の条件を**完全加法性**もしくは **$\sigma$-加法性**という。
 右辺の無限和において $P(A_n)\ge 0$ なので、無限和 $\sum_{n\ge 0} P(A_n)$ が存在するときこれは絶対収束する。
 よって、この無限和は事象列の並び順に依存しないことが分かる。
@@ -214,7 +216,7 @@ P(B) &= P((B\setminus A) \cup (A\cap B)) = P(B\setminus A) + P(A\cap B)
 
 確率空間 $(\Omega,\, P)$ と $(A_n\subseteq\Omega)_{n\ge 0}$ について、
 $$
-P\left(\bigcup_{n\ge 0} A_n\right) \le \sum_{n\ge 0} P(A_n)
+P\left(\bigcup_{n\ge 0} A_n\right) \le \sum_{n\ge 0} P(A_n).
 $$
 :::
 :::{.proof}
@@ -224,7 +226,7 @@ $B_0 \coloneqq A_0$, $B_n \coloneqq A_n \setminus \bigcup_{k=0}^{n-1} A_k$ と�
 \begin{align*}
 P\left(\bigcup_{n\ge 0} A_n\right) &= P\left(\bigcup_{n\ge 0} B_n\right)\\
  &= \sum_{n\ge 0} P\left(B_n\right)\\
- &\le \sum_{n\ge 0} P\left(A_n\right)
+ &\le \sum_{n\ge 0} P\left(A_n\right).
 \end{align*}
 :::
 

@@ -32,7 +32,7 @@ A&=\{n\in\mathbb{N}\mid \text{$n$ は偶数}\},& B&=\{x\in\mathbb{R}\mid \text{$
 部分集合に関連する集合関係について記号を以下のように定義する。
 
 \begin{align*}
-A\subseteq B &\defiff (x\in A\implies x \in B)&\text{($A$ は $B$ の部分集合)}\\
+A\subseteq B &\defiff \forall x\,(x\in A\implies x \in B)&\text{($A$ は $B$ の部分集合)}\\
 A\supseteq B &\defiff B\subseteq A&\text{($A$ は $B$ の上位集合)}\\
 A = B &\defiff (A\subseteq B\land A\supseteq B)& \text{($A$ と $B$ は等しい)}\\
 A \ne B &\defiff \lnot(A = B)& \text{($A$ と $B$ は等しくない)}
@@ -81,15 +81,15 @@ A^\mathrm{c} &\coloneqq \Omega\setminus A\qquad\text{(補集合)}
 * (吸収法則) $\quad A \cup (A\cap B) = A, \quad A\cap (A\cup B) = A$.
 * $A\cup \varnothing = A,\quad A\cap\varnothing = \varnothing$.
 
+和集合と積集合は結合法則満たすことから、括弧を使わずに $A\cup B\cup C$ と表すことができる。
 補集合に関連して以下の法則を満たす。
 
+* $\Omega^\mathrm{c} = \varnothing,\quad \varnothing^\mathrm{c} = \Omega$.
 * $A\cup \Omega = \Omega,\quad A\cap\Omega = A$.
 * $A\cup A^\mathrm{c} = \Omega,\quad A\cap A^\mathrm{c} =\varnothing$.
 * (ド・モルガンの法則) $\quad(A\cup B)^\mathrm{c} = A^\mathrm{c} \cap B^\mathrm{c},\quad(A\cap B)^\mathrm{c} = A^\mathrm{c} \cup B^\mathrm{c}$
 * (二重補集合の法則) $\quad (A^\mathrm{c})^\mathrm{c} = A$.
-* $\Omega^\mathrm{c} = \varnothing,\quad \varnothing^\mathrm{c} = \Omega$.
 
-和集合と積集合は結合法則満たすことから、括弧を使わずに $A\cup B\cup C$ と表すことができる。
 
 ## 集合族
 
@@ -107,7 +107,7 @@ $$
 $$
 
 である。
-$|2^\Omega|=2^{|\Omega|}$ が成り立つ。
+$\Omega$ が有限集合のとき、$|2^\Omega|=2^{|\Omega|}$ が成り立つ。
 また、$2^\Omega$ の部分集合を **$\Omega$ 上の(部分)集合族**と呼ぶ。
 集合 $\Lambda$ の各 $\lambda\in\Lambda$ に対して集合 $A_\lambda\subseteq\Omega$ が存在するとき、集合族
 
@@ -121,7 +121,7 @@ $$
 
 $$
 \bigcup_{\lambda\in\Lambda} A_\lambda \quad,\quad
-\bigcap_{\lambda\in\Lambda} A_\lambda
+\bigcap_{\lambda\in\Lambda} A_\lambda.
 $$
 
 添字集合 $\Lambda$ が無限集合の場合は和集合と積集合を以下で定義する。
@@ -159,3 +159,12 @@ x\in\left(\bigcup_{\lambda\in\Lambda} A_\lambda\right)^\mathrm{c}
 &\iff \forall\lambda\in\Lambda,\quad x\in A_\lambda^\mathrm{c}\\
 &\iff x\in\bigcap_{\lambda\in\Lambda} A_\lambda^{\mathrm{c}}.
 \end{align*}
+
+<!--
+
+## 集合の濃度
+
+無限集合についても要素数の大小を議論することができる。
+集合 $A$ と $B$ の間に全単射があるとき、
+
+-->
