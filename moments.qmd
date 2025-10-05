@@ -13,7 +13,7 @@
 &= \sum_{x\in A} x \Pr(X=x)\\
 \end{align*}
 
-と定義される。ここで、右辺の和が絶対収束しない場合は期待値は定義されない。
+と定義される。ここで、右辺の和が絶対収束しない場合は(適当な順番で和を取って収束したとしても)期待値は定義されない。
 連続確率変数 $X$ が確率密度関数 $f_X$ を持つとき、その期待値は
 
 $$
@@ -26,8 +26,8 @@ $$
 ::: {#lem-exp}
 ## 期待値の性質
 
-1. 任意の $c\in\mathbb{R}$ について $\expt{X+c} = \expt{X}+c$.
-1. 任意の $c\in\mathbb{R}$ について $\expt{cX} = c\expt{X}$.
+1. 任意の $c\in\mathbb{R}$ について $\expt{X+c} = \expt{X}+c$
+1. 任意の $c\in\mathbb{R}$ について $\expt{cX} = c\expt{X}$
 :::
 ::: {.proof}
 
@@ -63,8 +63,8 @@ $X$ が連続確率変数のとき、
 &= \int_{-\infty}^\infty x \frac1{|c|} f_{X}(x/c) \mathrm{d} x\\
 &=
 \begin{cases}
- \int_{-\infty}^\infty cx'f_{X}(x') \mathrm{d} x& \text{if } c > 0\\
- \int_{\infty}^{-\infty} -cx'f_{X}(x') \mathrm{d} x& \text{if } c < 0\\
+ \int_{-\infty}^\infty cx'f_{X}(x') \mathrm{d} x'& \text{if } c > 0\\
+ \int_{\infty}^{-\infty} -cx'f_{X}(x') \mathrm{d} x'& \text{if } c < 0\\
 \end{cases}
 \qquad (x' = x/c)\\
 &= \int_{-\infty}^\infty c x' f_{X}(x') \mathrm{d} x'\\
@@ -82,6 +82,8 @@ $$
 $$
 :::
 ::: {.proof}
+離散確率変数の場合の証明を与える。
+密度関数を持つ連続確率変数の場合も和を積分に変えた証明が成立する。
 \begin{align*}
 \expt{X} &= \sum_{x\in A} f_X(x) x\\
 &= \sum_{x\ge a} f_X(x) x + \sum_{x < a} f_X(x) x\\
@@ -91,6 +93,7 @@ $$
 \end{align*}
 :::
 
+<!--
 ::: {#exm-exp}
 ## 確率変数と期待値の例
 
@@ -109,6 +112,7 @@ $$
 &= \left.\left(-\frac{1}{1-x^{-1}}\right)'\right|_{x=2}\\
 \end{align*}
 :::
+-->
 
 ## 分散
 ::: {#def-exp}
@@ -156,13 +160,13 @@ $$
 ::: {#def-moment}
 ## モーメント
 
-確率変数 $X$ と正の整数 $k\in\mathbb{Z}_{\ge 1}$ について、
+確率変数 $X$ と正の整数 $n\in\mathbb{Z}_{\ge 1}$ について、
 
 $$
-\expt{X^k}
+\expt{X^n}
 $$
 
-を $X$ の $k$ 次モーメントという。
+を $X$ の $n$ 次モーメントという。
 :::
 
 ::: {#def-mg}
@@ -175,6 +179,7 @@ M_X(t) \coloneqq \expt{\mathrm{e}^{tX}}\qquad t\in\mathbb{R}
 $$
 
 を $X$ の**モーメント母関数**という。
+すべての $t\in\mathbb{R}$ で $M_X(t)$ が存在しない場合もある。
 また、
 
 $$
@@ -182,3 +187,73 @@ K_X(t) \coloneqq \log M_X(t)
 $$
 を $X$ の**キュムラント母関数**という。
 :::
+
+<!--
+::: {#thm-convergence}
+
+## ルベーグの優収束定理(概要)
+
+関数列 $(f_n)_{n\ge 0}$ がある関数 $f$ に各点収束するとする。
+また、ある関数 $g$ が存在し、
+
+1. $|f_n(x)|\le g(x)$.
+1. $\int_{-\infty}^\infty g(x)\mathrm{d}x<\infty$.
+
+を満たすとする。
+このとき、
+
+$$
+\lim_{n\to\infty} \int_{-\infty}^\infty f_n(x)\mathrm{d}x = \int_{-\infty}^\infty f(x)\mathrm{d}x.
+$$
+
+:::
+-->
+
+今後は以下の補題を認めることにする。証明にはルベーグ積分の知識が必要である。
+
+::: {#lem-moment}
+
+確率変数 $X$ について、ある $\epsilon >0$ が存在し、モーメント母関数 $M_X(t)$ が **$t\in(-\epsilon,\epsilon)$ で存在するとき**、
+
+\begin{align*}
+M_X(t) &=\sum_{n\ge 0}\frac{\expt{X^n}}{n!}t^n\\
+\expt{X^n} &= \left.\frac{\mathrm{d}^n M_X(t)}{\mathrm{d} t^n}\right|_{t=0}.
+\end{align*}
+:::
+::: {.proof}
+(概要)
+\begin{align*}
+M_X(t) &= \expt{\mathrm{e}^{tX}}\\
+&=\expt{\sum_{n\ge 0}\frac{(tX)^n}{n!}}\\
+&=\sum_{n\ge 0}\expt{\frac{(tX)^n}{n!}}\qquad\text{\textsf{(この無限和と期待値の交換が定理の条件より正当化される)}}.
+\end{align*}
+:::
+
+::: {#cor-cumulant}
+確率変数 $X$ について、ある $\epsilon >0$ が存在し、モーメント母関数 $M_X(t)$ が **$t\in(-\epsilon,\epsilon)$ で存在するとき**、
+
+\begin{align*}
+\left.\frac{\mathrm{d} K_X(t)}{\mathrm{d} t}\right|_{t=0} &= \expt{X}\\
+\left.\frac{\mathrm{d}^2 K_X(t)}{\mathrm{d} t^2}\right|_{t=0} &=  \var{X}.
+\end{align*}
+:::
+::: {.proof}
+\begin{align*}
+\left.\frac{\mathrm{d} K_X(t)}{\mathrm{d} t}\right|_{t=0} &= \left.\frac{M'_X(t)}{M_X(t)}\right|_{t=0}=\expt{X}\\
+\left.\frac{\mathrm{d}^2 K_X(t)}{\mathrm{d} t^2}\right|_{t=0} &= \left.\frac{M''_X(t)M_X(t) - M'_X(t)^2}{M_X(t)^2}\right|_{t=0} = M''_X(0) - M'_X(0)^2 = \var{X}.
+\end{align*}
+:::
+
+また、重要度は低くなるが、
+
+\begin{align*}
+\left.\frac{\mathrm{d}^3 K_X(t)}{\mathrm{d} t^3}\right|_{t=0} &= \expt{(X - \expt{X})^3}\\
+\left.\frac{\mathrm{d}^4 K_X(t)}{\mathrm{d} t^4}\right|_{t=0} &= \expt{(X - \expt{X})^4} - 3\var{X}^2
+\end{align*}
+
+が成り立つ。
+一般に
+\begin{align*}
+\kappa_n(X) &\coloneqq \left.\frac{\mathrm{d}^n K_X(t)}{\mathrm{d} t^n}\right|_{t=0}
+\end{align*}
+を $X$ の **$n$ 次キュムラント** と呼ぶ。

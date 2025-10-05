@@ -1,5 +1,7 @@
 project:
   type: book
+  preview:
+    port: 7000
 
 jupyter: python3
 

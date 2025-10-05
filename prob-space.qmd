@@ -68,7 +68,7 @@ $$
 1. $P(\Omega)=1$.
 2. $\forall (A_n\subseteq \Omega)_{n\ge 0},\quad \forall i\ne j,\, A_i\cap A_j=\varnothing\implies P\left(\bigcup_{n\ge 0}A_n\right) = \sum_{n\ge 0} P(A_n)$.
 
-ここで二つ目の条件における ${}_{n\ge 0}$ という添字で $n$ は非負整数全体をわたる。
+ここで二つ目の条件における ${}_{n\ge 0}$ という添字において $n$ は非負整数全体をわたる。
 今後もこの記法を用いる。
 この二つ目の条件を**完全加法性**もしくは **$\sigma$-加法性**という。
 右辺の無限和において $P(A_n)\ge 0$ なので、無限和 $\sum_{n\ge 0} P(A_n)$ が存在するときこれは絶対収束する。

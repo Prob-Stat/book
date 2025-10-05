@@ -106,7 +106,7 @@ $$
 連続確率変数 $X$ が確率密度関数を持つとき、
 
 $$
-F_X(x) = \int_{-\infty}^x f_X(y) \mathrm{d}y
+F_X(x) = \int_{-\infty}^x f_X(z) \mathrm{d}z
 $$
 
 という関係が成り立つ。
@@ -232,10 +232,11 @@ plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 
 plt.figure(figsize=(4, 2))
-plt.step(x, cdf)
-plt.title(f'Cmf of binomial distribution with n={n}, p={p}')
+plt.step(x, cdf, where='post')
+plt.xticks(x)
+plt.title(f'Cdf of binomial distribution with n={n}, p={p}')
 plt.xlabel('$k$')
-plt.ylabel('$\\Pr(X=k)$')
+plt.ylabel('$\\Pr(X\\leq k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 ```
@@ -263,25 +264,27 @@ p = 0.6      # 成功確率
 
 # 取りうる値の範囲
 k = np.arange(1, n+1)
+kk = np.arange(0, n+1)
 
 # 幾何分布のPMFの計算
 pmf = geom.pmf(k, p)
-cdf = geom.cdf(k, p)
+cdf = geom.cdf(kk, p)
 
 # プロット
 plt.figure(figsize=(4, 2))
 plt.bar(k, pmf, tick_label=k)
-plt.title(f'Pmf of geometric distribution with n={n}, p={p}')
+plt.title(f'Pmf of geometric distribution with p={p}')
 plt.xlabel('$k$')
 plt.ylabel('$\\Pr(X=k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 
 plt.figure(figsize=(4, 2))
-plt.step(k, cdf)
-plt.title(f'Cmf of geometric distribution with n={n}, p={p}')
+plt.step(kk, cdf, where='post')
+plt.xticks(kk)
+plt.title(f'Cdf of geometric distribution with p={p}')
 plt.xlabel('$k$')
-plt.ylabel('$\\Pr(X=k)$')
+plt.ylabel('$\\Pr(X\\leq k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 ```
@@ -304,9 +307,9 @@ from scipy.stats import hypergeom
 import matplotlib.pyplot as plt
 
 # パラメータの設定
-N = 100
-n = 40
-K = 30
+N = 40
+n = 16
+K = 12
 
 # 取りうる値の範囲
 k = np.arange(0, K+1)
@@ -325,10 +328,11 @@ plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 
 plt.figure(figsize=(4, 2))
-plt.step(k, cdf)
-plt.title(f'Cmf of hypergeometric distribution with K={K}, N={N}, n = {n}')
+plt.step(k, cdf, where='post')
+plt.xticks(k)
+plt.title(f'Cdf of hypergeometric distribution with K={K}, N={N}, n = {n}')
 plt.xlabel('$k$')
-plt.ylabel('$\\Pr(X=k)$')
+plt.ylabel('$\\Pr(X\\leq k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 ```
@@ -351,7 +355,7 @@ from scipy.stats import poisson
 import matplotlib.pyplot as plt
 
 # パラメータの設定
-lam = 10
+lam = 5
 
 # 取りうる値の範囲
 k = np.arange(0, 3*lam)
@@ -370,21 +374,34 @@ plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 
 plt.figure(figsize=(4, 2))
-plt.step(k, cdf)
-plt.title(f'Cmf of Poisson distribution with $\\lambda$={lam}')
+plt.step(k, cdf, where='post')
+plt.xticks(k)
+plt.title(f'Cdf of Poisson distribution with $\\lambda$={lam}')
 plt.xlabel('$k$')
-plt.ylabel('$\\Pr(X=k)$')
+plt.ylabel('$\\Pr(X\\leq k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 ```
 
 ## 連続確率分布の例
 
+* 一様分布
+* 正規分布
+* 指数分布
+
 ### 一様分布
 
-$$
-f_X(x) = \frac1{b-a}\qquad \forall
-$$
+\begin{align*}
+f_X(x) &= \begin{cases}
+\frac1{b-a}& \text{if } x\in[a,b]\\
+0&\text{otherwise}
+\end{cases},&
+F_X(x) &= \begin{cases}
+0&\text{if } x < a\\
+\frac{x-a}{b}&\text{if } x \in[a,b]\\
+1&\text{otherwise.}
+\end{cases}
+\end{align*}
 
 ```{python}
 #| layout-ncol: 2
@@ -420,23 +437,26 @@ plt.figure(figsize=(4, 2))
 plt.plot(x, cdf)
 plt.title(f'Cdf of Uniform distribution on $[0,1]$')
 plt.xlabel('$x$')
-plt.ylabel('$f_X(x)$')
+plt.ylabel('$F_X(x)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 ```
 
 ### 正規分布 (ガウス分布)
 
-$$
-f_X(x) = \frac1{\sqrt{2\pi\sigma^2}}\mathrm{e}^{-\frac{(x-\mu)^2}{2\sigma^2}},\qquad \forall x\in\mathbb{R}.
-$$
+\begin{align*}
+f_X(x) &= \frac1{\sqrt{2\pi\sigma^2}}\mathrm{e}^{-\frac{(x-\mu)^2}{2\sigma^2}},&
+F_X(x) &= \int_{-\infty}^x \frac1{\sqrt{2\pi\sigma^2}}\mathrm{e}^{-\frac{(z-\mu)^2}{2\sigma^2}}\mathrm{d}z
+\end{align*}
+
+特に $\mu=0$, $\sigma=1$ のとき**標準正規分布**という。
 
 ```{python}
 #| layout-ncol: 2
 #| label: fig-normal
 #| fig-cap:
-#|  - "正規分布の確率密度関数"
-#|  - "正規分布の累積分布関数"
+#|  - "標準正規分布の確率密度関数"
+#|  - "標準正規分布の累積分布関数"
 
 import numpy as np
 from scipy.stats import norm
@@ -464,16 +484,23 @@ plt.figure(figsize=(4, 2))
 plt.plot(x, cdf)
 plt.title(f'Cdf of normal distribution with $\\mu = 0$ and $\\sigma = 1$')
 plt.xlabel('$x$')
-plt.ylabel('$f_X(x)$')
+plt.ylabel('$F_X(x)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 ```
 
 ### 指数分布
 
-$$
-f_X(x) = \lambda\mathrm{e}^{-\lambda x}
-$$
+\begin{align*}
+f_X(x) &= \begin{cases}
+0&\text{if } x < 0\\
+\lambda\mathrm{e}^{-\lambda x}&\text{otherwise}
+\end{cases},&
+F_X(x) &= \begin{cases}
+0&\text{if } x < 0\\
+1-\mathrm{e}^{-\lambda x}&\text{otherwise}
+\end{cases}
+\end{align*}
 
 ```{python}
 #| layout-ncol: 2
@@ -508,7 +535,7 @@ plt.figure(figsize=(4, 2))
 plt.plot(x, cdf)
 plt.title(f'Cdf of exponential distribution with $\\lambda = 1$')
 plt.xlabel('$x$')
-plt.ylabel('$f_X(x)$')
+plt.ylabel('$F_X(x)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 ```
@@ -521,7 +548,7 @@ plt.show()
 f_{X+a}(x) &= f_X(x-a)\qquad\forall a\in\mathbb{R}\\
 f_{aX}(x) &= \frac1{|a|} f_X(x/a)\qquad\forall a\in\mathbb{R}_{\ne 0}
 \end{align*}
-と取れる。
+はそれぞれ $X+a$ と $aX$ の確率密度関数になる。
 :::
 ::: {.proof}
 関数 $f_Z\colon \mathbb{R}\to\mathbb{R}_{\ge 0}$ が
