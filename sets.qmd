@@ -61,18 +61,11 @@ A\supsetneq B &\defiff B\subsetneq A&\text{($A$ は $B$ の真上位集合)}
 複数の集合から新しい集合を作る演算がある。
 
 \begin{align*}
-A\cup B &\coloneqq\left\{x\mid x\in A \text{ または } x \in B\right\}\qquad\text{(和集合)}\\
-A\cap B &\coloneqq \left\{x\mid x\in A \text{ かつ } x \in B\right\}\qquad\text{(積集合)}\\
-A\setminus B &\coloneqq \left\{x\mid x\in A \text{ かつ } x \notin B\right\}\qquad\text{(差集合)}
+A\cup B &\coloneqq\left\{x\mid x\in A \textsf{ または } x \in B\right\}\qquad\textsf{(和集合)}\\
+A\cap B &\coloneqq \left\{x\mid x\in A \textsf{ かつ } x \in B\right\}\qquad\textsf{(積集合)}\\
+A\setminus B &\coloneqq \left\{x\mid x\in A \textsf{ かつ } x \notin B\right\}\qquad\textsf{(差集合)}
 \end{align*}
 
-また、全体の集合 $\Omega$ というのが文脈上存在する場合は、
-
-\begin{align*}
-A^\mathrm{c} &\coloneqq \Omega\setminus A\qquad\text{(補集合)}
-\end{align*}
-
-と定義する。
 これらの演算は以下の法則を満たす。
 
 * (交換法則) $\quad A\cup B = B\cup A, \quad A\cap B = B\cap A$.
@@ -83,7 +76,20 @@ A^\mathrm{c} &\coloneqq \Omega\setminus A\qquad\text{(補集合)}
 * $A\cup \varnothing = A,\quad A\cap\varnothing = \varnothing$.
 
 和集合と積集合は結合法則満たすことから、括弧を使わずに $A\cup B\cup C$ と表すことができる。
-補集合に関連して以下の法則を満たす。
+集合 $A$ と $B$ が $A\cap B=\varnothing$ を満たすとき、**確率論文脈では、「$A$ と $B$ は排反である」**(集合論文脈では「互いに素である」)という。
+
+
+## 補集合
+
+全体の集合 $\Omega$ というのが文脈上存在する場合は、
+
+\begin{align*}
+A^\mathrm{c} &\coloneqq \Omega\setminus A\qquad\textsf{(補集合)}
+\end{align*}
+
+と定義する。
+
+補集合に関連して以下の法則が成り立つ。
 
 * $\Omega^\mathrm{c} = \varnothing,\quad \varnothing^\mathrm{c} = \Omega$.
 * $A\cup \Omega = \Omega,\quad A\cap\Omega = A$.
