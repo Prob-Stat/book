@@ -47,7 +47,7 @@
     "href": "sets.html",
     "title": "2  集合論",
     "section": "",
-    "text": "2.1 集合\n集合は対象の集まりである。例えば\n\\[\\begin{align*}\nA&=\\{1,2,3\\},& B&=\\{赤,青,黄,緑\\}\n\\end{align*}\\]\nのように表す。\nを表す。\n\\(|A|\\) で集合 \\(A\\) の要素数を表すことにする。 要素数が無限の集合を考えることもできる。 例えば\n\\[\\begin{align*}\nA&=\\{n\\in\\mathbb{N}\\mid \\text{$n$ は偶数}\\},& B&=\\{x\\in\\mathbb{R}\\mid \\text{$x$ は無理数} \\}\n\\end{align*}\\]\nという集合は無限集合の例となる。 何も要素を持たない集合(要素数が零の集合)を空集合といい、\\(\\varnothing\\) で表す。",
+    "text": "2.1 集合\n集合は対象の集まりである。例えば\n\\[\\begin{align*}\nA&=\\{1,2,3\\},& B&=\\{赤,青,黄,緑\\}\n\\end{align*}\\]\nのように表す。 集合を構成するものを要素もしくは元という。\nを表す。\n\\(|A|\\) で集合 \\(A\\) の要素数を表すことにする。 要素数が無限の集合を考えることもできる。 例えば\n\\[\\begin{align*}\nA&=\\{n\\in\\mathbb{N}\\mid \\text{$n$ は偶数}\\},& B&=\\{x\\in\\mathbb{R}\\mid \\text{$x$ は無理数} \\}\n\\end{align*}\\]\nという集合は無限集合の例となる。 何も要素を持たない集合(要素数が零の集合)を空集合といい、\\(\\varnothing\\) で表す。",
     "crumbs": [
       "確率論",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>集合論</span>"
