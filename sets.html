@@ -438,7 +438,8 @@ window.Quarto = {
   <li><a href="#集合" id="toc-集合" class="nav-link active" data-scroll-target="#集合"><span class="header-section-number">2.1</span> 集合</a></li>
   <li><a href="#集合の関係" id="toc-集合の関係" class="nav-link" data-scroll-target="#集合の関係"><span class="header-section-number">2.2</span> 集合の関係</a></li>
   <li><a href="#集合の演算" id="toc-集合の演算" class="nav-link" data-scroll-target="#集合の演算"><span class="header-section-number">2.3</span> 集合の演算</a></li>
-  <li><a href="#集合族" id="toc-集合族" class="nav-link" data-scroll-target="#集合族"><span class="header-section-number">2.4</span> 集合族</a></li>
+  <li><a href="#補集合" id="toc-補集合" class="nav-link" data-scroll-target="#補集合"><span class="header-section-number">2.4</span> 補集合</a></li>
+  <li><a href="#集合族" id="toc-集合族" class="nav-link" data-scroll-target="#集合族"><span class="header-section-number">2.5</span> 集合族</a></li>
   </ul>
 </nav>
     </div>
@@ -509,15 +510,11 @@ A\supsetneq B &amp;\defiff B\subsetneq A&amp;\text{($A$ は $B$ の真上位集�
 <h2 data-number="2.3" class="anchored" data-anchor-id="集合の演算"><span class="header-section-number">2.3</span> 集合の演算</h2>
 <p>複数の集合から新しい集合を作る演算がある。</p>
 <p><span class="math display">\[\begin{align*}
-A\cup B &amp;\coloneqq\left\{x\mid x\in A \text{ または } x \in B\right\}\qquad\text{(和集合)}\\
-A\cap B &amp;\coloneqq \left\{x\mid x\in A \text{ かつ } x \in B\right\}\qquad\text{(積集合)}\\
-A\setminus B &amp;\coloneqq \left\{x\mid x\in A \text{ かつ } x \notin B\right\}\qquad\text{(差集合)}
+A\cup B &amp;\coloneqq\left\{x\mid x\in A \textsf{ または } x \in B\right\}\qquad\textsf{(和集合)}\\
+A\cap B &amp;\coloneqq \left\{x\mid x\in A \textsf{ かつ } x \in B\right\}\qquad\textsf{(積集合)}\\
+A\setminus B &amp;\coloneqq \left\{x\mid x\in A \textsf{ かつ } x \notin B\right\}\qquad\textsf{(差集合)}
 \end{align*}\]</span></p>
-<p>また、全体の集合 <span class="math inline">\(\Omega\)</span> というのが文脈上存在する場合は、</p>
-<p><span class="math display">\[\begin{align*}
-A^\mathrm{c} &amp;\coloneqq \Omega\setminus A\qquad\text{(補集合)}
-\end{align*}\]</span></p>
-<p>と定義する。 これらの演算は以下の法則を満たす。</p>
+<p>これらの演算は以下の法則を満たす。</p>
 <ul>
 <li>(交換法則) <span class="math inline">\(\quad A\cup B = B\cup A, \quad A\cap B = B\cap A\)</span>.</li>
 <li>(結合法則) <span class="math inline">\(\quad (A\cup B)\cup C = A\cup (B\cup C), \quad (A\cap B)\cap C=A\cap(B\cap C)\)</span>.</li>
@@ -526,7 +523,16 @@ A^\mathrm{c} &amp;\coloneqq \Omega\setminus A\qquad\text{(補集合)}
 <li>(吸収法則) <span class="math inline">\(\quad A \cup (A\cap B) = A, \quad A\cap (A\cup B) = A\)</span>.</li>
 <li><span class="math inline">\(A\cup \varnothing = A,\quad A\cap\varnothing = \varnothing\)</span>.</li>
 </ul>
-<p>和集合と積集合は結合法則満たすことから、括弧を使わずに <span class="math inline">\(A\cup B\cup C\)</span> と表すことができる。 補集合に関連して以下の法則を満たす。</p>
+<p>和集合と積集合は結合法則満たすことから、括弧を使わずに <span class="math inline">\(A\cup B\cup C\)</span> と表すことができる。 集合 <span class="math inline">\(A\)</span> と <span class="math inline">\(B\)</span> が <span class="math inline">\(A\cap B=\varnothing\)</span> を満たすとき、<strong>確率論文脈では、「<span class="math inline">\(A\)</span> と <span class="math inline">\(B\)</span> は排反である」</strong>(集合論文脈では「互いに素である」)という。</p>
+</section>
+<section id="補集合" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="補集合"><span class="header-section-number">2.4</span> 補集合</h2>
+<p>全体の集合 <span class="math inline">\(\Omega\)</span> というのが文脈上存在する場合は、</p>
+<p><span class="math display">\[\begin{align*}
+A^\mathrm{c} &amp;\coloneqq \Omega\setminus A\qquad\textsf{(補集合)}
+\end{align*}\]</span></p>
+<p>と定義する。</p>
+<p>補集合に関連して以下の法則が成り立つ。</p>
 <ul>
 <li><span class="math inline">\(\Omega^\mathrm{c} = \varnothing,\quad \varnothing^\mathrm{c} = \Omega\)</span>.</li>
 <li><span class="math inline">\(A\cup \Omega = \Omega,\quad A\cap\Omega = A\)</span>.</li>
@@ -535,8 +541,8 @@ A^\mathrm{c} &amp;\coloneqq \Omega\setminus A\qquad\text{(補集合)}
 <li>(二重補集合の法則) <span class="math inline">\(\quad (A^\mathrm{c})^\mathrm{c} = A\)</span>.</li>
 </ul>
 </section>
-<section id="集合族" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="集合族"><span class="header-section-number">2.4</span> 集合族</h2>
+<section id="集合族" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="集合族"><span class="header-section-number">2.5</span> 集合族</h2>
 <p>集合 <span class="math inline">\(\Omega\)</span> について <span class="math inline">\(2^\Omega\)</span> を <span class="math inline">\(\Omega\)</span> のすべての部分集合からなる集合を表す。</p>
 <p><span class="math display">\[\begin{align*}
 2^\Omega &amp;\coloneqq \left\{A\subseteq\Omega\right\}.
