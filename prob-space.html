@@ -510,16 +510,16 @@ P(\{\text{"晴"}, \text{"雨"}\}) = P(\{\text{"晴"}\}) + P(\{\text{"雨"}\})
 <p><span class="theorem-title"><strong>定理 3.1 (非可測集合の存在)</strong></span> <span class="math inline">\(\Omega=[0,1)\)</span> とする。 また、集合の平行移動を <span class="math display">\[
 A+x\coloneqq\{a+x-\lfloor a+x\rfloor\mid a\in A\}
 \]</span> と定義する。 このとき、 <span class="math display">\[
-\forall x\in\Omega,\, A\subseteq\Omega,\quad P(A+x) = P(A)\qquad\text{(平行移動不変性)}
+\forall x\in\Omega,\, A\subseteq\Omega,\quad P(A+x) = P(A)\qquad\textsf{(平行移動不変性)}
 \]</span> を満たす確率測度 <span class="math inline">\(P\colon 2^{[0,1)}\to \mathbb{R}_{\ge 0}\)</span> は存在しない。</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span><span class="math inline">\(\Omega\)</span> 上の同値関係を <span class="math inline">\(x\sim y \stackrel{\mathrm{def}}{\iff} x-y\in\mathbb{Q}\)</span> と定義する。 選択公理より、この同値関係の同値類から一つずつ要素を含む集合 <span class="math inline">\(V\)</span> が存在する(Vitali集合)。 任意の <span class="math inline">\(x\in[0, 1)\)</span> について、ある <span class="math inline">\(z\in V\)</span> が<strong>唯一</strong>存在して <span class="math inline">\(x\sim z\)</span> である。 よって、任意の <span class="math inline">\(x\in[0, 1)\)</span> について、ある <span class="math inline">\(z\in V\)</span> と <span class="math inline">\(q\in\mathbb{Q}\)</span> が<strong>唯一</strong>存在して <span class="math inline">\(x = z+q\)</span> であることから <span class="math display">\[\begin{align*}
-[0, 1) &amp;= \bigcup_{q\in\mathbb{Q}} (V + q)
+<p><span class="proof-title"><em>証明</em>. </span><span class="math inline">\(\Omega\)</span> 上の同値関係を <span class="math inline">\(x\sim y \stackrel{\mathrm{def}}{\iff} x-y\in\mathbb{Q}\)</span> と定義する。 選択公理より、この同値関係の同値類から一つずつ要素を含む集合 <span class="math inline">\(V\)</span> が存在する(Vitali集合)。 任意の <span class="math inline">\(x\in[0, 1)\)</span> について、ある <span class="math inline">\(z\in V\)</span> が<strong>唯一</strong>存在して <span class="math inline">\(x\sim z\)</span> である。 よって、任意の <span class="math inline">\(x\in[0, 1)\)</span> について、ある <span class="math inline">\(z\in V\)</span> と <span class="math inline">\(q\in\mathbb{Q}\cap[0,1)\)</span> が<strong>唯一</strong>存在して <span class="math inline">\(x = z+q-\lfloor z+q\rfloor\)</span> であることから <span class="math display">\[\begin{align*}
+[0, 1) &amp;= \bigcup_{q\in\mathbb{Q}\cap[0,1)} (V + q)
 \end{align*}\]</span> であり、右辺は互いに排反である。 よって条件を満たす <span class="math inline">\(P\)</span> が存在すると仮定すると、 <span class="math display">\[\begin{align*}
-1 = P([0, 1)) &amp;= P\left(\bigcup_{q\in\mathbb{Q}} (V+q)\right)\\
-&amp;= \sum_{q\in\mathbb{Q}} P\left(V+q\right)\qquad \text{(完全加法性)}\\
-&amp;= \sum_{q\in\mathbb{Q}} P\left(V\right)\qquad \text{(平行移動不変性)}
+1 = P([0, 1)) &amp;= P\left(\bigcup_{q\in\mathbb{Q}\cap[0,1)} (V+q)\right)\\
+&amp;= \sum_{q\in\mathbb{Q}\cap[0,1)} P\left(V+q\right)\qquad \textsf{(完全加法性)}\\
+&amp;= \sum_{q\in\mathbb{Q}\cap[0,1)} P\left(V\right)\qquad \textsf{(平行移動不変性)}
 \end{align*}\]</span> ここで <span class="math inline">\(P(V)\)</span> をどのように定めても、それを無限回足して 1 にすることはできない。 よって <span class="math inline">\(P\)</span> は存在しない。</p>
 </div>
 </section>
