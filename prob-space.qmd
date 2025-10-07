@@ -94,7 +94,7 @@ $$
 と定義する。
 このとき、
 $$
-\forall x\in\Omega,\, A\subseteq\Omega,\quad P(A+x) = P(A)\qquad\text{(平行移動不変性)}
+\forall x\in\Omega,\, A\subseteq\Omega,\quad P(A+x) = P(A)\qquad\textsf{(平行移動不変性)}
 $$
 を満たす確率測度 $P\colon 2^{[0,1)}\to \mathbb{R}_{\ge 0}$ は存在しない。
 
@@ -103,16 +103,16 @@ $$
 $\Omega$ 上の同値関係を $x\sim y \stackrel{\mathrm{def}}{\iff} x-y\in\mathbb{Q}$ と定義する。
 選択公理より、この同値関係の同値類から一つずつ要素を含む集合 $V$ が存在する(Vitali集合)。
 任意の $x\in[0, 1)$ について、ある $z\in V$ が**唯一**存在して $x\sim z$ である。
-よって、任意の $x\in[0, 1)$ について、ある $z\in V$ と $q\in\mathbb{Q}$ が**唯一**存在して $x = z+q$ であることから
+よって、任意の $x\in[0, 1)$ について、ある $z\in V$ と $q\in\mathbb{Q}\cap[0,1)$ が**唯一**存在して $x = z+q-\lfloor z+q\rfloor$ であることから
 \begin{align*}
-[0, 1) &= \bigcup_{q\in\mathbb{Q}} (V + q)
+[0, 1) &= \bigcup_{q\in\mathbb{Q}\cap[0,1)} (V + q)
 \end{align*}
 であり、右辺は互いに排反である。
 よって条件を満たす $P$ が存在すると仮定すると、
 \begin{align*}
-1 = P([0, 1)) &= P\left(\bigcup_{q\in\mathbb{Q}} (V+q)\right)\\
- &= \sum_{q\in\mathbb{Q}} P\left(V+q\right)\qquad \text{(完全加法性)}\\
- &= \sum_{q\in\mathbb{Q}} P\left(V\right)\qquad \text{(平行移動不変性)}
+1 = P([0, 1)) &= P\left(\bigcup_{q\in\mathbb{Q}\cap[0,1)} (V+q)\right)\\
+ &= \sum_{q\in\mathbb{Q}\cap[0,1)} P\left(V+q\right)\qquad \textsf{(完全加法性)}\\
+ &= \sum_{q\in\mathbb{Q}\cap[0,1)} P\left(V\right)\qquad \textsf{(平行移動不変性)}
 \end{align*}
 ここで $P(V)$ をどのように定めても、それを無限回足して 1 にすることはできない。
 よって $P$ は存在しない。
