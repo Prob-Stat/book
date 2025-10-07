@@ -94,8 +94,8 @@ A^\mathrm{c} &\coloneqq \Omega\setminus A\qquad\textsf{(補集合)}
 * $\Omega^\mathrm{c} = \varnothing,\quad \varnothing^\mathrm{c} = \Omega$.
 * $A\cup \Omega = \Omega,\quad A\cap\Omega = A$.
 * $A\cup A^\mathrm{c} = \Omega,\quad A\cap A^\mathrm{c} =\varnothing$.
-* (ド・モルガンの法則) $\quad(A\cup B)^\mathrm{c} = A^\mathrm{c} \cap B^\mathrm{c},\quad(A\cap B)^\mathrm{c} = A^\mathrm{c} \cup B^\mathrm{c}$
 * (二重補集合の法則) $\quad (A^\mathrm{c})^\mathrm{c} = A$.
+* (ド・モルガンの法則) $\quad(A\cup B)^\mathrm{c} = A^\mathrm{c} \cap B^\mathrm{c},\quad(A\cap B)^\mathrm{c} = A^\mathrm{c} \cup B^\mathrm{c}$
 
 
 ## 集合族
