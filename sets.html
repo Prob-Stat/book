@@ -468,33 +468,28 @@ window.Quarto = {
 
 <section id="集合" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="集合"><span class="header-section-number">2.1</span> 集合</h2>
-<p>集合は対象の集まりである。例えば</p>
-<p><span class="math display">\[\begin{align*}
+<p>集合は対象の集まりである。例えば <span class="math display">\[\begin{align*}
 A&amp;=\{1,2,3\},&amp; B&amp;=\{赤,青,黄,緑\}
-\end{align*}\]</span></p>
-<p>のように表す。 集合を構成するものを<strong>要素</strong>もしくは<strong>元</strong>という。</p>
+\end{align*}\]</span> のように表す。 集合を構成するものを<strong>要素</strong>もしくは<strong>元</strong>という。</p>
 <ul>
 <li><span class="math inline">\(x\in A\)</span> で要素 <span class="math inline">\(x\)</span> は集合 <span class="math inline">\(A\)</span> に含まれる</li>
 <li><span class="math inline">\(x\notin A\)</span> で要素 <span class="math inline">\(x\)</span> は集合 <span class="math inline">\(A\)</span> に含まれない</li>
 </ul>
 <p>を表す。</p>
-<p><span class="math inline">\(|A|\)</span> で集合 <span class="math inline">\(A\)</span> の要素数を表すことにする。 要素数が無限の集合を考えることもできる。 例えば</p>
-<p><span class="math display">\[\begin{align*}
+<p><span class="math inline">\(|A|\)</span> で集合 <span class="math inline">\(A\)</span> の要素数を表すことにする。 要素数が無限の集合を考えることもできる。 例えば <span class="math display">\[\begin{align*}
 A&amp;=\{n\in\mathbb{N}\mid \text{$n$ は偶数}\},&amp; B&amp;=\{x\in\mathbb{R}\mid \text{$x$ は無理数} \}
 \end{align*}\]</span></p>
 <p>という集合は無限集合の例となる。 何も要素を持たない集合(要素数が零の集合)を<strong>空集合</strong>といい、<span class="math inline">\(\varnothing\)</span> で表す。</p>
 </section>
 <section id="集合の関係" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="集合の関係"><span class="header-section-number">2.2</span> 集合の関係</h2>
-<p>集合 <span class="math inline">\(A\)</span> の要素がすべて集合 <span class="math inline">\(B\)</span> に含まれるとき、<span class="math inline">\(A\)</span> を <span class="math inline">\(B\)</span> の<strong>部分集合</strong> という。 部分集合に関連する集合関係について記号を以下のように定義する。</p>
-<p><span class="math display">\[\begin{align*}
+<p>集合 <span class="math inline">\(A\)</span> の要素がすべて集合 <span class="math inline">\(B\)</span> に含まれるとき、<span class="math inline">\(A\)</span> を <span class="math inline">\(B\)</span> の<strong>部分集合</strong> という。 部分集合に関連する集合関係について記号を以下のように定義する。 <span class="math display">\[\begin{align*}
 A\subseteq B &amp;\defiff \forall x\,(x\in A\implies x \in B)&amp;\text{($A$ は $B$ の部分集合)}\\
 A\supseteq B &amp;\defiff B\subseteq A&amp;\text{($A$ は $B$ の上位集合)}\\
 A = B &amp;\defiff (A\subseteq B\land A\supseteq B)&amp; \text{($A$ と $B$ は等しい)}\\
 A \ne B &amp;\defiff \lnot(A = B)&amp; \text{($A$ と $B$ は等しくない)}
 \end{align*}\]</span></p>
-<p>また、</p>
-<p><span class="math display">\[\begin{align*}
+<p>また、 <span class="math display">\[\begin{align*}
 A\subsetneq B &amp;\defiff (A\subseteq B \land A\ne B)&amp;\text{($A$ は $B$ の真部分集合)}\\
 A\supsetneq B &amp;\defiff B\subsetneq A&amp;\text{($A$ は $B$ の真上位集合)}
 \end{align*}\]</span></p>
@@ -508,8 +503,7 @@ A\supsetneq B &amp;\defiff B\subsetneq A&amp;\text{($A$ は $B$ の真上位集�
 </section>
 <section id="集合の演算" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="集合の演算"><span class="header-section-number">2.3</span> 集合の演算</h2>
-<p>複数の集合から新しい集合を作る演算がある。</p>
-<p><span class="math display">\[\begin{align*}
+<p>複数の集合から新しい集合を作る演算がある。 <span class="math display">\[\begin{align*}
 A\cup B &amp;\coloneqq\left\{x\mid x\in A \textsf{ または } x \in B\right\}\qquad\textsf{(和集合)}\\
 A\cap B &amp;\coloneqq \left\{x\mid x\in A \textsf{ かつ } x \in B\right\}\qquad\textsf{(積集合)}\\
 A\setminus B &amp;\coloneqq \left\{x\mid x\in A \textsf{ かつ } x \notin B\right\}\qquad\textsf{(差集合)}
@@ -527,8 +521,7 @@ A\setminus B &amp;\coloneqq \left\{x\mid x\in A \textsf{ かつ } x \notin B\rig
 </section>
 <section id="補集合" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="補集合"><span class="header-section-number">2.4</span> 補集合</h2>
-<p>全体の集合 <span class="math inline">\(\Omega\)</span> というのが文脈上存在する場合は、</p>
-<p><span class="math display">\[\begin{align*}
+<p>全体の集合 <span class="math inline">\(\Omega\)</span> というのが文脈上存在する場合は、 <span class="math display">\[\begin{align*}
 A^\mathrm{c} &amp;\coloneqq \Omega\setminus A\qquad\textsf{(補集合)}
 \end{align*}\]</span></p>
 <p>と定義する。</p>
@@ -543,8 +536,7 @@ A^\mathrm{c} &amp;\coloneqq \Omega\setminus A\qquad\textsf{(補集合)}
 </section>
 <section id="集合族" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="集合族"><span class="header-section-number">2.5</span> 集合族</h2>
-<p>集合 <span class="math inline">\(\Omega\)</span> について <span class="math inline">\(2^\Omega\)</span> を <span class="math inline">\(\Omega\)</span> のすべての部分集合からなる集合を表す。</p>
-<p><span class="math display">\[\begin{align*}
+<p>集合 <span class="math inline">\(\Omega\)</span> について <span class="math inline">\(2^\Omega\)</span> を <span class="math inline">\(\Omega\)</span> のすべての部分集合からなる集合を表す。 <span class="math display">\[\begin{align*}
 2^\Omega &amp;\coloneqq \left\{A\subseteq\Omega\right\}.
 \end{align*}\]</span></p>
 <p>これを <span class="math inline">\(\Omega\)</span> の<strong>冪集合</strong>という。 例えば <span class="math inline">\(\Omega=\{1,2,3\}\)</span> のとき、</p>
@@ -560,8 +552,7 @@ A^\mathrm{c} &amp;\coloneqq \Omega\setminus A\qquad\textsf{(補集合)}
 \bigcup_{\lambda\in\Lambda} A_\lambda \quad,\quad
 \bigcap_{\lambda\in\Lambda} A_\lambda.
 \]</span></p>
-<p>添字集合 <span class="math inline">\(\Lambda\)</span> が無限集合の場合は和集合と積集合を以下で定義する。</p>
-<p><span class="math display">\[\begin{align*}
+<p>添字集合 <span class="math inline">\(\Lambda\)</span> が無限集合の場合は和集合と積集合を以下で定義する。 <span class="math display">\[\begin{align*}
 \bigcup_{\lambda\in\Lambda} A_\lambda
 &amp;\coloneqq
 \left\{x\in\Omega\mid \exists \lambda\in\Lambda,\quad x\in A_\lambda\right\}\\
@@ -569,8 +560,7 @@ A^\mathrm{c} &amp;\coloneqq \Omega\setminus A\qquad\textsf{(補集合)}
 &amp;\coloneqq
 \left\{x\in\Omega\mid \forall \lambda\in\Lambda,\quad x\in A_\lambda\right\}
 \end{align*}\]</span></p>
-<p>この定義は <span class="math inline">\(\Lambda\)</span> が有限集合の場合も正しいものである。 この場合もド・モルガンの法則は成り立つ。つまり、</p>
-<p><span class="math display">\[\begin{align*}
+<p>この定義は <span class="math inline">\(\Lambda\)</span> が有限集合の場合も正しいものである。 この場合もド・モルガンの法則は成り立つ。つまり、 <span class="math display">\[\begin{align*}
 \left(\bigcup_{\lambda\in\Lambda} A_\lambda\right)^\mathrm{c}
 &amp;=
 \bigcap_{\lambda\in\Lambda} A_\lambda^\mathrm{c}\\
