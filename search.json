@@ -91,7 +91,7 @@
     "href": "sets.html#補集合",
     "title": "2  集合論",
     "section": "2.4 補集合",
-    "text": "2.4 補集合\n全体の集合 \\(\\Omega\\) というのが文脈上存在する場合は、\n\\[\\begin{align*}\nA^\\mathrm{c} &\\coloneqq \\Omega\\setminus A\\qquad\\textsf{(補集合)}\n\\end{align*}\\]\nと定義する。\n補集合に関連して以下の法則が成り立つ。\n\n\\(\\Omega^\\mathrm{c} = \\varnothing,\\quad \\varnothing^\\mathrm{c} = \\Omega\\).\n\\(A\\cup \\Omega = \\Omega,\\quad A\\cap\\Omega = A\\).\n\\(A\\cup A^\\mathrm{c} = \\Omega,\\quad A\\cap A^\\mathrm{c} =\\varnothing\\).\n(ド・モルガンの法則) \\(\\quad(A\\cup B)^\\mathrm{c} = A^\\mathrm{c} \\cap B^\\mathrm{c},\\quad(A\\cap B)^\\mathrm{c} = A^\\mathrm{c} \\cup B^\\mathrm{c}\\)\n(二重補集合の法則) \\(\\quad (A^\\mathrm{c})^\\mathrm{c} = A\\).",
+    "text": "2.4 補集合\n全体の集合 \\(\\Omega\\) というのが文脈上存在する場合は、\n\\[\\begin{align*}\nA^\\mathrm{c} &\\coloneqq \\Omega\\setminus A\\qquad\\textsf{(補集合)}\n\\end{align*}\\]\nと定義する。\n補集合に関連して以下の法則が成り立つ。\n\n\\(\\Omega^\\mathrm{c} = \\varnothing,\\quad \\varnothing^\\mathrm{c} = \\Omega\\).\n\\(A\\cup \\Omega = \\Omega,\\quad A\\cap\\Omega = A\\).\n\\(A\\cup A^\\mathrm{c} = \\Omega,\\quad A\\cap A^\\mathrm{c} =\\varnothing\\).\n(二重補集合の法則) \\(\\quad (A^\\mathrm{c})^\\mathrm{c} = A\\).\n(ド・モルガンの法則) \\(\\quad(A\\cup B)^\\mathrm{c} = A^\\mathrm{c} \\cap B^\\mathrm{c},\\quad(A\\cap B)^\\mathrm{c} = A^\\mathrm{c} \\cup B^\\mathrm{c}\\)",
     "crumbs": [
       "確率論",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>集合論</span>"
