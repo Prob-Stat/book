@@ -3,11 +3,9 @@
 ## 集合
 
 集合は対象の集まりである。例えば
-
 \begin{align*}
 A&=\{1,2,3\},& B&=\{赤,青,黄,緑\}
 \end{align*}
-
 のように表す。
 集合を構成するものを**要素**もしくは**元**という。
 
@@ -19,7 +17,6 @@ A&=\{1,2,3\},& B&=\{赤,青,黄,緑\}
 $|A|$ で集合 $A$ の要素数を表すことにする。
 要素数が無限の集合を考えることもできる。
 例えば
-
 \begin{align*}
 A&=\{n\in\mathbb{N}\mid \text{$n$ は偶数}\},& B&=\{x\in\mathbb{R}\mid \text{$x$ は無理数} \}
 \end{align*}
@@ -31,7 +28,6 @@ A&=\{n\in\mathbb{N}\mid \text{$n$ は偶数}\},& B&=\{x\in\mathbb{R}\mid \text{$
 
 集合 $A$ の要素がすべて集合 $B$ に含まれるとき、$A$ を $B$ の**部分集合** という。
 部分集合に関連する集合関係について記号を以下のように定義する。
-
 \begin{align*}
 A\subseteq B &\defiff \forall x\,(x\in A\implies x \in B)&\text{($A$ は $B$ の部分集合)}\\
 A\supseteq B &\defiff B\subseteq A&\text{($A$ は $B$ の上位集合)}\\
@@ -40,7 +36,6 @@ A \ne B &\defiff \lnot(A = B)& \text{($A$ と $B$ は等しくない)}
 \end{align*}
 
 また、
-
 \begin{align*}
 A\subsetneq B &\defiff (A\subseteq B \land A\ne B)&\text{($A$ は $B$ の真部分集合)}\\
 A\supsetneq B &\defiff B\subsetneq A&\text{($A$ は $B$ の真上位集合)}
@@ -59,7 +54,6 @@ A\supsetneq B &\defiff B\subsetneq A&\text{($A$ は $B$ の真上位集合)}
 ## 集合の演算
 
 複数の集合から新しい集合を作る演算がある。
-
 \begin{align*}
 A\cup B &\coloneqq\left\{x\mid x\in A \textsf{ または } x \in B\right\}\qquad\textsf{(和集合)}\\
 A\cap B &\coloneqq \left\{x\mid x\in A \textsf{ かつ } x \in B\right\}\qquad\textsf{(積集合)}\\
@@ -82,7 +76,6 @@ A\setminus B &\coloneqq \left\{x\mid x\in A \textsf{ かつ } x \notin B\right\}
 ## 補集合
 
 全体の集合 $\Omega$ というのが文脈上存在する場合は、
-
 \begin{align*}
 A^\mathrm{c} &\coloneqq \Omega\setminus A\qquad\textsf{(補集合)}
 \end{align*}
@@ -101,7 +94,6 @@ A^\mathrm{c} &\coloneqq \Omega\setminus A\qquad\textsf{(補集合)}
 ## 集合族
 
 集合 $\Omega$ について $2^\Omega$ を $\Omega$ のすべての部分集合からなる集合を表す。
-
 \begin{align*}
 2^\Omega &\coloneqq \left\{A\subseteq\Omega\right\}.
 \end{align*}
@@ -132,7 +124,6 @@ $$
 $$
 
 添字集合 $\Lambda$ が無限集合の場合は和集合と積集合を以下で定義する。
-
 \begin{align*}
 \bigcup_{\lambda\in\Lambda} A_\lambda
 &\coloneqq
@@ -144,7 +135,6 @@ $$
 
 この定義は $\Lambda$ が有限集合の場合も正しいものである。
 この場合もド・モルガンの法則は成り立つ。つまり、
-
 \begin{align*}
 \left(\bigcup_{\lambda\in\Lambda} A_\lambda\right)^\mathrm{c}
 &=
