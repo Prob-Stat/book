@@ -41,6 +41,34 @@ $$
 
 共通の確率空間 $(\Omega,\, P)$ 上の確率変数 $X,\,Y$ についてその和 $X + Y$ や積 $XY$ も確率変数である。
 
+::: {#exm-rv}
+## コイン投げ
+
+コインを2回独立に投げる場合の確率空間 $(\Omega,\,P)$ を以下で定義する。
+
+* $\Omega = \{\mathrm{HH},\mathrm{HT},\mathrm{TH},\mathrm{TT}\}$.
+* $P(A) = \frac{|A|}{4}$.
+
+確率変数 $X_1$ と $X_2$ を
+\begin{align*}
+X_1(\mathrm{HH}) &= 1&
+X_1(\mathrm{HT}) &= 1&
+X_1(\mathrm{TH}) &= 0&
+X_1(\mathrm{TT}) &= 0\\
+X_2(\mathrm{HH}) &= 1&
+X_2(\mathrm{HT}) &= 0&
+X_2(\mathrm{TH}) &= 1&
+X_2(\mathrm{TT}) &= 0
+\end{align*}
+とすると、$k\in\{1,2\}$ について、$X_k$ は $k$ 回目のコイン投げが表だったときに1、裏だったときに0になる。
+また、$X=X_1+X_2$ は表が出た回数を表す確率変数となる。
+表が一回以上出る確率は以下のように表せる。
+\begin{align*}
+\Pr(X\ge 1) &= P(\{\omega\in\Omega\mid X(\omega)\ge 1\}) = P(\{\mathrm{HH},\mathrm{HT},\mathrm{TH}\}) = \frac{3}{4}.
+\end{align*}
+
+:::
+
 ## 確率分布
 
 確率変数 $X$ の像が高々可算集合のとき、$X$ を**離散型確率変数**という。
@@ -123,9 +151,9 @@ $$
 
 \begin{align*}
 \lim_{n\to\infty} \Pr\left(X \le x + \frac1n\right) &=
-\lim_{n\to\infty} P\left(\left\{\omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
-&= P\left(\bigcap_{n=0}^\infty \left\{\omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
-&= P\left(\left\{\omega\mid X(\omega) \le x\right\}\right)\\
+\lim_{n\to\infty} P\left(\left\{\omega\in\Omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
+&= P\left(\bigcap_{n=0}^\infty \left\{\omega\in\Omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
+&= P\left(\left\{\omega\in\Omega\mid X(\omega) \le x\right\}\right)\\
 &= \Pr\left(X\le x\right)
 \end{align*}
 
@@ -157,7 +185,7 @@ y = np.piecewise(
 # グラフの描画
 plt.figure(figsize=(8, 5))
 plt.plot(x, y, label='$F_X(x)$', color='blue')
-plt.title('Cpf of $X$')
+plt.title('Cdf of $X$')
 plt.xlabel('$x$')
 plt.ylabel('$F_X(x)$')
 plt.grid(True)
@@ -181,12 +209,12 @@ plt.show()
 
 ### 様々な離散確率分布
 
-* 二項分布: 表が出る確率が $p$ のコインを $n$ 回独立に投げたとき、表が出る回数の分布
+* 二項分布 $\mathrm{Binom}(n,p)$: 表が出る確率が $p$ のコインを $n$ 回独立に投げたとき、表が出る回数の分布
 $$\Pr(X=k) = \binom{n}{k} p^k (1-p)^{n-k}.$$
 * 幾何分布: 表が出るまでに投げるコインの回数の分布
 $$\Pr(X=k) = (1-p)^{k-1}p.$$
 * 超幾何分布: 袋の中に $N$ 個のボールがあって、そのうち $K$ 個が当たりとし、 $n$ 個引いたときの当たりの個数の分布
-$$\Pr(X=k) = \frac{\binom{k}{k}\binom{N-K}{n-k}}{\binom{N}{n}}.$$
+$$\Pr(X=k) = \frac{\binom{K}{k}\binom{N-K}{n-k}}{\binom{N}{n}}.$$
 * ポアソン分布:
 $$
 \Pr(X=k) = \frac{\lambda^k}{k!}\mathrm{e}^{-\lambda}.
@@ -382,6 +410,15 @@ plt.ylabel('$\\Pr(X\\leq k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 ```
+
+### 確率空間は何か？
+
+確率変数が従う確率分布のみに注目した議論をする場合、確率空間を陽に考えないことがしばしばある。
+
+* 二項分布: $n$ 回のコイン投げ、もしくは無限回のコイン投げ。
+* 幾何分布: 無限回のコイン投げ。
+* 超幾何分布: $K$ 個の当たりと $N-K$ 個のはずれのボールの $\binom{N}{K}$ 通りの並び順。
+* ポアソン分布: ？
 
 ## 連続確率分布の例
 
