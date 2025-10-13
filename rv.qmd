@@ -71,6 +71,35 @@ X_2(\mathrm{TT}) &= 0
 
 ## 確率分布
 
+::: {#def-cdf}
+## 累積分布関数
+
+確率変数 $X$ について**累積分布関数** $F_X\colon\mathbb{R}\to\mathbb{R}_{\ge 0}$ は以下で定義される。
+
+$$
+F_X(x) \coloneqq \Pr(X\le x)\qquad\forall x\in\mathbb{R}.
+$$
+
+:::
+
+累積分布関数は定義より単調非減少関数であることが分かる。
+累積分布関数は連続とは限らないが右連続であることは以下のように確認できる。
+
+\begin{align*}
+\lim_{n\to\infty} \Pr\left(X \le x + \frac1n\right) &=
+\lim_{n\to\infty} P\left(\left\{\omega\in\Omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
+&= P\left(\bigcap_{n=0}^\infty \left\{\omega\in\Omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
+&= P\left(\left\{\omega\in\Omega\mid X(\omega) \le x\right\}\right)\\
+&= \Pr\left(X\le x\right).
+\end{align*}
+
+累積分布関数 $F_X\colon\mathbb{R}\to\mathbb{R}_{\ge 0}$ は以下の性質を持つ。
+
+1. $F_X$ は単調非減少。
+1. $F_X$ は右連続。
+1. $\lim_{x\to\infty}F_X(x) = 1$.
+1. $\lim_{x\to-\infty}F_X(x) = 0$.
+
 確率変数 $X$ の像が高々可算集合のとき、$X$ を**離散型確率変数**という。
 離散型確率変数でない確率変数を**連続型確率変数**という。
 
@@ -99,7 +128,7 @@ $$
 $X$ が連続型確率変数のとき、
 
 \begin{align*}
-\Pr(X\in A) &= \int_{x\in A} f_X(x) \mathrm{d}x\qquad\forall A\subseteq\mathbb{R}
+\Pr(X\in A) &= \int_{A} f_X(x) \mathrm{d}x\qquad\forall A\subseteq\mathbb{R}
 \end{align*}
 
 を満たす $f_X\colon\mathbb{R}\to\mathbb{R}_{\ge 0}$ が存在するとき、この $f_X(x)$ を $X$ の**確率密度関数**という。
@@ -123,14 +152,6 @@ $$
 よって $X$ の確率密度関数は存在しない。
 :::
 
-一方で、任意の確率変数 $X$ について
-
-$$
-F_X(x) \coloneqq \Pr(X\le x)\qquad\forall x\in\mathbb{R}
-$$
-
-を確率変数 $X$ の**累積分布関数**という。
-累積分布関数は常に存在する。
 連続確率変数 $X$ が確率密度関数を持つとき、
 
 $$
@@ -146,16 +167,6 @@ $$
 
 とおいても構わない。確率密度関数はその積分値にのみ意味を持つ。そのため確率密度関数は一意には定まらない。
 
-累積分布関数は定義より単調非減少関数であることが分かる。
-累積分布関数は連続とは限らないが右連続であることは以下のように確認できる。
-
-\begin{align*}
-\lim_{n\to\infty} \Pr\left(X \le x + \frac1n\right) &=
-\lim_{n\to\infty} P\left(\left\{\omega\in\Omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
-&= P\left(\bigcap_{n=0}^\infty \left\{\omega\in\Omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
-&= P\left(\left\{\omega\in\Omega\mid X(\omega) \le x\right\}\right)\\
-&= \Pr\left(X\le x\right)
-\end{align*}
 
 @exm-contdisc の確率変数 $X$ の累積分布関数は以下のようになる。
 
