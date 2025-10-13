@@ -575,6 +575,27 @@ X_2(\mathrm{TT}) &amp;= 0
 </section>
 <section id="確率分布" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="確率分布"><span class="header-section-number">4.2</span> 確率分布</h2>
+<div id="def-cdf" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 4.2 (累積分布関数)</strong></span> 確率変数 <span class="math inline">\(X\)</span> について<strong>累積分布関数</strong> <span class="math inline">\(F_X\colon\mathbb{R}\to\mathbb{R}_{\ge 0}\)</span> は以下で定義される。</p>
+<p><span class="math display">\[
+F_X(x) \coloneqq \Pr(X\le x)\qquad\forall x\in\mathbb{R}.
+\]</span></p>
+</div>
+<p>累積分布関数は定義より単調非減少関数であることが分かる。 累積分布関数は連続とは限らないが右連続であることは以下のように確認できる。</p>
+<p><span class="math display">\[\begin{align*}
+\lim_{n\to\infty} \Pr\left(X \le x + \frac1n\right) &amp;=
+\lim_{n\to\infty} P\left(\left\{\omega\in\Omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
+&amp;= P\left(\bigcap_{n=0}^\infty \left\{\omega\in\Omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
+&amp;= P\left(\left\{\omega\in\Omega\mid X(\omega) \le x\right\}\right)\\
+&amp;= \Pr\left(X\le x\right).
+\end{align*}\]</span></p>
+<p>累積分布関数 <span class="math inline">\(F_X\colon\mathbb{R}\to\mathbb{R}_{\ge 0}\)</span> は以下の性質を持つ。</p>
+<ol type="1">
+<li><span class="math inline">\(F_X\)</span> は単調非減少。</li>
+<li><span class="math inline">\(F_X\)</span> は右連続。</li>
+<li><span class="math inline">\(\lim_{x\to\infty}F_X(x) = 1\)</span>.</li>
+<li><span class="math inline">\(\lim_{x\to-\infty}F_X(x) = 0\)</span>.</li>
+</ol>
 <p>確率変数 <span class="math inline">\(X\)</span> の像が高々可算集合のとき、<span class="math inline">\(X\)</span> を<strong>離散型確率変数</strong>という。 離散型確率変数でない確率変数を<strong>連続型確率変数</strong>という。</p>
 <p><span class="math inline">\(X\)</span> が離散型確率変数のとき、<span class="math inline">\(A\)</span> を <span class="math inline">\(X\)</span> の像の部分集合とすると</p>
 <p><span class="math display">\[\begin{align*}
@@ -592,7 +613,7 @@ f_X(x) \coloneqq \Pr(X=x) \qquad \forall x\in\mathbb{R}
 \]</span> と表せる。 この <span class="math inline">\(f_X(x)\)</span> を <span class="math inline">\(X\)</span> の<strong>確率質量関数</strong>という。</p>
 <p><span class="math inline">\(X\)</span> が連続型確率変数のとき、</p>
 <p><span class="math display">\[\begin{align*}
-\Pr(X\in A) &amp;= \int_{x\in A} f_X(x) \mathrm{d}x\qquad\forall A\subseteq\mathbb{R}
+\Pr(X\in A) &amp;= \int_{A} f_X(x) \mathrm{d}x\qquad\forall A\subseteq\mathbb{R}
 \end{align*}\]</span></p>
 <p>を満たす <span class="math inline">\(f_X\colon\mathbb{R}\to\mathbb{R}_{\ge 0}\)</span> が存在するとき、この <span class="math inline">\(f_X(x)\)</span> を <span class="math inline">\(X\)</span> の<strong>確率密度関数</strong>という。 しかし、確率密度関数は常に存在するとは限らない。</p>
 <div id="exm-contdisc" class="theorem example">
@@ -606,11 +627,7 @@ X(\omega) =
 <p>この時 <span class="math inline">\(X\)</span> の像は <span class="math inline">\([0,1)\)</span> であるので <span class="math inline">\(X\)</span> は連続型確率変数である。</p>
 <p>また、<span class="math inline">\(\Pr(X=\frac12) = P([\frac12, 1)\cup\{\frac14\}) = \frac12\)</span> である。 よって <span class="math inline">\(X\)</span> の確率密度関数は存在しない。</p>
 </div>
-<p>一方で、任意の確率変数 <span class="math inline">\(X\)</span> について</p>
-<p><span class="math display">\[
-F_X(x) \coloneqq \Pr(X\le x)\qquad\forall x\in\mathbb{R}
-\]</span></p>
-<p>を確率変数 <span class="math inline">\(X\)</span> の<strong>累積分布関数</strong>という。 累積分布関数は常に存在する。 連続確率変数 <span class="math inline">\(X\)</span> が確率密度関数を持つとき、</p>
+<p>連続確率変数 <span class="math inline">\(X\)</span> が確率密度関数を持つとき、</p>
 <p><span class="math display">\[
 F_X(x) = \int_{-\infty}^x f_X(z) \mathrm{d}z
 \]</span></p>
@@ -619,14 +636,6 @@ F_X(x) = \int_{-\infty}^x f_X(z) \mathrm{d}z
 f_X(x) = \frac{\mathrm{d}F_X}{\mathrm{d}x}
 \]</span></p>
 <p>とおいても構わない。確率密度関数はその積分値にのみ意味を持つ。そのため確率密度関数は一意には定まらない。</p>
-<p>累積分布関数は定義より単調非減少関数であることが分かる。 累積分布関数は連続とは限らないが右連続であることは以下のように確認できる。</p>
-<p><span class="math display">\[\begin{align*}
-\lim_{n\to\infty} \Pr\left(X \le x + \frac1n\right) &amp;=
-\lim_{n\to\infty} P\left(\left\{\omega\in\Omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
-&amp;= P\left(\bigcap_{n=0}^\infty \left\{\omega\in\Omega\mid X(\omega) \le x + \frac1n\right\}\right)\\
-&amp;= P\left(\left\{\omega\in\Omega\mid X(\omega) \le x\right\}\right)\\
-&amp;= \Pr\left(X\le x\right)
-\end{align*}\]</span></p>
 <p><a href="#exm-contdisc" class="quarto-xref">例&nbsp;<span>4.2</span></a> の確率変数 <span class="math inline">\(X\)</span> の累積分布関数は以下のようになる。</p>
 <div id="cell-fig-x" class="cell" data-execution_count="1">
 <details class="code-fold">
@@ -739,7 +748,7 @@ f_X(k) = \binom{n}{k} p^k(1-p)^{n-k}
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cell-fig-binom" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="2">
+<div id="cell-fig-binom" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-binom" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -809,7 +818,7 @@ f_X(k) = (1-p)^{k-1}p,\qquad\forall k\ge 1
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cell-fig-geom" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="2">
+<div id="cell-fig-geom" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-geom" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -879,7 +888,7 @@ f_X(k) = \frac{\binom{K}{k}\binom{N-K}{n-k}}{\binom{N}{n}},\qquad\forall k\in \{
 <span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cell-fig-hypergeom" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="2">
+<div id="cell-fig-hypergeom" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="4">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-hypergeom" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -947,7 +956,7 @@ f_X(k) = \frac{\lambda^k}{k!}\mathrm{e}^{-\lambda},\qquad \forall k\ge 0
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cell-fig-poisson" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="2">
+<div id="cell-fig-poisson" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="5">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-poisson" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1040,7 +1049,7 @@ F_X(x) &amp;= \begin{cases}
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cell-fig-uniform" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="2">
+<div id="cell-fig-uniform" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="6">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-uniform" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1108,7 +1117,7 @@ F_X(x) &amp;= \int_{-\infty}^x \frac1{\sqrt{2\pi\sigma^2}}\mathrm{e}^{-\frac{(z-
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cell-fig-normal" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="2">
+<div id="cell-fig-normal" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="7">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-normal" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1181,7 +1190,7 @@ F_X(x) &amp;= \begin{cases}
 <span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cell-fig-exp" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="2">
+<div id="cell-fig-exp" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="8">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-exp" class="quarto-float quarto-figure quarto-figure-center anchored">
