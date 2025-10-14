@@ -1250,24 +1250,21 @@ f_{aX}(x) &amp;= \frac1{|a|} f_X(x/a)\qquad\forall a\in\mathbb{R}_{\ne 0}
 \end{align*}\]</span></p>
 </div>
 <div id="lem-pdf-inc" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 4.2</strong></span> <span class="math inline">\(J\subseteq\mathbb{R}\)</span> を有界とは限らない区間とし、<span class="math inline">\(g\colon J\to\mathbb{R}\)</span> を <span class="math inline">\(J\)</span> の内点で<strong>微分可能</strong>で <span class="math inline">\(g'(x)&gt;0\)</span> とする。 確率密度関数を持つ任意の確率変数 <span class="math inline">\(X\)</span> について、 <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>補題 4.2</strong></span> <span class="math inline">\(J\subseteq\mathbb{R}\)</span> を有界とは限らない区間とし、<span class="math inline">\(g\colon J\to\mathbb{R}\)</span> を <span class="math inline">\(J\)</span> の内点で<strong>微分可能</strong>で <span class="math inline">\(g'(x)&gt;0\)</span> と する。 確率変数 <span class="math inline">\(X\)</span> が <span class="math inline">\(\Pr(X\in J) = 1\)</span> を満たし確率密度関数を持つとき、 <span class="math display">\[\begin{align*}
 f_{g(X)}(x) &amp;=
-\begin{cases}
-\frac1{g'(g^{-1}(x))} f_X(g^{-1}(x))&amp;\text{if } x\in\mathrm{Image}(g)\\
+\begin{cases}                                                                                                         \frac1{g'(g^{-1}(x))} f_X(g^{-1}(x))&amp;\text{if } x\in\mathrm{Image}(g)\\
 0&amp;\text{otherwise}
 \end{cases}
 \end{align*}\]</span> は <span class="math inline">\(g(X)\)</span> の確率密度関数になる。</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span>関数 <span class="math inline">\(f_Z\colon \mathbb{R}\to\mathbb{R}_{\ge 0}\)</span> が</p>
-<p><span class="math display">\[
-\Pr(Z\le x) = \int_{-\infty}^x f_Z(z)\mathrm{d} z
-\]</span></p>
-<p>を満たすとき、<span class="math inline">\(f_Z\)</span> は確率変数 <span class="math inline">\(Z\)</span> の確率密度関数となる。</p>
+<p><span class="proof-title"><em>証明</em>. </span><span class="math inline">\(\Pr(g(X)\in\mathrm{Image}(g)) = 1\)</span> なので、<span class="math inline">\(x\notin\mathrm{Image}(g)\)</span> について <span class="math inline">\(f_{g(X)}(x) = 0\)</span> とおいてよい。</p>
 <p>任意の <span class="math inline">\(x\in\mathrm{Image}(g)\)</span> について <span class="math display">\[\begin{align*}
 \Pr(g(X)\le x) &amp;= \Pr(X\le g^{-1}(x))\\
 &amp;= \int_{-\infty}^{g^{-1}(x)} f_{X}(z)\mathrm{d}z\\
-&amp;= \int_{\inf \mathrm{Image}(g)}^{x} f_{X}(g^{-1}(z')) \frac1{g'(g^{-1}(z'))}\mathrm{d}z'\qquad (z'=g(z)).
+&amp;= \int_{\inf J}^{g^{-1}(x)} f_{X}(z)\mathrm{d}z\\
+&amp;= \int_{\inf \mathrm{Image}(g)}^{x} f_{X}(g^{-1}(z')) \frac1{g'(g^{-1}(z'))}\mathrm{d}z'\qquad (z'=g(z))\\
+&amp;= \int_{-\infty}^{x} f_{g(X)}(z')\mathrm{d}z'.
 \end{align*}\]</span></p>
 </div>
 
