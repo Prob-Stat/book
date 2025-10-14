@@ -467,20 +467,47 @@ window.Quarto = {
 <section id="期待値" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="期待値"><span class="header-section-number">5.1</span> 期待値</h2>
 <div id="def-exp" class="theorem definition">
-<p><span class="theorem-title"><strong>定義 5.1 (期待値)</strong></span> 離散確率変数 <span class="math inline">\(X\)</span> が<span class="math inline">\(A\subseteq\mathbb{R}\)</span>に値を取るとき、その期待値は</p>
+<p><span class="theorem-title"><strong>定義 5.1 (期待値)</strong></span> 離散型確率変数 <span class="math inline">\(X\)</span> が<span class="math inline">\(A\subseteq\mathbb{R}\)</span>に値を取るとき、その期待値は</p>
 <p><span class="math display">\[\begin{align*}
 \expt{X} &amp;= \sum_{\omega \in \Omega} X(\omega) P(\{\omega\})\\
 &amp;= \sum_{x\in A} x P(\{\omega\mid X(\omega)=x\})\\
 &amp;= \sum_{x\in A} x \Pr(X=x)\\
+&amp;= \sum_{x\in A} x f_X(x)
 \end{align*}\]</span></p>
-<p>と定義される。ここで、右辺の和が絶対収束しない場合は(適当な順番で和を取って収束したとしても)期待値は定義されない。 連続確率変数 <span class="math inline">\(X\)</span> が確率密度関数 <span class="math inline">\(f_X\)</span> を持つとき、その期待値は</p>
+<p>と定義される。ここで、右辺の和が絶対収束しない場合は(適当な順番で和を取って収束したとしても)期待値は定義されない。 連続型確率変数 <span class="math inline">\(X\)</span> が確率密度関数 <span class="math inline">\(f_X\)</span> を持つとき、その期待値は</p>
 <p><span class="math display">\[
 \expt{X}= \int_{-\infty}^\infty x f_X(x) \mathrm{d}x
 \]</span></p>
 <p>と定義される。</p>
 </div>
 <div id="lem-exp" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 5.1 (期待値の性質)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>補題 5.1 (Law of the unconscious statistician (LOTUS))</strong></span> 任意の関数 <span class="math inline">\(g\colon\mathbb{R}\to\mathbb{R}\)</span> について、</p>
+<ol type="1">
+<li><span class="math inline">\(X\)</span> が離散型確率変数のとき、 <span class="math display">\[\begin{align*}
+\expt{g(X)} &amp;= \sum_{x} g(x) f_X(x).
+\end{align*}\]</span></li>
+<li><span class="math inline">\(X\)</span> が連続型確率変数で確率密度関数を持つとき、 <span class="math display">\[\begin{align*}
+\expt{g(X)} &amp;= \int_{-\infty}^\infty g(x) f_X(x) \mathrm{d}x.
+\end{align*}\]</span></li>
+</ol>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>証明</em>. </span><span class="math inline">\(X\)</span> を離散型確率変数とする。 <span class="math display">\[\begin{align*}
+\expt{g(X)}
+&amp;= \sum_{x} x f_{g(X)}(x)\\
+&amp;= \sum_{x} x \Pr(g(X) = x)\\
+&amp;= \sum_{x} x \Pr(\{\omega\in\Omega\mid g(X(\omega)) = x\})\\
+&amp;= \sum_{x} x \Pr\left(\bigcup_{y\in\mathrm{Image}(X)\colon\, g(y) = x}\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
+&amp;= \sum_{x}\sum_{y\in\mathrm{Image}(X)\colon\, g(y) = x} x \Pr\left(\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
+&amp;= \sum_{y\in\mathrm{Image}(X)} g(y) f_X(y)
+\end{align*}\]</span></p>
+<p><span class="math inline">\(X\)</span> が連続型確率変数で確率密度関数を持つとする。 <span class="math display">\[\begin{align*}
+\expt{g(X)}
+&amp;= \int_{-\infty}^\infty x f_{g(X)}(x)\mathrm{d}x\\
+\end{align*}\]</span></p>
+</div>
+<div id="lem-exp" class="theorem lemma">
+<p><span class="theorem-title"><strong>補題 5.2 (期待値の性質)</strong></span> &nbsp;</p>
 <ol type="1">
 <li>任意の <span class="math inline">\(c\in\mathbb{R}\)</span> について <span class="math inline">\(\expt{X+c} = \expt{X}+c\)</span></li>
 <li>任意の <span class="math inline">\(c\in\mathbb{R}\)</span> について <span class="math inline">\(\expt{cX} = c\expt{X}\)</span></li>
@@ -625,7 +652,7 @@ $$
 -->
 <p>今後は以下の補題を認めることにする。証明にはルベーグ積分の知識が必要である。</p>
 <div id="lem-moment" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 5.2</strong></span> 確率変数 <span class="math inline">\(X\)</span> について、ある <span class="math inline">\(\epsilon &gt;0\)</span> が存在し、モーメント母関数 <span class="math inline">\(M_X(t)\)</span> が <strong><span class="math inline">\(t\in(-\epsilon,\epsilon)\)</span> で存在するとき</strong>、</p>
+<p><span class="theorem-title"><strong>補題 5.3</strong></span> 確率変数 <span class="math inline">\(X\)</span> について、ある <span class="math inline">\(\epsilon &gt;0\)</span> が存在し、モーメント母関数 <span class="math inline">\(M_X(t)\)</span> が <strong><span class="math inline">\(t\in(-\epsilon,\epsilon)\)</span> で存在するとき</strong>、</p>
 <p><span class="math display">\[\begin{align*}
 M_X(t) &amp;=\sum_{n\ge 0}\frac{\expt{X^n}}{n!}t^n\\
 \expt{X^n} &amp;= \left.\frac{\mathrm{d}^n M_X(t)}{\mathrm{d} t^n}\right|_{t=0}.
