@@ -5,22 +5,55 @@
 ::: {#def-exp}
 ## 期待値
 
-離散確率変数 $X$ が$A\subseteq\mathbb{R}$に値を取るとき、その期待値は
+離散型確率変数 $X$ が$A\subseteq\mathbb{R}$に値を取るとき、その期待値は
 
 \begin{align*}
 \expt{X} &= \sum_{\omega \in \Omega} X(\omega) P(\{\omega\})\\
 &= \sum_{x\in A} x P(\{\omega\mid X(\omega)=x\})\\
 &= \sum_{x\in A} x \Pr(X=x)\\
+&= \sum_{x\in A} x f_X(x)
 \end{align*}
 
 と定義される。ここで、右辺の和が絶対収束しない場合は(適当な順番で和を取って収束したとしても)期待値は定義されない。
-連続確率変数 $X$ が確率密度関数 $f_X$ を持つとき、その期待値は
+連続型確率変数 $X$ が確率密度関数 $f_X$ を持つとき、その期待値は
 
 $$
 \expt{X}= \int_{-\infty}^\infty x f_X(x) \mathrm{d}x
 $$
 
 と定義される。
+:::
+
+::: {#lem-exp}
+### Law of the unconscious statistician (LOTUS)
+任意の関数 $g\colon\mathbb{R}\to\mathbb{R}$ について、
+
+1. $X$ が離散型確率変数のとき、
+\begin{align*}
+\expt{g(X)} &= \sum_{x} g(x) f_X(x).
+\end{align*}
+1. $X$ が連続型確率変数で確率密度関数を持つとき、
+\begin{align*}
+\expt{g(X)} &= \int_{-\infty}^\infty g(x) f_X(x) \mathrm{d}x.
+\end{align*}
+:::
+::: {.proof}
+$X$ を離散型確率変数とする。
+\begin{align*}
+\expt{g(X)}
+&= \sum_{x} x f_{g(X)}(x)\\
+&= \sum_{x} x \Pr(g(X) = x)\\
+&= \sum_{x} x \Pr(\{\omega\in\Omega\mid g(X(\omega)) = x\})\\
+&= \sum_{x} x \Pr\left(\bigcup_{y\in\mathrm{Image}(X)\colon\, g(y) = x}\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
+&= \sum_{x}\sum_{y\in\mathrm{Image}(X)\colon\, g(y) = x} x \Pr\left(\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
+&= \sum_{y\in\mathrm{Image}(X)} g(y) f_X(y)
+\end{align*}
+
+$X$ が連続型確率変数で確率密度関数を持つとする。
+\begin{align*}
+\expt{g(X)}
+&= \int_{-\infty}^\infty x f_{g(X)}(x)\mathrm{d}x\\
+\end{align*}
 :::
 
 ::: {#lem-exp}
