@@ -196,7 +196,7 @@ y = np.piecewise(
 # グラフの描画
 plt.figure(figsize=(8, 5))
 plt.plot(x, y, label='$F_X(x)$', color='blue')
-plt.title('Cdf of $X$')
+plt.title('CDF of $X$')
 plt.xlabel('$x$')
 plt.ylabel('$F_X(x)$')
 plt.grid(True)
@@ -264,7 +264,7 @@ cdf = binom.cdf(x, n, p)
 # プロット
 plt.figure(figsize=(4, 2))
 plt.bar(x, pmf, tick_label=x)
-plt.title(f'Pmf of binomial distribution with n={n}, p={p}')
+plt.title(f'PMF of binomial distribution with n={n}, p={p}')
 plt.xlabel('$k$')
 plt.ylabel('$\\Pr(X=k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -273,7 +273,7 @@ plt.show()
 plt.figure(figsize=(4, 2))
 plt.step(x, cdf, where='post')
 plt.xticks(x)
-plt.title(f'Cdf of binomial distribution with n={n}, p={p}')
+plt.title(f'CDF of binomial distribution with n={n}, p={p}')
 plt.xlabel('$k$')
 plt.ylabel('$\\Pr(X\\leq k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -312,7 +312,7 @@ cdf = geom.cdf(kk, p)
 # プロット
 plt.figure(figsize=(4, 2))
 plt.bar(k, pmf, tick_label=k)
-plt.title(f'Pmf of geometric distribution with p={p}')
+plt.title(f'PMF of geometric distribution with p={p}')
 plt.xlabel('$k$')
 plt.ylabel('$\\Pr(X=k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -321,7 +321,7 @@ plt.show()
 plt.figure(figsize=(4, 2))
 plt.step(kk, cdf, where='post')
 plt.xticks(kk)
-plt.title(f'Cdf of geometric distribution with p={p}')
+plt.title(f'CDF of geometric distribution with p={p}')
 plt.xlabel('$k$')
 plt.ylabel('$\\Pr(X\\leq k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -360,7 +360,7 @@ cdf = hypergeom.cdf(k, N, K, n)
 # プロット
 plt.figure(figsize=(4, 2))
 plt.bar(k, pmf, tick_label=k)
-plt.title(f'Pmf of hypergeometric distribution with K={K}, N={N}, n = {n}')
+plt.title(f'PMF of hypergeometric distribution with K={K}, N={N}, n = {n}')
 plt.xlabel('$k$')
 plt.ylabel('$\\Pr(X=k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -369,7 +369,7 @@ plt.show()
 plt.figure(figsize=(4, 2))
 plt.step(k, cdf, where='post')
 plt.xticks(k)
-plt.title(f'Cdf of hypergeometric distribution with K={K}, N={N}, n = {n}')
+plt.title(f'CDF of hypergeometric distribution with K={K}, N={N}, n = {n}')
 plt.xlabel('$k$')
 plt.ylabel('$\\Pr(X\\leq k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -406,7 +406,7 @@ cdf = poisson.cdf(k, lam)
 # プロット
 plt.figure(figsize=(4, 2))
 plt.bar(k, pmf, tick_label=k)
-plt.title(f'Pmf of Poisson distribution with $\\lambda$={lam}')
+plt.title(f'PMF of Poisson distribution with $\\lambda$={lam}')
 plt.xlabel('$k$')
 plt.ylabel('$\\Pr(X=k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -415,7 +415,7 @@ plt.show()
 plt.figure(figsize=(4, 2))
 plt.step(k, cdf, where='post')
 plt.xticks(k)
-plt.title(f'Cdf of Poisson distribution with $\\lambda$={lam}')
+plt.title(f'CDF of Poisson distribution with $\\lambda$={lam}')
 plt.xlabel('$k$')
 plt.ylabel('$\\Pr(X\\leq k)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -475,7 +475,7 @@ cdf = uniform.cdf(x)
 # プロット
 plt.figure(figsize=(4, 2))
 plt.plot(x, pdf)
-plt.title(f'Pdf of Uniform distribution on $[0,1]$')
+plt.title(f'PDF of Uniform distribution on $[0,1]$')
 plt.xlabel('$x$')
 plt.ylabel('$f_X(x)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -483,7 +483,7 @@ plt.show()
 
 plt.figure(figsize=(4, 2))
 plt.plot(x, cdf)
-plt.title(f'Cdf of Uniform distribution on $[0,1]$')
+plt.title(f'CDF of Uniform distribution on $[0,1]$')
 plt.xlabel('$x$')
 plt.ylabel('$F_X(x)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -522,7 +522,7 @@ cdf = norm.cdf(x)
 # プロット
 plt.figure(figsize=(4, 2))
 plt.plot(x, pdf)
-plt.title(f'Pdf of normal distribution with $\\mu = 0$ and $\\sigma = 1$')
+plt.title(f'PDF of normal distribution with $\\mu = 0$ and $\\sigma = 1$')
 plt.xlabel('$x$')
 plt.ylabel('$f_X(x)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -530,7 +530,7 @@ plt.show()
 
 plt.figure(figsize=(4, 2))
 plt.plot(x, cdf)
-plt.title(f'Cdf of normal distribution with $\\mu = 0$ and $\\sigma = 1$')
+plt.title(f'CDF of normal distribution with $\\mu = 0$ and $\\sigma = 1$')
 plt.xlabel('$x$')
 plt.ylabel('$F_X(x)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -573,7 +573,7 @@ cdf = expon.cdf(x)
 # プロット
 plt.figure(figsize=(4, 2))
 plt.plot(x, pdf)
-plt.title(f'Pdf of exponential distribution with $\\lambda = 1$')
+plt.title(f'PDF of exponential distribution with $\\lambda = 1$')
 plt.xlabel('$x$')
 plt.ylabel('$f_X(x)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -581,7 +581,7 @@ plt.show()
 
 plt.figure(figsize=(4, 2))
 plt.plot(x, cdf)
-plt.title(f'Cdf of exponential distribution with $\\lambda = 1$')
+plt.title(f'CDF of exponential distribution with $\\lambda = 1$')
 plt.xlabel('$x$')
 plt.ylabel('$F_X(x)$')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -627,3 +627,33 @@ $$
 &= -\int_{-\infty}^{x} \frac1{a} f_{X}(z'/a)\mathrm{d}z'.
 \end{align*}
 :::
+
+::: {#lem-pdf-inc}
+$J\subseteq\mathbb{R}$ を有界とは限らない区間とし、$g\colon J\to\mathbb{R}$ を $J$ の内点で**微分可能**で $g'(x)>0$ とする。
+確率密度関数を持つ任意の確率変数 $X$ について、
+\begin{align*}
+f_{g(X)}(x) &=
+\begin{cases}
+\frac1{g'(g^{-1}(x))} f_X(g^{-1}(x))&\text{if } x\in\mathrm{Image}(g)\\
+0&\text{otherwise}
+\end{cases}
+\end{align*}
+は $g(X)$ の確率密度関数になる。
+:::
+::: {.proof}
+関数 $f_Z\colon \mathbb{R}\to\mathbb{R}_{\ge 0}$ が
+
+$$
+\Pr(Z\le x) = \int_{-\infty}^x f_Z(z)\mathrm{d} z
+$$
+
+を満たすとき、$f_Z$ は確率変数 $Z$ の確率密度関数となる。
+
+任意の $x\in\mathrm{Image}(g)$ について
+\begin{align*}
+\Pr(g(X)\le x) &= \Pr(X\le g^{-1}(x))\\
+&= \int_{-\infty}^{g^{-1}(x)} f_{X}(z)\mathrm{d}z\\
+&= \int_{\inf \mathrm{Image}(g)}^{x} f_{X}(g^{-1}(z')) \frac1{g'(g^{-1}(z'))}\mathrm{d}z'\qquad (z'=g(z)).
+\end{align*}
+:::
+
