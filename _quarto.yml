@@ -18,8 +18,8 @@ book:
         - sets.qmd
         - prob-space.qmd
         - rv.qmd
-        - moments.qmd
         - multivariate.qmd
+        - moments.qmd
     - part: "統計学"
       chapters:
         - bayes.qmd
