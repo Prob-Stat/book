@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./moments.html" rel="next">
+<link href="./multivariate.html" rel="next">
 <link href="./prob-space.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -390,14 +390,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./moments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">期待値、分散、モーメント</span></span></a>
+  <a href="./multivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">条件付き確率</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./multivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">複数の確率変数、多変量正規分布</span></span></a>
+  <a href="./moments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">期待値、分散、モーメント</span></span></a>
   </div>
 </li>
       </ul>
@@ -748,7 +748,7 @@ f_X(k) = \binom{n}{k} p^k(1-p)^{n-k}
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cell-fig-binom" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="2">
+<div id="cell-fig-binom" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-binom" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -818,7 +818,7 @@ f_X(k) = (1-p)^{k-1}p,\qquad\forall k\ge 1
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cell-fig-geom" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="2">
+<div id="cell-fig-geom" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-geom" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -888,7 +888,7 @@ f_X(k) = \frac{\binom{K}{k}\binom{N-K}{n-k}}{\binom{N}{n}},\qquad\forall k\in \{
 <span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cell-fig-hypergeom" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="2">
+<div id="cell-fig-hypergeom" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="4">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-hypergeom" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -956,7 +956,7 @@ f_X(k) = \frac{\lambda^k}{k!}\mathrm{e}^{-\lambda},\qquad \forall k\ge 0
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cell-fig-poisson" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="2">
+<div id="cell-fig-poisson" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="5">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-poisson" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1049,7 +1049,7 @@ F_X(x) &amp;= \begin{cases}
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cell-fig-uniform" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="2">
+<div id="cell-fig-uniform" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="6">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-uniform" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1117,7 +1117,7 @@ F_X(x) &amp;= \int_{-\infty}^x \frac1{\sqrt{2\pi\sigma^2}}\mathrm{e}^{-\frac{(z-
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cell-fig-normal" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="2">
+<div id="cell-fig-normal" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="7">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-normal" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1190,7 +1190,7 @@ F_X(x) &amp;= \begin{cases}
 <span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cell-fig-exp" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="2">
+<div id="cell-fig-exp" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="8">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-exp" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1692,8 +1692,8 @@ f_{g(X)}(x) &amp;=
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./moments.html" class="pagination-link" aria-label="期待値、分散、モーメント">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">期待値、分散、モーメント</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./multivariate.html" class="pagination-link" aria-label="条件付き確率">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">条件付き確率</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

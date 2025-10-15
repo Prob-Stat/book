@@ -241,80 +241,102 @@
     ]
   },
   {
-    "objectID": "moments.html",
-    "href": "moments.html",
-    "title": "5  期待値、分散、モーメント",
+    "objectID": "multivariate.html",
+    "href": "multivariate.html",
+    "title": "5  条件付き確率",
     "section": "",
-    "text": "5.1 期待値",
+    "text": "5.1 事象の条件付き確率と独立性\n二つの事象 \\(A,B\\subseteq\\Omega\\) を考える文脈では \\(P(A\\cap B)\\) を同時確率、\\(P(A),\\,P(B)\\) を周辺確率という。\n事象 \\(A\\) と \\(B\\) が独立であり、\\(P(B)&gt;0\\) であるとき、\\(P(A\\mid B)=P(A)\\) である。",
     "crumbs": [
       "確率論",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>期待値、分散、モーメント</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>条件付き確率</span>"
+    ]
+  },
+  {
+    "objectID": "multivariate.html#事象の条件付き確率と独立性",
+    "href": "multivariate.html#事象の条件付き確率と独立性",
+    "title": "5  条件付き確率",
+    "section": "",
+    "text": "定義 5.1 (条件付き確率) 確率空間 \\((\\Omega,\\,P)\\) の事象 \\(A,B\\subseteq\\Omega\\) について \\(P(B)&gt; 0\\) のとき、\\(B\\) における \\(A\\) の条件付き確率 は以下で定義される。 \\[\\begin{align*}\nP(A\\mid B) &\\coloneqq \\frac{P(A\\cap B)}{P(B)}\n\\end{align*}\\]\n\n\n\n定義 5.2 (事象の独立性) 確率空間 \\((\\Omega,\\,P)\\) の事象 \\(A,B\\subseteq\\Omega\\) について \\[\\begin{align*}\nP(A\\cap B) &= P(A) P(B)\n\\end{align*}\\] を満たすとき、事象 \\(A\\) と \\(B\\) は独立であるという。\n\n\n例 5.1 (二回のコイン投げ) 標本空間を \\(\\Omega = \\{\\mathrm{HH},\\mathrm{HT},\\mathrm{TH},\\mathrm{TT}\\}\\) とし、確率測度を \\(P(A) = \\frac{|A|}4\\quad\\forall A\\subseteq\\Omega\\) とする。 このとき、\\(A=\\{\\mathrm{HH},\\mathrm{HT}\\},\\,B=\\{\\mathrm{HH},\\mathrm{TH}\\}\\) とおくと、 \\[\\begin{align*}\nP(A\\cap B) &= \\frac14,&P(A)&=P(B)=\\frac12\n\\end{align*}\\] より \\(P(A\\cap B) = P(A)P(B)\\) を満たすことが分かる。 よって事象 \\(A,\\,B\\) は独立である。",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>条件付き確率</span>"
+    ]
+  },
+  {
+    "objectID": "multivariate.html#確率変数の条件付き確率と独立性",
+    "href": "multivariate.html#確率変数の条件付き確率と独立性",
+    "title": "5  条件付き確率",
+    "section": "5.2 確率変数の条件付き確率と独立性",
+    "text": "5.2 確率変数の条件付き確率と独立性\n事象は確率変数を通じて表わすことが多い。そのため\n\n定義 5.3 (確率変数) 確率空間 \\((\\Omega,\\,P)\\) 上の確率変数 \\(X_1, X_2\\) について同時確率を \\[\\begin{align*}\n\\Pr(X_1\\in A,\\,X_2\\in B) &\\coloneqq P(\\{\\omega\\in\\Omega\\mid X_1(\\omega)\\in A\\}\\cap\\{\\omega\\in\\Omega\\mid X_2(\\omega)\\in B\\}\\})\\quad\\forall A,B\\subseteq\\mathbb{R}\n\\end{align*}\\] と定義する。確率変数が三つ以上の場合も同様に定義する。 また \\(\\Pr(X_2\\in B)&gt;0\\) のとき、条件付き確率は以下で定義する。 \\[\\begin{align*}\n\\Pr(X_1\\in A\\mid X_2\\in B) &\\coloneqq P(\\{\\omega\\in\\Omega\\mid X_1(\\omega)\\in A\\}\\mid\\{\\omega\\in\\Omega\\mid X_2(\\omega)\\in B\\}\\})\\\\\n&=\\frac{\\Pr(X_1\\in A, X_2\\in B)}{\\Pr(X_2\\in B)}\\qquad\\forall A,B\\subseteq\\mathbb{R}.\n\\end{align*}\\] 任意の \\(A,B\\subseteq\\mathbb{R}\\) について、 \\[\\begin{align*}\n\\Pr(X_1\\in A,\\,X_2\\in B)  &= \\Pr(X_1\\in A)\\Pr(X_2\\in B)\n\\end{align*}\\] を満たすとき、確率変数 \\(X_1\\) と \\(X_2\\) は独立であるという。\n\n\n補題 5.1 確率空間 \\((\\Omega,\\,P)\\) 上の離散型確率変数 \\(X_1, X_2\\) について、 \\(X_1\\) と \\(X_2\\) が独立 \\(\\iff\\) \\[\\begin{align*}\n\\Pr(X_1=x_1,\\,X_2=x_2)  &= \\Pr(X_1=x_1)\\Pr(X_2=x_2)\n\\quad\\forall x_1\\in\\mathrm{Image}(X_1),x_2\\in\\mathrm{Image}(X_2).\n\\end{align*}\\]\n\n\n証明. \\(\\Longrightarrow\\) は自明。 \\(\\Longleftarrow\\) を示す。 \\[\\begin{align*}\n\\Pr(X_1\\in A,\\,X_2\\in B)  &= \\sum_{x_1\\in A}\\sum_{x_2\\in B} \\Pr(X_1=x_1,\\,X_2=x_2)\\\\\n&= \\sum_{x_1\\in A}\\sum_{x_2\\in B} \\Pr(X_1=x_1)\\Pr(X_2=x_2)\\\\\n&= \\Pr(X_1\\in A)\\Pr(X_2\\in B)\n\\end{align*}\\]\n\n\n例 5.2 (二回のコイン投げ) 標本空間を \\(\\Omega = \\{\\mathrm{HH},\\mathrm{HT},\\mathrm{TH},\\mathrm{TT}\\}\\) とし、確率測度を \\(P(A) = \\frac{|A|}4\\quad\\forall A\\subseteq\\Omega\\) とする。 \\[\\begin{align*}\nX_1(\\mathrm{HH})&=X_1(\\mathrm{HT}) = 1,&\nX_1(\\mathrm{TH})&=X_1(\\mathrm{TT}) = 0\\\\\nX_2(\\mathrm{HH})&=X_2(\\mathrm{TH}) = 1,&\nX_2(\\mathrm{HT})&=X_2(\\mathrm{TT}) = 0\n\\end{align*}\\] と定義する。 このとき、 \\[\\begin{align*}\n\\Pr(X_1=x_1,\\,X_2=x_2) &= \\frac14\\qquad\\forall x_1,x_2\\in\\{0,1\\}\\\\\n\\Pr(X_1=x_1)=\\Pr(X_2=x_2)&=\\frac12\\qquad\\forall x_1,x_2\\in\\{0,1\\}\n\\end{align*}\\] より \\(\\Pr(X_1=x_1,\\,X_2=x_2) = \\Pr(X_1=x_1)\\Pr(X_2=x_2)\\) を満たすことが分かる。 よって確率変数 \\(X_1,\\,X_2\\) は独立である。",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>条件付き確率</span>"
+    ]
+  },
+  {
+    "objectID": "multivariate.html#離散型確率変数と確率質量関数",
+    "href": "multivariate.html#離散型確率変数と確率質量関数",
+    "title": "5  条件付き確率",
+    "section": "5.3 離散型確率変数と確率質量関数",
+    "text": "5.3 離散型確率変数と確率質量関数\n\n定義 5.4 確率空間 \\((\\Omega,\\,P)\\) 上の離散型確率変数 \\(X_1\\), \\(X_2\\) について、同時確率質量関数を \\[\\begin{align*}\nf_{X_1,\\,X_2}(x_1,x_2) &\\coloneqq \\Pr(X_1=x_1,\\,X_2=x_2)\\\\\nf_{X_1\\mid X_2}(x_1\\mid x_2) &\\coloneqq \\Pr(X_1=x_1\\mid X_2=x_2)\n\\end{align*}\\] と定義する。\n\n\\[\\begin{align*}\nf_{X_1,\\,X_2}(x_1,x_2) &= f_{X_1\\mid X_2}(x_1\\mid x_2) f_{X_2}(x_2)\n\\end{align*}\\] が成り立つ。 また、同時確率質量関数からそれぞれの確率変数の確率質量関数が得られる。 \\[\\begin{align*}\nf_{X_1}(x_1) &= \\sum_{x_2} f_{X_1, X_2}(x_1, x_2)\\\\\nf_{X_2}(x_2) &= \\sum_{x_1} f_{X_1, X_2}(x_1, x_2)\n\\end{align*}\\] それぞれの確率変数の確率質量関数を周辺質量関数と呼ぶ。 同時確率質量関数から周辺質量関数を計算する操作のことを周辺化という。",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>条件付き確率</span>"
+    ]
+  },
+  {
+    "objectID": "multivariate.html#連続型確率変数と確率密度関数",
+    "href": "multivariate.html#連続型確率変数と確率密度関数",
+    "title": "5  条件付き確率",
+    "section": "5.4 連続型確率変数と確率密度関数",
+    "text": "5.4 連続型確率変数と確率密度関数",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>条件付き確率</span>"
+    ]
+  },
+  {
+    "objectID": "moments.html",
+    "href": "moments.html",
+    "title": "6  期待値、分散、モーメント",
+    "section": "",
+    "text": "6.1 期待値",
+    "crumbs": [
+      "確率論",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>期待値、分散、モーメント</span>"
     ]
   },
   {
     "objectID": "moments.html#期待値",
     "href": "moments.html#期待値",
-    "title": "5  期待値、分散、モーメント",
+    "title": "6  期待値、分散、モーメント",
     "section": "",
-    "text": "定義 5.1 (期待値) 離散型確率変数 \\(X\\) が\\(A\\subseteq\\mathbb{R}\\)に値を取るとき、その期待値は\n\\[\\begin{align*}\n\\expt{X} &= \\sum_{\\omega \\in \\Omega} X(\\omega) P(\\{\\omega\\})\\\\\n&= \\sum_{x\\in A} x P(\\{\\omega\\mid X(\\omega)=x\\})\\\\\n&= \\sum_{x\\in A} x \\Pr(X=x)\\\\\n&= \\sum_{x\\in A} x f_X(x)\n\\end{align*}\\]\nと定義される。ここで、右辺の和が絶対収束しない場合は(適当な順番で和を取って収束したとしても)期待値は定義されない。 連続型確率変数 \\(X\\) が確率密度関数 \\(f_X\\) を持つとき、その期待値は\n\\[\n\\expt{X}= \\int_{-\\infty}^\\infty x f_X(x) \\mathrm{d}x\n\\]\nと定義される。\n\n\n補題 5.1 (Law of the unconscious statistician (LOTUS)) 任意の関数 \\(g\\colon\\mathbb{R}\\to\\mathbb{R}\\) について、\n\n\\(X\\) が離散型確率変数のとき、 \\[\\begin{align*}\n\\expt{g(X)} &= \\sum_{x} g(x) f_X(x).\n\\end{align*}\\]\n\\(X\\) が連続型確率変数で確率密度関数を持つとき、 \\[\\begin{align*}\n\\expt{g(X)} &= \\int_{-\\infty}^\\infty g(x) f_X(x) \\mathrm{d}x.\n\\end{align*}\\]\n\n\n\n証明. \\(X\\) を離散型確率変数とする。 \\[\\begin{align*}\n\\expt{g(X)}\n&= \\sum_{x} x f_{g(X)}(x)\\\\\n&= \\sum_{x} x \\Pr(g(X) = x)\\\\\n&= \\sum_{x} x \\Pr(\\{\\omega\\in\\Omega\\mid g(X(\\omega)) = x\\})\\\\\n&= \\sum_{x} x \\Pr\\left(\\bigcup_{y\\in\\mathrm{Image}(X)\\colon\\, g(y) = x}\\{\\omega\\in\\Omega\\mid X(\\omega) = y\\}\\right)\\\\\n&= \\sum_{x}\\sum_{y\\in\\mathrm{Image}(X)\\colon\\, g(y) = x} x \\Pr\\left(\\{\\omega\\in\\Omega\\mid X(\\omega) = y\\}\\right)\\\\\n&= \\sum_{y\\in\\mathrm{Image}(X)} g(y) f_X(y)\n\\end{align*}\\]\n\\(X\\) が連続型確率変数で確率密度関数を持つとする。 \\[\\begin{align*}\n\\expt{g(X)}\n&= \\int_{-\\infty}^\\infty x f_{g(X)}(x)\\mathrm{d}x\\\\\n\\end{align*}\\]\n\n\n補題 5.2 (期待値の性質)  \n\n任意の \\(c\\in\\mathbb{R}\\) について \\(\\expt{X+c} = \\expt{X}+c\\)\n任意の \\(c\\in\\mathbb{R}\\) について \\(\\expt{cX} = c\\expt{X}\\)\n\n\n\n証明. \\(X\\) が離散確率変数のとき、\\(X\\) の値域を \\(A\\) とすると \\(X+c\\) の値域は \\(A+c\\coloneqq\\{a+c\\mid a\\in A\\}\\) なので、 \\[\\begin{align*}\n\\expt{X+c} &= \\sum_{x\\in A+c} x f_{X+c}(x)\\\\\n&= \\sum_{x\\in A+c} x \\Pr(X+c = x)\\\\\n&= \\sum_{x'\\in A} (x'+c) \\Pr(X = x')\\qquad(x' = x-c)\\\\\n&= \\expt{X}+c.\n\\end{align*}\\]\n\\(X\\) が連続確率変数のとき、 \\[\\begin{align*}\n\\expt{X+c} &= \\int_{-\\infty}^\\infty x f_{X+c}(x) \\mathrm{d} x\\\\\n&= \\int_{-\\infty}^\\infty x f_{X}(x-c) \\mathrm{d} x\\\\\n&= \\int_{-\\infty}^\\infty (x'+c) f_{X}(x') \\mathrm{d} x'\\qquad(x'=x-c)\\\\\n&= \\expt{X}+c.\n\\end{align*}\\]\n\\(c=0\\) のとき \\(cX = 0\\) なので、\\(\\expt{cX} = 0 = c\\expt{X}\\).\n\\(X\\) が離散確率変数のとき、\\(X\\) の値域を \\(A\\) とすると \\(cX\\) の値域は \\(cA\\coloneqq\\{ca\\mid a\\in A\\}\\) なので、 \\[\\begin{align*}\n\\expt{cX} &= \\sum_{x\\in cA} x f_{cX}(x) \\\\\n&= \\sum_{x\\in cA} x \\Pr(cX = x)\\\\\n&= \\sum_{x'\\in A} cx' \\Pr(X = x') \\qquad(x' = x/c)\\\\\n&= c\\expt{X}\n\\end{align*}\\]\n\\(X\\) が連続確率変数のとき、 \\[\\begin{align*}\n\\expt{cX} &= \\int_{-\\infty}^\\infty x f_{cX}(x) \\mathrm{d} x\\\\\n&= \\int_{-\\infty}^\\infty x \\frac1{|c|} f_{X}(x/c) \\mathrm{d} x\\\\\n&=\n\\begin{cases}\n\\int_{-\\infty}^\\infty cx'f_{X}(x') \\mathrm{d} x'& \\text{if } c &gt; 0\\\\\n\\int_{\\infty}^{-\\infty} -cx'f_{X}(x') \\mathrm{d} x'& \\text{if } c &lt; 0\\\\\n\\end{cases}\n\\qquad (x' = x/c)\\\\\n&= \\int_{-\\infty}^\\infty c x' f_{X}(x') \\mathrm{d} x'\\\\\n&= c\\expt{X}\n\\end{align*}\\]\n\n\n定理 5.1 (マルコフの不等式) 非負確率変数 \\(X\\) と \\(a&gt;0\\) について \\[\n\\Pr(X\\ge a)\\le\\frac{\\expt{X}}{a}.\n\\]\n\n\n証明. 離散確率変数の場合の証明を与える。 密度関数を持つ連続確率変数の場合も和を積分に変えた証明が成立する。 \\[\\begin{align*}\n\\expt{X} &= \\sum_{x\\in A} f_X(x) x\\\\\n&= \\sum_{x\\ge a} f_X(x) x + \\sum_{x &lt; a} f_X(x) x\\\\\n&\\ge \\sum_{x\\ge a} f_X(x) x\\qquad\\qquad (X\\ge 0)\\\\\n&\\ge \\sum_{x\\ge a} f_X(x) a\\\\\n&= \\Pr(X\\ge a) a.\n\\end{align*}\\]",
+    "text": "定義 6.1 (期待値) 離散型確率変数 \\(X\\) が\\(A\\subseteq\\mathbb{R}\\)に値を取るとき、その期待値は\n\\[\\begin{align*}\n\\expt{X} &= \\sum_{\\omega \\in \\Omega} X(\\omega) P(\\{\\omega\\})\\\\\n&= \\sum_{x\\in A} x P(\\{\\omega\\mid X(\\omega)=x\\})\\\\\n&= \\sum_{x\\in A} x \\Pr(X=x)\\\\\n&= \\sum_{x\\in A} x f_X(x)\n\\end{align*}\\]\nと定義される。ここで、右辺の和が絶対収束しない場合は(適当な順番で和を取って収束したとしても)期待値は定義されない。 連続型確率変数 \\(X\\) が確率密度関数 \\(f_X\\) を持つとき、その期待値は\n\\[\n\\expt{X}= \\int_{-\\infty}^\\infty x f_X(x) \\mathrm{d}x\n\\]\nと定義される。\n\n\n補題 6.1 (Law of the unconscious statistician (LOTUS)) 任意の関数 \\(g\\colon\\mathbb{R}\\to\\mathbb{R}\\) について、\n\n\\(X\\) が離散型確率変数のとき、 \\[\\begin{align*}\n\\expt{g(X)} &= \\sum_{x} g(x) f_X(x).\n\\end{align*}\\]\n\\(X\\) が連続型確率変数で確率密度関数を持つとき、 \\[\\begin{align*}\n\\expt{g(X)} &= \\int_{-\\infty}^\\infty g(x) f_X(x) \\mathrm{d}x.\n\\end{align*}\\]\n\n\n\n証明. \\(X\\) を離散型確率変数とする。 \\[\\begin{align*}\n\\expt{g(X)}\n&= \\sum_{x} x f_{g(X)}(x)\\\\\n&= \\sum_{x} x \\Pr(g(X) = x)\\\\\n&= \\sum_{x} x \\Pr(\\{\\omega\\in\\Omega\\mid g(X(\\omega)) = x\\})\\\\\n&= \\sum_{x} x \\Pr\\left(\\bigcup_{y\\in\\mathrm{Image}(X)\\colon\\, g(y) = x}\\{\\omega\\in\\Omega\\mid X(\\omega) = y\\}\\right)\\\\\n&= \\sum_{x}\\sum_{y\\in\\mathrm{Image}(X)\\colon\\, g(y) = x} x \\Pr\\left(\\{\\omega\\in\\Omega\\mid X(\\omega) = y\\}\\right)\\\\\n&= \\sum_{y\\in\\mathrm{Image}(X)} g(y) f_X(y)\n\\end{align*}\\]\n\\(X\\) が連続型確率変数で確率密度関数を持つとする。 \\[\\begin{align*}\n\\expt{g(X)}\n&= \\int_{-\\infty}^\\infty x f_{g(X)}(x)\\mathrm{d}x\\\\\n\\end{align*}\\]\n\n\n補題 6.2 (期待値の性質)  \n\n任意の \\(c\\in\\mathbb{R}\\) について \\(\\expt{X+c} = \\expt{X}+c\\)\n任意の \\(c\\in\\mathbb{R}\\) について \\(\\expt{cX} = c\\expt{X}\\)\n\n\n\n証明. \\(X\\) が離散確率変数のとき、\\(X\\) の値域を \\(A\\) とすると \\(X+c\\) の値域は \\(A+c\\coloneqq\\{a+c\\mid a\\in A\\}\\) なので、 \\[\\begin{align*}\n\\expt{X+c} &= \\sum_{x\\in A+c} x f_{X+c}(x)\\\\\n&= \\sum_{x\\in A+c} x \\Pr(X+c = x)\\\\\n&= \\sum_{x'\\in A} (x'+c) \\Pr(X = x')\\qquad(x' = x-c)\\\\\n&= \\expt{X}+c.\n\\end{align*}\\]\n\\(X\\) が連続確率変数のとき、 \\[\\begin{align*}\n\\expt{X+c} &= \\int_{-\\infty}^\\infty x f_{X+c}(x) \\mathrm{d} x\\\\\n&= \\int_{-\\infty}^\\infty x f_{X}(x-c) \\mathrm{d} x\\\\\n&= \\int_{-\\infty}^\\infty (x'+c) f_{X}(x') \\mathrm{d} x'\\qquad(x'=x-c)\\\\\n&= \\expt{X}+c.\n\\end{align*}\\]\n\\(c=0\\) のとき \\(cX = 0\\) なので、\\(\\expt{cX} = 0 = c\\expt{X}\\).\n\\(X\\) が離散確率変数のとき、\\(X\\) の値域を \\(A\\) とすると \\(cX\\) の値域は \\(cA\\coloneqq\\{ca\\mid a\\in A\\}\\) なので、 \\[\\begin{align*}\n\\expt{cX} &= \\sum_{x\\in cA} x f_{cX}(x) \\\\\n&= \\sum_{x\\in cA} x \\Pr(cX = x)\\\\\n&= \\sum_{x'\\in A} cx' \\Pr(X = x') \\qquad(x' = x/c)\\\\\n&= c\\expt{X}\n\\end{align*}\\]\n\\(X\\) が連続確率変数のとき、 \\[\\begin{align*}\n\\expt{cX} &= \\int_{-\\infty}^\\infty x f_{cX}(x) \\mathrm{d} x\\\\\n&= \\int_{-\\infty}^\\infty x \\frac1{|c|} f_{X}(x/c) \\mathrm{d} x\\\\\n&=\n\\begin{cases}\n\\int_{-\\infty}^\\infty cx'f_{X}(x') \\mathrm{d} x'& \\text{if } c &gt; 0\\\\\n\\int_{\\infty}^{-\\infty} -cx'f_{X}(x') \\mathrm{d} x'& \\text{if } c &lt; 0\\\\\n\\end{cases}\n\\qquad (x' = x/c)\\\\\n&= \\int_{-\\infty}^\\infty c x' f_{X}(x') \\mathrm{d} x'\\\\\n&= c\\expt{X}\n\\end{align*}\\]\n\n\n定理 6.1 (マルコフの不等式) 非負確率変数 \\(X\\) と \\(a&gt;0\\) について \\[\n\\Pr(X\\ge a)\\le\\frac{\\expt{X}}{a}.\n\\]\n\n\n証明. 離散確率変数の場合の証明を与える。 密度関数を持つ連続確率変数の場合も和を積分に変えた証明が成立する。 \\[\\begin{align*}\n\\expt{X} &= \\sum_{x\\in A} f_X(x) x\\\\\n&= \\sum_{x\\ge a} f_X(x) x + \\sum_{x &lt; a} f_X(x) x\\\\\n&\\ge \\sum_{x\\ge a} f_X(x) x\\qquad\\qquad (X\\ge 0)\\\\\n&\\ge \\sum_{x\\ge a} f_X(x) a\\\\\n&= \\Pr(X\\ge a) a.\n\\end{align*}\\]",
     "crumbs": [
       "確率論",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>期待値、分散、モーメント</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>期待値、分散、モーメント</span>"
     ]
   },
   {
     "objectID": "moments.html#分散",
     "href": "moments.html#分散",
-    "title": "5  期待値、分散、モーメント",
-    "section": "5.2 分散",
-    "text": "5.2 分散\n\n定義 5.2 (分散) 確率変数 \\(X\\) が期待値を持つとき、その分散を\n\\[\n\\var{X}= \\expt{(X-\\expt{X})^2}\n\\]\nと定義する。\n\n確率変数 \\(X\\) が分散を持つとき、\n\\[\\begin{align*}\n\\var{X} &= \\expt{(X-\\expt{X})^2}\\\\\n&= \\expt{X^2-2X\\expt{X}+\\expt{X}^2}\\\\\n&= \\expt{X^2}-2\\expt{X}\\expt{X}+\\expt{X}^2\\\\\n&= \\expt{X^2}-\\expt{X}^2\n\\end{align*}\\]\nである。 分散は直感的には期待値からのはずれ具合を表す値である。\n\n定理 5.2 (チェビシェフの不等式) 非負確率変数 \\(X\\) と \\(a&gt;0\\) について \\[\n\\Pr(|X-\\expt{X}|\\ge a)\\le\\frac{\\var{X}}{a^2}.\n\\]\n\n\n証明. \\[\\begin{align*}\n\\Pr(|X-\\expt{X}|\\ge a)&= \\Pr((X-\\expt{X})^2\\ge a^2)\\\\\n&\\le\n\\frac{\\expt{(X-\\expt{X})^2}}{a^2} = \\frac{\\var{X}}{a^2}\n\\end{align*}\\]",
+    "title": "6  期待値、分散、モーメント",
+    "section": "6.2 分散",
+    "text": "6.2 分散\n\n定義 6.2 (分散) 確率変数 \\(X\\) が期待値を持つとき、その分散を\n\\[\n\\var{X}= \\expt{(X-\\expt{X})^2}\n\\]\nと定義する。\n\n確率変数 \\(X\\) が分散を持つとき、\n\\[\\begin{align*}\n\\var{X} &= \\expt{(X-\\expt{X})^2}\\\\\n&= \\expt{X^2-2X\\expt{X}+\\expt{X}^2}\\\\\n&= \\expt{X^2}-2\\expt{X}\\expt{X}+\\expt{X}^2\\\\\n&= \\expt{X^2}-\\expt{X}^2\n\\end{align*}\\]\nである。 分散は直感的には期待値からのはずれ具合を表す値である。\n\n定理 6.2 (チェビシェフの不等式) 非負確率変数 \\(X\\) と \\(a&gt;0\\) について \\[\n\\Pr(|X-\\expt{X}|\\ge a)\\le\\frac{\\var{X}}{a^2}.\n\\]\n\n\n証明. \\[\\begin{align*}\n\\Pr(|X-\\expt{X}|\\ge a)&= \\Pr((X-\\expt{X})^2\\ge a^2)\\\\\n&\\le\n\\frac{\\expt{(X-\\expt{X})^2}}{a^2} = \\frac{\\var{X}}{a^2}\n\\end{align*}\\]",
     "crumbs": [
       "確率論",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>期待値、分散、モーメント</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>期待値、分散、モーメント</span>"
     ]
   },
   {
     "objectID": "moments.html#モーメントとモーメント母関数",
     "href": "moments.html#モーメントとモーメント母関数",
-    "title": "5  期待値、分散、モーメント",
-    "section": "5.3 モーメントとモーメント母関数",
-    "text": "5.3 モーメントとモーメント母関数\n\n定義 5.3 (モーメント) 確率変数 \\(X\\) と正の整数 \\(n\\in\\mathbb{Z}_{\\ge 1}\\) について、\n\\[\n\\expt{X^n}\n\\]\nを \\(X\\) の \\(n\\) 次モーメントという。\n\n\n定義 5.4 (モーメント母関数(積率母関数)) 確率変数 \\(X\\) について、\n\\[\nM_X(t) \\coloneqq \\expt{\\mathrm{e}^{tX}}\\qquad t\\in\\mathbb{R}\n\\]\nを \\(X\\) のモーメント母関数という。 すべての \\(t\\in\\mathbb{R}\\) で \\(M_X(t)\\) が存在しない場合もある。 また、\n\\[\nK_X(t) \\coloneqq \\log M_X(t)\n\\] を \\(X\\) のキュムラント母関数という。\n\n\n今後は以下の補題を認めることにする。証明にはルベーグ積分の知識が必要である。\n\n補題 5.3 確率変数 \\(X\\) について、ある \\(\\epsilon &gt;0\\) が存在し、モーメント母関数 \\(M_X(t)\\) が \\(t\\in(-\\epsilon,\\epsilon)\\) で存在するとき、\n\\[\\begin{align*}\nM_X(t) &=\\sum_{n\\ge 0}\\frac{\\expt{X^n}}{n!}t^n\\\\\n\\expt{X^n} &= \\left.\\frac{\\mathrm{d}^n M_X(t)}{\\mathrm{d} t^n}\\right|_{t=0}.\n\\end{align*}\\]\n\n\n証明. (概要) \\[\\begin{align*}\nM_X(t) &= \\expt{\\mathrm{e}^{tX}}\\\\\n&=\\expt{\\sum_{n\\ge 0}\\frac{(tX)^n}{n!}}\\\\\n&=\\sum_{n\\ge 0}\\expt{\\frac{(tX)^n}{n!}}\\qquad\\text{\\textsf{(この無限和と期待値の交換が定理の条件より正当化される)}}.\n\\end{align*}\\]\n\n\n系 5.1 確率変数 \\(X\\) について、ある \\(\\epsilon &gt;0\\) が存在し、モーメント母関数 \\(M_X(t)\\) が \\(t\\in(-\\epsilon,\\epsilon)\\) で存在するとき、\n\\[\\begin{align*}\n\\left.\\frac{\\mathrm{d} K_X(t)}{\\mathrm{d} t}\\right|_{t=0} &= \\expt{X}\\\\\n\\left.\\frac{\\mathrm{d}^2 K_X(t)}{\\mathrm{d} t^2}\\right|_{t=0} &=  \\var{X}.\n\\end{align*}\\]\n\n\n証明. \\[\\begin{align*}\n\\left.\\frac{\\mathrm{d} K_X(t)}{\\mathrm{d} t}\\right|_{t=0} &= \\left.\\frac{M'_X(t)}{M_X(t)}\\right|_{t=0}=\\expt{X}\\\\\n\\left.\\frac{\\mathrm{d}^2 K_X(t)}{\\mathrm{d} t^2}\\right|_{t=0} &= \\left.\\frac{M''_X(t)M_X(t) - M'_X(t)^2}{M_X(t)^2}\\right|_{t=0} = M''_X(0) - M'_X(0)^2 = \\var{X}.\n\\end{align*}\\]\n\nまた、重要度は低くなるが、\n\\[\\begin{align*}\n\\left.\\frac{\\mathrm{d}^3 K_X(t)}{\\mathrm{d} t^3}\\right|_{t=0} &= \\expt{(X - \\expt{X})^3}\\\\\n\\left.\\frac{\\mathrm{d}^4 K_X(t)}{\\mathrm{d} t^4}\\right|_{t=0} &= \\expt{(X - \\expt{X})^4} - 3\\var{X}^2\n\\end{align*}\\]\nが成り立つ。 一般に \\[\\begin{align*}\n\\kappa_n(X) &\\coloneqq \\left.\\frac{\\mathrm{d}^n K_X(t)}{\\mathrm{d} t^n}\\right|_{t=0}\n\\end{align*}\\] を \\(X\\) の \\(n\\) 次キュムラント と呼ぶ。",
+    "title": "6  期待値、分散、モーメント",
+    "section": "6.3 モーメントとモーメント母関数",
+    "text": "6.3 モーメントとモーメント母関数\n\n定義 6.3 (モーメント) 確率変数 \\(X\\) と正の整数 \\(n\\in\\mathbb{Z}_{\\ge 1}\\) について、\n\\[\n\\expt{X^n}\n\\]\nを \\(X\\) の \\(n\\) 次モーメントという。\n\n\n定義 6.4 (モーメント母関数(積率母関数)) 確率変数 \\(X\\) について、\n\\[\nM_X(t) \\coloneqq \\expt{\\mathrm{e}^{tX}}\\qquad t\\in\\mathbb{R}\n\\]\nを \\(X\\) のモーメント母関数という。 すべての \\(t\\in\\mathbb{R}\\) で \\(M_X(t)\\) が存在しない場合もある。 また、\n\\[\nK_X(t) \\coloneqq \\log M_X(t)\n\\] を \\(X\\) のキュムラント母関数という。\n\n\n今後は以下の補題を認めることにする。証明にはルベーグ積分の知識が必要である。\n\n補題 6.3 確率変数 \\(X\\) について、ある \\(\\epsilon &gt;0\\) が存在し、モーメント母関数 \\(M_X(t)\\) が \\(t\\in(-\\epsilon,\\epsilon)\\) で存在するとき、\n\\[\\begin{align*}\nM_X(t) &=\\sum_{n\\ge 0}\\frac{\\expt{X^n}}{n!}t^n\\\\\n\\expt{X^n} &= \\left.\\frac{\\mathrm{d}^n M_X(t)}{\\mathrm{d} t^n}\\right|_{t=0}.\n\\end{align*}\\]\n\n\n証明. (概要) \\[\\begin{align*}\nM_X(t) &= \\expt{\\mathrm{e}^{tX}}\\\\\n&=\\expt{\\sum_{n\\ge 0}\\frac{(tX)^n}{n!}}\\\\\n&=\\sum_{n\\ge 0}\\expt{\\frac{(tX)^n}{n!}}\\qquad\\text{\\textsf{(この無限和と期待値の交換が定理の条件より正当化される)}}.\n\\end{align*}\\]\n\n\n系 6.1 確率変数 \\(X\\) について、ある \\(\\epsilon &gt;0\\) が存在し、モーメント母関数 \\(M_X(t)\\) が \\(t\\in(-\\epsilon,\\epsilon)\\) で存在するとき、\n\\[\\begin{align*}\n\\left.\\frac{\\mathrm{d} K_X(t)}{\\mathrm{d} t}\\right|_{t=0} &= \\expt{X}\\\\\n\\left.\\frac{\\mathrm{d}^2 K_X(t)}{\\mathrm{d} t^2}\\right|_{t=0} &=  \\var{X}.\n\\end{align*}\\]\n\n\n証明. \\[\\begin{align*}\n\\left.\\frac{\\mathrm{d} K_X(t)}{\\mathrm{d} t}\\right|_{t=0} &= \\left.\\frac{M'_X(t)}{M_X(t)}\\right|_{t=0}=\\expt{X}\\\\\n\\left.\\frac{\\mathrm{d}^2 K_X(t)}{\\mathrm{d} t^2}\\right|_{t=0} &= \\left.\\frac{M''_X(t)M_X(t) - M'_X(t)^2}{M_X(t)^2}\\right|_{t=0} = M''_X(0) - M'_X(0)^2 = \\var{X}.\n\\end{align*}\\]\n\nまた、重要度は低くなるが、\n\\[\\begin{align*}\n\\left.\\frac{\\mathrm{d}^3 K_X(t)}{\\mathrm{d} t^3}\\right|_{t=0} &= \\expt{(X - \\expt{X})^3}\\\\\n\\left.\\frac{\\mathrm{d}^4 K_X(t)}{\\mathrm{d} t^4}\\right|_{t=0} &= \\expt{(X - \\expt{X})^4} - 3\\var{X}^2\n\\end{align*}\\]\nが成り立つ。 一般に \\[\\begin{align*}\n\\kappa_n(X) &\\coloneqq \\left.\\frac{\\mathrm{d}^n K_X(t)}{\\mathrm{d} t^n}\\right|_{t=0}\n\\end{align*}\\] を \\(X\\) の \\(n\\) 次キュムラント と呼ぶ。",
     "crumbs": [
       "確率論",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>期待値、分散、モーメント</span>"
-    ]
-  },
-  {
-    "objectID": "multivariate.html",
-    "href": "multivariate.html",
-    "title": "6  複数の確率変数、多変量正規分布",
-    "section": "",
-    "text": "6.1 複数の確率変数",
-    "crumbs": [
-      "確率論",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>複数の確率変数、多変量正規分布</span>"
-    ]
-  },
-  {
-    "objectID": "multivariate.html#条件付き確率",
-    "href": "multivariate.html#条件付き確率",
-    "title": "6  複数の確率変数、多変量正規分布",
-    "section": "6.2 条件付き確率",
-    "text": "6.2 条件付き確率",
-    "crumbs": [
-      "確率論",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>複数の確率変数、多変量正規分布</span>"
-    ]
-  },
-  {
-    "objectID": "multivariate.html#多変量正規分布",
-    "href": "multivariate.html#多変量正規分布",
-    "title": "6  複数の確率変数、多変量正規分布",
-    "section": "6.3 多変量正規分布",
-    "text": "6.3 多変量正規分布",
-    "crumbs": [
-      "確率論",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>複数の確率変数、多変量正規分布</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>期待値、分散、モーメント</span>"
     ]
   },
   {
