@@ -59,42 +59,11 @@ P(A\cap B) &= \frac14,&P(A)&=P(B)=\frac12
 を満たすとき、**確率変数 $X_1$ と $X_2$ は独立である**という。
 :::
 
-::: {#lem-cond}
-確率空間 $(\Omega,\,P)$ 上の**離散型**確率変数 $X_1, X_2$ について、
-$X_1$ と $X_2$ が独立 $\iff$
+二つ以上の確率変数の累積分布関数を
 \begin{align*}
-\Pr(X_1=x_1,\,X_2=x_2)  &= \Pr(X_1=x_1)\Pr(X_2=x_2)
-\quad\forall x_1\in\mathrm{Image}(X_1),x_2\in\mathrm{Image}(X_2).
-\end{align*}
-:::
-::: {.proof}
-$\Longrightarrow$ は自明。
-$\Longleftarrow$ を示す。
-\begin{align*}
-\Pr(X_1\in A,\,X_2\in B)  &= \sum_{x_1\in A}\sum_{x_2\in B} \Pr(X_1=x_1,\,X_2=x_2)\\
-&= \sum_{x_1\in A}\sum_{x_2\in B} \Pr(X_1=x_1)\Pr(X_2=x_2)\\
-&= \Pr(X_1\in A)\Pr(X_2\in B)
-\end{align*}
-:::
-
-::: {#exm-ind-rv}
-### 二回のコイン投げ
-標本空間を $\Omega = \{\mathrm{HH},\mathrm{HT},\mathrm{TH},\mathrm{TT}\}$ とし、確率測度を $P(A) = \frac{|A|}4\quad\forall A\subseteq\Omega$ とする。
-\begin{align*}
-X_1(\mathrm{HH})&=X_1(\mathrm{HT}) = 1,&
-X_1(\mathrm{TH})&=X_1(\mathrm{TT}) = 0\\
-X_2(\mathrm{HH})&=X_2(\mathrm{TH}) = 1,&
-X_2(\mathrm{HT})&=X_2(\mathrm{TT}) = 0
+F_{X_1,\dotsc,X_n}(x_1,\dotsc,x_n) &\coloneqq\Pr(X_1\le x_1,\dotsc,X_n\le x_n)
 \end{align*}
 と定義する。
-このとき、
-\begin{align*}
-\Pr(X_1=x_1,\,X_2=x_2) &= \frac14\qquad\forall x_1,x_2\in\{0,1\}\\
-\Pr(X_1=x_1)=\Pr(X_2=x_2)&=\frac12\qquad\forall x_1,x_2\in\{0,1\}
-\end{align*}
-より $\Pr(X_1=x_1,\,X_2=x_2) = \Pr(X_1=x_1)\Pr(X_2=x_2)$ を満たすことが分かる。
-よって確率変数 $X_1,\,X_2$ は独立である。
-:::
 
 ## 離散型確率変数と確率質量関数
 
@@ -119,4 +88,47 @@ f_{X_2}(x_2) &= \sum_{x_1} f_{X_1, X_2}(x_1, x_2)
 それぞれの確率変数の確率質量関数を**周辺質量関数**と呼ぶ。
 同時確率質量関数から周辺質量関数を計算する操作のことを**周辺化**という。
 
+::: {#lem-cond}
+確率空間 $(\Omega,\,P)$ 上の**離散型**確率変数 $X_1, X_2$ について、
+$X_1$ と $X_2$ が独立 $\iff$
+\begin{align*}
+f_{X_1,\,X_2}(x_1,x_2) &= f_{X_1}(x_1) f_{X_2}(x_2)
+&\forall x_1\in\mathrm{Image}(X_1),x_2\in\mathrm{Image}(X_2).
+\end{align*}
+:::
+::: {.proof}
+$\Longrightarrow$ は自明。
+$\Longleftarrow$ を示す。
+\begin{align*}
+\Pr(X_1\in A,\,X_2\in B)  &= \sum_{x_1\in A}\sum_{x_2\in B} \Pr(X_1=x_1,\,X_2=x_2)\\
+&= \sum_{x_1\in A}\sum_{x_2\in B} \Pr(X_1=x_1)\Pr(X_2=x_2)\\
+&= \Pr(X_1\in A)\Pr(X_2\in B)
+\end{align*}
+:::
+
+::: {#exm-ind-rv}
+### 二回のコイン投げ
+標本空間を $\Omega = \{\mathrm{HH},\mathrm{HT},\mathrm{TH},\mathrm{TT}\}$ とし、確率測度を $P(A) = \frac{|A|}4\quad\forall A\subseteq\Omega$ とする。
+\begin{align*}
+X_1(\mathrm{HH})&=X_1(\mathrm{HT}) = 1,&
+X_1(\mathrm{TH})&=X_1(\mathrm{TT}) = 0\\
+X_2(\mathrm{HH})&=X_2(\mathrm{TH}) = 1,&
+X_2(\mathrm{HT})&=X_2(\mathrm{TT}) = 0
+\end{align*}
+と定義する。
+このとき、
+\begin{align*}
+f_{X_1,\,X_2}(x_1,\,x_2) &= \frac14\qquad\forall x_1,x_2\in\{0,1\}\\
+f_{X_1}(x_1)=f_{X_2}(x_2)&=\frac12\qquad\forall x_1,x_2\in\{0,1\}
+\end{align*}
+より $f_{X_1,\,X_2}(x_1,\,x_2) = f_{X_1}(x_1)f_{X_2}(x_2)$ を満たすことが分かる。
+よって確率変数 $X_1,\,X_2$ は独立である。
+:::
+
 ## 連続型確率変数と確率密度関数
+確率空間 $(\Omega,\,P)$ 上の連続型確率変数 $X_1$, $X_2$ について、**同時確率密度関数**を
+\begin{align*}
+\Pr(\begin{bmatrix}X_1,\,X_2\end{bmatrix}\in A) &= \int_A f_{X_1,\,X_2}(x_1,x_2)\mathrm{d}x_1\mathrm{d}x_2
+\end{align*}
+を満たすものと定義する。
+$X_1$ と $X_2$ が確率密度関数を持つ場合でも $X_1$ と $X_2$ の同時確率密度関数が存在するとは限らない。
