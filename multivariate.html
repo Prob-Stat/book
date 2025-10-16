@@ -498,10 +498,28 @@ P(A\cap B) &amp;= \frac14,&amp;P(A)&amp;=P(B)=\frac12
 \Pr(X_1\in A,\,X_2\in B)  &amp;= \Pr(X_1\in A)\Pr(X_2\in B)
 \end{align*}\]</span> を満たすとき、<strong>確率変数 <span class="math inline">\(X_1\)</span> と <span class="math inline">\(X_2\)</span> は独立である</strong>という。</p>
 </div>
+<p>二つ以上の確率変数の累積分布関数を <span class="math display">\[\begin{align*}
+F_{X_1,\dotsc,X_n}(x_1,\dotsc,x_n) &amp;\coloneqq\Pr(X_1\le x_1,\dotsc,X_n\le x_n)
+\end{align*}\]</span> と定義する。</p>
+</section>
+<section id="離散型確率変数と確率質量関数" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="離散型確率変数と確率質量関数"><span class="header-section-number">5.3</span> 離散型確率変数と確率質量関数</h2>
+<div id="def-cond-mass" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 5.4</strong></span> 確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の離散型確率変数 <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span> について、<strong>同時確率質量関数</strong>を <span class="math display">\[\begin{align*}
+f_{X_1,\,X_2}(x_1,x_2) &amp;\coloneqq \Pr(X_1=x_1,\,X_2=x_2)\\
+f_{X_1\mid X_2}(x_1\mid x_2) &amp;\coloneqq \Pr(X_1=x_1\mid X_2=x_2)
+\end{align*}\]</span> と定義する。</p>
+</div>
+<p><span class="math display">\[\begin{align*}
+f_{X_1,\,X_2}(x_1,x_2) &amp;= f_{X_1\mid X_2}(x_1\mid x_2) f_{X_2}(x_2)
+\end{align*}\]</span> が成り立つ。 また、同時確率質量関数からそれぞれの確率変数の確率質量関数が得られる。 <span class="math display">\[\begin{align*}
+f_{X_1}(x_1) &amp;= \sum_{x_2} f_{X_1, X_2}(x_1, x_2)\\
+f_{X_2}(x_2) &amp;= \sum_{x_1} f_{X_1, X_2}(x_1, x_2)
+\end{align*}\]</span> それぞれの確率変数の確率質量関数を<strong>周辺質量関数</strong>と呼ぶ。 同時確率質量関数から周辺質量関数を計算する操作のことを<strong>周辺化</strong>という。</p>
 <div id="lem-cond" class="theorem lemma">
 <p><span class="theorem-title"><strong>補題 5.1</strong></span> 確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の<strong>離散型</strong>確率変数 <span class="math inline">\(X_1, X_2\)</span> について、 <span class="math inline">\(X_1\)</span> と <span class="math inline">\(X_2\)</span> が独立 <span class="math inline">\(\iff\)</span> <span class="math display">\[\begin{align*}
-\Pr(X_1=x_1,\,X_2=x_2)  &amp;= \Pr(X_1=x_1)\Pr(X_2=x_2)
-\quad\forall x_1\in\mathrm{Image}(X_1),x_2\in\mathrm{Image}(X_2).
+f_{X_1,\,X_2}(x_1,x_2) &amp;= f_{X_1}(x_1) f_{X_2}(x_2)
+&amp;\forall x_1\in\mathrm{Image}(X_1),x_2\in\mathrm{Image}(X_2).
 \end{align*}\]</span></p>
 </div>
 <div class="proof">
@@ -518,28 +536,16 @@ X_1(\mathrm{TH})&amp;=X_1(\mathrm{TT}) = 0\\
 X_2(\mathrm{HH})&amp;=X_2(\mathrm{TH}) = 1,&amp;
 X_2(\mathrm{HT})&amp;=X_2(\mathrm{TT}) = 0
 \end{align*}\]</span> と定義する。 このとき、 <span class="math display">\[\begin{align*}
-\Pr(X_1=x_1,\,X_2=x_2) &amp;= \frac14\qquad\forall x_1,x_2\in\{0,1\}\\
-\Pr(X_1=x_1)=\Pr(X_2=x_2)&amp;=\frac12\qquad\forall x_1,x_2\in\{0,1\}
-\end{align*}\]</span> より <span class="math inline">\(\Pr(X_1=x_1,\,X_2=x_2) = \Pr(X_1=x_1)\Pr(X_2=x_2)\)</span> を満たすことが分かる。 よって確率変数 <span class="math inline">\(X_1,\,X_2\)</span> は独立である。</p>
+f_{X_1,\,X_2}(x_1,\,x_2) &amp;= \frac14\qquad\forall x_1,x_2\in\{0,1\}\\
+f_{X_1}(x_1)=f_{X_2}(x_2)&amp;=\frac12\qquad\forall x_1,x_2\in\{0,1\}
+\end{align*}\]</span> より <span class="math inline">\(f_{X_1,\,X_2}(x_1,\,x_2) = f_{X_1}(x_1)f_{X_2}(x_2)\)</span> を満たすことが分かる。 よって確率変数 <span class="math inline">\(X_1,\,X_2\)</span> は独立である。</p>
 </div>
-</section>
-<section id="離散型確率変数と確率質量関数" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="離散型確率変数と確率質量関数"><span class="header-section-number">5.3</span> 離散型確率変数と確率質量関数</h2>
-<div id="def-cond-mass" class="theorem definition">
-<p><span class="theorem-title"><strong>定義 5.4</strong></span> 確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の離散型確率変数 <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span> について、<strong>同時確率質量関数</strong>を <span class="math display">\[\begin{align*}
-f_{X_1,\,X_2}(x_1,x_2) &amp;\coloneqq \Pr(X_1=x_1,\,X_2=x_2)\\
-f_{X_1\mid X_2}(x_1\mid x_2) &amp;\coloneqq \Pr(X_1=x_1\mid X_2=x_2)
-\end{align*}\]</span> と定義する。</p>
-</div>
-<p><span class="math display">\[\begin{align*}
-f_{X_1,\,X_2}(x_1,x_2) &amp;= f_{X_1\mid X_2}(x_1\mid x_2) f_{X_2}(x_2)
-\end{align*}\]</span> が成り立つ。 また、同時確率質量関数からそれぞれの確率変数の確率質量関数が得られる。 <span class="math display">\[\begin{align*}
-f_{X_1}(x_1) &amp;= \sum_{x_2} f_{X_1, X_2}(x_1, x_2)\\
-f_{X_2}(x_2) &amp;= \sum_{x_1} f_{X_1, X_2}(x_1, x_2)
-\end{align*}\]</span> それぞれの確率変数の確率質量関数を<strong>周辺質量関数</strong>と呼ぶ。 同時確率質量関数から周辺質量関数を計算する操作のことを<strong>周辺化</strong>という。</p>
 </section>
 <section id="連続型確率変数と確率密度関数" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="連続型確率変数と確率密度関数"><span class="header-section-number">5.4</span> 連続型確率変数と確率密度関数</h2>
+<p>確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の連続型確率変数 <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span> について、<strong>同時確率密度関数</strong>を <span class="math display">\[\begin{align*}
+\Pr(\begin{bmatrix}X_1,\,X_2\end{bmatrix}\in A) &amp;= \int_A f_{X_1,\,X_2}(x_1,x_2)\mathrm{d}x_1\mathrm{d}x_2
+\end{align*}\]</span> を満たすものと定義する。 <span class="math inline">\(X_1\)</span> と <span class="math inline">\(X_2\)</span> が確率密度関数を持つ場合でも <span class="math inline">\(X_1\)</span> と <span class="math inline">\(X_2\)</span> の同時確率密度関数が存在するとは限らない。</p>
 
 
 </section>
