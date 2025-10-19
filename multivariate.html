@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; 条件付き確率 – 確率・統計入門</title>
+<title>5&nbsp; 複数の確率変数 – 確率・統計入門</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -44,9 +44,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-7e34ecb6a0e7991f0346b0751d4a7c3f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3584025bd2775ba93d20b6dabf7256d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-3396d056e495cf15e5a954e3723c5eed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-3584025bd2775ba93d20b6dabf7256d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -283,7 +283,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">確率論</a></li><li class="breadcrumb-item"><a href="./multivariate.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">条件付き確率</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">確率論</a></li><li class="breadcrumb-item"><a href="./multivariate.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">複数の確率変数</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
@@ -356,7 +356,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multivariate.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">条件付き確率</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">複数の確率変数</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -439,6 +439,9 @@ window.Quarto = {
   <li><a href="#確率変数の条件付き確率と独立性" id="toc-確率変数の条件付き確率と独立性" class="nav-link" data-scroll-target="#確率変数の条件付き確率と独立性"><span class="header-section-number">5.2</span> 確率変数の条件付き確率と独立性</a></li>
   <li><a href="#離散型確率変数と確率質量関数" id="toc-離散型確率変数と確率質量関数" class="nav-link" data-scroll-target="#離散型確率変数と確率質量関数"><span class="header-section-number">5.3</span> 離散型確率変数と確率質量関数</a></li>
   <li><a href="#連続型確率変数と確率密度関数" id="toc-連続型確率変数と確率密度関数" class="nav-link" data-scroll-target="#連続型確率変数と確率密度関数"><span class="header-section-number">5.4</span> 連続型確率変数と確率密度関数</a></li>
+  <li><a href="#三つ以上の独立確率変数" id="toc-三つ以上の独立確率変数" class="nav-link" data-scroll-target="#三つ以上の独立確率変数"><span class="header-section-number">5.5</span> 三つ以上の独立確率変数</a></li>
+  <li><a href="#独立確率変数の和" id="toc-独立確率変数の和" class="nav-link" data-scroll-target="#独立確率変数の和"><span class="header-section-number">5.6</span> 独立確率変数の和</a></li>
+  <li><a href="#多変量確率変数の例" id="toc-多変量確率変数の例" class="nav-link" data-scroll-target="#多変量確率変数の例"><span class="header-section-number">5.7</span> 多変量確率変数の例</a></li>
   </ul>
 </nav>
     </div>
@@ -446,9 +449,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">確率論</a></li><li class="breadcrumb-item"><a href="./multivariate.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">条件付き確率</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">確率論</a></li><li class="breadcrumb-item"><a href="./multivariate.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">複数の確率変数</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">条件付き確率</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">複数の確率変数</span></h1>
 </div>
 
 
@@ -487,7 +490,7 @@ P(A\cap B) &amp;= \frac14,&amp;P(A)&amp;=P(B)=\frac12
 </section>
 <section id="確率変数の条件付き確率と独立性" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="確率変数の条件付き確率と独立性"><span class="header-section-number">5.2</span> 確率変数の条件付き確率と独立性</h2>
-<p>事象は確率変数を通じて表わすことが多い。そのため</p>
+<p>事象は確率変数を通じて表すことが多い。そのため確率変数を用いた条件付き確率も定義する。</p>
 <div id="def-cond-rv" class="theorem definition">
 <p><span class="theorem-title"><strong>定義 5.3 (確率変数)</strong></span> 確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の確率変数 <span class="math inline">\(X_1, X_2\)</span> について同時確率を <span class="math display">\[\begin{align*}
 \Pr(X_1\in A,\,X_2\in B) &amp;\coloneqq P(\{\omega\in\Omega\mid X_1(\omega)\in A\}\cap\{\omega\in\Omega\mid X_2(\omega)\in B\}\})\quad\forall A,B\subseteq\mathbb{R}
@@ -498,26 +501,39 @@ P(A\cap B) &amp;= \frac14,&amp;P(A)&amp;=P(B)=\frac12
 \Pr(X_1\in A,\,X_2\in B)  &amp;= \Pr(X_1\in A)\Pr(X_2\in B)
 \end{align*}\]</span> を満たすとき、<strong>確率変数 <span class="math inline">\(X_1\)</span> と <span class="math inline">\(X_2\)</span> は独立である</strong>という。</p>
 </div>
+<div id="lem-ind-func" class="theorem lemma">
+<p><span class="theorem-title"><strong>補題 5.1</strong></span> 確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の確率変数 <span class="math inline">\(X_1, X_2\)</span> が独立であるとする。 このとき任意の関数 <span class="math inline">\(f_1,\,f_2\colon\mathbb{R}\to\mathbb{R}\)</span> について、<span class="math inline">\(f_1(X_1),\,f_2(X_2)\)</span> は独立である。</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>証明</em>. </span><span class="math display">\[\begin{align*}
+\Pr(f_1(X_1)\in A,\,f_2(X_2)\in B) &amp;=
+\end{align*}\]</span></p>
+</div>
 <p>二つ以上の確率変数の累積分布関数を <span class="math display">\[\begin{align*}
 F_{X_1,\dotsc,X_n}(x_1,\dotsc,x_n) &amp;\coloneqq\Pr(X_1\le x_1,\dotsc,X_n\le x_n)
 \end{align*}\]</span> と定義する。</p>
 </section>
 <section id="離散型確率変数と確率質量関数" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="離散型確率変数と確率質量関数"><span class="header-section-number">5.3</span> 離散型確率変数と確率質量関数</h2>
-<div id="def-cond-mass" class="theorem definition">
+<div id="def-joint-mass" class="theorem definition">
 <p><span class="theorem-title"><strong>定義 5.4</strong></span> 確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の離散型確率変数 <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span> について、<strong>同時確率質量関数</strong>を <span class="math display">\[\begin{align*}
 f_{X_1,\,X_2}(x_1,x_2) &amp;\coloneqq \Pr(X_1=x_1,\,X_2=x_2)\\
+\end{align*}\]</span> と定義する。</p>
+</div>
+<p>同時確率質量関数からそれぞれの確率変数の確率質量関数が得られる。 <span class="math display">\[\begin{align*}
+f_{X_1}(x_1) &amp;= \sum_{x_2} f_{X_1,\, X_2}(x_1, x_2)\\
+f_{X_2}(x_2) &amp;= \sum_{x_1} f_{X_1,\, X_2}(x_1, x_2)
+\end{align*}\]</span> それぞれの確率変数の確率質量関数を<strong>周辺質量関数</strong>と呼ぶ。 同時確率質量関数から周辺質量関数を計算する操作のことを<strong>周辺化</strong>という。</p>
+<div id="def-joint-mass" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 5.5</strong></span> 確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の離散型確率変数 <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span> について、<strong>条件付き確率質量関数</strong>を <span class="math display">\[\begin{align*}
 f_{X_1\mid X_2}(x_1\mid x_2) &amp;\coloneqq \Pr(X_1=x_1\mid X_2=x_2)
 \end{align*}\]</span> と定義する。</p>
 </div>
-<p><span class="math display">\[\begin{align*}
+<p>条件付き確率から <span class="math display">\[\begin{align*}
 f_{X_1,\,X_2}(x_1,x_2) &amp;= f_{X_1\mid X_2}(x_1\mid x_2) f_{X_2}(x_2)
-\end{align*}\]</span> が成り立つ。 また、同時確率質量関数からそれぞれの確率変数の確率質量関数が得られる。 <span class="math display">\[\begin{align*}
-f_{X_1}(x_1) &amp;= \sum_{x_2} f_{X_1, X_2}(x_1, x_2)\\
-f_{X_2}(x_2) &amp;= \sum_{x_1} f_{X_1, X_2}(x_1, x_2)
-\end{align*}\]</span> それぞれの確率変数の確率質量関数を<strong>周辺質量関数</strong>と呼ぶ。 同時確率質量関数から周辺質量関数を計算する操作のことを<strong>周辺化</strong>という。</p>
+\end{align*}\]</span> が成り立つ。</p>
 <div id="lem-cond" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 5.1</strong></span> 確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の<strong>離散型</strong>確率変数 <span class="math inline">\(X_1, X_2\)</span> について、 <span class="math inline">\(X_1\)</span> と <span class="math inline">\(X_2\)</span> が独立 <span class="math inline">\(\iff\)</span> <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>補題 5.2</strong></span> 確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の<strong>離散型</strong>確率変数 <span class="math inline">\(X_1, X_2\)</span> について、 <span class="math inline">\(X_1\)</span> と <span class="math inline">\(X_2\)</span> が独立 <span class="math inline">\(\iff\)</span> <span class="math display">\[\begin{align*}
 f_{X_1,\,X_2}(x_1,x_2) &amp;= f_{X_1}(x_1) f_{X_2}(x_2)
 &amp;\forall x_1\in\mathrm{Image}(X_1),x_2\in\mathrm{Image}(X_2).
 \end{align*}\]</span></p>
@@ -544,8 +560,94 @@ f_{X_1}(x_1)=f_{X_2}(x_2)&amp;=\frac12\qquad\forall x_1,x_2\in\{0,1\}
 <section id="連続型確率変数と確率密度関数" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="連続型確率変数と確率密度関数"><span class="header-section-number">5.4</span> 連続型確率変数と確率密度関数</h2>
 <p>確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の連続型確率変数 <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span> について、<strong>同時確率密度関数</strong>を <span class="math display">\[\begin{align*}
-\Pr(\begin{bmatrix}X_1,\,X_2\end{bmatrix}\in A) &amp;= \int_A f_{X_1,\,X_2}(x_1,x_2)\mathrm{d}x_1\mathrm{d}x_2
-\end{align*}\]</span> を満たすものと定義する。 <span class="math inline">\(X_1\)</span> と <span class="math inline">\(X_2\)</span> が確率密度関数を持つ場合でも <span class="math inline">\(X_1\)</span> と <span class="math inline">\(X_2\)</span> の同時確率密度関数が存在するとは限らない。</p>
+%\Pr(\begin{bmatrix}X_1,\,X_2\end{bmatrix}\in A) &amp;= \int_A f_{X_1,\,X_2}(x_1,x_2)\mathrm{d}x_1\mathrm{d}x_2
+\Pr(X_1\in A,\,X_2\in B) &amp;= \int_A\left(\int_B f_{X_1,\,X_2}(x_1,x_2)\mathrm{d}x_2\right)\mathrm{d}x_1
+\end{align*}\]</span> を満たすものと定義する。 <span class="math inline">\(X_1\)</span> と <span class="math inline">\(X_2\)</span> が確率密度関数を持つ場合でも <span class="math inline">\(X_1\)</span> と <span class="math inline">\(X_2\)</span> の同時確率密度関数が存在するとは限らない。 例えば <span class="math inline">\(X_1=X_2\)</span> の場合がその例である。 逆に <span class="math inline">\(X_1\)</span> と <span class="math inline">\(X_2\)</span> が同時確率密度関数を持つとき、それぞれの確率密度関数は <span class="math display">\[\begin{align*}
+f_{X_1}(x_1) &amp;= \int_{-\infty}^\infty f_{X_1,\,X_2}(x_1,x_2)\mathrm{d}x_2\\
+f_{X_2}(x_2) &amp;= \int_{-\infty}^\infty f_{X_1,\,X_2}(x_1,x_2)\mathrm{d}x_1
+\end{align*}\]</span> で得られる。この操作を確率密度関数の<strong>周辺化</strong>という。 同時確率密度関数を持つ確率変数 <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span> が独立であるとき、 <span class="math display">\[\begin{align*}
+f_{X_1,\,X_2}(x_1,x_2) &amp;= f_{X_1}(x_1) f_{X_2}(x_2)
+\end{align*}\]</span> が成り立つ。</p>
+</section>
+<section id="三つ以上の独立確率変数" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="三つ以上の独立確率変数"><span class="header-section-number">5.5</span> 三つ以上の独立確率変数</h2>
+<p>三つ以上の確率変数についても同時確率質量関数、同時確率密度関数を同様に定義する。 独立性についても同様に定義する。</p>
+<div id="def-ind-rvs" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 5.6</strong></span> 確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の確率変数 <span class="math inline">\(X_1, X_2,\dotsc, X_n\)</span> が<strong>独立</strong> <span class="math inline">\(\defiff\)</span> <span class="math display">\[\begin{align*}
+\Pr(X_1\in A_1,\dotsc, X_n\in A_n) &amp;= \prod_{k=1}^n \Pr(X_k\in A_k)\qquad\forall A_1,\dotsc,A_n\subseteq\mathbb{R}.
+\end{align*}\]</span></p>
+</div>
+<div id="def-ind-rvs" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 5.7</strong></span> 確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の確率変数 <span class="math inline">\(X_1, X_2,\dotsc, X_n\)</span> が<strong>互いに独立</strong> <span class="math inline">\(\defiff\)</span> 任意の <span class="math inline">\(1\le i&lt; j\le n\)</span> について、<span class="math inline">\(X_i\)</span> と <span class="math inline">\(X_j\)</span> が独立。</p>
+</div>
+<p>確率変数 <span class="math inline">\(X_1,\dotsc,X_n\)</span> が独立であるとき、それらは互いに独立であることは以下から分かる。 <span class="math display">\[\begin{align*}
+\Pr(X_1\in A,\, X_2\in B) &amp;= \Pr(X_1\in A,\, X_2\in B,\, X_3\in\mathbb{R},\dotsc, X_n\in\mathbb{R})\\
+&amp;= \Pr(X_1\in A)\Pr(X_2\in B) \prod_{k=3}^n \Pr(X_k\in\mathbb{R})\\
+&amp;= \Pr(X_1\in A)\Pr(X_2\in B).
+\end{align*}\]</span></p>
+<p>一方で確率変数 <span class="math inline">\(X_1,\dotsc,X_n\)</span> が互いに独立であっても、それらが独立であるとは限らない。 例えば、離散型確率変数 <span class="math inline">\(X_1,\dotsc,X_n\)</span> を <span class="math display">\[\begin{align*}
+f_{X_1,\dotsc,X_n}(x_1,\dotsc,x_n)&amp;=\begin{cases}
+\frac1{2^{n-1}}&amp;\text{if } \sum_{k=1}^n x_k \text{ is even}\\
+0&amp;\text{otherwise}
+\end{cases}&amp;
+\forall x_1,\dotsc,x_n\in\{0,1\}
+\end{align*}\]</span> と定義する。 このとき、確率変数 <span class="math inline">\(X_n\)</span> を周辺化すると <span class="math display">\[\begin{align*}
+f_{X_1,\dotsc,X_{n-1}}(x_1,\dotsc,x_{n-1})&amp;=
+f_{X_1,\dotsc,X_n}(x_1,\dotsc,x_{n-1},0)+ f_{X_1,\dotsc,X_n}(x_1,\dotsc,x_{n-1},1)\\
+&amp;=\frac1{2^{n-1}}
+\end{align*}\]</span> となる。つまり、<span class="math inline">\(X_1,\dotsc,X_{n-1}\)</span> は <span class="math inline">\(\{0,1\}^{n-1}\)</span> 上の一様分布に従う。 この確率分布は <span class="math inline">\(X_1,\dotsc,X_n\)</span> について対称なので、どの確率変数を周辺化しても一様分布に従う。 一様分布は独立なので、<span class="math inline">\(n\ge 3\)</span> のとき、どの二つの確率変数も独立である。</p>
+<p>一方で、<span class="math inline">\(n\ge 2\)</span> のとき、これらの確率変数の周辺確率は一様である。つまり、 <span class="math display">\[\begin{align*}
+f_{X_k}(0) &amp;= f_{X_k}(1) = \frac12\qquad\forall k=1,2,\dotsc,n.
+\end{align*}\]</span> しかし、 <span class="math display">\[\begin{align*}
+f_{X_1,\dotsc,X_n}(x_1,\dotsc,x_n)&amp;=\prod_{k=1}^n f_{X_k}(x_k)\qquad\forall x_1,\dotsc,x_n\in\{0,1\}
+\end{align*}\]</span> は成り立たないので独立ではない。</p>
+</section>
+<section id="独立確率変数の和" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="独立確率変数の和"><span class="header-section-number">5.6</span> 独立確率変数の和</h2>
+<p>離散型確率変数 <span class="math inline">\(X_1\)</span> と <span class="math inline">\(X_2\)</span> が独立であるとする。 このとき、<span class="math inline">\(X_1+X_2\)</span> の確率質量関数は <span class="math display">\[\begin{align*}
+f_{X_1+X_2}(x) &amp;= \sum_z f_{X_1}(z)f_{X_2}(x-z)
+\end{align*}\]</span> で与えられる。 これを確率質量関数の<strong>畳み込み</strong>という。</p>
+<div id="exm-binom" class="theorem example">
+<p><span class="theorem-title"><strong>例 5.3</strong></span> 二項分布の <span class="math inline">\(N=1\)</span> の場合をベルヌーイ分布 <span class="math inline">\(\mathrm{Ber}(p)\)</span> と呼ぶ。 つまり、<span class="math inline">\(X\sim\mathrm{Ber}(p)\defiff\)</span> <span class="math display">\[\begin{align*}
+\Pr(X=0) &amp;= 1-p,&amp; \Pr(X=1) &amp;= p
+\end{align*}\]</span> である。 確率変数 <span class="math inline">\(X_1,X_2\)</span> が独立で <span class="math inline">\(\mathrm{Ber}(p)\)</span> に従うとする。 このとき、<span class="math inline">\(X_1+X_2\)</span> は <span class="math inline">\(\mathrm{Binom}(2, p)\)</span> に従う。 <span class="math display">\[\begin{align*}
+\Pr(X_1+X_2 = 0) &amp;= \Pr(X_1=0,\,X_2=0)\\
+&amp;= \Pr(X_1=0)\Pr(X_2=0) = (1-p)^2\\
+\Pr(X_1+X_2 = 1) &amp;= \Pr(X_1=0,\,X_2=1) + \Pr(X_1=1,\,X_2=0)\\
+&amp;=  \Pr(X_1=0)\Pr(X_2=1) + \Pr(X_1=1)\Pr(X_2=0)\\
+&amp;= 2p(1-p)\\
+\Pr(X_1+X_2 = 2) &amp;= \Pr(X_1=1,\,X_2=1)\\
+&amp;= \Pr(X_1=1)\Pr(X_2=1) = p^2
+\end{align*}\]</span> と計算できる。 よって <span class="math display">\[\begin{align*}
+\Pr(X_1+X_2 = k) &amp;= \binom{2}{k} p^k(1-p)^{2-k}
+\end{align*}\]</span> が成り立ち <span class="math inline">\(X_1+X_2\sim\mathrm{Binom}(2, p)\)</span> であることが分かる。 一般に、独立確率変数 <span class="math inline">\(X_1,\,X_2\)</span> について <span class="math inline">\(X_1\sim\mathrm{Binom}(n, p)\)</span>, <span class="math inline">\(X_2\sim\mathrm{Binom}(m, p)\)</span> のとき、<span class="math inline">\(X_1+X_2\sim\mathrm{Binom}(n+m,p)\)</span> である。 <span class="math display">\[\begin{align*}
+\Pr(X_1+X_2 = k) &amp;= \sum_{\ell\ge 0} \Pr(X_1 = \ell) \Pr(X_2 = k-\ell)\\
+&amp;= \sum_{\ell\ge 0} \binom{n}{\ell} p^\ell(1-p)^{n-\ell} \binom{m}{k-\ell} p^{k-\ell}(1-p)^{m-k+\ell}\\
+&amp;= \left(\sum_{\ell\ge 0} \binom{n}{\ell} \binom{m}{k-\ell}\right) p^k(1-p)^{n+m-k}\\
+&amp;= \binom{n+m}{k} p^k(1-p)^{n+m-k}.
+\end{align*}\]</span></p>
+<p>よって、<span class="math inline">\(X_1,\dotsc,X_n\)</span> が独立で <span class="math inline">\(\mathrm{Ber}(p)\)</span> に従うとき、<span class="math inline">\(X_1+\dotsb+X_n\)</span> は <span class="math inline">\(\mathrm{Binom}(n, p)\)</span> に従う。</p>
+</div>
+<div id="exm-poisson" class="theorem example">
+<p><span class="theorem-title"><strong>例 5.4</strong></span> 確率変数 <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span> が独立で <span class="math inline">\(X_1\sim\mathrm{Poisson}(\lambda_1)\)</span>, <span class="math inline">\(X_2\sim\mathrm{Poisson}(\lambda_2)\)</span> とする。 このとき、 <span class="math display">\[\begin{align*}
+f_{X_1+X_2}(x) &amp;= \sum_{z= 0}^x f_{X_1}(z) f_{X_2}(x-z)\\
+&amp;= \sum_{z= 0}^x \frac{\lambda_1^z}{z!}\mathrm{e}^{-\lambda_1}\frac{\lambda_2^{x-z}}{(x-z)!}\mathrm{e}^{-\lambda_2}\\
+&amp;= \frac1{x!}\mathrm{e}^{-(\lambda_1+\lambda_2)}\sum_{z=0}^x\binom{x}{z} \lambda_1^z\lambda_2^{x-z}\\
+&amp;= \frac1{x!}\mathrm{e}^{-(\lambda_1+\lambda_2)}(\lambda_1+\lambda_2)^x
+\end{align*}\]</span> が成り立つ。よって <span class="math inline">\(X_1+X_2\sim\mathrm{Poisson}(\lambda_1+\lambda_2)\)</span> である。 独立なポアソン分布の和はポアソン分布に従う。</p>
+</div>
+<p>これらの例のように、確率分布の族(集合)が畳み込みに閉じているとき、確率分布の族は<strong>再生性</strong>を持つという。 二項分布の場合はパラメータ <span class="math inline">\(p\)</span> を固定したときに再生性を持つ。</p>
+<p>連続確率変数 <span class="math inline">\(X_1\)</span> と <span class="math inline">\(X_2\)</span> が独立で密度関数を持つとき、<span class="math inline">\(X_1+X_2\)</span> は確率密度関数を持ち <span class="math display">\[\begin{align*}
+f_{X_1+X_2}(x) &amp;= \int_{-\infty}^\infty f_{X_1}(z)f_{X_2}(x-z)\mathrm{d} z
+\end{align*}\]</span> が成り立つ。 確率変数 <span class="math inline">\(X_1,\,X_2\)</span> が独立で <span class="math inline">\(X_1\sim N(\mu_1,\,\sigma_1)\)</span>, <span class="math inline">\(X_2\sim N(\mu_2,\,\sigma_2)\)</span> とする。 このとき、 <span class="math display">\[\begin{align*}
+f_{X_1+X_2}(x) &amp;= \int_{-\infty}^\infty f_{X_1}(z)f_{X_2}(x-z)\mathrm{d} z\\
+&amp;= \int_{-\infty}^\infty \frac1{\sqrt{2\pi\sigma_1^2}} \mathrm{e}^{-\frac{(z-\mu_1)^2}{2\sigma_1^2}}\frac1{\sqrt{2\pi\sigma_2^2}} \mathrm{e}^{-\frac{(x-z-\mu_2)^2}{2\sigma_2^2}}\mathrm{d} z\\
+&amp;= \frac1{2\pi\sqrt{\sigma_1^2\sigma_2^2}}\int_{-\infty}^\infty  \mathrm{e}^{-\frac{\sigma_2^2(z-\mu_1)^2+\sigma_1^2(x-z-\mu_2)^2}{2\sigma_1^2\sigma_2^2}}\mathrm{d} z\\
+&amp;= \frac1{2\pi\sqrt{\sigma_1^2\sigma_2^2}}\int_{-\infty}^\infty  \mathrm{e}^{-\frac{(\sigma_1^2+\sigma_2^2)(z-\mu_1)^2+\sigma_1^2(x-z-\mu_2)^2}{2\sigma_1^2\sigma_2^2}}\mathrm{d} z\\
+\end{align*}\]</span></p>
+</section>
+<section id="多変量確率変数の例" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="多変量確率変数の例"><span class="header-section-number">5.7</span> 多変量確率変数の例</h2>
 
 
 </section>
