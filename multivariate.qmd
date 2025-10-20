@@ -8,7 +8,7 @@
 確率空間 $(\Omega,\,P)$ の事象 $A,B\subseteq\Omega$ について
 $P(B)> 0$ のとき、**$B$ における $A$ の条件付き確率** は以下で定義される。
 \begin{align*}
-P(A\mid B) &\coloneqq \frac{P(A\cap B)}{P(B)}
+P(A\mid B) &\coloneqq \frac{P(A\cap B)}{P(B)}.
 \end{align*}
 :::
 
@@ -66,6 +66,9 @@ P(A\cap B) &= \frac14,&P(A)&=P(B)=\frac12
 ::: {.proof}
 \begin{align*}
 \Pr(f_1(X_1)\in A,\,f_2(X_2)\in B) &=
+\Pr(X_1\in f_1^{-1}(A),\,X_2\in f_2^{-1}(B))\\
+&=\Pr(X_1\in f_1^{-1}(A))\Pr(X_2\in f_2^{-1}(B))\\
+&=\Pr(f_1(X_1)\in A)\Pr(f_2(X_2)\in B).
 \end{align*}
 :::
 
@@ -99,7 +102,7 @@ f_{X_1\mid X_2}(x_1\mid x_2) &\coloneqq \Pr(X_1=x_1\mid X_2=x_2)
 \end{align*}
 と定義する。
 :::
-条件付き確率から
+条件付き確率の定義より
 \begin{align*}
 f_{X_1,\,X_2}(x_1,x_2) &= f_{X_1\mid X_2}(x_1\mid x_2) f_{X_2}(x_2)
 \end{align*}
@@ -217,7 +220,7 @@ f_{X_1,\dotsc,X_n}(x_1,\dotsc,x_n)&=\prod_{k=1}^n f_{X_k}(x_k)\qquad\forall x_1,
 は成り立たないので独立ではない。
 
 
-## 独立確率変数の和
+## 独立な離散型確率変数の和
 
 離散型確率変数 $X_1$ と $X_2$ が独立であるとする。
 このとき、$X_1+X_2$ の確率質量関数は
@@ -277,19 +280,35 @@ f_{X_1+X_2}(x) &= \sum_{z= 0}^x f_{X_1}(z) f_{X_2}(x-z)\\
 これらの例のように、確率分布の族(集合)が畳み込みに閉じているとき、確率分布の族は**再生性**を持つという。
 二項分布の場合はパラメータ $p$ を固定したときに再生性を持つ。
 
+## 独立な連続型確率変数の和
 
-連続確率変数 $X_1$ と $X_2$ が独立で密度関数を持つとき、$X_1+X_2$ は確率密度関数を持ち
+連続確率変数 $X_1$ と $X_2$ が独立で密度関数を持つとき、
+\begin{align*}
+\Pr(X_1+X_2\in A) &= \int\int_{y+z\in A} f_{X_1}(y)f_{X_2}(z)\mathrm{d}y\mathrm{d}z\\
+ &= \int\int_{x\in A} f_{X_1}(y)f_{X_2}(x-y)\mathrm{d}y\mathrm{d}x \qquad(x=y+z)\\
+ &= \int_{A} \left(\int_{-\infty}^\infty f_{X_1}(y)f_{X_2}(x-y)\mathrm{d}y\right)\mathrm{d}x \qquad(x=y+z)\\
+\end{align*}
+と表せるので、$X_1+X_2$ は確率密度関数を持ち
 \begin{align*}
 f_{X_1+X_2}(x) &= \int_{-\infty}^\infty f_{X_1}(z)f_{X_2}(x-z)\mathrm{d} z
 \end{align*}
-が成り立つ。
-確率変数 $X_1,\,X_2$ が独立で $X_1\sim N(\mu_1,\,\sigma_1)$, $X_2\sim N(\mu_2,\,\sigma_2)$ とする。
+とすることができる。
+確率変数 $X_1,\,X_2$ が独立で $X_1\sim N(\mu_1,\,\sigma_1^2)$, $X_2\sim N(\mu_2,\,\sigma_2^2)$ とする。
 このとき、
 \begin{align*}
 f_{X_1+X_2}(x) &= \int_{-\infty}^\infty f_{X_1}(z)f_{X_2}(x-z)\mathrm{d} z\\
  &= \int_{-\infty}^\infty \frac1{\sqrt{2\pi\sigma_1^2}} \mathrm{e}^{-\frac{(z-\mu_1)^2}{2\sigma_1^2}}\frac1{\sqrt{2\pi\sigma_2^2}} \mathrm{e}^{-\frac{(x-z-\mu_2)^2}{2\sigma_2^2}}\mathrm{d} z\\
  &= \frac1{2\pi\sqrt{\sigma_1^2\sigma_2^2}}\int_{-\infty}^\infty  \mathrm{e}^{-\frac{\sigma_2^2(z-\mu_1)^2+\sigma_1^2(x-z-\mu_2)^2}{2\sigma_1^2\sigma_2^2}}\mathrm{d} z\\
- &= \frac1{2\pi\sqrt{\sigma_1^2\sigma_2^2}}\int_{-\infty}^\infty  \mathrm{e}^{-\frac{(\sigma_1^2+\sigma_2^2)(z-\mu_1)^2+\sigma_1^2(x-z-\mu_2)^2}{2\sigma_1^2\sigma_2^2}}\mathrm{d} z\\
+ &= \frac1{2\pi\sqrt{\sigma_1^2\sigma_2^2}}\int_{-\infty}^\infty  \mathrm{e}^{-\frac{(\sigma_1^2+\sigma_2^2)\left(z-\frac{\sigma_2^2\mu_1+\sigma_1^2(x-\mu_2)}{\sigma_1^2+\sigma_2^2}\right)^2 + \sigma_2^2\mu_1^2 + \sigma_1^2(x-\mu_2)^2 - \frac{(\sigma_2^2\mu_1+\sigma_1^2(x-\mu_2))^2}{\sigma_1^2+\sigma_2^2}}{2\sigma_1^2\sigma_2^2}}\mathrm{d} z\\
+ &= \frac1{\sqrt{2\pi(\sigma_1^2+\sigma_2^2)}}\mathrm{e}^{-\frac{\sigma_2^2\mu_1^2 + \sigma_1^2(x-\mu_2)^2 - \frac{(\sigma_2^2\mu_1+\sigma_1^2(x-\mu_2))^2}{\sigma_1^2+\sigma_2^2}}{2\sigma_1^2\sigma_2^2}}\\
+ &= \frac1{\sqrt{2\pi(\sigma_1^2+\sigma_2^2)}}\mathrm{e}^{-\frac{(x-(\mu_1+\mu_2))^2}{2(\sigma_1^2+\sigma_2^2)}}\\
 \end{align*}
+が成り立つので $X_1+X_2\sim N(\mu_1+\mu_2,\,\sigma_1^2+\sigma_2^2)$ であることが分かる。
+よって正規分布は再生性を持つ。
 
+<!--
 ## 多変量確率変数の例
+
+$\mathrm{Pos}(n)$ を $n\times n$ の正定値対称行列の集合とする。
+$\mathbf{\mu}\in\mathbb{R}^n$ と $\Sigma\in \mathrm{Pos}(n)$ について、多変量正規分布 $N(\mathbf{\mu},\,\Sigma)$ は以下の確率密度関数を持つ。
+-->
