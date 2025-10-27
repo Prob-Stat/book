@@ -740,19 +740,41 @@ $$
 :::
 -->
 <p>今後は以下の補題を認めることにする。証明にはルベーグ積分の知識が必要である。</p>
-<div id="lem-moment" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 6.5</strong></span> 確率変数 <span class="math inline">\(X\)</span> について、ある <span class="math inline">\(\epsilon &gt;0\)</span> が存在し、モーメント母関数 <span class="math inline">\(M_X(t)\)</span> が <strong><span class="math inline">\(t\in(-\epsilon,\epsilon)\)</span> で存在するとき</strong>、</p>
+<div id="thm-moment" class="theorem">
+<p><span class="theorem-title"><strong>定理 6.3</strong></span> 確率変数 <span class="math inline">\(X\)</span> について、ある <span class="math inline">\(\epsilon &gt;0\)</span> が存在し、モーメント母関数 <span class="math inline">\(M_X(t)\)</span> が <strong><span class="math inline">\(t\in(-\epsilon,\epsilon)\)</span> で存在するとき</strong>、</p>
 <p><span class="math display">\[\begin{align*}
 M_X(t) &amp;=\sum_{n\ge 0}\frac{\expt{X^n}}{n!}t^n\qquad\forall t\in(-\epsilon,\epsilon)\\
 \mu_n(X) &amp;= \left.\frac{\mathrm{d}^n M_X(t)}{\mathrm{d} t^n}\right|_{t=0}.
 \end{align*}\]</span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span>(概要) <span class="math display">\[\begin{align*}
+<p><span class="proof-title"><em>証明</em>. </span>前半の証明を与える。 離散型確率変数 <span class="math inline">\(X\)</span> について、 <span class="math display">\[\begin{align*}
 M_X(t) &amp;= \expt{\mathrm{e}^{tX}}\\
-&amp;=\expt{\sum_{n\ge 0}\frac{(tX)^n}{n!}}\\
-&amp;=\sum_{n\ge 0}\expt{\frac{(tX)^n}{n!}}\qquad\text{\textsf{(この無限和と期待値の交換が定理の条件より正当化される)}}.
-\end{align*}\]</span></p>
+&amp;= \sum_x \mathrm{e}^{tx} f_X(x)\\
+&amp;= \sum_x \left(\sum_{n\ge0}\frac{(tx)^n}{n!}\right) f_X(x)
+\end{align*}\]</span> である。 ここで、任意の <span class="math inline">\(t\in(-\epsilon,\epsilon)\)</span> について <span class="math display">\[\begin{align*}
+&amp;\sum_x \sum_{n\ge0}\left|\frac{(tx)^n}{n!} f_X(x)\right|\\
+&amp;= \sum_x \sum_{n\ge0}\frac{|tx|^n}{n!} f_X(x)\\
+&amp;= \sum_x \mathrm{e}^{|tx|} f_X(x)\\
+&amp;\le \sum_x (\mathrm{e}^{tx}+\mathrm{e}^{-tx}) f_X(x)\\
+&amp;= \expt{\mathrm{e}^{tX}} + \expt{\mathrm{e}^{-tX}}\\
+&amp;= M_X(t) + M_X(-t) &lt; \infty
+\end{align*}\]</span> よって、無限和 <span class="math display">\[\begin{align*}
+\sum_x \sum_{n\ge0}\frac{(tx)^n}{n!} f_X(x)
+\end{align*}\]</span> は任意の <span class="math inline">\(t\in(-\epsilon,\epsilon)\)</span> について<strong>絶対収束する</strong>。 そのため、和の順序を変えても収束値は変化しない。 よって、 <span class="math display">\[\begin{align*}
+M_X(t) &amp;= \expt{\mathrm{e}^{tX}}\\
+&amp;= \sum_x \left(\sum_{n\ge0}\frac{(tx)^n}{n!}\right) f_X(x)\\
+&amp;= \sum_{n\ge 0} \sum_{x}\frac{(tx)^n}{n!}f_X(x)\\
+&amp;= \sum_{n\ge 0} \frac{\sum_xx^n f_X(x)}{n!}t^n\\
+&amp;= \sum_{n\ge 0} \frac{\expt{X^n}}{n!}t^n\qquad\forall t\in(-\epsilon,\epsilon).
+\end{align*}\]</span> <!--
+(概要)
+\begin{align*}
+M_X(t) &= \expt{\mathrm{e}^{tX}}\\
+&=\expt{\sum_{n\ge 0}\frac{(tX)^n}{n!}}\\
+&=\sum_{n\ge 0}\expt{\frac{(tX)^n}{n!}}\qquad\text{\textsf{(この無限和と期待値の交換が定理の条件より正当化される)}}.
+\end{align*}
+--></p>
 </div>
 <div id="cor-cumulant" class="theorem corollary">
 <p><span class="theorem-title"><strong>系 6.1</strong></span> 確率変数 <span class="math inline">\(X\)</span> について、ある <span class="math inline">\(\epsilon &gt;0\)</span> が存在し、モーメント母関数 <span class="math inline">\(M_X(t)\)</span> が <strong><span class="math inline">\(t\in(-\epsilon,\epsilon)\)</span> で存在するとき</strong>、</p>
@@ -776,7 +798,7 @@ M_X(t) &amp;= \expt{\mathrm{e}^{tX}}\\
 \kappa_n(X) &amp;\coloneqq \left.\frac{\mathrm{d}^n K_X(t)}{\mathrm{d} t^n}\right|_{t=0}
 \end{align*}\]</span> を <span class="math inline">\(X\)</span> の <strong><span class="math inline">\(n\)</span> 次キュムラント</strong> と呼ぶ。</p>
 <div id="thm-moment" class="theorem">
-<p><span class="theorem-title"><strong>定理 6.3</strong></span> 確率変数 <span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> のモーメント母関数が0を含む開区間 <span class="math inline">\((-\epsilon,\,\epsilon)\)</span> で存在し、それらが等しいとき、<span class="math inline">\(X\)</span> の分布と <span class="math inline">\(Y\)</span> の分布は等しい。</p>
+<p><span class="theorem-title"><strong>定理 6.4</strong></span> 確率変数 <span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> のモーメント母関数が0を含む開区間 <span class="math inline">\((-\epsilon,\,\epsilon)\)</span> で存在し、それらが等しいとき、<span class="math inline">\(X\)</span> の分布と <span class="math inline">\(Y\)</span> の分布は等しい。</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>証明</em>. </span><span class="math inline">\(\mathrm{Image}(X)\)</span> と <span class="math inline">\(\mathrm{Image}(Y)\)</span> が有限の場合に限って証明を与える (この場合はモーメント母関数は <span class="math inline">\(\mathbb{R}\)</span> 全体で存在するのだが)。 <span class="math display">\[\begin{align*}
@@ -798,7 +820,7 @@ V_{\ell k} &amp;= \mathrm{e}^{t_\ell x_k}
 f_X(x_k) &amp;= f_Y(x_k) \qquad\forall k\in\{0,1,\dotsc,N-1\}
 \end{align*}\]</span> である。</p>
 </div>
-<p><a href="#thm-moment" class="quarto-xref">定理&nbsp;<span>6.3</span></a> より、モーメント母関数には確率変数の分布のすべての情報が含まれていると言える。 ただし、モーメント母関数は原点まわりで存在しないこともあるので、分布の情報をすべて含む関数としては<strong>特性関数</strong> <span class="math display">\[\begin{align*}
+<p><a href="#thm-moment" class="quarto-xref">定理&nbsp;<span>6.4</span></a> より、モーメント母関数には確率変数の分布のすべての情報が含まれていると言える。 ただし、モーメント母関数は原点まわりで存在しないこともあるので、分布の情報をすべて含む関数としては<strong>特性関数</strong> <span class="math display">\[\begin{align*}
 \varphi_X(t) &amp;\coloneqq \expt{\mathrm{e}^{itX}}\qquad\forall t\in\mathbb{R}
 \end{align*}\]</span> の方が優秀である。 特性関数は常に存在する。 一方でモーメント母関数は確率の集中を示す文脈では中心的な役割を果たす。</p>
 <!--
