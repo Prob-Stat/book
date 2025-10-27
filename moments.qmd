@@ -5,26 +5,68 @@
 ::: {#def-exp}
 ## 期待値
 
-離散型確率変数 $X$ が$A\subseteq\mathbb{R}$に値を取るとき、その期待値は
+離散型確率変数 $X$ の**期待値**は
 
 \begin{align*}
-\expt{X} &= \sum_{\omega \in \Omega} X(\omega) P(\{\omega\})\\
-&= \sum_{x\in A} x P(\{\omega\mid X(\omega)=x\})\\
-&= \sum_{x\in A} x \Pr(X=x)\\
-&= \sum_{x\in A} x f_X(x)
+\expt{X}
+% &= \sum_{\omega \in \Omega} X(\omega) P(\{\omega\})\\
+%&= \sum_{x\in \mathrm{Image}(X)} x P(\{\omega\mid X(\omega)=x\})\\
+&\coloneqq \sum_{x\in \mathrm{Image}(X)} x \Pr(X=x)\\
+&= \sum_{x\in \mathrm{Image}(X)} x f_X(x)
 \end{align*}
 
-と定義される。ここで、右辺の和が絶対収束しない場合は(適当な順番で和を取って収束したとしても)期待値は定義されない。
-連続型確率変数 $X$ が確率密度関数 $f_X$ を持つとき、その期待値は
+と定義される。ここで、**右辺の和が絶対収束しない場合は(適当な順番で和を取って収束したとしても)期待値は定義されない**。
+
+連続型確率変数 $X$ が確率密度関数 $f_X$ を持つとき、その**期待値**は
 
 $$
-\expt{X}= \int_{-\infty}^\infty x f_X(x) \mathrm{d}x
+\expt{X}\coloneqq \int_{-\infty}^\infty x f_X(x) \mathrm{d}x
 $$
 
-と定義される。
+と定義される。ただし、
+$$
+\int_{-\infty}^\infty |x| f_X(x) \mathrm{d}x
+$$
+が存在しない場合は期待値は定義されない。
 :::
 
-::: {#lem-exp}
+連続型確率変数の期待値に関する様々な証明はルベーグ積分の知識を必要とするので本書では扱わない。
+以下、証明はすべて離散確率変数の場合に限って与える。
+
+::: {#lem-exp-pair}
+確率変数 $X,\,Y$ について
+\begin{align*}
+\expt{X+Y}&=\expt{X}+\expt{Y}
+\end{align*}
+である。
+また、$X$ と $Y$ が独立のとき、
+\begin{align*}
+\expt{XY}&=\expt{X}\,\expt{Y}
+\end{align*}
+である。
+:::
+::: {.proof}
+\begin{align*}
+\expt{X+Y} &= \sum_{z} z f_{X+Y}(z)\\
+&= \sum_{z} z \sum_x f_{X,\,Y}(x, z-x)\\
+&= \sum_{x,\,y} (x+y) f_{X,\,Y}(x, y)\qquad (y=z-x)\\
+&= \sum_{x,\,y} xf_{X,\,Y}(x,y) + \sum_{y,\,y} yf_{X,\,Y}(x,y)\\
+&= \sum_{x} xf_{X}(x) + \sum_{y} yf_{Y}(y)\\
+&= \expt{X} + \expt{Y}.
+\end{align*}
+$X$ と $Y$ が独立のとき、
+\begin{align*}
+\expt{XY} &= \sum_{z} z f_{XY}(z)\\
+&= \sum_{z} z \sum_{x\ne 0}f_{X,\,Y}(x,z/x)\\
+&= \sum_{z} z \sum_{x\ne 0}f_{X}(x)f_Y(z/x)\\
+&= \sum_{x\ne 0,\, y} xy f_{X}(x)f_Y(y)\qquad(y=z/x)\\
+&= \sum_{x,\, y} xy f_{X}(x)f_Y(y)\\
+&= \left(\sum_{x} xf_{X}(x)\right)\left(\sum_y yf_Y(y)\right)\\
+&= \expt{X}\,\expt{Y}
+\end{align*}
+:::
+
+::: {#lem-lotus}
 ### Law of the unconscious statistician (LOTUS)
 任意の関数 $g\colon\mathbb{R}\to\mathbb{R}$ について、
 
@@ -41,67 +83,29 @@ $$
 $X$ を離散型確率変数とする。
 \begin{align*}
 \expt{g(X)}
-&= \sum_{x} x f_{g(X)}(x)\\
+%&= \sum_{x} x f_{g(X)}(x)\\
 &= \sum_{x} x \Pr(g(X) = x)\\
 &= \sum_{x} x \Pr(\{\omega\in\Omega\mid g(X(\omega)) = x\})\\
 &= \sum_{x} x \Pr\left(\bigcup_{y\in\mathrm{Image}(X)\colon\, g(y) = x}\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
 &= \sum_{x}\sum_{y\in\mathrm{Image}(X)\colon\, g(y) = x} x \Pr\left(\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
-&= \sum_{y\in\mathrm{Image}(X)} g(y) f_X(y)
+&= \sum_{y\in\mathrm{Image}(X)} g(y) f_X(y).
 \end{align*}
-
+<!--
 $X$ が連続型確率変数で確率密度関数を持つとする。
 \begin{align*}
 \expt{g(X)}
 &= \int_{-\infty}^\infty x f_{g(X)}(x)\mathrm{d}x\\
 \end{align*}
+-->
 :::
 
-::: {#lem-exp}
+::: {#prp-exp}
 ## 期待値の性質
 
-1. 任意の $c\in\mathbb{R}$ について $\expt{X+c} = \expt{X}+c$
-1. 任意の $c\in\mathbb{R}$ について $\expt{cX} = c\expt{X}$
-:::
-::: {.proof}
-
-$X$ が離散確率変数のとき、$X$ の値域を $A$ とすると $X+c$ の値域は $A+c\coloneqq\{a+c\mid a\in A\}$ なので、
+任意の確率変数 $X$ と $a\in\mathbb{R}$ について
 \begin{align*}
-\expt{X+c} &= \sum_{x\in A+c} x f_{X+c}(x)\\
-&= \sum_{x\in A+c} x \Pr(X+c = x)\\
-&= \sum_{x'\in A} (x'+c) \Pr(X = x')\qquad(x' = x-c)\\
-&= \expt{X}+c.
-\end{align*}
-
-$X$ が連続確率変数のとき、
-\begin{align*}
-\expt{X+c} &= \int_{-\infty}^\infty x f_{X+c}(x) \mathrm{d} x\\
-&= \int_{-\infty}^\infty x f_{X}(x-c) \mathrm{d} x\\
-&= \int_{-\infty}^\infty (x'+c) f_{X}(x') \mathrm{d} x'\qquad(x'=x-c)\\
-&= \expt{X}+c.
-\end{align*}
-
-$c=0$ のとき $cX = 0$ なので、$\expt{cX} = 0 = c\expt{X}$.
-
-$X$ が離散確率変数のとき、$X$ の値域を $A$ とすると $cX$ の値域は $cA\coloneqq\{ca\mid a\in A\}$ なので、
-\begin{align*}
-\expt{cX} &= \sum_{x\in cA} x f_{cX}(x) \\
-&= \sum_{x\in cA} x \Pr(cX = x)\\
-&= \sum_{x'\in A} cx' \Pr(X = x') \qquad(x' = x/c)\\
-&= c\expt{X}
-\end{align*}
-
-$X$ が連続確率変数のとき、
-\begin{align*}
-\expt{cX} &= \int_{-\infty}^\infty x f_{cX}(x) \mathrm{d} x\\
-&= \int_{-\infty}^\infty x \frac1{|c|} f_{X}(x/c) \mathrm{d} x\\
-&=
-\begin{cases}
- \int_{-\infty}^\infty cx'f_{X}(x') \mathrm{d} x'& \text{if } c > 0\\
- \int_{\infty}^{-\infty} -cx'f_{X}(x') \mathrm{d} x'& \text{if } c < 0\\
-\end{cases}
-\qquad (x' = x/c)\\
-&= \int_{-\infty}^\infty c x' f_{X}(x') \mathrm{d} x'\\
-&= c\expt{X}
+\expt{X+a} &= \expt{X}+a\\
+\expt{aX} &= a\expt{X}.
 \end{align*}
 :::
 
@@ -109,19 +113,17 @@ $X$ が連続確率変数のとき、
 ::: {#thm-markov}
 ## マルコフの不等式
 
-非負確率変数 $X$ と $a>0$ について
+**非負**確率変数 $X$ と $a>0$ について
 $$
 \Pr(X\ge a)\le\frac{\expt{X}}{a}.
 $$
 :::
 ::: {.proof}
-離散確率変数の場合の証明を与える。
-密度関数を持つ連続確率変数の場合も和を積分に変えた証明が成立する。
 \begin{align*}
-\expt{X} &= \sum_{x\in A} f_X(x) x\\
-&= \sum_{x\ge a} f_X(x) x + \sum_{x < a} f_X(x) x\\
-&\ge \sum_{x\ge a} f_X(x) x\qquad\qquad (X\ge 0)\\
-&\ge \sum_{x\ge a} f_X(x) a\\
+\expt{X} &= \sum_{x\in \mathrm{Image}(X)} f_X(x) x\\
+&= \sum_{\mathrm{Image}(X)\colon\, x\ge a} f_X(x) x + \sum_{\mathrm{Image}(X)\colon\, x < a} f_X(x) x\\
+&\ge \sum_{\mathrm{Image}(X)\colon\, x\ge a} f_X(x) x\qquad\qquad (\Pr(X\ge 0)=1)\\
+&\ge \sum_{\mathrm{Image}(X)\colon\, x\ge a} f_X(x) a\\
 &= \Pr(X\ge a) a.
 \end{align*}
 :::
@@ -148,16 +150,17 @@ $$
 -->
 
 ## 分散
-::: {#def-exp}
+::: {#def-var}
 ## 分散
 
-確率変数 $X$ が期待値を持つとき、その分散を
+確率変数 $X$ が期待値を持つとき、その**分散**を
 
 $$
-\var{X}= \expt{(X-\expt{X})^2}
+\var{X}\coloneqq  \expt{(X-\expt{X})^2}
 $$
 
 と定義する。
+また、分散の平方根を**標準偏差**という。
 :::
 
 確率変数 $X$ が分散を持つとき、
@@ -170,6 +173,18 @@ $$
 \end{align*}
 
 である。
+分散は定義より非負の値である。
+
+::: {#prp-var}
+## 分散の性質
+
+任意の確率変数 $X$ と $a\in\mathbb{R}$ について
+\begin{align*}
+\var{X+a} &= \var{X}\\
+\var{aX} &= a^2\var{X}.
+\end{align*}
+:::
+
 分散は直感的には期待値からのはずれ具合を表す値である。
 
 ::: {#thm-chebyshev}
@@ -184,8 +199,129 @@ $$
 \begin{align*}
 \Pr(|X-\expt{X}|\ge a)&= \Pr((X-\expt{X})^2\ge a^2)\\
 &\le
-\frac{\expt{(X-\expt{X})^2}}{a^2} = \frac{\var{X}}{a^2}
+\frac{\expt{(X-\expt{X})^2}}{a^2} = \frac{\var{X}}{a^2}.
 \end{align*}
+:::
+
+::: {#lem-pairwise-var}
+## 互いに独立な確率変数の和
+
+確率変数 $X_1,\,X_2,\dotsc,X_n$ が互いに独立のとき
+
+\begin{align*}
+\var{X_1+\dotsb+X_n} &= \var{X_1} +\dotsb + \var{X_n}.
+\end{align*}
+:::
+::: {.proof}
+\begin{align*}
+\var{X_1+\dotsb+X_n} &= \expt{\left((X_1+\dotsb+X_n) - \expt{X_1+\dotsb+X_n}\right)^2}\\
+&= \expt{\left((X_1- \expt{X_1}) + \dotsb + (X_n-\expt{X_n})\right)^2}\\
+&= \expt{\sum_i (X_i- \expt{X_i})^2  + 2\sum_{i < j}\left(X_i-\expt{X_i}\right)\left(X_j-\expt{X_j}\right)}\\
+&= \sum_i \expt{(X_i- \expt{X_i})^2} +  2\sum_{i < j}\expt{\left(X_i-\expt{X_i}\right)\left(X_j-\expt{X_j}\right)}\\
+&= \sum_i \expt{(X_i- \expt{X_i})^2} +  2\sum_{i < j}\expt{X_i-\expt{X_i}}\expt{X_j-\expt{X_j}}\\
+&= \sum_i \expt{(X_i- \expt{X_i})^2}
+=\sum_i \var{X_i}.
+\end{align*}
+:::
+
+::: {#exm-pairwise}
+互いに独立な確率変数 $X_1,\dotsc,X_n$ のそれぞれが確率変数 $X$ と同分布であるとし、
+\begin{align*}
+Y&\coloneqq \frac1{n} (X_1+\dotsb+X_n)
+\end{align*}
+と定義する。
+このとき、
+\begin{align*}
+\expt{Y} &= \expt{X}\\
+\var{Y} &= \frac1{n}\var{X}
+\end{align*}
+である。互いに独立な確率変数の平均を取ると期待値は変わらず、分散は小さくなる。
+:::
+
+::: {#exm-pairwise-exp}
+独立確率変数 $X_1,\dotsc,X_n\sim\mathrm{Ber}(1/2)$ について
+\begin{align*}
+Y_S &\coloneqq \sum_{i\in S} X_i \mod 2\qquad\forall S\subseteq\{1,2,\dotsc,n\} 
+\end{align*}
+と定義すると、これらは互いに独立である。
+また、$S\ne\varnothing$ について $Y_S\sim\mathrm{Ber}(1/2)$ である。
+任意の関数 $g\colon\,\{0,1\}\to\mathbb{R}$ について、
+\begin{align*}
+Y&\coloneqq \frac1{2^n-1} \sum_{S\subseteq\{1,\dotsc,n\}\colon\, S\ne\varnothing} g(Y_S)
+\end{align*}
+と定義すると、$X\sim\mathrm{Ber}(1/2)$ について、
+\begin{align*}
+\expt{Y} &= \expt{g(X)}\\
+\var{Y} &= \frac1{2^n-1}\var{g(X)}.
+\end{align*}
+:::
+
+## 共分散
+::: {#def-exp}
+## 共分散
+
+確率変数 $X,Y$ が期待値を持つとき、その**共分散**を
+
+\begin{align*}
+\cov{X}{Y} &\coloneqq \expt{(X-\expt{X})(Y-\expt{Y})}\\
+&= \expt{XY}-\expt{X}\,\expt{Y}
+\end{align*}
+
+と定義する。
+共分散がゼロである確率変数のペアを**無相関**であるという。
+:::
+
+定義より、$\cov{X}{X}=\var{X}$ であることが分かる。
+
+::: {#prp-ind-cov}
+独立確率変数 $X,Y$ は無相関である。
+:::
+
+逆に無相関であっても独立とは限らない。
+
+::: {#exm-ind-cov}
+確率変数 $X$ を
+\begin{align*}
+f_X(0)= f_X(+1)= f_X(-1)= \frac13
+\end{align*}
+を満たすものとし、$Y=X^2$ とする。
+このとき、
+\begin{align*}
+\cov{X}{Y} &= \expt{XY} - \expt{X}\expt{Y}\\
+&= \expt{X^3} - \expt{X}\expt{X^2}\\
+&= \expt{X} - \expt{X}\expt{X^2}\\
+&= \expt{X}(1-\expt{X^2})\\
+&= 0
+\end{align*}
+なので、$X$ と $Y$ は無相関である。
+一方で
+\begin{align*}
+f_{Y}(0) &= \frac13&
+f_{Y}(1) &= \frac23\\
+f_{X,\,Y}(0, 0) &= \frac13&
+f_{X,\,Y}(1, 1) &= \frac13&
+f_{X,\,Y}(-1, 1) &= \frac13&
+\end{align*}
+なので $X$ と $Y$ は独立ではない。
+:::
+
+共分散は正の値も負の値も取り得る。
+大雑把に言うと、
+
+* $X$ と $Y$ の共分散が正 $\iff$ $X$ が大きいとき $Y$ も大きい
+* $X$ と $Y$ の共分散が負 $\iff$ $X$ が大きいとき $Y$ は小さい
+
+という意味になる。
+
+
+::: {#lem-var-sum}
+任意の確率変数 $X_1,\dotsc,X_n$ について
+\begin{align*}
+\var{\sum_i X_i} &= \sum_i \var{X_i} + 2\sum_{i < j} \cov{X_i}{X_j}.
+\end{align*}
+:::
+::: {.proof}
+@lem-pairwise-var の証明参照。
 :::
 
 ## モーメントとモーメント母関数
@@ -193,10 +329,10 @@ $$
 ::: {#def-moment}
 ## モーメント
 
-確率変数 $X$ と正の整数 $n\in\mathbb{Z}_{\ge 1}$ について、
+確率変数 $X$ と正の整数 $n\ge 1$ について、
 
 $$
-\expt{X^n}
+\mu_n(X)\coloneqq \expt{X^n}
 $$
 
 を $X$ の $n$ 次モーメントという。
@@ -249,8 +385,8 @@ $$
 確率変数 $X$ について、ある $\epsilon >0$ が存在し、モーメント母関数 $M_X(t)$ が **$t\in(-\epsilon,\epsilon)$ で存在するとき**、
 
 \begin{align*}
-M_X(t) &=\sum_{n\ge 0}\frac{\expt{X^n}}{n!}t^n\\
-\expt{X^n} &= \left.\frac{\mathrm{d}^n M_X(t)}{\mathrm{d} t^n}\right|_{t=0}.
+M_X(t) &=\sum_{n\ge 0}\frac{\expt{X^n}}{n!}t^n\qquad\forall t\in(-\epsilon,\epsilon)\\
+\mu_n(X) &= \left.\frac{\mathrm{d}^n M_X(t)}{\mathrm{d} t^n}\right|_{t=0}.
 \end{align*}
 :::
 ::: {.proof}
@@ -290,3 +426,57 @@ M_X(t) &= \expt{\mathrm{e}^{tX}}\\
 \kappa_n(X) &\coloneqq \left.\frac{\mathrm{d}^n K_X(t)}{\mathrm{d} t^n}\right|_{t=0}
 \end{align*}
 を $X$ の **$n$ 次キュムラント** と呼ぶ。
+
+::: {#thm-moment}
+確率変数 $X$ と $Y$ のモーメント母関数が0を含む開区間 $(-\epsilon,\,\epsilon)$ で存在し、それらが等しいとき、$X$ の分布と $Y$ の分布は等しい。
+:::
+::: {.proof}
+$\mathrm{Image}(X)$ と $\mathrm{Image}(Y)$ が有限の場合に限って証明を与える
+(この場合はモーメント母関数は $\mathbb{R}$ 全体で存在するのだが)。
+\begin{align*}
+\{x_0,\dotsc,x_{N-1}\} &\coloneqq \mathrm{Image}(X) \cup \mathrm{Image}(Y)
+\end{align*}
+とする。
+\begin{align*}
+M_X(t) &= \sum_{k=0}^{N-1} f_X(x_k) \mathrm{e}^{tx_k}\\
+M_Y(t) &= \sum_{k=0}^{N-1} f_Y(x_k) \mathrm{e}^{tx_k}
+\end{align*}
+なので、
+\begin{align*}
+0 = M_X(t) - M_Y(t) &= \sum_{k=0}^{N-1} (f_X(x_k)-f_Y(x_k)) \mathrm{e}^{tx_k}\qquad\forall t\in(-\epsilon,\epsilon)
+\end{align*}
+各 $k\in\{0,1,\dotsc,N-1\}$ について、$t_k\coloneqq \epsilon\frac{k}{N}$ とおくと、
+\begin{align}
+\sum_{k=0}^{N-1} (f_X(x_k)-f_Y(x_k)) \mathrm{e}^{t_\ell x_k}&=0\qquad\forall \ell\in\{0,1,\dotsc,N-1\}
+\end{align}
+である。
+ここで、$N\times N$ 実行列 $V$ を
+\begin{align*}
+V_{\ell k} &= \mathrm{e}^{t_\ell x_k}
+= \mathrm{e}^{\frac{\epsilon x_k}{N} \ell}\qquad\forall k,\ell\in\{0,1,\dotsc,N-1\}
+\end{align*}
+とおく。
+この行列 $V$ は Vandermonde行列の転置であり正則なので、
+\begin{align*}
+&\sum_{k=0}^{N-1} V_{\ell k} g_k=0\qquad\forall \ell\in\{0,1,\dotsc,N-1\}\\
+\implies& g_k = 0 \qquad\forall k\in\{0,1,\dotsc,N-1\}
+\end{align*}
+よって、
+\begin{align*}
+f_X(x_k) &= f_Y(x_k) \qquad\forall k\in\{0,1,\dotsc,N-1\}
+\end{align*}
+である。
+:::
+
+@thm-moment より、モーメント母関数には確率変数の分布のすべての情報が含まれていると言える。
+ただし、モーメント母関数は原点まわりで存在しないこともあるので、分布の情報をすべて含む関数としては**特性関数**
+\begin{align*}
+\varphi_X(t) &\coloneqq \expt{\mathrm{e}^{itX}}\qquad\forall t\in\mathbb{R}
+\end{align*}
+の方が優秀である。
+一方でモーメント母関数は確率の集中を示す文脈では中心的な役割を果たす。
+
+
+<!--
+## 特性関数
+-->
