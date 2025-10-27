@@ -474,6 +474,7 @@ f_X(x_k) &= f_Y(x_k) \qquad\forall k\in\{0,1,\dotsc,N-1\}
 \varphi_X(t) &\coloneqq \expt{\mathrm{e}^{itX}}\qquad\forall t\in\mathbb{R}
 \end{align*}
 の方が優秀である。
+特性関数は常に存在する。
 一方でモーメント母関数は確率の集中を示す文脈では中心的な役割を果たす。
 
 

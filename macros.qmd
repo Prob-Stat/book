@@ -1,5 +1,6 @@
 $$
 \newcommand{\defiff}{\overset{\text{def}}{\iff}}
 \newcommand{\expt}[1]{\mathbb{E}\left[#1\right]}
-\newcommand{\var}[1]{\mathbb{V}\left[#1\right]}
+\newcommand{\var}[1]{\mathrm{Var}\left[#1\right]}
+\newcommand{\cov}[2]{\mathrm{Cov}\left[#1,\,#2\right]}
 $$
