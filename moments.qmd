@@ -380,7 +380,7 @@ $$
 
 今後は以下の補題を認めることにする。証明にはルベーグ積分の知識が必要である。
 
-::: {#lem-moment}
+::: {#thm-moment}
 
 確率変数 $X$ について、ある $\epsilon >0$ が存在し、モーメント母関数 $M_X(t)$ が **$t\in(-\epsilon,\epsilon)$ で存在するとき**、
 
@@ -390,12 +390,45 @@ M_X(t) &=\sum_{n\ge 0}\frac{\expt{X^n}}{n!}t^n\qquad\forall t\in(-\epsilon,\epsi
 \end{align*}
 :::
 ::: {.proof}
+前半の証明を与える。
+離散型確率変数 $X$ について、
+\begin{align*}
+M_X(t) &= \expt{\mathrm{e}^{tX}}\\
+ &= \sum_x \mathrm{e}^{tx} f_X(x)\\
+ &= \sum_x \left(\sum_{n\ge0}\frac{(tx)^n}{n!}\right) f_X(x)
+\end{align*}
+である。
+ここで、任意の $t\in(-\epsilon,\epsilon)$ について
+\begin{align*}
+ &\sum_x \sum_{n\ge0}\left|\frac{(tx)^n}{n!} f_X(x)\right|\\
+ &= \sum_x \sum_{n\ge0}\frac{|tx|^n}{n!} f_X(x)\\
+ &= \sum_x \mathrm{e}^{|tx|} f_X(x)\\
+ &\le \sum_x (\mathrm{e}^{tx}+\mathrm{e}^{-tx}) f_X(x)\\
+ &= \expt{\mathrm{e}^{tX}} + \expt{\mathrm{e}^{-tX}}\\
+ &= M_X(t) + M_X(-t) < \infty
+\end{align*}
+よって、無限和
+\begin{align*}
+\sum_x \sum_{n\ge0}\frac{(tx)^n}{n!} f_X(x)
+\end{align*}
+は任意の $t\in(-\epsilon,\epsilon)$ について**絶対収束する**。
+そのため、和の順序を変えても収束値は変化しない。
+よって、
+\begin{align*}
+M_X(t) &= \expt{\mathrm{e}^{tX}}\\
+ &= \sum_x \left(\sum_{n\ge0}\frac{(tx)^n}{n!}\right) f_X(x)\\
+ &= \sum_{n\ge 0} \sum_{x}\frac{(tx)^n}{n!}f_X(x)\\
+ &= \sum_{n\ge 0} \frac{\sum_xx^n f_X(x)}{n!}t^n\\
+ &= \sum_{n\ge 0} \frac{\expt{X^n}}{n!}t^n\qquad\forall t\in(-\epsilon,\epsilon).
+\end{align*}
+<!--
 (概要)
 \begin{align*}
 M_X(t) &= \expt{\mathrm{e}^{tX}}\\
 &=\expt{\sum_{n\ge 0}\frac{(tX)^n}{n!}}\\
 &=\sum_{n\ge 0}\expt{\frac{(tX)^n}{n!}}\qquad\text{\textsf{(この無限和と期待値の交換が定理の条件より正当化される)}}.
 \end{align*}
+-->
 :::
 
 ::: {#cor-cumulant}
