@@ -528,9 +528,9 @@ window.Quarto = {
 \expt{g(X)}
 %&amp;= \sum_{x} x f_{g(X)}(x)\\
 &amp;= \sum_{x} x \Pr(g(X) = x)\\
-&amp;= \sum_{x} x \Pr(\{\omega\in\Omega\mid g(X(\omega)) = x\})\\
-&amp;= \sum_{x} x \Pr\left(\bigcup_{y\in\mathrm{Image}(X)\colon\, g(y) = x}\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
-&amp;= \sum_{x}\sum_{y\in\mathrm{Image}(X)\colon\, g(y) = x} x \Pr\left(\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
+&amp;= \sum_{x} x P(\{\omega\in\Omega\mid g(X(\omega)) = x\})\\
+&amp;= \sum_{x} x P\left(\bigcup_{y\in\mathrm{Image}(X)\colon\, g(y) = x}\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
+&amp;= \sum_{x}\sum_{y\in\mathrm{Image}(X)\colon\, g(y) = x} x P\left(\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
 &amp;= \sum_{y\in\mathrm{Image}(X)} g(y) f_X(y).
 \end{align*}\]</span> <!--
 $X$ が連続型確率変数で確率密度関数を持つとする。
