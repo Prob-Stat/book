@@ -23,7 +23,7 @@ $$
 \expt{X}\coloneqq \int_{-\infty}^\infty x f_X(x) \mathrm{d}x
 $$
 
-と定義される。ただし、
+と定義される。ただし、広義積分で上記の積分が存在する場合でも
 $$
 \int_{-\infty}^\infty |x| f_X(x) \mathrm{d}x
 $$
