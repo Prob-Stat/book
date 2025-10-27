@@ -85,9 +85,9 @@ $X$ を離散型確率変数とする。
 \expt{g(X)}
 %&= \sum_{x} x f_{g(X)}(x)\\
 &= \sum_{x} x \Pr(g(X) = x)\\
-&= \sum_{x} x \Pr(\{\omega\in\Omega\mid g(X(\omega)) = x\})\\
-&= \sum_{x} x \Pr\left(\bigcup_{y\in\mathrm{Image}(X)\colon\, g(y) = x}\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
-&= \sum_{x}\sum_{y\in\mathrm{Image}(X)\colon\, g(y) = x} x \Pr\left(\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
+&= \sum_{x} x P(\{\omega\in\Omega\mid g(X(\omega)) = x\})\\
+&= \sum_{x} x P\left(\bigcup_{y\in\mathrm{Image}(X)\colon\, g(y) = x}\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
+&= \sum_{x}\sum_{y\in\mathrm{Image}(X)\colon\, g(y) = x} x P\left(\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
 &= \sum_{y\in\mathrm{Image}(X)} g(y) f_X(y).
 \end{align*}
 <!--
