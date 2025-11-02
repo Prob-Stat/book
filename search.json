@@ -384,6 +384,61 @@
     ]
   },
   {
+    "objectID": "bayes.html",
+    "href": "bayes.html",
+    "title": "7  ベイズ推定",
+    "section": "",
+    "text": "7.1 ベイズ推定\n統計的推論とは現実の推定問題を確率論に基づきモデル化し、誤り確率を最小化するように推論する方法論である。 統計的推論には大きく分けて二種類の流派がある。\n例えば統計的推論は以下のような問題に適用されている。\nデータが取り得る値の集合を \\(\\mathcal{X}\\) とし、パラメータの取り得る値の集合を \\(\\Theta\\) とする。 簡単のため、\\(\\mathcal{X}\\) と \\(\\Theta\\) は高々可算集合とする。 データ \\(x\\in\\mathcal{X}\\) からパラメータ \\(\\theta\\in\\Theta\\) を推定する問題を考える。 このとき、\\(x\\) と \\(\\theta\\) が何かしらの確率分布に従っていると仮定する。 パラメータ \\(\\theta\\) に対する \\(x\\) の確率質量関数を \\(p(x\\mid \\theta)\\) と表す。 また、パラメータ \\(\\theta\\) の確率質量関数を \\(p(\\theta)\\) と表す。 つまり、パラメータ \\(\\theta\\in\\Theta\\) とデータ \\(x\\in\\mathcal{X}\\) が選ばれる確率は \\[\\begin{align*}\np(\\theta) p(x\\mid\\theta)\n\\end{align*}\\] である。 この文脈では\nという。ここで \\[\\begin{align*}\np(\\theta\\mid x)&\\coloneqq \\frac{p(\\theta)p(x\\mid\\theta)}{\\sum_{\\theta\\in\\Theta}p(\\theta)p(x\\mid\\theta)}\n\\end{align*}\\] である。\nこのとき、得られたデータ \\(x\\in\\mathcal{X}\\) からパラメータ \\(\\theta\\in\\Theta\\) を推定する関数 \\(\\widehat{\\theta}\\colon \\mathcal{X}\\to\\Theta\\) の誤り確率を \\[\\begin{align*}\nP_{\\mathrm{err}}(\\widehat{\\theta})&\\coloneqq\n\\sum_{\\theta\\in\\Theta} p(\\theta) \\sum_{x\\in\\mathcal{X}} p(x\\mid\\theta) \\mathbb{I}\\{\\widehat{\\theta}(x)\\ne\\theta\\}\n\\end{align*}\\] と定義する。 このとき、 \\[\\begin{align*}\nP_{\\mathrm{err}}(\\widehat{\\theta})\n&= \\sum_{\\theta\\in\\Theta} p(\\theta) \\sum_{x\\in\\mathcal{X}} p(x\\mid\\theta) \\mathbb{I}\\{\\widehat{\\theta}(x)\\ne\\theta\\}\\\\\n&= \\sum_{\\theta\\in\\Theta} p(\\theta) \\sum_{x\\in\\mathcal{X}} p(x\\mid\\theta) (1-\\mathbb{I}\\{\\widehat{\\theta}(x)=\\theta\\})\\\\\n&= 1- \\sum_{\\theta\\in\\Theta} p(\\theta) \\sum_{x\\in\\mathcal{X}} p(x\\mid\\theta) \\mathbb{I}\\{\\widehat{\\theta}(x)=\\theta\\}\\\\\n&= 1- \\sum_{x\\in\\mathcal{X}}\\sum_{\\theta\\in\\Theta} p(\\theta)  p(x\\mid\\theta) \\mathbb{I}\\{\\widehat{\\theta}(x)=\\theta\\}\\\\\n&= 1- \\sum_{x\\in\\mathcal{X}}p\\left(\\widehat{\\theta}(x)\\right)  p\\left(x\\mid\\widehat{\\theta}(x)\\right)\\\\\n&\\ge 1- \\sum_{x\\in\\mathcal{X}} \\max_{\\theta\\in\\Theta} p\\left(\\theta\\right)  p\\left(x\\mid\\theta\\right)\n\\end{align*}\\] と下から抑えることができ、 \\[\\begin{align*}\n\\widehat{\\theta}_{\\mathrm{MAP}}(x) &\\coloneqq\n  \\arg\\max_{\\theta\\in\\Theta}p\\left(\\theta\\mid x\\right)\\\\\n&= \\arg\\max_{\\theta\\in\\Theta}p\\left(\\theta\\mid x\\right)  p\\left(x\\right)\\\\\n&= \\arg\\max_{\\theta\\in\\Theta}p\\left(\\theta\\right)  p\\left(x\\mid\\theta\\right)\\\\\n\\end{align*}\\] という推定関数により等号が達成される。 この推定関数を最大事後確率(maximum a posteriori; MAP)推定関数と呼ぶ。",
+    "crumbs": [
+      "統計学",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ベイズ推定</span>"
+    ]
+  },
+  {
+    "objectID": "bayes.html#ベイズ推定",
+    "href": "bayes.html#ベイズ推定",
+    "title": "7  ベイズ推定",
+    "section": "",
+    "text": "\\(p(\\theta)\\colon\\) 事前確率\n\\(p(x\\mid \\theta)\\colon\\) 尤度\n\\(p(\\theta\\mid x)\\colon\\) 事後確率",
+    "crumbs": [
+      "統計学",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ベイズ推定</span>"
+    ]
+  },
+  {
+    "objectID": "bayes.html#最尤推定",
+    "href": "bayes.html#最尤推定",
+    "title": "7  ベイズ推定",
+    "section": "7.2 最尤推定",
+    "text": "7.2 最尤推定\nMAP推定は誤り確率を最小化する推定方法であるが、事前確率 \\(p(\\theta)\\) を仮定しないと用いることができない。 一方で尤度を最大化する推定関数 \\[\\begin{align*}\n\\widehat{\\theta}_{\\mathrm{ML}}(x) &\\coloneqq\n  \\arg\\max_{\\theta\\in\\Theta}p\\left(x\\mid\\theta\\right)\n\\end{align*}\\] を最尤推定(maximam a priori; ML)関数という。 \\(\\Theta\\) が有限集合で、事前確率が一様分布 \\(p(\\theta)=\\frac1{|\\Theta|}\\) のとき、最尤推定は最大事後確率推定と一致する。",
+    "crumbs": [
+      "統計学",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ベイズ推定</span>"
+    ]
+  },
+  {
+    "objectID": "bayes.html#全変動距離",
+    "href": "bayes.html#全変動距離",
+    "title": "7  ベイズ推定",
+    "section": "7.3 全変動距離",
+    "text": "7.3 全変動距離\n特にパラメータが二値である場合を考える。この章では \\(\\Theta=\\{0,1\\}\\) とする。 \\[\\begin{align*}\nP_{\\mathrm{err}}(\\widehat{\\theta}_\\mathrm{MAP})\n&= 1- \\sum_{x\\in\\mathcal{X}} \\max_{\\theta\\in\\{0,1\\}} p\\left(\\theta\\right)  p\\left(x\\mid\\theta\\right)\n\\end{align*}\\] ここで、 \\[\\begin{align*}\n\\max_{\\theta\\in\\{0,1\\}} \\{p\\left(\\theta\\right)  p\\left(x\\mid\\theta\\right)\\} -\n\\min_{\\theta\\in\\{0,1\\}} \\{p\\left(\\theta\\right)  p\\left(x\\mid\\theta\\right)\\}\n&=\n\\left|\\,p\\left(\\theta=0\\right)  p\\left(x\\mid\\theta=0\\right) - p\\left(\\theta=1\\right)  p\\left(x\\mid\\theta=1\\right) \\,\\right|\\\\\n\\max_{\\theta\\in\\{0,1\\}} \\{p\\left(\\theta\\right)  p\\left(x\\mid\\theta\\right)\\} +\n\\min_{\\theta\\in\\{0,1\\}} \\{p\\left(\\theta\\right)  p\\left(x\\mid\\theta\\right)\\}\n&=p(x)\n\\end{align*}\\] であるので、 \\[\\begin{align*}\n\\max_{\\theta\\in\\{0,1\\}} \\{p\\left(\\theta\\right)  p\\left(x\\mid\\theta\\right)\\}\n&= \\frac12\\left(p(x) +\n\\left|\\,p\\left(\\theta=0\\right)  p\\left(x\\mid\\theta=0\\right) - p\\left(\\theta=1\\right)  p\\left(x\\mid\\theta=1\\right) \\,\\right|\\right)\n\\end{align*}\\] よって、 \\[\\begin{align*}\nP_{\\mathrm{err}}(\\widehat{\\theta}_\\mathrm{MAP})\n&= 1- \\sum_{x\\in\\mathcal{X}} \\max_{\\theta\\in\\{0,1\\}} p\\left(\\theta\\right)  p\\left(x\\mid\\theta\\right)\\\\\n&= 1- \\sum_{x\\in\\mathcal{X}} \\frac12\\left(p(x) +\n\\left|\\,p\\left(\\theta=0\\right)  p\\left(x\\mid\\theta=0\\right) - p\\left(\\theta=1\\right)  p\\left(x\\mid\\theta=1\\right) \\,\\right|\\right)\\\\\n&= 1-  \\frac12\\left(1 +\n\\sum_{x\\in\\mathcal{X}}\\left|\\,p\\left(\\theta=0\\right)  p\\left(x\\mid\\theta=0\\right) - p\\left(\\theta=1\\right)  p\\left(x\\mid\\theta=1\\right) \\,\\right|\\right)\\\\\n&= \\frac12\\left(1 -\n\\sum_{x\\in\\mathcal{X}}\\left|\\,p\\left(\\theta=0\\right)  p\\left(x\\mid\\theta=0\\right) - p\\left(\\theta=1\\right)  p\\left(x\\mid\\theta=1\\right) \\,\\right|\\right)\\\\\n\\end{align*}\\]\n\n定義 7.1 高々可算集合 \\(\\mathcal{X}\\) 上の関数 \\(f\\) について、 \\[\\begin{align*}\n\\|f\\|_1 &\\coloneqq \\sum_{x\\in\\mathcal{X}} \\left|\\, f(x)\\,\\right|\n\\end{align*}\\] と定義する。 また、\\(\\mathcal{X}\\) 上の確率質量関数 \\(p\\), \\(q\\) について、 \\[\\begin{align*}\nd_{\\mathrm{TV}}(p,\\, q) &\\coloneqq \\frac12\\left\\|\\, p-q\\,\\right\\|_1\n\\end{align*}\\] を全変動距離という。",
+    "crumbs": [
+      "統計学",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ベイズ推定</span>"
+    ]
+  },
+  {
+    "objectID": "bayes.html#独立なサンプルからの推定",
+    "href": "bayes.html#独立なサンプルからの推定",
+    "title": "7  ベイズ推定",
+    "section": "7.4 独立なサンプルからの推定",
+    "text": "7.4 独立なサンプルからの推定\n共通のパラメータからデータを独立に \\(n\\) 回サンプルする場合を考える。 このとき、尤度関数は \\[\\begin{align*}\np_n(x_1,\\dotsc,x_n\\mid\\theta)&\\coloneqq\\prod_{i=1}^n p(x_i\\mid \\theta)\n\\end{align*}\\] で与えられる。 確率分布 \\(p\\) と \\(q\\) について、\\(d_{\\mathrm{TV}}(p_n,\\,q_n)\\) を計算することは難しい。\n\n定義 7.2 また、\\(\\mathcal{X}\\) 上の確率質量関数 \\(p\\), \\(q\\) について、 \\[\\begin{align*}\nd_{\\mathrm{H}}(p,\\, q) &\\coloneqq \\sqrt{\\frac12\\sum_{x\\in\\mathcal{X}}\\left(\\sqrt{p(x)} - \\sqrt{q(x)}\\right)^2}\\\\\n&=\\sqrt{1 - \\sum_{x\\in\\mathcal{X}}\\sqrt{p(x)q(x)}}\\\\\n\\end{align*}\\] をヘリンガー距離という。\nまた、 \\[\\begin{align*}\n\\mathrm{BC}(p,\\,q)&\\coloneqq\\sum_{x\\in\\mathcal{X}} \\sqrt{p(x)q(x)}\n\\end{align*}\\] をバタチャリヤ係数という。\n\\[\\begin{align*}\nd_{\\mathrm{H}}(p,\\,q) &=\\sqrt{1-\\mathrm{BC}(p,\\,q)}\n\\end{align*}\\] が成り立つ。\n\nこのとき、 \\[\\begin{align*}\n\\mathrm{BC}(p_n,\\, q_n)&=\\mathrm{BC}(p,\\,q)^n\n\\end{align*}\\] である。\n\n補題 7.1 \\[\\begin{align*}\nd_{\\mathrm{H}}(p,\\, q)^2\n\\le d_{\\mathrm{TV}}(p,\\, q)\\le\n\\sqrt{2} d_{\\mathrm{H}}(p,\\, q)\n\\end{align*}\\]",
+    "crumbs": [
+      "統計学",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ベイズ推定</span>"
+    ]
+  },
+  {
     "objectID": "references.html",
     "href": "references.html",
     "title": "参考文献",
