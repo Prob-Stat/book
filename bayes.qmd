@@ -1,2 +1,161 @@
 # ベイズ推定
 
+統計的推論とは現実の推定問題を確率論に基づきモデル化し、誤り確率を最小化するように推論する方法論である。
+統計的推論には大きく分けて二種類の流派がある。
+
+* ベイズ主義: 推論する対象の分布(事前分布)を仮定する。
+* 頻度主義: 推論する対象の分布(事前分布)を仮定しない。
+
+例えば統計的推論は以下のような問題に適用されている。
+
+## ベイズ推定
+
+データが取り得る値の集合を $\mathcal{X}$ とし、パラメータの取り得る値の集合を $\Theta$ とする。
+簡単のため、$\mathcal{X}$ と $\Theta$ は高々可算集合とする。
+データ $x\in\mathcal{X}$ からパラメータ $\theta\in\Theta$ を推定する問題を考える。
+このとき、$x$ と $\theta$ が何かしらの確率分布に従っていると仮定する。
+パラメータ $\theta$ に対する $x$ の確率質量関数を $p(x\mid \theta)$ と表す。
+また、パラメータ $\theta$ の確率質量関数を $p(\theta)$ と表す。
+つまり、パラメータ $\theta\in\Theta$ とデータ $x\in\mathcal{X}$ が選ばれる確率は
+\begin{align*}
+p(\theta) p(x\mid\theta)
+\end{align*}
+である。
+この文脈では
+
+* $p(\theta)\colon$ 事前確率
+* $p(x\mid \theta)\colon$ 尤度
+* $p(\theta\mid x)\colon$ 事後確率
+
+という。ここで
+\begin{align*}
+p(\theta\mid x)&\coloneqq \frac{p(\theta)p(x\mid\theta)}{\sum_{\theta\in\Theta}p(\theta)p(x\mid\theta)}
+\end{align*}
+である。
+
+このとき、得られたデータ $x\in\mathcal{X}$ からパラメータ $\theta\in\Theta$ を推定する関数 $\widehat{\theta}\colon \mathcal{X}\to\Theta$ の誤り確率を
+\begin{align*}
+P_{\mathrm{err}}(\widehat{\theta})&\coloneqq
+\sum_{\theta\in\Theta} p(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) \mathbb{I}\{\widehat{\theta}(x)\ne\theta\}
+\end{align*}
+と定義する。
+このとき、
+\begin{align*}
+P_{\mathrm{err}}(\widehat{\theta})
+&= \sum_{\theta\in\Theta} p(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) \mathbb{I}\{\widehat{\theta}(x)\ne\theta\}\\
+&= \sum_{\theta\in\Theta} p(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) (1-\mathbb{I}\{\widehat{\theta}(x)=\theta\})\\
+&= 1- \sum_{\theta\in\Theta} p(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) \mathbb{I}\{\widehat{\theta}(x)=\theta\}\\
+&= 1- \sum_{x\in\mathcal{X}}\sum_{\theta\in\Theta} p(\theta)  p(x\mid\theta) \mathbb{I}\{\widehat{\theta}(x)=\theta\}\\
+&= 1- \sum_{x\in\mathcal{X}}p\left(\widehat{\theta}(x)\right)  p\left(x\mid\widehat{\theta}(x)\right)\\
+&\ge 1- \sum_{x\in\mathcal{X}} \max_{\theta\in\Theta} p\left(\theta\right)  p\left(x\mid\theta\right)
+\end{align*}
+と下から抑えることができ、
+\begin{align*}
+\widehat{\theta}_{\mathrm{MAP}}(x) &\coloneqq
+  \arg\max_{\theta\in\Theta}p\left(\theta\mid x\right)\\
+ &= \arg\max_{\theta\in\Theta}p\left(\theta\mid x\right)  p\left(x\right)\\
+ &= \arg\max_{\theta\in\Theta}p\left(\theta\right)  p\left(x\mid\theta\right)\\
+\end{align*}
+という推定関数により等号が達成される。
+この推定関数を最大事後確率(maximum a posteriori; MAP)推定関数と呼ぶ。
+
+## 最尤推定
+MAP推定は誤り確率を最小化する推定方法であるが、事前確率 $p(\theta)$ を仮定しないと用いることができない。
+一方で尤度を最大化する推定関数
+\begin{align*}
+\widehat{\theta}_{\mathrm{ML}}(x) &\coloneqq
+  \arg\max_{\theta\in\Theta}p\left(x\mid\theta\right)
+\end{align*}
+を最尤推定(maximam a priori; ML)関数という。
+$\Theta$ が有限集合で、事前確率が一様分布 $p(\theta)=\frac1{|\Theta|}$ のとき、最尤推定は最大事後確率推定と一致する。
+
+## 全変動距離
+
+特にパラメータが二値である場合を考える。この章では $\Theta=\{0,1\}$ とする。
+\begin{align*}
+P_{\mathrm{err}}(\widehat{\theta}_\mathrm{MAP})
+&= 1- \sum_{x\in\mathcal{X}} \max_{\theta\in\{0,1\}} p\left(\theta\right)  p\left(x\mid\theta\right)
+\end{align*}
+ここで、
+\begin{align*}
+\max_{\theta\in\{0,1\}} \{p\left(\theta\right)  p\left(x\mid\theta\right)\} -
+\min_{\theta\in\{0,1\}} \{p\left(\theta\right)  p\left(x\mid\theta\right)\}
+&=
+\left|\,p\left(\theta=0\right)  p\left(x\mid\theta=0\right) - p\left(\theta=1\right)  p\left(x\mid\theta=1\right) \,\right|\\
+\max_{\theta\in\{0,1\}} \{p\left(\theta\right)  p\left(x\mid\theta\right)\} +
+\min_{\theta\in\{0,1\}} \{p\left(\theta\right)  p\left(x\mid\theta\right)\}
+&=p(x)
+\end{align*}
+であるので、
+\begin{align*}
+\max_{\theta\in\{0,1\}} \{p\left(\theta\right)  p\left(x\mid\theta\right)\}
+&= \frac12\left(p(x) + 
+\left|\,p\left(\theta=0\right)  p\left(x\mid\theta=0\right) - p\left(\theta=1\right)  p\left(x\mid\theta=1\right) \,\right|\right)
+\end{align*}
+よって、
+\begin{align*}
+P_{\mathrm{err}}(\widehat{\theta}_\mathrm{MAP})
+&= 1- \sum_{x\in\mathcal{X}} \max_{\theta\in\{0,1\}} p\left(\theta\right)  p\left(x\mid\theta\right)\\
+&= 1- \sum_{x\in\mathcal{X}} \frac12\left(p(x) + 
+\left|\,p\left(\theta=0\right)  p\left(x\mid\theta=0\right) - p\left(\theta=1\right)  p\left(x\mid\theta=1\right) \,\right|\right)\\
+&= 1-  \frac12\left(1 + 
+\sum_{x\in\mathcal{X}}\left|\,p\left(\theta=0\right)  p\left(x\mid\theta=0\right) - p\left(\theta=1\right)  p\left(x\mid\theta=1\right) \,\right|\right)\\
+&= \frac12\left(1 - 
+\sum_{x\in\mathcal{X}}\left|\,p\left(\theta=0\right)  p\left(x\mid\theta=0\right) - p\left(\theta=1\right)  p\left(x\mid\theta=1\right) \,\right|\right)\\
+\end{align*}
+
+:::{#def-tv}
+高々可算集合 $\mathcal{X}$ 上の関数 $f$ について、
+\begin{align*}
+\|f\|_1 &\coloneqq \sum_{x\in\mathcal{X}} \left|\, f(x)\,\right|
+\end{align*}
+と定義する。
+また、$\mathcal{X}$ 上の確率質量関数 $p$, $q$ について、
+\begin{align*}
+d_{\mathrm{TV}}(p,\, q) &\coloneqq \frac12\left\|\, p-q\,\right\|_1
+\end{align*}
+を全変動距離という。
+:::
+
+## 独立なサンプルからの推定
+共通のパラメータからデータを独立に $n$ 回サンプルする場合を考える。
+このとき、尤度関数は
+\begin{align*}
+p_n(x_1,\dotsc,x_n\mid\theta)&\coloneqq\prod_{i=1}^n p(x_i\mid \theta)
+\end{align*}
+で与えられる。
+確率分布 $p$ と $q$ について、$d_{\mathrm{TV}}(p_n,\,q_n)$ を計算することは難しい。
+
+:::{#def-Hellinger}
+また、$\mathcal{X}$ 上の確率質量関数 $p$, $q$ について、
+\begin{align*}
+d_{\mathrm{H}}(p,\, q) &\coloneqq \sqrt{\frac12\sum_{x\in\mathcal{X}}\left(\sqrt{p(x)} - \sqrt{q(x)}\right)^2}\\
+&=\sqrt{1 - \sum_{x\in\mathcal{X}}\sqrt{p(x)q(x)}}\\
+\end{align*}
+を**ヘリンガー距離**という。
+
+また、
+\begin{align*}
+\mathrm{BC}(p,\,q)&\coloneqq\sum_{x\in\mathcal{X}} \sqrt{p(x)q(x)}
+\end{align*}
+を**バタチャリヤ係数**という。
+
+\begin{align*}
+d_{\mathrm{H}}(p,\,q) &=\sqrt{1-\mathrm{BC}(p,\,q)}
+\end{align*}
+が成り立つ。
+:::
+
+このとき、
+\begin{align*}
+\mathrm{BC}(p_n,\, q_n)&=\mathrm{BC}(p,\,q)^n
+\end{align*}
+である。
+
+::: {#lem-tv-h}
+\begin{align*}
+d_{\mathrm{H}}(p,\, q)^2
+\le d_{\mathrm{TV}}(p,\, q)\le
+\sqrt{2} d_{\mathrm{H}}(p,\, q)
+\end{align*}
+:::
