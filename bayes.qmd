@@ -8,154 +8,256 @@
 
 例えば統計的推論は以下のような問題に適用されている。
 
-## ベイズ推定
+## 最大事後確率推定
 
-データが取り得る値の集合を $\mathcal{X}$ とし、パラメータの取り得る値の集合を $\Theta$ とする。
+データが取り得る値の集合を $\mathcal{X}$ とし、分布のパラメータの取り得る値の集合を $\Theta$ とする。
 簡単のため、$\mathcal{X}$ と $\Theta$ は高々可算集合とする。
 データ $x\in\mathcal{X}$ からパラメータ $\theta\in\Theta$ を推定する問題を考える。
 このとき、$x$ と $\theta$ が何かしらの確率分布に従っていると仮定する。
 パラメータ $\theta$ に対する $x$ の確率質量関数を $p(x\mid \theta)$ と表す。
-また、パラメータ $\theta$ の確率質量関数を $p(\theta)$ と表す。
+また、パラメータ $\theta$ の確率質量関数を $\pi(\theta)$ と表す。
 つまり、パラメータ $\theta\in\Theta$ とデータ $x\in\mathcal{X}$ が選ばれる確率は
 \begin{align*}
-p(\theta) p(x\mid\theta)
+\pi(\theta) p(x\mid\theta)
 \end{align*}
 である。
-この文脈では
+また、
+\begin{align*}
+p(x) &= \sum_{\theta\in\Theta}\pi(\theta)p(x\mid\theta),&
+p(\theta\mid x)&\coloneqq \frac{\pi(\theta)p(x\mid\theta)}{p(x)}
+\end{align*}
+と定義する。
+ベイズ推定の文脈では
 
-* $p(\theta)\colon$ 事前確率
+* $\pi(\theta)\colon$ 事前確率
 * $p(x\mid \theta)\colon$ 尤度
 * $p(\theta\mid x)\colon$ 事後確率
 
-という。ここで
-\begin{align*}
-p(\theta\mid x)&\coloneqq \frac{p(\theta)p(x\mid\theta)}{\sum_{\theta\in\Theta}p(\theta)p(x\mid\theta)}
-\end{align*}
-である。
+と呼ぶ。
 
 このとき、得られたデータ $x\in\mathcal{X}$ からパラメータ $\theta\in\Theta$ を推定する関数 $\widehat{\theta}\colon \mathcal{X}\to\Theta$ の誤り確率を
 \begin{align*}
 P_{\mathrm{err}}(\widehat{\theta})&\coloneqq
-\sum_{\theta\in\Theta} p(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) \mathbb{I}\{\widehat{\theta}(x)\ne\theta\}
+\sum_{\theta\in\Theta} \pi(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) \,\mathbb{I}\{\widehat{\theta}(x)\ne\theta\}
 \end{align*}
 と定義する。
 このとき、
 \begin{align*}
 P_{\mathrm{err}}(\widehat{\theta})
-&= \sum_{\theta\in\Theta} p(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) \mathbb{I}\{\widehat{\theta}(x)\ne\theta\}\\
-&= \sum_{\theta\in\Theta} p(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) (1-\mathbb{I}\{\widehat{\theta}(x)=\theta\})\\
-&= 1- \sum_{\theta\in\Theta} p(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) \mathbb{I}\{\widehat{\theta}(x)=\theta\}\\
-&= 1- \sum_{x\in\mathcal{X}}\sum_{\theta\in\Theta} p(\theta)  p(x\mid\theta) \mathbb{I}\{\widehat{\theta}(x)=\theta\}\\
-&= 1- \sum_{x\in\mathcal{X}}p\left(\widehat{\theta}(x)\right)  p\left(x\mid\widehat{\theta}(x)\right)\\
-&\ge 1- \sum_{x\in\mathcal{X}} \max_{\theta\in\Theta} p\left(\theta\right)  p\left(x\mid\theta\right)
+&= \sum_{\theta\in\Theta} \pi(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) \,\mathbb{I}\{\widehat{\theta}(x)\ne\theta\}\\
+&= \sum_{\theta\in\Theta} \pi(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) (1-\mathbb{I}\{\widehat{\theta}(x)=\theta\})\\
+&= 1- \sum_{\theta\in\Theta} \pi(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta)\, \mathbb{I}\{\widehat{\theta}(x)=\theta\}\\
+&= 1- \sum_{x\in\mathcal{X}}\sum_{\theta\in\Theta} \pi(\theta)  p(x\mid\theta)\, \mathbb{I}\{\widehat{\theta}(x)=\theta\}\\
+&= 1- \sum_{x\in\mathcal{X}}\pi\left(\widehat{\theta}(x)\right)  p\left(x\mid\widehat{\theta}(x)\right)\\
+&\ge 1- \sum_{x\in\mathcal{X}} \max_{\theta\in\Theta} \pi\left(\theta\right)  p\left(x\mid\theta\right)
 \end{align*}
 と下から抑えることができ、
 \begin{align*}
 \widehat{\theta}_{\mathrm{MAP}}(x) &\coloneqq
   \arg\max_{\theta\in\Theta}p\left(\theta\mid x\right)\\
  &= \arg\max_{\theta\in\Theta}p\left(\theta\mid x\right)  p\left(x\right)\\
- &= \arg\max_{\theta\in\Theta}p\left(\theta\right)  p\left(x\mid\theta\right)\\
+ &= \arg\max_{\theta\in\Theta}\pi\left(\theta\right)  p\left(x\mid\theta\right)\\
 \end{align*}
 という推定関数により等号が達成される。
 この推定関数を最大事後確率(maximum a posteriori; MAP)推定関数と呼ぶ。
 
 ## 最尤推定
-MAP推定は誤り確率を最小化する推定方法であるが、事前確率 $p(\theta)$ を仮定しないと用いることができない。
+MAP推定は誤り確率を最小化する推定方法であるが、事前確率 $\pi(\theta)$ を仮定しないと用いることができない。
 一方で尤度を最大化する推定関数
 \begin{align*}
 \widehat{\theta}_{\mathrm{ML}}(x) &\coloneqq
   \arg\max_{\theta\in\Theta}p\left(x\mid\theta\right)
 \end{align*}
 を最尤推定(maximam a priori; ML)関数という。
-$\Theta$ が有限集合で、事前確率が一様分布 $p(\theta)=\frac1{|\Theta|}$ のとき、最尤推定は最大事後確率推定と一致する。
+$\Theta$ が有限集合で、事前確率が一様分布 $\pi(\theta)=\frac1{|\Theta|}$ のとき、最尤推定は最大事後確率推定と一致する。
 
 ## 全変動距離
 
 特にパラメータが二値である場合を考える。この章では $\Theta=\{0,1\}$ とする。
+また、
+\begin{align*}
+p^{(0)}(x) &\coloneqq p(x\mid 0)&
+p^{(1)}(x) &\coloneqq p(x\mid 1)
+\end{align*}
+とする。
+このとき、
 \begin{align*}
 P_{\mathrm{err}}(\widehat{\theta}_\mathrm{MAP})
-&= 1- \sum_{x\in\mathcal{X}} \max_{\theta\in\{0,1\}} p\left(\theta\right)  p\left(x\mid\theta\right)
+&= 1- \sum_{x\in\mathcal{X}} \max_{\theta\in\{0,1\}} \pi\left(\theta\right)  p\left(x\mid\theta\right)\\
+&= 1- \sum_{x\in\mathcal{X}} \max \left\{\pi(0)  p^{(0)}\left(x\right),\,\pi(1)  p^{(1)}\left(x\right)\right\}\\
 \end{align*}
+である。
 ここで、
 \begin{align*}
-\max_{\theta\in\{0,1\}} \{p\left(\theta\right)  p\left(x\mid\theta\right)\} -
-\min_{\theta\in\{0,1\}} \{p\left(\theta\right)  p\left(x\mid\theta\right)\}
-&=
-\left|\,p\left(\theta=0\right)  p\left(x\mid\theta=0\right) - p\left(\theta=1\right)  p\left(x\mid\theta=1\right) \,\right|\\
-\max_{\theta\in\{0,1\}} \{p\left(\theta\right)  p\left(x\mid\theta\right)\} +
-\min_{\theta\in\{0,1\}} \{p\left(\theta\right)  p\left(x\mid\theta\right)\}
-&=p(x)
+\begin{split}
+\max\{a,b\} - \min\{a,b\} &= |\,a-b\,|\\
+\max\{a,b\} + \min\{a,b\} &= a+b
+\end{split}
+\qquad\forall a,b\in\mathbb{R}
 \end{align*}
 であるので、
 \begin{align*}
-\max_{\theta\in\{0,1\}} \{p\left(\theta\right)  p\left(x\mid\theta\right)\}
+\max\{a,b\} &= \frac12(a+b+|\,a-b\,|)\qquad\forall a,b\in\mathbb{R}.
+\end{align*}
+よって、
+\begin{align*}
+%\max_{\theta\in\{0,1\}} \{\pi\left(\theta\right)  p\left(x\mid\theta\right)\}
+\max \left\{\pi(0)  p^{(0)}\left(x\right),\,\pi(1)  p^{(1)}\left(x\right)\right\}
 &= \frac12\left(p(x) + 
-\left|\,p\left(\theta=0\right)  p\left(x\mid\theta=0\right) - p\left(\theta=1\right)  p\left(x\mid\theta=1\right) \,\right|\right)
+\left|\,\pi\left(0\right)  p^{(0)}\left(x\right) - \pi\left(1\right)  p^{(1)}\left(x\right) \,\right|\right)
 \end{align*}
 よって、
 \begin{align*}
 P_{\mathrm{err}}(\widehat{\theta}_\mathrm{MAP})
-&= 1- \sum_{x\in\mathcal{X}} \max_{\theta\in\{0,1\}} p\left(\theta\right)  p\left(x\mid\theta\right)\\
+&= 1- \sum_{x\in\mathcal{X}} \max \left\{\pi(0)  p^{(0)}\left(x\right),\,\pi(1)  p^{(1)}\left(x\right)\right\}\\
 &= 1- \sum_{x\in\mathcal{X}} \frac12\left(p(x) + 
-\left|\,p\left(\theta=0\right)  p\left(x\mid\theta=0\right) - p\left(\theta=1\right)  p\left(x\mid\theta=1\right) \,\right|\right)\\
+\left|\,\pi\left(0\right)  p^{(0)}\left(x\right) - \pi\left(1\right)  p^{(1)}\left(x\right) \,\right|\right)\\
 &= 1-  \frac12\left(1 + 
-\sum_{x\in\mathcal{X}}\left|\,p\left(\theta=0\right)  p\left(x\mid\theta=0\right) - p\left(\theta=1\right)  p\left(x\mid\theta=1\right) \,\right|\right)\\
+\sum_{x\in\mathcal{X}}\left|\,\pi\left(0\right)  p^{(0)}\left(x\right) - \pi\left(1\right)  p^{(1)}\left(x\right) \,\right|\right)\\
 &= \frac12\left(1 - 
-\sum_{x\in\mathcal{X}}\left|\,p\left(\theta=0\right)  p\left(x\mid\theta=0\right) - p\left(\theta=1\right)  p\left(x\mid\theta=1\right) \,\right|\right)\\
+\sum_{x\in\mathcal{X}}\left|\,\pi\left(0\right)  p^{(0)}\left(x\right) - \pi\left(1\right)  p^{(1)}\left(x\right) \,\right|\right)\\
 \end{align*}
 
 :::{#def-tv}
+## 全変動距離
 高々可算集合 $\mathcal{X}$ 上の関数 $f$ について、
 \begin{align*}
 \|f\|_1 &\coloneqq \sum_{x\in\mathcal{X}} \left|\, f(x)\,\right|
 \end{align*}
 と定義する。
-また、$\mathcal{X}$ 上の確率質量関数 $p$, $q$ について、
+また、$\mathcal{X}$ 上の確率質量関数 $p^{(0)}$, $p^{(1)}$ について、
 \begin{align*}
-d_{\mathrm{TV}}(p,\, q) &\coloneqq \frac12\left\|\, p-q\,\right\|_1
+d_{\mathrm{TV}}(p^{(0)},\, p^{(1)}) &\coloneqq \frac12\left\|\, p^{(0)}-p^{(1)}\,\right\|_1
 \end{align*}
-を全変動距離という。
+を $p^{(0)}$ と $p^{(1)}$ の**全変動距離**という。
 :::
 
+これらの記法を用いると、
+\begin{align*}
+P_{\mathrm{err}}(\widehat{\theta}_\mathrm{MAP})&=\frac12\left(1-\left\|\pi(0)p^{(0)} - \pi(1)p^{(1)}\right\|_1\right)
+\end{align*}
+と表せる。また、$\pi(0)=\pi(1)=1/2$ のとき、
+\begin{align*}
+P_{\mathrm{err}}(\widehat{\theta}_\mathrm{MAP})&=\frac12\left(1-d_{\mathrm{TV}}(p^{(0)},\,p^{(1)})\right)
+\end{align*}
+である。
+
+
+<!--
 ## 独立なサンプルからの推定
-共通のパラメータからデータを独立に $n$ 回サンプルする場合を考える。
+共通のパラメータを持つ分布からデータを独立に $n$ 回サンプルする場合を考える。
 このとき、尤度関数は
 \begin{align*}
 p_n(x_1,\dotsc,x_n\mid\theta)&\coloneqq\prod_{i=1}^n p(x_i\mid \theta)
 \end{align*}
 で与えられる。
-確率分布 $p$ と $q$ について、$d_{\mathrm{TV}}(p_n,\,q_n)$ を計算することは難しい。
+確率質量関数 $p^{(0)}$ と $p^{(1)}$ について、$d_{\mathrm{TV}}(p^{(0)}_n,\,p^{(1)}_n)$ の定義には $\mathcal{X}^n$ 上の和が表われ、それを計算することは難しい。
+そのため、数学的に扱い易い距離を導入する。
 
 :::{#def-Hellinger}
-また、$\mathcal{X}$ 上の確率質量関数 $p$, $q$ について、
+## ヘリンガー距離とバタチャリヤ係数
+また、$\mathcal{X}$ 上の確率質量関数 $p^{(0)}$, $p^{(1)}$ について、
 \begin{align*}
-d_{\mathrm{H}}(p,\, q) &\coloneqq \sqrt{\frac12\sum_{x\in\mathcal{X}}\left(\sqrt{p(x)} - \sqrt{q(x)}\right)^2}\\
-&=\sqrt{1 - \sum_{x\in\mathcal{X}}\sqrt{p(x)q(x)}}\\
+d_{\mathrm{H}}(p^{(0)},\, p^{(1)}) &\coloneqq \sqrt{\frac12\sum_{x\in\mathcal{X}}\left(\sqrt{p^{(0)}(x)} - \sqrt{p^{(1)}(x)}\right)^2}\\
+&=\sqrt{1 - \sum_{x\in\mathcal{X}}\sqrt{p^{(0)}(x)p^{(1)}(x)}}\\
 \end{align*}
 を**ヘリンガー距離**という。
 
 また、
 \begin{align*}
-\mathrm{BC}(p,\,q)&\coloneqq\sum_{x\in\mathcal{X}} \sqrt{p(x)q(x)}
+\mathrm{BC}(p^{(0)},\,p^{(1)})&\coloneqq\sum_{x\in\mathcal{X}} \sqrt{p^{(0)}(x)p^{(1)}(x)}
 \end{align*}
 を**バタチャリヤ係数**という。
-
-\begin{align*}
-d_{\mathrm{H}}(p,\,q) &=\sqrt{1-\mathrm{BC}(p,\,q)}
-\end{align*}
-が成り立つ。
 :::
 
-このとき、
+定義より
 \begin{align*}
-\mathrm{BC}(p_n,\, q_n)&=\mathrm{BC}(p,\,q)^n
+d_{\mathrm{H}}(p^{(0)},\,p^{(1)}) &=\sqrt{1-\mathrm{BC}(p^{(0)},\,p^{(1)})}
+\end{align*}
+が成り立つ。
+
+バタチャリヤ係数は
+\begin{align*}
+\mathrm{BC}(p^{(0)}_n,\, p^{(1)}_n)&=\sum_{x_1,\dotsc,x_n\in\mathcal{X}} \sqrt{p^{(0)}_n(x_1,\dotsc,x_n)p^{(1)}_n(x_1,\dotsc,x_n)}\\
+&=\sum_{x_1,\dotsc,x_n\in\mathcal{X}} \sqrt{\prod_{k=1}^np^{(0)}(x_k) \prod_{k=1}^np^{(1)}(x_k)}\\
+&=\sum_{x_1,\dotsc,x_n\in\mathcal{X}} \prod_{k=1}^n\sqrt{p^{(0)}(x_k) p^{(1)}(x_k)}\\
+&=\left(\sum_{x\in\mathcal{X}} \sqrt{p^{(0)}(x) p^{(1)}(x)}\right)^n\\
+&=
+\mathrm{BC}(p^{(0)},\,p^{(1)})^n
 \end{align*}
 である。
 
 ::: {#lem-tv-h}
 \begin{align*}
-d_{\mathrm{H}}(p,\, q)^2
-\le d_{\mathrm{TV}}(p,\, q)\le
-\sqrt{2} d_{\mathrm{H}}(p,\, q)
+d_{\mathrm{H}}(p^{(0)},\, p^{(1)})^2
+\le d_{\mathrm{TV}}(p^{(0)},\, p^{(1)})\le
+\sqrt{2} d_{\mathrm{H}}(p^{(0)},\, p^{(1)})
 \end{align*}
 :::
+-->
+
+## 損失関数
+
+パラメータが取り得る値の集合が実数の部分集合 $\Theta\subseteq\mathbb{R}$ であると仮定する。
+真のパラメータとその推定値の間の「誤差」を表す関数 $L\colon\Theta\times\mathbb{R}\to\mathbb{R}_{\ge 0}$ を**損失関数**と呼ぶ。
+また、**期待損失** $R\colon\Theta\times(\mathcal{X}\to\mathbb{R})\to\mathbb{R}_{\ge 0}$ を
+\begin{align*}
+R(\theta,\,\widehat{\theta}) &\coloneqq \expt{L(\theta,\,\widehat{\theta}(X))\mid\theta}\\
+&=\sum_{x\in\mathcal{X}} L(\theta,\,\widehat{\theta}(x)) p(x\mid\theta)
+\end{align*}
+と定義する。
+また、**ベイズリスク** $\rho\colon \mathcal{P}(\Theta)\times(\mathcal{X}\to\mathbb{R})\to\mathbb{R}_{\ge 0}$ を
+\begin{align*}
+\rho(\pi, \widehat{\theta})&\coloneqq  \expt{L(\theta,\,\widehat{\theta}(X))}\\
+&=\sum_{\theta\in\Theta}\sum_{x\in\mathcal{X}} L(\theta,\,\widehat{\theta}(x)) p(x\mid\theta)\pi(\theta)
+\end{align*}
+と定義する。
+$\Theta\subseteq\mathbb{R}$ が非可算無限集合の場合は $\pi(\theta)$ を確率密度関数とし、
+\begin{align*}
+\rho(\pi, \widehat{\theta})&\coloneqq  \expt{L(\theta,\,\widehat{\theta}(X))}\\
+&=\int\sum_{x\in\mathcal{X}} L(\theta,\,\widehat{\theta}(x)) p(x\mid\theta)\pi(\theta)\mathrm{d}\theta
+\end{align*}
+と定義する。
+このとき、 $p(x\mid\theta)$ は条件付き確率というより、$\theta\in\Theta$ というパラメータを持った確率質量関数($\theta\in\Theta$ から定まる確率質量関数)と理解すれば十分である。
+
+例えば $\Theta$ が高々可算集合で、
+\begin{align*}
+L(\theta,\,\theta') &= \mathbb{I}\{\theta\ne \theta'\}\qquad\forall\theta,\theta'\in\Theta
+\end{align*}
+と定義すると、ベイズリスク $\rho(\pi, \widehat{\theta})$ は推定関数 $\widehat{\theta}$ の誤り確率 $P_\mathrm{err}(\widehat{\theta})$ である。
+
+その他の重要な損失関数の例として二乗誤差がある。
+\begin{align*}
+L(\theta,\,\theta') &= (\theta-\theta')^2.
+\end{align*}
+
+損失関数 $L$ を定めたときに、ベイズリスクを最小化する推定関数
+\begin{align*}
+\widehat{\theta} &= \arg\min_{\widehat{\theta}} \rho(\pi, \widehat{\theta})\\
+\iff \widehat{\theta}(x) &= \arg\min_{\theta'\in\Theta} \sum_{\theta\in\Theta} L(\theta,\,\theta') p(x\mid\theta)\pi(\theta)\qquad\forall x\in\mathcal{X}\\
+\iff \widehat{\theta}(x) &= \arg\min_{\theta'\in\Theta} \sum_{\theta\in\Theta} L(\theta,\,\theta') p(\theta\mid x)p(x)\qquad\forall x\in\mathcal{X}\\
+\iff \widehat{\theta}(x) &= \arg\min_{\theta'\in\Theta} \sum_{\theta\in\Theta} L(\theta,\,\theta') p(\theta\mid x)\qquad\forall x\in\mathcal{X}\\
+\end{align*}
+ここで、
+\begin{align*}
+\expt{L(\theta,\,\theta')\mid x}&=  \sum_{\theta\in\Theta} L(\theta,\,\theta') p(\theta\mid x)\qquad\forall x\in\mathcal{X}
+\end{align*}
+を損失関数の事後平均という。
+各 $x\in\mathcal{X}$ について、$\theta'=\widehat{\theta}(x)$ が損失関数の事後平均を最小化するとき、ベイズリスクを最小化する。
+
+損失関数が $L(\theta,\,\theta')$ が各 $\theta\in\Theta$ を固定したときに $\theta'$ について凸関数であるとき、事後平均 $\expt{L(\theta,\,\theta')\mid x}$ も $\theta'$ について凸関数となる(凸関数の非負倍は凸関数であり、凸関数の和は凸関数なので)。
+さらに、$L(\theta,\,\theta')$ が $\theta'$ について微分可能なとき、
+\begin{align*}
+\frac{\partial \expt{L(\theta,\,\theta')\mid x}}{\partial\, \theta'}&=  \sum_{\theta\in\Theta} \frac{\partial L(\theta,\,\theta')}{\partial\, \theta'} p(\theta\mid x)=0\qquad\forall x\in\mathcal{X}
+\end{align*}
+を満たす $\theta'$ を $\widehat{\theta}(x)$ として選択するのが最適である。
+二乗誤差 $L(\theta,\,\theta')=(\theta-\theta')^2$ のとき、この条件は
+\begin{align*}
+0&=\sum_{\theta} 2(\theta'-\theta) p(\theta\mid x)
+=2\left(\theta' - \sum_{\theta}\theta p(\theta\mid x)\right)
+\end{align*}
+となり、
+\begin{align*}
+\widehat{\theta}(x) &= \sum_\theta \theta p(\theta\mid x)
+\end{align*}
+とするのが最適であることが分かる。この右辺の値をパラメータ $\theta$ の事後平均という。
