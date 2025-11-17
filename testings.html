@@ -621,9 +621,9 @@ E(x) &amp;=\begin{cases}
 <p><span class="theorem-title"><strong>補題 8.1 (ネイマン・ピアソンの補題)</strong></span> 任意の尤度比検定は最強力検定である(逆も成り立つ)。</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span>尤度比検定<span class="math inline">\(E\)</span>における尤度比の閾値を <span class="math inline">\(\eta&gt; 0\)</span> とする。 任意の <span class="math inline">\(F\colon A\to[0,1]\)</span> について <span class="math display">\[\begin{align*}
-&amp;(F(x) - E(x)) (p_0(x) - \eta p_1(x))\ge 0\\
-\iff&amp;F(x)p_0(x) - E(x)p_0(x) - \eta F(x) p_1(x) + \eta E(x) p_1(x)\ge 0\\
+<p><span class="proof-title"><em>証明</em>. </span>尤度比検定 <span class="math inline">\(E\)</span> における尤度比の閾値を <span class="math inline">\(\eta&gt; 0\)</span> とする。 任意の <span class="math inline">\(F\colon \mathcal{X}\to[0,1]\)</span> について <span class="math display">\[\begin{align*}
+&amp;(F(x) - E(x)) (p_0(x) - \eta p_1(x))\ge 0\qquad \forall x\in\mathcal{X}\\
+\iff&amp;F(x)p_0(x) - E(x)p_0(x) - \eta F(x) p_1(x) + \eta E(x) p_1(x)\ge 0\qquad \forall x\in\mathcal{X}\\
 \implies&amp;\alpha_F - \alpha_E - \eta (1-\beta_F)  + \eta (1-\beta_E)\ge 0\\
 \iff&amp;(\alpha_F - \alpha_E) + \eta(\beta_F-\beta_E)\ge 0.
 \end{align*}\]</span> よって <span class="math inline">\(\alpha_F\le\alpha_E\)</span> ならば <span class="math inline">\(\beta_F\ge\beta_E\)</span> である。</p>
