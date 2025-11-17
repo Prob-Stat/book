@@ -154,11 +154,11 @@ E(x) &=\begin{cases}
 任意の尤度比検定は最強力検定である(逆も成り立つ)。
 :::
 ::: {.proof}
-尤度比検定$E$における尤度比の閾値を $\eta> 0$ とする。
-任意の $F\colon A\to[0,1]$ について
+尤度比検定 $E$ における尤度比の閾値を $\eta> 0$ とする。
+任意の $F\colon \mathcal{X}\to[0,1]$ について
 \begin{align*}
-&(F(x) - E(x)) (p_0(x) - \eta p_1(x))\ge 0\\
-\iff&F(x)p_0(x) - E(x)p_0(x) - \eta F(x) p_1(x) + \eta E(x) p_1(x)\ge 0\\
+&(F(x) - E(x)) (p_0(x) - \eta p_1(x))\ge 0\qquad \forall x\in\mathcal{X}\\
+\iff&F(x)p_0(x) - E(x)p_0(x) - \eta F(x) p_1(x) + \eta E(x) p_1(x)\ge 0\qquad \forall x\in\mathcal{X}\\
 \implies&\alpha_F - \alpha_E - \eta (1-\beta_F)  + \eta (1-\beta_E)\ge 0\\
 \iff&(\alpha_F - \alpha_E) + \eta(\beta_F-\beta_E)\ge 0.
 \end{align*}
