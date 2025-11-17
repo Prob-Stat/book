@@ -93,6 +93,39 @@ $H_0=\{\theta_0\}$, $H_1=\{\theta_1\}$ として、 $p_0(x)\coloneqq p(x\mid \th
 \end{align*}
 である。
 
+```{python}
+#| fig-width: 4
+#| fig-height: 4
+#| label: fig-between-curves
+#| fig-cap: "実現可能な $(\\alpha,\\,\\beta)$ の集合の例"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 区間 [0,1] でプロット
+x = np.linspace(0, 1, 400)
+y1 = 1-np.sqrt(1-(1-x)**2)
+y2 = np.sqrt(1-x**2)
+
+plt.figure()
+
+# 2 本の曲線
+plt.plot(x, y1)
+plt.plot(x, y2)
+
+# 間の領域を塗る
+plt.fill_between(x, y1, y2, where=(y2 >= y1), alpha=0.3)
+
+plt.xlim(0, 1)
+plt.ylim(0, 1)
+plt.xlabel("$\\alpha$")
+plt.ylabel("$\\beta$")
+plt.tight_layout()
+
+ax = plt.gca()
+ax.set_aspect("equal", adjustable="box")
+```
+
 ## 尤度比検定
 
 ベイズ推定の枠組みではMAP推定関数が誤り確率を最小化する推定関数であった。
