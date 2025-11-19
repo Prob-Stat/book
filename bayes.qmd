@@ -35,7 +35,8 @@ p(\theta\mid x)&\coloneqq \frac{\pi(\theta)p(x\mid\theta)}{p(x)}
 
 と呼ぶ。
 
-このとき、得られたデータ $x\in\mathcal{X}$ からパラメータ $\theta\in\Theta$ を推定する関数 $\widehat{\theta}\colon \mathcal{X}\to\Theta$ の誤り確率を
+得られたデータ $x\in\mathcal{X}$ からパラメータ $\theta\in\Theta$ を推定する関数 $\widehat{\theta}\colon \mathcal{X}\to\Theta$ を**推定量 (estimator)**もしくは推定関数という。
+推定量 $\widehat{\theta}$ の誤り確率を
 \begin{align*}
 P_{\mathrm{err}}(\widehat{\theta})&\coloneqq
 \sum_{\theta\in\Theta} \pi(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) \,\mathbb{I}\{\widehat{\theta}(x)\ne\theta\}
@@ -58,17 +59,17 @@ P_{\mathrm{err}}(\widehat{\theta})
  &= \arg\max_{\theta\in\Theta}p\left(\theta\mid x\right)  p\left(x\right)\\
  &= \arg\max_{\theta\in\Theta}\pi\left(\theta\right)  p\left(x\mid\theta\right)\\
 \end{align*}
-という推定関数により等号が達成される。
-この推定関数を最大事後確率(maximum a posteriori; MAP)推定関数と呼ぶ。
+という推定量により等号が達成される。
+この推定量を最大事後確率(maximum a posteriori; MAP)推定量と呼ぶ。
 
 ## 最尤推定
 MAP推定は誤り確率を最小化する推定方法であるが、事前確率 $\pi(\theta)$ を仮定しないと用いることができない。
-一方で尤度を最大化する推定関数
+一方で尤度を最大化する推定量
 \begin{align*}
 \widehat{\theta}_{\mathrm{ML}}(x) &\coloneqq
   \arg\max_{\theta\in\Theta}p\left(x\mid\theta\right)
 \end{align*}
-を最尤推定(maximam a priori; ML)関数という。
+を最尤推定(maximam a priori; ML)量という。
 $\Theta$ が有限集合で、事前確率が一様分布 $\pi(\theta)=\frac1{|\Theta|}$ のとき、最尤推定は最大事後確率推定と一致する。
 
 ## 全変動距離
@@ -224,14 +225,14 @@ $\Theta\subseteq\mathbb{R}$ が非可算無限集合の場合は $\pi(\theta)$ �
 \begin{align*}
 L(\theta,\,\theta') &= \mathbb{I}\{\theta\ne \theta'\}\qquad\forall\theta,\theta'\in\Theta
 \end{align*}
-と定義すると、ベイズリスク $\rho(\pi, \widehat{\theta})$ は推定関数 $\widehat{\theta}$ の誤り確率 $P_\mathrm{err}(\widehat{\theta})$ である。
+と定義すると、ベイズリスク $\rho(\pi, \widehat{\theta})$ は推定量 $\widehat{\theta}$ の誤り確率 $P_\mathrm{err}(\widehat{\theta})$ である。
 
 その他の重要な損失関数の例として二乗誤差がある。
 \begin{align*}
 L(\theta,\,\theta') &= (\theta-\theta')^2.
 \end{align*}
 
-損失関数 $L$ を定めたときに、ベイズリスクを最小化する推定関数
+損失関数 $L$ を定めたときに、ベイズリスクを最小化する推定量
 \begin{align*}
 \widehat{\theta} &= \arg\min_{\widehat{\theta}} \rho(\pi, \widehat{\theta})\\
 \iff \widehat{\theta}(x) &= \arg\min_{\theta'\in\Theta} \sum_{\theta\in\Theta} L(\theta,\,\theta') p(x\mid\theta)\pi(\theta)\qquad\forall x\in\mathcal{X}\\
