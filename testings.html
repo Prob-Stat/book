@@ -512,7 +512,10 @@ window.Quarto = {
 </section>
 <section id="伝統的な仮説検定" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="伝統的な仮説検定"><span class="header-section-number">8.2</span> 伝統的な仮説検定</h2>
-<p>パラメータの集合を二つの部分集合 <span class="math inline">\(H_0\)</span> と <span class="math inline">\(H_1\)</span> に分割する。 つまり、<span class="math inline">\(H_0\cup H_1 = \Theta\)</span>, <span class="math inline">\(H_0\cap H_1=\varnothing\)</span> である。 そしてパラメータが <span class="math inline">\(H_0\)</span> に属するか <span class="math inline">\(H_1\)</span> に属するかを知りたいとする。 この二つの集合 <span class="math inline">\(H_0\)</span> と <span class="math inline">\(H_1\)</span> を仮説という。 その二つの仮説のうちの<strong>通常成り立っていると考える方</strong>を <span class="math inline">\(H_0\)</span> とし <strong>帰無仮説</strong>と呼ぶ。 また、そうでない方を <span class="math inline">\(H_1\)</span> とし <strong>対立仮説</strong>と呼ぶ。 帰無仮説の例として</p>
+<p>パラメータの集合を二つの部分集合 <span class="math inline">\(\Theta_0\)</span> と <span class="math inline">\(\Theta_1\)</span> に分割する。 つまり、<span class="math inline">\(\Theta_0\cup \Theta_1 = \Theta\)</span>, <span class="math inline">\(\Theta_0\cap \Theta_1=\varnothing\)</span> である。 そしてパラメータが <span class="math inline">\(\Theta_0\)</span> に属するか <span class="math inline">\(\Theta_1\)</span> に属するかを知りたいとする。 このとき二つの命題 <span class="math display">\[\begin{align*}
+H_0\colon \theta\in\Theta_0\\
+H_1\colon \theta\in\Theta_1
+\end{align*}\]</span> を仮説という。 その二つの仮説のうちの<strong>通常成り立っていると考える方</strong>を <span class="math inline">\(H_0\)</span> とし(対応するパラメータ集合は <span class="math inline">\(\Theta_0\)</span>) <strong>帰無仮説</strong>と呼ぶ。 また、そうでない方を <span class="math inline">\(H_1\)</span> とし(対応するパラメータ集合は <span class="math inline">\(\Theta_1\)</span>) <strong>対立仮説</strong>と呼ぶ。 帰無仮説の例として</p>
 <ul>
 <li>開発中の薬に効果はない</li>
 <li>ある患者が病気ではない</li>
@@ -528,37 +531,45 @@ window.Quarto = {
 </section>
 <section id="単純仮説" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="単純仮説"><span class="header-section-number">8.3</span> 単純仮説</h2>
-<p>仮説 <span class="math inline">\(H_0\)</span> と <span class="math inline">\(H_1\)</span> がそれぞれ一元集合であるとき、それらを<strong>単純仮説</strong>という。 <span class="math inline">\(H_0=\{\theta_0\}\)</span>, <span class="math inline">\(H_1=\{\theta_1\}\)</span> として、 <span class="math inline">\(p_0(x)\coloneqq p(x\mid \theta_0)\)</span> と <span class="math inline">\(p_1(x)\coloneqq p(x\mid \theta_1)\)</span> とする。 データから仮説を推定する関数 <span class="math inline">\(E\colon\mathcal{X}\to[0,1]\)</span> を<strong>推定関数</strong>という。 各 <span class="math inline">\(x\in\mathcal{X}\)</span> について、<span class="math inline">\(E(x)\)</span> は<strong>帰無仮説を棄却する確率</strong>とする。 この推定関数について二種類の誤り確率を <span class="math display">\[\begin{align*}
-\alpha_E &amp;\coloneqq \expt{E(X)\mid \theta_0}\\
-\beta_E &amp;\coloneqq 1-\expt{E(X)\mid \theta_1}\\
+<p>仮説 <span class="math inline">\(\Theta_0\)</span> と <span class="math inline">\(\Theta_1\)</span> がそれぞれ一元集合であるとき、<span class="math inline">\(H_0\)</span> と <span class="math inline">\(H_1\)</span> を<strong>単純仮説</strong>という。 <span class="math inline">\(\Theta_0=\{\theta_0\}\)</span>, <span class="math inline">\(\Theta_1=\{\theta_1\}\)</span> として、 <span class="math inline">\(p_0(x)\coloneqq p(x\mid \theta_0)\)</span> と <span class="math inline">\(p_1(x)\coloneqq p(x\mid \theta_1)\)</span> とする。 データから仮説を推定する関数 <span class="math inline">\(E\colon\mathcal{X}\to[0,1]\)</span> を<strong>検定関数</strong>という。 各 <span class="math inline">\(x\in\mathcal{X}\)</span> について、<span class="math inline">\(E(x)\)</span> は<strong>帰無仮説を棄却する確率</strong>とする。 この検定関数について二種類の誤り確率を <span class="math display">\[\begin{align*}
+\alpha_E &amp;\coloneqq \expt{E(X)\mid \theta_0}=\sum_x E(x) p(x\mid \theta_0)\\
+\beta_E &amp;\coloneqq 1-\expt{E(X)\mid \theta_1}=1-\sum_x E(x) p(x\mid \theta_1)\\
 \end{align*}\]</span> と定義する。 このとき、<span class="math inline">\(\alpha_E\)</span> は帰無仮説が正しいときに帰無仮説を棄却する確率であり、<strong>第一種誤り確率</strong>もしくは<strong>有意水準</strong>という。 また、<span class="math inline">\(\beta_E\)</span> は対立仮説が正しいときに帰無仮説を棄却しない確率であり、<strong>第二種誤り確率</strong>という。 第一種誤り確率だけを小さくしたければ <span class="math inline">\(E(x) = 0\)</span> とすればよいし、第二種誤り確率だけを小さくしたければ <span class="math inline">\(E(x)=1\)</span> とすればよい。</p>
 </section>
 <section id="最強力検定" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="最強力検定"><span class="header-section-number">8.4</span> 最強力検定</h2>
 <div id="def-powerful" class="theorem definition">
-<p><span class="theorem-title"><strong>定義 8.1</strong></span> 検定関数 <span class="math inline">\(E\colon\mathcal{X}\to[0,1]\)</span> が有意水準 <span class="math inline">\(\alpha\in[0,1]\)</span> の最強力検定 <span class="math inline">\(\defiff\)</span> <span class="math inline">\(\alpha_E=\alpha\)</span> であり、任意の <span class="math inline">\(F\colon\mathcal{X}\to[0,1]\)</span> について、<span class="math inline">\(\alpha_F\le\alpha\)</span> ならば <span class="math inline">\(\beta_F\ge\beta\)</span> が成り立つ。</p>
+<p><span class="theorem-title"><strong>定義 8.1</strong></span> 検定関数 <span class="math inline">\(E\colon\mathcal{X}\to[0,1]\)</span> が有意水準 <span class="math inline">\(\alpha\in[0,1]\)</span> の<strong>最強力検定</strong> <span class="math inline">\(\defiff\)</span> <span class="math inline">\(\alpha_E=\alpha\)</span> であり、任意の <span class="math inline">\(F\colon\mathcal{X}\to[0,1]\)</span> について、<span class="math inline">\(\alpha_F\le\alpha\)</span> ならば <span class="math inline">\(\beta_F\ge\beta\)</span> が成り立つ。</p>
 </div>
 <p>実現可能な誤り確率 <span class="math inline">\((\alpha,\,\beta)\)</span> の集合 <span class="math display">\[\begin{align*}
-\left\{(\alpha_E,\,\beta_E)\mid E\colon\mathcal{X}\to[0,1]\right\}
-\end{align*}\]</span> について考える。 この集合は凸集合である。 <span class="math display">\[\begin{align*}
+C &amp;= \left\{(\alpha_E,\,\beta_E)\mid E\colon\mathcal{X}\to[0,1]\right\}
+\end{align*}\]</span> について考える。 自明に <span class="math inline">\((1,0)\)</span> と <span class="math inline">\((0,1)\)</span> は実現可能である。</p>
+<p>この集合 <span class="math inline">\(C\)</span> は凸集合である。 <span class="math display">\[\begin{align*}
 \alpha_{pE + (1-p)F} &amp;= p\alpha_E + (1-p)\alpha_F\\
 \beta_{pE + (1-p)F} &amp;= p\beta_E + (1-p)\beta_F
 \end{align*}\]</span> であることから、 <span class="math display">\[\begin{align*}
-\begin{bmatrix}
-\alpha_{pE + (1-p)F}&amp; \beta_{pE + (1-p)F}
-\end{bmatrix}
-&amp;= p \begin{bmatrix}\alpha_E&amp;\beta_E\end{bmatrix} + (1-p) \begin{bmatrix}\alpha_F&amp;\beta_F\end{bmatrix}
-\end{align*}\]</span> が確認できる。 また、推定結果を反転させた推定関数 <span class="math inline">\(1-E(x)\)</span> を考えると、 <span class="math display">\[\begin{align*}
-\begin{bmatrix}
-\alpha_{1-E}&amp; \beta_{1-E}
-\end{bmatrix}&amp;=
-\begin{bmatrix}
-1&amp;1
-\end{bmatrix} -
-\begin{bmatrix}
-\alpha_{E}&amp; \beta_{E}
-\end{bmatrix}
+\begin{pmatrix}
+\alpha_{pE + (1-p)F},&amp; \beta_{pE + (1-p)F}
+\end{pmatrix}
+&amp;= p \begin{pmatrix}\alpha_E,&amp;\beta_E\end{pmatrix} + (1-p) \begin{pmatrix}\alpha_F,&amp;\beta_F\end{pmatrix}
+\end{align*}\]</span> が確認できる。 また、検定結果を反転させた検定関数 <span class="math inline">\(1-E(x)\)</span> を考えると、 <span class="math display">\[\begin{align*}
+\begin{pmatrix}
+\alpha_{1-E},&amp; \beta_{1-E}
+\end{pmatrix}&amp;=
+\begin{pmatrix}
+1,&amp;1
+\end{pmatrix} -
+\begin{pmatrix}
+\alpha_{E},&amp; \beta_{E}
+\end{pmatrix}
 \end{align*}\]</span> である。</p>
+<p>まとめると、実現可能な <span class="math inline">\((\alpha,\,\beta)\)</span> の集合 <span class="math inline">\(C\)</span> は</p>
+<ol type="1">
+<li><span class="math inline">\((1,0),\,(0,1)\in C\)</span></li>
+<li><span class="math inline">\(C\)</span> は 凸集合</li>
+<li><span class="math inline">\((\alpha,\,\beta)\in C\iff (1-\alpha,\,1-\beta)\in C\)</span></li>
+</ol>
+<p>を満たす。</p>
 <div id="cell-fig-between-curves" class="cell" data-fig-height="4" data-fig-width="4" data-execution_count="1">
 <details class="code-fold">
 <summary>コード</summary>
@@ -601,10 +612,11 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>各 <span class="math inline">\(\alpha\in[0,1]\)</span> について、<span class="math inline">\(\beta\)</span> を最小化するのが最強力検定であるので、この図の下のカーブが最強力検定で実現される <span class="math inline">\((\alpha,\,\beta)\)</span> となる。</p>
 </section>
 <section id="尤度比検定" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="尤度比検定"><span class="header-section-number">8.5</span> 尤度比検定</h2>
-<p>ベイズ推定の枠組みではMAP推定関数が誤り確率を最小化する推定関数であった。 このMAP推定関数は <span class="math display">\[\begin{align*}
+<p>ベイズ推定の枠組みではMAP推定量が誤り確率を最小化する推定量であった。 このMAP推定量は <span class="math display">\[\begin{align*}
 E_\mathrm{MAP}(x) &amp;=\begin{cases}
 0&amp;\text{if } \frac{p(x\mid\theta_0)}{p(x\mid\theta_1)}\ge \frac{\pi(\theta_1)}{\pi(\theta_0)}\\
 1&amp;\text{otherwise}
@@ -616,7 +628,7 @@ E(x) &amp;=\begin{cases}
 1&amp;\text{if } \frac{p(x\mid\theta_0)}{p(x\mid\theta_1)}&lt; \eta\\
 \kappa&amp;\text{otherwise}
 \end{cases}
-\end{align*}\]</span> という形の推定関数を尤度比検定という。</p>
+\end{align*}\]</span> という形の検定関数を尤度比検定という。</p>
 <div id="lem-np" class="theorem lemma">
 <p><span class="theorem-title"><strong>補題 8.1 (ネイマン・ピアソンの補題)</strong></span> 任意の尤度比検定は最強力検定である(逆も成り立つ)。</p>
 </div>
@@ -629,6 +641,14 @@ E(x) &amp;=\begin{cases}
 \end{align*}\]</span> よって <span class="math inline">\(\alpha_F\le\alpha_E\)</span> ならば <span class="math inline">\(\beta_F\ge\beta_E\)</span> である。</p>
 </div>
 <p>データ <span class="math inline">\(\mathcal{X}\)</span> が連続な場合は確率質量関数の代わりに確率密度関数を考える。</p>
+<div id="exm-binom" class="theorem example">
+<p><span class="theorem-title"><strong>例 8.1</strong></span> コインを持っており、表が出る確率は <span class="math inline">\(p_0\)</span> か <span class="math inline">\(p_1\)</span> のどちらかである。 コインを独立に <span class="math inline">\(N\)</span> 回投げて表が出る確率が <span class="math inline">\(p_0\)</span> か <span class="math inline">\(p_1\)</span> かを推定したい。 <span class="math inline">\(\mathcal{X}=\{0,1\}^N\)</span> とし、0 は裏、1 は表に対応するものとする。 このとき尤度は <span class="math display">\[\begin{align*}
+p(\mathbf{x}\mid p_k) &amp;= \prod_{i=1}^N p_k^{x_i} (1-p_k)^{1-x_i}\qquad\text{for } k\in\{0,1\}
+\end{align*}\]</span> である。 このとき尤度比は <span class="math display">\[\begin{align*}
+\frac{p(\mathbf{x}\mid p_0)}{p(\mathbf{x}\mid p_1)} &amp;= \frac{\prod_i p_0^{x_i}(1-p_0)^{1-x_i}}{\prod_i p_1^{x_i}(1-p_1)^{1-x_i}}\\
+&amp;= \left(\frac{p_0}{p_1}\right)^{\sum_i x_i}\left(\frac{1-p_0}{1-p_1}\right)^{N-\sum_i x_i}
+\end{align*}\]</span> である。 よって尤度比は表が出た回数 <span class="math inline">\(T(\mathbf{x})=\sum_i x_i\)</span> から定まる。 なので <span class="math inline">\(p_1&gt; p_0\)</span> とすると、表が出た回数が多いときに <span class="math inline">\(E(\mathbf{x}) = 1\)</span> とすることになる。</p>
+</div>
 
 
 </section>

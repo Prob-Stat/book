@@ -484,7 +484,7 @@ p(\theta\mid x)&amp;\coloneqq \frac{\pi(\theta)p(x\mid\theta)}{p(x)}
 <li><span class="math inline">\(p(\theta\mid x)\colon\)</span> 事後確率</li>
 </ul>
 <p>と呼ぶ。</p>
-<p>このとき、得られたデータ <span class="math inline">\(x\in\mathcal{X}\)</span> からパラメータ <span class="math inline">\(\theta\in\Theta\)</span> を推定する関数 <span class="math inline">\(\widehat{\theta}\colon \mathcal{X}\to\Theta\)</span> の誤り確率を <span class="math display">\[\begin{align*}
+<p>得られたデータ <span class="math inline">\(x\in\mathcal{X}\)</span> からパラメータ <span class="math inline">\(\theta\in\Theta\)</span> を推定する関数 <span class="math inline">\(\widehat{\theta}\colon \mathcal{X}\to\Theta\)</span> を<strong>推定量 (estimator)</strong>もしくは推定関数という。 推定量 <span class="math inline">\(\widehat{\theta}\)</span> の誤り確率を <span class="math display">\[\begin{align*}
 P_{\mathrm{err}}(\widehat{\theta})&amp;\coloneqq
 \sum_{\theta\in\Theta} \pi(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) \,\mathbb{I}\{\widehat{\theta}(x)\ne\theta\}
 \end{align*}\]</span> と定義する。 このとき、 <span class="math display">\[\begin{align*}
@@ -500,14 +500,14 @@ P_{\mathrm{err}}(\widehat{\theta})
   \arg\max_{\theta\in\Theta}p\left(\theta\mid x\right)\\
 &amp;= \arg\max_{\theta\in\Theta}p\left(\theta\mid x\right)  p\left(x\right)\\
 &amp;= \arg\max_{\theta\in\Theta}\pi\left(\theta\right)  p\left(x\mid\theta\right)\\
-\end{align*}\]</span> という推定関数により等号が達成される。 この推定関数を最大事後確率(maximum a posteriori; MAP)推定関数と呼ぶ。</p>
+\end{align*}\]</span> という推定量により等号が達成される。 この推定量を最大事後確率(maximum a posteriori; MAP)推定量と呼ぶ。</p>
 </section>
 <section id="最尤推定" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="最尤推定"><span class="header-section-number">7.2</span> 最尤推定</h2>
-<p>MAP推定は誤り確率を最小化する推定方法であるが、事前確率 <span class="math inline">\(\pi(\theta)\)</span> を仮定しないと用いることができない。 一方で尤度を最大化する推定関数 <span class="math display">\[\begin{align*}
+<p>MAP推定は誤り確率を最小化する推定方法であるが、事前確率 <span class="math inline">\(\pi(\theta)\)</span> を仮定しないと用いることができない。 一方で尤度を最大化する推定量 <span class="math display">\[\begin{align*}
 \widehat{\theta}_{\mathrm{ML}}(x) &amp;\coloneqq
   \arg\max_{\theta\in\Theta}p\left(x\mid\theta\right)
-\end{align*}\]</span> を最尤推定(maximam a priori; ML)関数という。 <span class="math inline">\(\Theta\)</span> が有限集合で、事前確率が一様分布 <span class="math inline">\(\pi(\theta)=\frac1{|\Theta|}\)</span> のとき、最尤推定は最大事後確率推定と一致する。</p>
+\end{align*}\]</span> を最尤推定(maximam a priori; ML)量という。 <span class="math inline">\(\Theta\)</span> が有限集合で、事前確率が一様分布 <span class="math inline">\(\pi(\theta)=\frac1{|\Theta|}\)</span> のとき、最尤推定は最大事後確率推定と一致する。</p>
 </section>
 <section id="全変動距離" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="全変動距離"><span class="header-section-number">7.3</span> 全変動距離</h2>
@@ -620,11 +620,11 @@ R(\theta,\,\widehat{\theta}) &amp;\coloneqq \expt{L(\theta,\,\widehat{\theta}(X)
 \end{align*}\]</span> と定義する。 このとき、 <span class="math inline">\(p(x\mid\theta)\)</span> は条件付き確率というより、<span class="math inline">\(\theta\in\Theta\)</span> というパラメータを持った確率質量関数(<span class="math inline">\(\theta\in\Theta\)</span> から定まる確率質量関数)と理解すれば十分である。</p>
 <p>例えば <span class="math inline">\(\Theta\)</span> が高々可算集合で、 <span class="math display">\[\begin{align*}
 L(\theta,\,\theta') &amp;= \mathbb{I}\{\theta\ne \theta'\}\qquad\forall\theta,\theta'\in\Theta
-\end{align*}\]</span> と定義すると、ベイズリスク <span class="math inline">\(\rho(\pi, \widehat{\theta})\)</span> は推定関数 <span class="math inline">\(\widehat{\theta}\)</span> の誤り確率 <span class="math inline">\(P_\mathrm{err}(\widehat{\theta})\)</span> である。</p>
+\end{align*}\]</span> と定義すると、ベイズリスク <span class="math inline">\(\rho(\pi, \widehat{\theta})\)</span> は推定量 <span class="math inline">\(\widehat{\theta}\)</span> の誤り確率 <span class="math inline">\(P_\mathrm{err}(\widehat{\theta})\)</span> である。</p>
 <p>その他の重要な損失関数の例として二乗誤差がある。 <span class="math display">\[\begin{align*}
 L(\theta,\,\theta') &amp;= (\theta-\theta')^2.
 \end{align*}\]</span></p>
-<p>損失関数 <span class="math inline">\(L\)</span> を定めたときに、ベイズリスクを最小化する推定関数 <span class="math display">\[\begin{align*}
+<p>損失関数 <span class="math inline">\(L\)</span> を定めたときに、ベイズリスクを最小化する推定量 <span class="math display">\[\begin{align*}
 \widehat{\theta} &amp;= \arg\min_{\widehat{\theta}} \rho(\pi, \widehat{\theta})\\
 \iff \widehat{\theta}(x) &amp;= \arg\min_{\theta'\in\Theta} \sum_{\theta\in\Theta} L(\theta,\,\theta') p(x\mid\theta)\pi(\theta)\qquad\forall x\in\mathcal{X}\\
 \iff \widehat{\theta}(x) &amp;= \arg\min_{\theta'\in\Theta} \sum_{\theta\in\Theta} L(\theta,\,\theta') p(\theta\mid x)p(x)\qquad\forall x\in\mathcal{X}\\
