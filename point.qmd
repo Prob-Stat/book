@@ -1,0 +1,32 @@
+# 点推定
+
+## 点推定と損失関数
+
+尤度 $p(x\mid \theta)$ に従ってデータ $x\in\mathcal{X}$ が得られるとき、パラメータ $\theta\in\Theta$ から定まる値 $g(\theta)$ を推定する問題を考える。
+ここで $g\colon\mathcal{\Theta}\to\mathbb{R}$ を推定目標という。
+$g(\theta)=\theta$ のときはパラメータそのものの推定の問題となる。
+その他の例としては
+
+* $g(\theta) = \expt{X\mid \theta}$ (期待値).
+* $g(\theta) = \var{X\mid \theta}$ (分散).
+
+などがある。
+また、データ $x\in\mathcal{X}$ から $g(\theta)$ を推定する関数 $\delta\colon\mathcal{X}\to\mathbb{R}$ を**推定量**という。
+ただし、推定量 $\delta$ はランダムである場合もある。
+推定量の誤差を定量化する関数として**損失関数**を$L\colon\Theta\times\mathbb{R}\to\mathbb{R}_{\ge 0}$ する。
+正確に推定した場合の損失関数の値は0であるとする。つまり
+\begin{align*}
+L(\theta,\,g(\theta)) &= 0
+\end{align*}
+である。
+**リスク関数**を
+\begin{align*}
+R(\theta,\,\delta) &\coloneqq \expt{L(\theta,\,\delta(X))\mid\theta}\\
+&=\sum_x L(\theta,\, x) p(x\mid\theta)
+\end{align*}
+と定義する。
+
+## 十分統計量
+::: {#def-ss}
+### 十分統計量
+:::
