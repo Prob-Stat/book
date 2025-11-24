@@ -1,2 +1,274 @@
 # 大数の法則と集中不等式
 
+## 大数の弱法則
+表が出る確率が $1/2$ のコインを100回独立に投げたときに表が出る回数は大体50回くらいになるだろう。
+それを一般的な形で述べたものが大数の法則である。
+
+::: {#thm-wll}
+### 大数の弱法則(分散有限を仮定)
+
+確率変数 $X$ が**分散を持つ**とする。
+確率変数 $X_1,\dotsc,X_N$ が独立同分布で $X$ と同じ分布に従うとする。
+このとき、
+\begin{align*}
+\lim_{N\to\infty}\Pr\left(\left|\frac1N\sum_{i=1}^N X_i-\expt{X}\right|\ge\epsilon\right) &= 0
+\end{align*}
+が成り立つ。
+:::
+::: {.proof}
+\begin{align*}
+\Pr\left(\left|\frac1n\sum_{i=1}^N X_i-\expt{X}\right|\ge\epsilon\right)
+&=  \Pr\left(\left(\frac1N\sum_{i=1}^N X_i-\expt{X}\right)^2\ge\epsilon^2\right) \\
+&=  \Pr\left(\left(\sum_{i=1}^N X_i-N\expt{X}\right)^2\ge\epsilon^2N^2\right) \\
+&\le \frac{N\var{X}}{\epsilon^2N^2}
+= \frac{\var{X}}{\epsilon^2N}\longrightarrow 0.
+\end{align*}
+:::
+
+## チェルノフ上界
+上記の大数の弱法則の証明では確率が0に収束するスピートは $O(1/N)$ であった。
+より詳しく確率が0にいくスピードを解析しよう。
+
+::: {#lem-chrnof}
+### チェルノフ上界
+任意の確率変数 $X$ と $a\in\mathbb{R}$ について、
+\begin{align*}
+\Pr\left(X\ge a\right) &\le \frac{M_X(t)}{\mathrm{e}^{at}}=\mathrm{e}^{K_X(t)-at}\qquad\forall t\ge 0\\
+\Pr\left(X\le a\right) &\le \frac{M_X(t)}{\mathrm{e}^{at}}=\mathrm{e}^{K_X(t)-at}\qquad\forall t\le 0.
+\end{align*}
+:::
+::: {.proof}
+$t=0$ のときは不等式の右辺は1となるので、不等式は自明に成り立つ。
+任意の $t>0$ について、
+\begin{align*}
+\Pr\left(X\ge a\right) &= \Pr\left(\mathrm{e}^{tX}\ge \mathrm{e}^{ta}\right)\\
+&\le \frac{M_X(t)}{\mathrm{e}^{at}}\qquad(\text{マルコフの不等式}).
+\end{align*}
+が成り立つ。
+もう一つの不等式も同様に示すことができる。
+:::
+
+マルコフの不等式は非負の確率変数にしか適用できないが、チェルノフ上界は任意の確率変数に適用できる。
+
+::: {#lem-chrnofsum}
+### 確率変数の和に対するチェルノフ上界
+任意の確率変数 $X$ と $a\in\mathbb{R}$ について、
+\begin{align*}
+\Pr\left(\frac1N\sum_{i=1}^N X_i\ge a\right) &\le \mathrm{e}^{-(at-K_X(t))N}\qquad\forall t\ge 0\\
+\Pr\left(\frac1N\sum_{i=1}^N X_i\le a\right) &\le \mathrm{e}^{-(at-K_X(t))N}\qquad\forall t\le 0.
+\end{align*}
+:::
+::: {.proof}
+\begin{align*}
+\Pr\left(\frac1N\sum_{i=1}^N X_i\ge a\right) &= \Pr\left(\sum_{i=1}^N X_i\ge aN\right)\\
+&\le \mathrm{e}^{K_{\sum_i X_i}(t) - atN}\\
+&= \mathrm{e}^{(K_X(t) - at)N}\\
+\end{align*}
+:::
+
+このようにチェルノフ上界を使うと $N$ について指数関数の上界が得られる。
+係数 $at-K_X(t)$ が正であれば、確率は指数関数的に小さいことになる。
+ここで、最適な $t$ を選ぶことで、この係数 $at-K_X(t)$ を最大化することを考える。
+
+## キュムラント母関数の性質
+キュムラント母関数
+\begin{align*}
+K_X(t) &= \log\expt{\mathrm{e}^{tX}}
+\end{align*}
+の性質を改めて考えよう。
+
+まず、$K_X(0)=0$ である。
+
+ある $t>0$ について、 $M_X(t)$ が存在すると仮定すると、任意の $x\in(0,t)$ について
+\begin{align*}
+M_X(s) &= \expt{\mathrm{e}^{sX}}\\
+ &= \expt{\mathrm{e}^{sX} \mathbb{1}_{\{X\ge 0\}}}
+ + \expt{\mathrm{e}^{sX} \mathbb{1}_{\{X< 0\}}}\\
+ &\le \expt{\mathrm{e}^{tX} \mathbb{1}_{\{X\ge 0\}}} + 1\\
+ &\le M_X(t) + 1 < \infty
+\end{align*}
+なので、$M_X(s)$ も存在する。
+同様に、ある $t<0$ について、 $M_X(t)$ が存在すると仮定すると、任意の $x\in(t,0)$ について $M_X(s)$ も存在する。
+よって、**$M_X(t)$ や $K_X(t)$ が存在する範囲は0を含む区間**となる。
+ここでいう区間とは一般的に空集合、もしくは $a< b$ について、
+\begin{align*}
+[a,\,a]\quad
+(a,\,b)\quad
+[a,\,b)\quad
+(a,\,b]\quad
+[a,\,b]\quad
+(a,\,\infty)\quad
+[a,\,\infty)\quad
+(-\infty,\, b)\quad
+(-\infty,\, b]\quad
+(-\infty,\,\infty)
+\end{align*}
+のいずれかの形の集合を指す。
+この区間を $\mathrm{dom}(K_X)$ と表す。
+
+証明はしないが、キュムラント母関数 $K_X(t)$ は $\mathrm{dom}(K_X)$ の**内点で微分可能であり、無限和や積分を取る前に微分しても構わない**。
+
+\begin{align*}
+\frac{\mathrm{d} K_X(t)}{\mathrm{d}t} &= \frac{\expt{X\mathrm{e}^{tX}}}{\expt{\mathrm{e}^{tX}}}\\
+\frac{\mathrm{d}^2 K_X(t)}{\mathrm{d}t^2} &= \frac{\expt{X^2\mathrm{e}^{tX}}\expt{\mathrm{e}^{tX}}-\expt{X\mathrm{e}^{tX}}^2}{\expt{\mathrm{e}^{tX}}^2}\\
+&= \frac{\expt{X^2\mathrm{e}^{tX}}}{\expt{\mathrm{e}^{tX}}}-\left(\frac{\expt{X\mathrm{e}^{tX}}}{\expt{\mathrm{e}^{tX}}}\right)^2\\
+&= \frac{\expt{\left(X-\frac{\expt{X\mathrm{e}^{tX}}}{\expt{\mathrm{e}^{tX}}}\right)^2\mathrm{e}^{tX}}}{\expt{\mathrm{e}^{tX}}}\ge 0
+\end{align*}
+ここで確率変数 $Z_t$ を導入し、確率質量関数
+\begin{align*}
+f_{Z_t}(x) &= \frac{f_X(x)\mathrm{e}^{tx}}{\sum_x f_X(x)\mathrm{e}^{tx}}
+\end{align*}
+を持つものとすると、
+\begin{align*}
+\frac{\mathrm{d} K_X(t)}{\mathrm{d}t} &= \expt{Z_t}\\
+\frac{\mathrm{d}^2 K_X(t)}{\mathrm{d}t^2} &= \var{Z_t}
+\end{align*}
+であることが分かる。
+また、$X$が決定的($\Pr(X=\expt{X})=1$)でない限り、$K_X$ は $\mathrm{dom}(K_X)$ で狭義凸である。
+
+よって $X$ のキュムラント母関数 $K_X(t)$ が原点付近で存在すると仮定すると、$K_X(t)$ は
+
+* 0を含む区間で定義され、
+* 原点を通り、
+* 凸関数で、
+* 原点の傾きは $\expt{X}$ 
+
+であることが分かる。
+
+また、キュムラント母関数の簡単な性質として以下が成り立つ。
+任意の独立確率変数 $X$ と $Y$ と $a\in\mathbb{R}$ について
+\begin{align*}
+K_{X+a}(t) &= \log\expt{\mathrm{e}^{t(X+a)}} = \log\left(\expt{\mathrm{e}^{tX}}\cdot \mathrm{e}^{ta}\right) = K_X(t) + at\\%\quad\text{for } t\in\mathrm{dom}(K_X)\\
+K_{aX}(t) &= \log\expt{\mathrm{e}^{t(aX)}} = K_X(at)\\%\qquad\text{if } at\in\mathrm{dom}(K_X)\\
+K_{X+Y}(t) &= \log\expt{\mathrm{e}^{t(X+Y)}} =\log\left(\expt{\mathrm{e}^{tX}}\expt{\mathrm{e}^{tY}}\right) = K_X(t) + K_Y(t).
+%&\hspace{17em}\text{for } t\in\mathrm{dom}(K_X)\cap\mathrm{dom}(K_Y)
+\end{align*}
+
+## ルジャンドル変換
+
+チェルノフ上界に現れる係数 $at-K_X(t)$ の最大化はルジャンドル変換を用いて $K_X^*(a)$ と表せる。
+ルジャンドル変換を定義する際は $+\infty$ という値を許して $(-\infty,\,+\infty]$ を値域として考えると都合がよい。
+このように $+\infty$ を値として許した場合にも凸性を通常の関数と同じように定義する。
+一般に区間上で定義された凸関数を実数全体に拡張し、元の定義域の外で $+\infty$ を取ることにするとやはり凸関数になる。
+また、$f\colon\mathbb{R}\to(-\infty,\,+\infty]$ の**有効領域**を
+\begin{align*}
+\mathrm{dom}(f) &\coloneqq\left\{x\in\mathbb{R}\mid f(x)<+\infty\right\}
+\end{align*}
+と定義する。
+凸関数の有効領域は区間になる。
+
+::: {#def-legendre}
+### ルジャンドル変換
+<!--
+区間 $J\subseteq\mathbb{R}$ 上の**凸関数** $f\colon J\to\mathbb{R}$ のルジャンドル変換 $f^*\colon J^*\to\mathbb{R}$ を以下で定義する。
+\begin{align*}
+f^*(a) &\coloneqq \sup_{t\in J}\left\{at-f(t)\right\}\\
+J^* &\coloneqq\{a\in\mathbb{R}\mid f^*(a)<\infty\}.
+\end{align*}
+-->
+**凸関数** $f\colon \mathbb{R}\to (-\infty,\,+\infty]$ のルジャンドル変換 $f^*\colon \mathbb{R}\to (-\infty,\,+\infty]$ を以下で定義する。
+\begin{align*}
+f^*(a) &\coloneqq \sup_{t\in \mathbb{R}}\left\{at-f(t)\right\}.
+\end{align*}
+:::
+
+ルジャンドル変換において $f$ は凸関数なので、$at-f(t)$ は凹関数(上に凸の関数)になる。
+簡単のため $f$ が $\mathrm{dom}(f)$ の内点で微分可能であると仮定しよう。
+このとき、
+
+* $at-f(t)$ の微分が 0 になる点、つまり $f'(t_a) = a$ を満たす $t_a\in \mathrm{dom}(f)^\circ$ が存在するとき、$t_a$ で $at-f(t)$ は最大化される。
+* そのような $t_a\in \mathrm{dom}(f)^\circ$ が存在しないときは、$\mathrm{dom}(f)$ の端への極限で $\sup$ が達成される。
+
+凸関数は $\mathrm{dom}(f)$ の上では接線の集合で表すことができる。
+接線 $ax+b$ は傾き $a$ と切片 $b$ のペアで表すことができる。
+傾き $a$ を持つ $f$ の接線は
+\begin{align*}
+a(x-t_a) + f(t_a) &= ax - (at_a - f(t_a)) = ax - f^*(a)
+\end{align*}
+この傾き $a$ から接線の切片の $-1$倍である $-b$ への関数が $f^*$ である。
+よって $f$ が微分可能であるとき
+\begin{align*}
+f^*(f'(t)) &= -f(t)
+\end{align*}
+である。
+
+また、ルジャンドル変換 $f^*$ は凸関数である。
+
+::: {#lem-legendre-conv}
+凸関数 $f\colon \mathbb{R}\to (-\infty,\,+\infty]$ のルジャンドル変換 $f^*\colon \mathbb{R}\to (-\infty,\,+\infty]$   は凸関数である。
+:::
+::: {.proof}
+任意の $a_1,a_2\in \mathbb{R}$ と $\lambda\in[0,1]$ について
+\begin{align*}
+f^*(\lambda a_1+ (1-\lambda)a_2) &= \sup_{t\in \mathbb{R}}\left\{(\lambda a_1+(1-\lambda)a_2)t - f(t)\right\}\\
+&= \sup_{t\in \mathbb{R}}\left\{\lambda (a_1t - f(t))+(1-\lambda)(a_2t - f(t))\right\}\\
+&\le \sup_{t\in \mathbb{R}}\left\{\lambda (a_1t - f(t))\right\}+\sup_{t\in \mathbb{R}}\left\{(1-\lambda)(a_2t - f(t))\right\}\\
+ &\le \lambda f^*(a_1) + (1-\lambda) f^*(a_2).
+\end{align*}
+:::
+
+ルジャンドル変換を凸でない関数 $f$ についても同様に定義した場合でも、ルジャンドル変換 $f^*$ は同様に凸関数となる。
+
+<!--
+::: {#lem-legendre-dual}
+$J\subseteq\mathbb{R}$ を区間とし、$f\colon J\to\mathbb{R}$ を凸関数とする。
+このとき、$f^{**}=f$ である。
+:::
+::: {.proof}
+:::
+-->
+
+## クラメールの定理
+
+@lem-chrnofsum の右辺を $t$ について最小化することを考えよう。
+
+::: {#lem-cramer}
+**レート関数** $I_X\colon \mathbb{R} \to\mathbb{R}_{\ge 0}$を
+\begin{align*}
+I_X(a) &:= \sup_{t \in\mathbb{R}}\left\{at - K_X(t)\right\}
+\end{align*}
+と定義する。
+このとき、
+\begin{align*}
+\sup_{t\ge0}\left\{at-K_X(t)\right\}&=\begin{cases}
+I_X(a)&\text{if } a > \expt{X}\\
+0&\text{otherwise.}
+\end{cases}\\
+\sup_{t\le0}\left\{at-K_X(t)\right\}&=\begin{cases}
+I_X(a)&\text{if } a < \expt{X}\\
+0&\text{otherwise.}
+\end{cases}
+\end{align*}
+である。
+:::
+::: {.proof}
+$K_X'(0)=\expt{X}$ である。
+よって、
+
+* $a=\expt{X}$のとき、$t_a=0$
+* $a>\expt{X}$ のとき、$t_a>0$
+* $a<\expt{X}$ のとき、$t_a<0$
+
+である。
+このことから、
+\begin{align*}
+\sup_{t \in\mathbb{R}}\left\{at - K_X(t)\right\}
+&=
+\sup_{t >0}\left\{at - K_X(t)\right\}\qquad\text{for } a>\expt{X}\\
+\sup_{t \in\mathbb{R}}\left\{at - K_X(t)\right\}
+&=
+\sup_{t <0}\left\{at - K_X(t)\right\}\qquad\text{for } a<\expt{X}\\
+\end{align*}
+である。
+:::
+
+よってチェルノフ上界を最適化することで以下を得る。
+
+::: {#thm-chernof}
+### 最適化されたチェルノフ上界
+\begin{align*}
+\Pr\left(\frac1N\sum_{i=1}^N X\ge a\right) &\le \mathrm{e}^{-I_X(a)N}\qquad\forall a>\expt{X}\\
+\Pr\left(\frac1N\sum_{i=1}^N X\le a\right) &\le \mathrm{e}^{-I_X(a)N}\qquad\forall a<\expt{X}.
+\end{align*}
+:::
+
