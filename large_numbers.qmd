@@ -9,7 +9,7 @@
 
 確率変数 $X$ が**分散を持つ**とする。
 確率変数 $X_1,\dotsc,X_N$ が独立同分布で $X$ と同じ分布に従うとする。
-このとき、
+このとき、任意の $\epsilon>0$ について
 \begin{align*}
 \lim_{N\to\infty}\Pr\left(\left|\frac1N\sum_{i=1}^N X_i-\expt{X}\right|\ge\epsilon\right) &= 0
 \end{align*}
@@ -79,7 +79,7 @@ K_X(t) &= \log\expt{\mathrm{e}^{tX}}
 
 まず、$K_X(0)=0$ である。
 
-ある $t>0$ について、 $M_X(t)$ が存在すると仮定すると、任意の $x\in(0,t)$ について
+ある $t>0$ について、 $M_X(t)$ が存在すると仮定すると、任意の $s\in(0,t)$ について
 \begin{align*}
 M_X(s) &= \expt{\mathrm{e}^{sX}}\\
  &= \expt{\mathrm{e}^{sX} \mathbb{1}_{\{X\ge 0\}}}
@@ -88,7 +88,7 @@ M_X(s) &= \expt{\mathrm{e}^{sX}}\\
  &\le M_X(t) + 1 < \infty
 \end{align*}
 なので、$M_X(s)$ も存在する。
-同様に、ある $t<0$ について、 $M_X(t)$ が存在すると仮定すると、任意の $x\in(t,0)$ について $M_X(s)$ も存在する。
+同様に、ある $t<0$ について、 $M_X(t)$ が存在すると仮定すると、任意の $s\in(t,0)$ について $M_X(s)$ も存在する。
 よって、**$M_X(t)$ や $K_X(t)$ が存在する範囲は0を含む区間**となる。
 ここでいう区間とは一般的に空集合、もしくは $a< b$ について、
 \begin{align*}
@@ -106,7 +106,7 @@ M_X(s) &= \expt{\mathrm{e}^{sX}}\\
 のいずれかの形の集合を指す。
 この区間を $\mathrm{dom}(K_X)$ と表す。
 
-証明はしないが、キュムラント母関数 $K_X(t)$ は $\mathrm{dom}(K_X)$ の**内点で微分可能であり、無限和や積分を取る前に微分しても構わない**。
+証明はしないが、キュムラント母関数 $K_X(t)$ は $\mathrm{dom}(K_X)$ の**内点で何回でも微分可能であり、無限和や積分を取る前に微分しても構わない**。
 
 \begin{align*}
 \frac{\mathrm{d} K_X(t)}{\mathrm{d}t} &= \frac{\expt{X\mathrm{e}^{tX}}}{\expt{\mathrm{e}^{tX}}}\\
@@ -186,9 +186,10 @@ f^*(a) &\coloneqq \sup_{t\in \mathbb{R}}\left\{at-f(t)\right\}.
 a(x-t_a) + f(t_a) &= ax - (at_a - f(t_a)) = ax - f^*(a)
 \end{align*}
 この傾き $a$ から接線の切片の $-1$倍である $-b$ への関数が $f^*$ である。
-よって $f$ が微分可能であるとき
+
+例えば $f$ が0で微分可能であるとき
 \begin{align*}
-f^*(f'(t)) &= -f(t)
+f^*(f'(0)) &= 0
 \end{align*}
 である。
 
