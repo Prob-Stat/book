@@ -469,7 +469,7 @@ window.Quarto = {
 <h2 data-number="9.1" class="anchored" data-anchor-id="大数の弱法則"><span class="header-section-number">9.1</span> 大数の弱法則</h2>
 <p>表が出る確率が <span class="math inline">\(1/2\)</span> のコインを100回独立に投げたときに表が出る回数は大体50回くらいになるだろう。 それを一般的な形で述べたものが大数の法則である。</p>
 <div id="thm-wll" class="theorem">
-<p><span class="theorem-title"><strong>定理 9.1 (大数の弱法則(分散有限を仮定))</strong></span> 確率変数 <span class="math inline">\(X\)</span> が<strong>分散を持つ</strong>とする。 確率変数 <span class="math inline">\(X_1,\dotsc,X_N\)</span> が独立同分布で <span class="math inline">\(X\)</span> と同じ分布に従うとする。 このとき、 <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>定理 9.1 (大数の弱法則(分散有限を仮定))</strong></span> 確率変数 <span class="math inline">\(X\)</span> が<strong>分散を持つ</strong>とする。 確率変数 <span class="math inline">\(X_1,\dotsc,X_N\)</span> が独立同分布で <span class="math inline">\(X\)</span> と同じ分布に従うとする。 このとき、任意の <span class="math inline">\(\epsilon&gt;0\)</span> について <span class="math display">\[\begin{align*}
 \lim_{N\to\infty}\Pr\left(\left|\frac1N\sum_{i=1}^N X_i-\expt{X}\right|\ge\epsilon\right) &amp;= 0
 \end{align*}\]</span> が成り立つ。</p>
 </div>
@@ -520,13 +520,13 @@ window.Quarto = {
 K_X(t) &amp;= \log\expt{\mathrm{e}^{tX}}
 \end{align*}\]</span> の性質を改めて考えよう。</p>
 <p>まず、<span class="math inline">\(K_X(0)=0\)</span> である。</p>
-<p>ある <span class="math inline">\(t&gt;0\)</span> について、 <span class="math inline">\(M_X(t)\)</span> が存在すると仮定すると、任意の <span class="math inline">\(x\in(0,t)\)</span> について <span class="math display">\[\begin{align*}
+<p>ある <span class="math inline">\(t&gt;0\)</span> について、 <span class="math inline">\(M_X(t)\)</span> が存在すると仮定すると、任意の <span class="math inline">\(s\in(0,t)\)</span> について <span class="math display">\[\begin{align*}
 M_X(s) &amp;= \expt{\mathrm{e}^{sX}}\\
 &amp;= \expt{\mathrm{e}^{sX} \mathbb{1}_{\{X\ge 0\}}}
 + \expt{\mathrm{e}^{sX} \mathbb{1}_{\{X&lt; 0\}}}\\
 &amp;\le \expt{\mathrm{e}^{tX} \mathbb{1}_{\{X\ge 0\}}} + 1\\
 &amp;\le M_X(t) + 1 &lt; \infty
-\end{align*}\]</span> なので、<span class="math inline">\(M_X(s)\)</span> も存在する。 同様に、ある <span class="math inline">\(t&lt;0\)</span> について、 <span class="math inline">\(M_X(t)\)</span> が存在すると仮定すると、任意の <span class="math inline">\(x\in(t,0)\)</span> について <span class="math inline">\(M_X(s)\)</span> も存在する。 よって、<strong><span class="math inline">\(M_X(t)\)</span> や <span class="math inline">\(K_X(t)\)</span> が存在する範囲は0を含む区間</strong>となる。 ここでいう区間とは一般的に空集合、もしくは <span class="math inline">\(a&lt; b\)</span> について、 <span class="math display">\[\begin{align*}
+\end{align*}\]</span> なので、<span class="math inline">\(M_X(s)\)</span> も存在する。 同様に、ある <span class="math inline">\(t&lt;0\)</span> について、 <span class="math inline">\(M_X(t)\)</span> が存在すると仮定すると、任意の <span class="math inline">\(s\in(t,0)\)</span> について <span class="math inline">\(M_X(s)\)</span> も存在する。 よって、<strong><span class="math inline">\(M_X(t)\)</span> や <span class="math inline">\(K_X(t)\)</span> が存在する範囲は0を含む区間</strong>となる。 ここでいう区間とは一般的に空集合、もしくは <span class="math inline">\(a&lt; b\)</span> について、 <span class="math display">\[\begin{align*}
 [a,\,a]\quad
 (a,\,b)\quad
 [a,\,b)\quad
@@ -538,7 +538,7 @@ M_X(s) &amp;= \expt{\mathrm{e}^{sX}}\\
 (-\infty,\, b]\quad
 (-\infty,\,\infty)
 \end{align*}\]</span> のいずれかの形の集合を指す。 この区間を <span class="math inline">\(\mathrm{dom}(K_X)\)</span> と表す。</p>
-<p>証明はしないが、キュムラント母関数 <span class="math inline">\(K_X(t)\)</span> は <span class="math inline">\(\mathrm{dom}(K_X)\)</span> の<strong>内点で微分可能であり、無限和や積分を取る前に微分しても構わない</strong>。</p>
+<p>証明はしないが、キュムラント母関数 <span class="math inline">\(K_X(t)\)</span> は <span class="math inline">\(\mathrm{dom}(K_X)\)</span> の<strong>内点で何回でも微分可能であり、無限和や積分を取る前に微分しても構わない</strong>。</p>
 <p><span class="math display">\[\begin{align*}
 \frac{\mathrm{d} K_X(t)}{\mathrm{d}t} &amp;= \frac{\expt{X\mathrm{e}^{tX}}}{\expt{\mathrm{e}^{tX}}}\\
 \frac{\mathrm{d}^2 K_X(t)}{\mathrm{d}t^2} &amp;= \frac{\expt{X^2\mathrm{e}^{tX}}\expt{\mathrm{e}^{tX}}-\expt{X\mathrm{e}^{tX}}^2}{\expt{\mathrm{e}^{tX}}^2}\\
@@ -590,8 +590,9 @@ f^*(a) &amp;\coloneqq \sup_{t\in \mathbb{R}}\left\{at-f(t)\right\}.
 </ul>
 <p>凸関数は <span class="math inline">\(\mathrm{dom}(f)\)</span> の上では接線の集合で表すことができる。 接線 <span class="math inline">\(ax+b\)</span> は傾き <span class="math inline">\(a\)</span> と切片 <span class="math inline">\(b\)</span> のペアで表すことができる。 傾き <span class="math inline">\(a\)</span> を持つ <span class="math inline">\(f\)</span> の接線は <span class="math display">\[\begin{align*}
 a(x-t_a) + f(t_a) &amp;= ax - (at_a - f(t_a)) = ax - f^*(a)
-\end{align*}\]</span> この傾き <span class="math inline">\(a\)</span> から接線の切片の <span class="math inline">\(-1\)</span>倍である <span class="math inline">\(-b\)</span> への関数が <span class="math inline">\(f^*\)</span> である。 よって <span class="math inline">\(f\)</span> が微分可能であるとき <span class="math display">\[\begin{align*}
-f^*(f'(t)) &amp;= -f(t)
+\end{align*}\]</span> この傾き <span class="math inline">\(a\)</span> から接線の切片の <span class="math inline">\(-1\)</span>倍である <span class="math inline">\(-b\)</span> への関数が <span class="math inline">\(f^*\)</span> である。</p>
+<p>例えば <span class="math inline">\(f\)</span> が0で微分可能であるとき <span class="math display">\[\begin{align*}
+f^*(f'(0)) &amp;= 0
 \end{align*}\]</span> である。</p>
 <p>また、ルジャンドル変換 <span class="math inline">\(f^*\)</span> は凸関数である。</p>
 <div id="lem-legendre-conv" class="theorem lemma">
