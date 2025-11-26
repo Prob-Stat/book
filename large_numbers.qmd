@@ -61,8 +61,8 @@ $t=0$ のときは不等式の右辺は1となるので、不等式は自明に�
 ::: {.proof}
 \begin{align*}
 \Pr\left(\frac1N\sum_{i=1}^N X_i\ge a\right) &= \Pr\left(\sum_{i=1}^N X_i\ge aN\right)\\
-&\le \mathrm{e}^{K_{\sum_i X_i}(t) - atN}\\
-&= \mathrm{e}^{(K_X(t) - at)N}\\
+&\le \mathrm{e}^{K_{\sum_i X_i}(t) - atN}\qquad\text{(チェルノフ上界)}\\
+&= \mathrm{e}^{(K_X(t) - at)N}\qquad\left(K_{\sum_i X_i}(t) = \sum_i K_{X_i}(t) = N K_X(t)\right).
 \end{align*}
 :::
 
@@ -73,23 +73,24 @@ $t=0$ のときは不等式の右辺は1となるので、不等式は自明に�
 ## キュムラント母関数の性質
 キュムラント母関数
 \begin{align*}
-K_X(t) &= \log\expt{\mathrm{e}^{tX}}
+K_X(t) &= \log M_X(t) = \log\expt{\mathrm{e}^{tX}}
 \end{align*}
 の性質を改めて考えよう。
+発散する場合は $+\infty$ に値を取るとみなして $K_X\colon \mathbb{R}\to(-\infty,\,+\infty]$ と考えることにする。
 
 まず、$K_X(0)=0$ である。
 
-ある $t>0$ について、 $M_X(t)$ が存在すると仮定すると、任意の $s\in(0,t)$ について
+ある $t>0$ について、 $M_X(t)<+\infty$ と仮定すると、任意の $s\in(0,t)$ について
 \begin{align*}
 M_X(s) &= \expt{\mathrm{e}^{sX}}\\
  &= \expt{\mathrm{e}^{sX} \mathbb{1}_{\{X\ge 0\}}}
  + \expt{\mathrm{e}^{sX} \mathbb{1}_{\{X< 0\}}}\\
  &\le \expt{\mathrm{e}^{tX} \mathbb{1}_{\{X\ge 0\}}} + 1\\
- &\le M_X(t) + 1 < \infty
+ &\le M_X(t) + 1 < +\infty
 \end{align*}
-なので、$M_X(s)$ も存在する。
-同様に、ある $t<0$ について、 $M_X(t)$ が存在すると仮定すると、任意の $s\in(t,0)$ について $M_X(s)$ も存在する。
-よって、**$M_X(t)$ や $K_X(t)$ が存在する範囲は0を含む区間**となる。
+である。
+同様に、ある $t<0$ について、 $M_X(t)<+\infty$ と仮定すると、任意の $s\in(t,0)$ について $M_X(s)<+\infty$ である。
+よって、**$M_X(t)$ や $K_X(t)$ が有限となる範囲は0を含む区間**となる。
 ここでいう区間とは一般的に空集合、もしくは $a< b$ について、
 \begin{align*}
 [a,\,a]\quad
@@ -97,14 +98,20 @@ M_X(s) &= \expt{\mathrm{e}^{sX}}\\
 [a,\,b)\quad
 (a,\,b]\quad
 [a,\,b]\quad
-(a,\,\infty)\quad
-[a,\,\infty)\quad
+(a,\,+\infty)\quad
+[a,\,+\infty)\quad
 (-\infty,\, b)\quad
 (-\infty,\, b]\quad
-(-\infty,\,\infty)
+(-\infty,\,+\infty)
 \end{align*}
 のいずれかの形の集合を指す。
-この区間を $\mathrm{dom}(K_X)$ と表す。
+この区間を
+\begin{align*}
+\mathrm{dom}(K_X) &\coloneqq\left\{t\in\mathbb{R}\mid K_X(t)<+\infty\right\}
+\end{align*}
+と表す。
+区間は1次元の凸集合と一言で理解できる。
+
 
 証明はしないが、キュムラント母関数 $K_X(t)$ は $\mathrm{dom}(K_X)$ の**内点で何回でも微分可能であり、無限和や積分を取る前に微分しても構わない**。
 
@@ -135,6 +142,11 @@ f_{Z_t}(x) &= \frac{f_X(x)\mathrm{e}^{tx}}{\sum_x f_X(x)\mathrm{e}^{tx}}
 
 であることが分かる。
 
+::: {.callout-note}
+関数 $f\colon\mathbb{R}\to(-\infty,\,+\infty]$ が下半連続であるとは、 任意の $\alpha\in\mathbb{R}$ について $\{t\in\mathbb{R}\mid f(t)\le\alpha\}$ が閉集合であることをいう。
+キュムラント母関数は下半連続の凸関数である。
+:::
+
 また、キュムラント母関数の簡単な性質として以下が成り立つ。
 任意の独立確率変数 $X$ と $Y$ と $a\in\mathbb{R}$ について
 \begin{align*}
@@ -143,6 +155,8 @@ K_{aX}(t) &= \log\expt{\mathrm{e}^{t(aX)}} = K_X(at)\\%\qquad\text{if } at\in\ma
 K_{X+Y}(t) &= \log\expt{\mathrm{e}^{t(X+Y)}} =\log\left(\expt{\mathrm{e}^{tX}}\expt{\mathrm{e}^{tY}}\right) = K_X(t) + K_Y(t).
 %&\hspace{17em}\text{for } t\in\mathrm{dom}(K_X)\cap\mathrm{dom}(K_Y)
 \end{align*}
+
+## キュムラント母関数の例
 
 ## ルジャンドル変換
 
@@ -166,7 +180,7 @@ f^*(a) &\coloneqq \sup_{t\in J}\left\{at-f(t)\right\}\\
 J^* &\coloneqq\{a\in\mathbb{R}\mid f^*(a)<\infty\}.
 \end{align*}
 -->
-**凸関数** $f\colon \mathbb{R}\to (-\infty,\,+\infty]$ のルジャンドル変換 $f^*\colon \mathbb{R}\to (-\infty,\,+\infty]$ を以下で定義する。
+恒等的に $+\infty$ ではない**凸関数** $f\colon \mathbb{R}\to (-\infty,\,+\infty]$ のルジャンドル変換 $f^*\colon \mathbb{R}\to (-\infty,\,+\infty]$ を以下で定義する。
 \begin{align*}
 f^*(a) &\coloneqq \sup_{t\in \mathbb{R}}\left\{at-f(t)\right\}.
 \end{align*}
@@ -209,6 +223,11 @@ f^*(\lambda a_1+ (1-\lambda)a_2) &= \sup_{t\in \mathbb{R}}\left\{(\lambda a_1+(1
 :::
 
 ルジャンドル変換を凸でない関数 $f$ についても同様に定義した場合でも、ルジャンドル変換 $f^*$ は同様に凸関数となる。
+
+::: {.callout-note}
+またルジャンドル変換 $f^*$ は下半連続である。
+よって
+:::
 
 <!--
 ::: {#lem-legendre-dual}
