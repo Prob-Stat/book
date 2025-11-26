@@ -437,8 +437,9 @@ window.Quarto = {
   <li><a href="#大数の弱法則" id="toc-大数の弱法則" class="nav-link active" data-scroll-target="#大数の弱法則"><span class="header-section-number">9.1</span> 大数の弱法則</a></li>
   <li><a href="#チェルノフ上界" id="toc-チェルノフ上界" class="nav-link" data-scroll-target="#チェルノフ上界"><span class="header-section-number">9.2</span> チェルノフ上界</a></li>
   <li><a href="#キュムラント母関数の性質" id="toc-キュムラント母関数の性質" class="nav-link" data-scroll-target="#キュムラント母関数の性質"><span class="header-section-number">9.3</span> キュムラント母関数の性質</a></li>
-  <li><a href="#ルジャンドル変換" id="toc-ルジャンドル変換" class="nav-link" data-scroll-target="#ルジャンドル変換"><span class="header-section-number">9.4</span> ルジャンドル変換</a></li>
-  <li><a href="#クラメールの定理" id="toc-クラメールの定理" class="nav-link" data-scroll-target="#クラメールの定理"><span class="header-section-number">9.5</span> クラメールの定理</a></li>
+  <li><a href="#キュムラント母関数の例" id="toc-キュムラント母関数の例" class="nav-link" data-scroll-target="#キュムラント母関数の例"><span class="header-section-number">9.4</span> キュムラント母関数の例</a></li>
+  <li><a href="#ルジャンドル変換" id="toc-ルジャンドル変換" class="nav-link" data-scroll-target="#ルジャンドル変換"><span class="header-section-number">9.5</span> ルジャンドル変換</a></li>
+  <li><a href="#クラメールの定理" id="toc-クラメールの定理" class="nav-link" data-scroll-target="#クラメールの定理"><span class="header-section-number">9.6</span> クラメールの定理</a></li>
   </ul>
 </nav>
     </div>
@@ -508,8 +509,8 @@ window.Quarto = {
 <div class="proof">
 <p><span class="proof-title"><em>証明</em>. </span><span class="math display">\[\begin{align*}
 \Pr\left(\frac1N\sum_{i=1}^N X_i\ge a\right) &amp;= \Pr\left(\sum_{i=1}^N X_i\ge aN\right)\\
-&amp;\le \mathrm{e}^{K_{\sum_i X_i}(t) - atN}\\
-&amp;= \mathrm{e}^{(K_X(t) - at)N}\\
+&amp;\le \mathrm{e}^{K_{\sum_i X_i}(t) - atN}\qquad\text{(チェルノフ上界)}\\
+&amp;= \mathrm{e}^{(K_X(t) - at)N}\qquad\left(K_{\sum_i X_i}(t) = \sum_i K_{X_i}(t) = N K_X(t)\right).
 \end{align*}\]</span></p>
 </div>
 <p>このようにチェルノフ上界を使うと <span class="math inline">\(N\)</span> について指数関数の上界が得られる。 係数 <span class="math inline">\(at-K_X(t)\)</span> が正であれば、確率は指数関数的に小さいことになる。 ここで、最適な <span class="math inline">\(t\)</span> を選ぶことで、この係数 <span class="math inline">\(at-K_X(t)\)</span> を最大化することを考える。</p>
@@ -517,27 +518,29 @@ window.Quarto = {
 <section id="キュムラント母関数の性質" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="キュムラント母関数の性質"><span class="header-section-number">9.3</span> キュムラント母関数の性質</h2>
 <p>キュムラント母関数 <span class="math display">\[\begin{align*}
-K_X(t) &amp;= \log\expt{\mathrm{e}^{tX}}
-\end{align*}\]</span> の性質を改めて考えよう。</p>
+K_X(t) &amp;= \log M_X(t) = \log\expt{\mathrm{e}^{tX}}
+\end{align*}\]</span> の性質を改めて考えよう。 発散する場合は <span class="math inline">\(+\infty\)</span> に値を取るとみなして <span class="math inline">\(K_X\colon \mathbb{R}\to(-\infty,\,+\infty]\)</span> と考えることにする。</p>
 <p>まず、<span class="math inline">\(K_X(0)=0\)</span> である。</p>
-<p>ある <span class="math inline">\(t&gt;0\)</span> について、 <span class="math inline">\(M_X(t)\)</span> が存在すると仮定すると、任意の <span class="math inline">\(s\in(0,t)\)</span> について <span class="math display">\[\begin{align*}
+<p>ある <span class="math inline">\(t&gt;0\)</span> について、 <span class="math inline">\(M_X(t)&lt;+\infty\)</span> と仮定すると、任意の <span class="math inline">\(s\in(0,t)\)</span> について <span class="math display">\[\begin{align*}
 M_X(s) &amp;= \expt{\mathrm{e}^{sX}}\\
 &amp;= \expt{\mathrm{e}^{sX} \mathbb{1}_{\{X\ge 0\}}}
 + \expt{\mathrm{e}^{sX} \mathbb{1}_{\{X&lt; 0\}}}\\
 &amp;\le \expt{\mathrm{e}^{tX} \mathbb{1}_{\{X\ge 0\}}} + 1\\
-&amp;\le M_X(t) + 1 &lt; \infty
-\end{align*}\]</span> なので、<span class="math inline">\(M_X(s)\)</span> も存在する。 同様に、ある <span class="math inline">\(t&lt;0\)</span> について、 <span class="math inline">\(M_X(t)\)</span> が存在すると仮定すると、任意の <span class="math inline">\(s\in(t,0)\)</span> について <span class="math inline">\(M_X(s)\)</span> も存在する。 よって、<strong><span class="math inline">\(M_X(t)\)</span> や <span class="math inline">\(K_X(t)\)</span> が存在する範囲は0を含む区間</strong>となる。 ここでいう区間とは一般的に空集合、もしくは <span class="math inline">\(a&lt; b\)</span> について、 <span class="math display">\[\begin{align*}
+&amp;\le M_X(t) + 1 &lt; +\infty
+\end{align*}\]</span> である。 同様に、ある <span class="math inline">\(t&lt;0\)</span> について、 <span class="math inline">\(M_X(t)&lt;+\infty\)</span> と仮定すると、任意の <span class="math inline">\(s\in(t,0)\)</span> について <span class="math inline">\(M_X(s)&lt;+\infty\)</span> である。 よって、<strong><span class="math inline">\(M_X(t)\)</span> や <span class="math inline">\(K_X(t)\)</span> が有限となる範囲は0を含む区間</strong>となる。 ここでいう区間とは一般的に空集合、もしくは <span class="math inline">\(a&lt; b\)</span> について、 <span class="math display">\[\begin{align*}
 [a,\,a]\quad
 (a,\,b)\quad
 [a,\,b)\quad
 (a,\,b]\quad
 [a,\,b]\quad
-(a,\,\infty)\quad
-[a,\,\infty)\quad
+(a,\,+\infty)\quad
+[a,\,+\infty)\quad
 (-\infty,\, b)\quad
 (-\infty,\, b]\quad
-(-\infty,\,\infty)
-\end{align*}\]</span> のいずれかの形の集合を指す。 この区間を <span class="math inline">\(\mathrm{dom}(K_X)\)</span> と表す。</p>
+(-\infty,\,+\infty)
+\end{align*}\]</span> のいずれかの形の集合を指す。 この区間を <span class="math display">\[\begin{align*}
+\mathrm{dom}(K_X) &amp;\coloneqq\left\{t\in\mathbb{R}\mid K_X(t)&lt;+\infty\right\}
+\end{align*}\]</span> と表す。 区間は1次元の凸集合と一言で理解できる。</p>
 <p>証明はしないが、キュムラント母関数 <span class="math inline">\(K_X(t)\)</span> は <span class="math inline">\(\mathrm{dom}(K_X)\)</span> の<strong>内点で何回でも微分可能であり、無限和や積分を取る前に微分しても構わない</strong>。</p>
 <p><span class="math display">\[\begin{align*}
 \frac{\mathrm{d} K_X(t)}{\mathrm{d}t} &amp;= \frac{\expt{X\mathrm{e}^{tX}}}{\expt{\mathrm{e}^{tX}}}\\
@@ -558,6 +561,19 @@ f_{Z_t}(x) &amp;= \frac{f_X(x)\mathrm{e}^{tx}}{\sum_x f_X(x)\mathrm{e}^{tx}}
 <li>原点の傾きは <span class="math inline">\(\expt{X}\)</span></li>
 </ul>
 <p>であることが分かる。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+ノート
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>関数 <span class="math inline">\(f\colon\mathbb{R}\to(-\infty,\,+\infty]\)</span> が下半連続であるとは、 任意の <span class="math inline">\(\alpha\in\mathbb{R}\)</span> について <span class="math inline">\(\{t\in\mathbb{R}\mid f(t)\le\alpha\}\)</span> が閉集合であることをいう。 キュムラント母関数は下半連続の凸関数である。</p>
+</div>
+</div>
 <p>また、キュムラント母関数の簡単な性質として以下が成り立つ。 任意の独立確率変数 <span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> と <span class="math inline">\(a\in\mathbb{R}\)</span> について <span class="math display">\[\begin{align*}
 K_{X+a}(t) &amp;= \log\expt{\mathrm{e}^{t(X+a)}} = \log\left(\expt{\mathrm{e}^{tX}}\cdot \mathrm{e}^{ta}\right) = K_X(t) + at\\%\quad\text{for } t\in\mathrm{dom}(K_X)\\
 K_{aX}(t) &amp;= \log\expt{\mathrm{e}^{t(aX)}} = K_X(at)\\%\qquad\text{if } at\in\mathrm{dom}(K_X)\\
@@ -565,8 +581,11 @@ K_{X+Y}(t) &amp;= \log\expt{\mathrm{e}^{t(X+Y)}} =\log\left(\expt{\mathrm{e}^{tX
 %&amp;\hspace{17em}\text{for } t\in\mathrm{dom}(K_X)\cap\mathrm{dom}(K_Y)
 \end{align*}\]</span></p>
 </section>
-<section id="ルジャンドル変換" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="ルジャンドル変換"><span class="header-section-number">9.4</span> ルジャンドル変換</h2>
+<section id="キュムラント母関数の例" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="キュムラント母関数の例"><span class="header-section-number">9.4</span> キュムラント母関数の例</h2>
+</section>
+<section id="ルジャンドル変換" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="ルジャンドル変換"><span class="header-section-number">9.5</span> ルジャンドル変換</h2>
 <p>チェルノフ上界に現れる係数 <span class="math inline">\(at-K_X(t)\)</span> の最大化はルジャンドル変換を用いて <span class="math inline">\(K_X^*(a)\)</span> と表せる。 ルジャンドル変換を定義する際は <span class="math inline">\(+\infty\)</span> という値を許して <span class="math inline">\((-\infty,\,+\infty]\)</span> を値域として考えると都合がよい。 このように <span class="math inline">\(+\infty\)</span> を値として許した場合にも凸性を通常の関数と同じように定義する。 一般に区間上で定義された凸関数を実数全体に拡張し、元の定義域の外で <span class="math inline">\(+\infty\)</span> を取ることにするとやはり凸関数になる。 また、<span class="math inline">\(f\colon\mathbb{R}\to(-\infty,\,+\infty]\)</span> の<strong>有効領域</strong>を <span class="math display">\[\begin{align*}
 \mathrm{dom}(f) &amp;\coloneqq\left\{x\in\mathbb{R}\mid f(x)&lt;+\infty\right\}
 \end{align*}\]</span> と定義する。 凸関数の有効領域は区間になる。</p>
@@ -579,7 +598,7 @@ f^*(a) &\coloneqq \sup_{t\in J}\left\{at-f(t)\right\}\\
 J^* &\coloneqq\{a\in\mathbb{R}\mid f^*(a)<\infty\}.
 \end{align*}
 -->
-<p><strong>凸関数</strong> <span class="math inline">\(f\colon \mathbb{R}\to (-\infty,\,+\infty]\)</span> のルジャンドル変換 <span class="math inline">\(f^*\colon \mathbb{R}\to (-\infty,\,+\infty]\)</span> を以下で定義する。 <span class="math display">\[\begin{align*}
+<p>恒等的に <span class="math inline">\(+\infty\)</span> ではない<strong>凸関数</strong> <span class="math inline">\(f\colon \mathbb{R}\to (-\infty,\,+\infty]\)</span> のルジャンドル変換 <span class="math inline">\(f^*\colon \mathbb{R}\to (-\infty,\,+\infty]\)</span> を以下で定義する。 <span class="math display">\[\begin{align*}
 f^*(a) &amp;\coloneqq \sup_{t\in \mathbb{R}}\left\{at-f(t)\right\}.
 \end{align*}\]</span></p>
 </div>
@@ -607,6 +626,19 @@ f^*(\lambda a_1+ (1-\lambda)a_2) &amp;= \sup_{t\in \mathbb{R}}\left\{(\lambda a_
 \end{align*}\]</span></p>
 </div>
 <p>ルジャンドル変換を凸でない関数 <span class="math inline">\(f\)</span> についても同様に定義した場合でも、ルジャンドル変換 <span class="math inline">\(f^*\)</span> は同様に凸関数となる。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+ノート
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>またルジャンドル変換 <span class="math inline">\(f^*\)</span> は下半連続である。 よって</p>
+</div>
+</div>
 <!--
 ::: {#lem-legendre-dual}
 $J\subseteq\mathbb{R}$ を区間とし、$f\colon J\to\mathbb{R}$ を凸関数とする。
@@ -616,8 +648,8 @@ $J\subseteq\mathbb{R}$ を区間とし、$f\colon J\to\mathbb{R}$ を凸関数�
 :::
 -->
 </section>
-<section id="クラメールの定理" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="クラメールの定理"><span class="header-section-number">9.5</span> クラメールの定理</h2>
+<section id="クラメールの定理" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="クラメールの定理"><span class="header-section-number">9.6</span> クラメールの定理</h2>
 <p><a href="#lem-chrnofsum" class="quarto-xref">補題&nbsp;<span>9.2</span></a> の右辺を <span class="math inline">\(t\)</span> について最小化することを考えよう。</p>
 <div id="lem-cramer" class="theorem lemma">
 <p><span class="theorem-title"><strong>補題 9.4</strong></span> <strong>レート関数</strong> <span class="math inline">\(I_X\colon \mathbb{R} \to\mathbb{R}_{\ge 0}\)</span>を <span class="math display">\[\begin{align*}
