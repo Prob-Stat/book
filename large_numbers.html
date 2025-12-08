@@ -602,14 +602,14 @@ J^* &\coloneqq\{a\in\mathbb{R}\mid f^*(a)<\infty\}.
 f^*(a) &amp;\coloneqq \sup_{t\in \mathbb{R}}\left\{at-f(t)\right\}.
 \end{align*}\]</span></p>
 </div>
-<p>ルジャンドル変換において <span class="math inline">\(f\)</span> は凸関数なので、<span class="math inline">\(at-f(t)\)</span> は凹関数(上に凸の関数)になる。 簡単のため <span class="math inline">\(f\)</span> が <span class="math inline">\(\mathrm{dom}(f)\)</span> の内点で微分可能であると仮定しよう。 このとき、</p>
+<p>ルジャンドル変換において <span class="math inline">\(f\)</span> は凸関数なので、<span class="math inline">\(at-f(t)\)</span> は凹関数(上に凸の関数)になる。 簡単のため <span class="math inline">\(f\)</span> が <span class="math inline">\(\mathrm{dom}(f)\)</span> の内点で微分可能であると仮定しよう(キュムラント母関数はこの仮定は満たす)。 このとき、</p>
 <ul>
 <li><span class="math inline">\(at-f(t)\)</span> の微分が 0 になる点、つまり <span class="math inline">\(f'(t_a) = a\)</span> を満たす <span class="math inline">\(t_a\in \mathrm{dom}(f)^\circ\)</span> が存在するとき、<span class="math inline">\(t_a\)</span> で <span class="math inline">\(at-f(t)\)</span> は最大化される。</li>
 <li>そのような <span class="math inline">\(t_a\in \mathrm{dom}(f)^\circ\)</span> が存在しないときは、<span class="math inline">\(\mathrm{dom}(f)\)</span> の端への極限で <span class="math inline">\(\sup\)</span> が達成される。</li>
 </ul>
 <p>凸関数は <span class="math inline">\(\mathrm{dom}(f)\)</span> の上では接線の集合で表すことができる。 接線 <span class="math inline">\(ax+b\)</span> は傾き <span class="math inline">\(a\)</span> と切片 <span class="math inline">\(b\)</span> のペアで表すことができる。 傾き <span class="math inline">\(a\)</span> を持つ <span class="math inline">\(f\)</span> の接線は <span class="math display">\[\begin{align*}
 a(x-t_a) + f(t_a) &amp;= ax - (at_a - f(t_a)) = ax - f^*(a)
-\end{align*}\]</span> この傾き <span class="math inline">\(a\)</span> から接線の切片の <span class="math inline">\(-1\)</span>倍である <span class="math inline">\(-b\)</span> への関数が <span class="math inline">\(f^*\)</span> である。</p>
+\end{align*}\]</span> この傾き <span class="math inline">\(a\)</span> から接線 <span class="math inline">\(ax+b\)</span> の切片の <span class="math inline">\(-1\)</span>倍である <span class="math inline">\(-b\)</span> への関数が <span class="math inline">\(f^*\)</span> である。</p>
 <p>例えば <span class="math inline">\(f\)</span> が0で微分可能であるとき <span class="math display">\[\begin{align*}
 f^*(f'(0)) &amp;= 0
 \end{align*}\]</span> である。</p>
@@ -636,7 +636,7 @@ f^*(\lambda a_1+ (1-\lambda)a_2) &amp;= \sup_{t\in \mathbb{R}}\left\{(\lambda a_
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>またルジャンドル変換 <span class="math inline">\(f^*\)</span> は下半連続である。 よって</p>
+<p>またルジャンドル変換 <span class="math inline">\(f^*\)</span> は下半連続である。 ルジャンドル変換は凸で下半連続な関数を凸で下半連続な関数に写す。 また、凸で下半連続な関数 <span class="math inline">\(f\)</span> について <span class="math inline">\(f=f^{**}\)</span> である。</p>
 </div>
 </div>
 <!--
@@ -650,42 +650,93 @@ $J\subseteq\mathbb{R}$ を区間とし、$f\colon J\to\mathbb{R}$ を凸関数�
 </section>
 <section id="クラメールの定理" class="level2" data-number="9.6">
 <h2 data-number="9.6" class="anchored" data-anchor-id="クラメールの定理"><span class="header-section-number">9.6</span> クラメールの定理</h2>
+<div id="lem-jensen" class="theorem lemma">
+<p><span class="theorem-title"><strong>補題 9.4 (イェンセンの不等式)</strong></span> 任意の凸関数 <span class="math inline">\(f\colon\mathbb{R}\to\mathbb{R}\)</span> と確率変数 <span class="math inline">\(X\)</span> について</p>
+<p><span class="math display">\[\begin{align*}
+\expt{f(X)} &amp;\ge f(\expt{X}).
+\end{align*}\]</span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>証明</em> (<span class="math inline">\(X\)</span> の像が有限のときの証明). </span>確率変数 <span class="math inline">\(X\)</span> は <span class="math inline">\(k=1,2,\dotsc,m\)</span> について確率 <span class="math inline">\(p_k\)</span> で値 <span class="math inline">\(a_k\)</span> をとると仮定する。 <span class="math inline">\(m\)</span> についての帰納法で示す。<span class="math inline">\(m=1\)</span> のときは明らかに成り立つ。 <span class="math inline">\(X\)</span> の像のサイズが <span class="math inline">\(m\)</span> 未満のときにイェンセンの不等式が成り立つと仮定すると、 <span class="math display">\[\begin{align*}
+\expt{f(X)} &amp;= \sum_{k=1}^m p_k f(a_k)
+= \left(\sum_{k=1}^{m-1}p_k\right)\sum_{k=1}^{m-1} \frac{p_k}{\sum_{\ell=1}^{m-1}p_\ell} f(a_k) + p_m f(a_m)\\
+&amp;\ge \left(\sum_{k=1}^{m-1}p_k\right) f\left(\sum_{k=1}^{m-1} \frac{p_k}{\sum_{\ell=1}^{m-1}p_\ell}a_k\right) + p_m f(a_m)\quad\text{(帰納法の仮定)}\\
+&amp;\ge  f\left(\left(\sum_{k=1}^{m-1}p_k\right)\sum_{k=1}^{m-1} \frac{p_k}{\sum_{\ell=1}^{m-1}p_\ell}a_k + p_ma_m\right)\quad\text{($f$の凸性)}\\
+&amp;= f\left(\sum_{k=1}^m p_ka_k\right) = f(\expt{X}).
+\end{align*}\]</span></p>
+</div>
 <p><a href="#lem-chrnofsum" class="quarto-xref">補題&nbsp;<span>9.2</span></a> の右辺を <span class="math inline">\(t\)</span> について最小化することを考えよう。</p>
 <div id="lem-cramer" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 9.4</strong></span> <strong>レート関数</strong> <span class="math inline">\(I_X\colon \mathbb{R} \to\mathbb{R}_{\ge 0}\)</span>を <span class="math display">\[\begin{align*}
-I_X(a) &amp;:= \sup_{t \in\mathbb{R}}\left\{at - K_X(t)\right\}
-\end{align*}\]</span> と定義する。 このとき、 <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>補題 9.5</strong></span> <strong>レート関数</strong> <span class="math inline">\(I_X\colon \mathbb{R} \to[0,\,+\infty]\)</span>を <span class="math display">\[\begin{align*}
+I_X(a) &amp;:= K_X^*(a) = \sup_{t \in\mathbb{R}}\left\{at - K_X(t)\right\}
+\end{align*}\]</span> と定義する。 このとき、</p>
+<ol type="1">
+<li><span class="math inline">\(\mathrm{dom}(K_X)=\{0\}\)</span> のとき、<span class="math inline">\(I_X(a) = 0\)</span>.</li>
+<li>ある <span class="math inline">\(\epsilon&gt;0\)</span> が存在して <span class="math inline">\(K_X(\epsilon)&lt;+\infty\)</span> のとき、<span class="math inline">\(\mathbb{E}[X]&lt;+\infty\)</span> であり、 <span class="math display">\[\begin{align*}
 \sup_{t\ge0}\left\{at-K_X(t)\right\}&amp;=\begin{cases}
 I_X(a)&amp;\text{if } a &gt; \expt{X}\\
 0&amp;\text{otherwise.}
-\end{cases}\\
+\end{cases}
+\end{align*}\]</span></li>
+<li>ある <span class="math inline">\(\epsilon&gt;0\)</span> が存在して <span class="math inline">\(K_X(-\epsilon)&lt;+\infty\)</span> のとき、<span class="math inline">\(\mathbb{E}[X]&gt;-\infty\)</span> であり、 <span class="math display">\[\begin{align*}
 \sup_{t\le0}\left\{at-K_X(t)\right\}&amp;=\begin{cases}
 I_X(a)&amp;\text{if } a &lt; \expt{X}\\
 0&amp;\text{otherwise.}
 \end{cases}
-\end{align*}\]</span> である。</p>
+\end{align*}\]</span></li>
+</ol>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span><span class="math inline">\(K_X'(0)=\expt{X}\)</span> である。 よって、</p>
-<ul>
-<li><span class="math inline">\(a=\expt{X}\)</span>のとき、<span class="math inline">\(t_a=0\)</span></li>
-<li><span class="math inline">\(a&gt;\expt{X}\)</span> のとき、<span class="math inline">\(t_a&gt;0\)</span></li>
-<li><span class="math inline">\(a&lt;\expt{X}\)</span> のとき、<span class="math inline">\(t_a&lt;0\)</span></li>
-</ul>
-<p>である。 このことから、 <span class="math display">\[\begin{align*}
-\sup_{t \in\mathbb{R}}\left\{at - K_X(t)\right\}
-&amp;=
-\sup_{t &gt;0}\left\{at - K_X(t)\right\}\qquad\text{for } a&gt;\expt{X}\\
-\sup_{t \in\mathbb{R}}\left\{at - K_X(t)\right\}
-&amp;=
-\sup_{t &lt;0}\left\{at - K_X(t)\right\}\qquad\text{for } a&lt;\expt{X}\\
+<p><span class="proof-title"><em>証明</em>. </span>1 は自明。 2 を示す。 ある <span class="math inline">\(\epsilon&gt;0\)</span> について、<span class="math inline">\(K_X(\epsilon)&lt;+\infty\)</span> と仮定する。 一般に、 <span class="math display">\[\begin{align*}
+\mathrm{e}^{tx} &amp;\ge tx + 1\qquad\forall t,x\in\mathbb{R}
+\end{align*}\]</span> より、<span class="math inline">\(M_X(t)\ge t\expt{X}+1\)</span> である。 よって、 <span class="math display">\[\begin{align*}
+\expt{X}&amp;\le \frac{M_X(\epsilon)-1}{\epsilon}&lt;+\infty
+\end{align*}\]</span> である。 また、イェンセンの不等式より、 <span class="math display">\[\begin{align*}
+K_X(t) &amp;= \log \expt{\mathrm{e}^{tX}} \ge \expt{\log\mathrm{e}^{tX}} = t\expt{X}\qquad\forall t\in\mathbb{R}
+\end{align*}\]</span> である。 よって、 <span class="math display">\[\begin{align*}
+I_X(\expt{X}) &amp;= \sup_{t\in\mathbb{R}} \left\{t\expt{X} - K_X(t)\right\} = 0
+\end{align*}\]</span> である。 任意の <span class="math inline">\(a &gt; \expt{X}\)</span> と <span class="math inline">\(t&lt;0\)</span> について、 <span class="math display">\[\begin{align*}
+ta - K_X(t) &amp;\le t\expt{X} - K_X(t) \le 0
+\end{align*}\]</span> であるので、任意の <span class="math inline">\(a &gt; \expt{X}\)</span> について <span class="math display">\[\begin{align*}
+I_X(a) &amp;:= \sup_{t \in\mathbb{R}}\left\{at - K_X(t)\right\}
+= \sup_{t\ge 0}\left\{at - K_X(t)\right\}
+\end{align*}\]</span> また、<span class="math inline">\(\sup_{t\ge 0}\left\{at - K_X(t)\right\}\)</span> は <span class="math inline">\(a\)</span> について単調なので、 任意の <span class="math inline">\(a &lt; \expt{X}\)</span> について <span class="math display">\[\begin{align*}
+\sup_{t\ge 0}\left\{at - K_X(t)\right\} &amp;= 0
 \end{align*}\]</span> である。</p>
+<p>3 は 2 と同様に示せる。</p>
+<!--
+$K_X'(0)=\expt{X}$ である。
+よって、
+
+* $a=\expt{X}$のとき、$t_a=0$
+* $a>\expt{X}$ のとき、$t_a>0$
+* $a<\expt{X}$ のとき、$t_a<0$
+
+である。
+このことから、
+\begin{align*}
+\sup_{t \in\mathbb{R}}\left\{at - K_X(t)\right\}
+&=
+\sup_{t >0}\left\{at - K_X(t)\right\}\qquad\text{for } a>\expt{X}\\
+\sup_{t \in\mathbb{R}}\left\{at - K_X(t)\right\}
+&=
+\sup_{t <0}\left\{at - K_X(t)\right\}\qquad\text{for } a<\expt{X}\\
+\end{align*}
+である。
+-->
 </div>
-<p>よってチェルノフ上界を最適化することで以下を得る。</p>
+<p>よってチェルノフ上界を最適化することで確率の指数的な上界を得る。</p>
 <div id="thm-chernof" class="theorem">
 <p><span class="theorem-title"><strong>定理 9.2 (最適化されたチェルノフ上界)</strong></span> <span class="math display">\[\begin{align*}
 \Pr\left(\frac1N\sum_{i=1}^N X\ge a\right) &amp;\le \mathrm{e}^{-I_X(a)N}\qquad\forall a&gt;\expt{X}\\
 \Pr\left(\frac1N\sum_{i=1}^N X\le a\right) &amp;\le \mathrm{e}^{-I_X(a)N}\qquad\forall a&lt;\expt{X}.
+\end{align*}\]</span></p>
+</div>
+<p>この指数は漸近的に最適である。証明は少し難しいので紹介しない。</p>
+<div id="thm-cramer" class="theorem">
+<p><span class="theorem-title"><strong>定理 9.3 (クラメールの定理)</strong></span> <span class="math display">\[\begin{align*}
+\lim_{N\to\infty}\frac1N\log \Pr\left(\frac1N\sum_{i=1}^N X\ge a\right) &amp;= -I_X(a)\qquad\forall a&gt;\expt{X}\\
+\lim_{N\to\infty}\frac1N\log \Pr\left(\frac1N\sum_{i=1}^N X\le a\right) &amp;= -I_X(a)\qquad\forall a&lt;\expt{X}.
 \end{align*}\]</span></p>
 </div>
 
