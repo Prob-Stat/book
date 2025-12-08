@@ -187,7 +187,7 @@ f^*(a) &\coloneqq \sup_{t\in \mathbb{R}}\left\{at-f(t)\right\}.
 :::
 
 ルジャンドル変換において $f$ は凸関数なので、$at-f(t)$ は凹関数(上に凸の関数)になる。
-簡単のため $f$ が $\mathrm{dom}(f)$ の内点で微分可能であると仮定しよう。
+簡単のため $f$ が $\mathrm{dom}(f)$ の内点で微分可能であると仮定しよう(キュムラント母関数はこの仮定は満たす)。
 このとき、
 
 * $at-f(t)$ の微分が 0 になる点、つまり $f'(t_a) = a$ を満たす $t_a\in \mathrm{dom}(f)^\circ$ が存在するとき、$t_a$ で $at-f(t)$ は最大化される。
@@ -199,7 +199,7 @@ f^*(a) &\coloneqq \sup_{t\in \mathbb{R}}\left\{at-f(t)\right\}.
 \begin{align*}
 a(x-t_a) + f(t_a) &= ax - (at_a - f(t_a)) = ax - f^*(a)
 \end{align*}
-この傾き $a$ から接線の切片の $-1$倍である $-b$ への関数が $f^*$ である。
+この傾き $a$ から接線 $ax+b$ の切片の $-1$倍である $-b$ への関数が $f^*$ である。
 
 例えば $f$ が0で微分可能であるとき
 \begin{align*}
@@ -226,7 +226,8 @@ f^*(\lambda a_1+ (1-\lambda)a_2) &= \sup_{t\in \mathbb{R}}\left\{(\lambda a_1+(1
 
 ::: {.callout-note}
 またルジャンドル変換 $f^*$ は下半連続である。
-よって
+ルジャンドル変換は凸で下半連続な関数を凸で下半連続な関数に写す。
+また、凸で下半連続な関数 $f$ について $f=f^{**}$ である。
 :::
 
 <!--
@@ -240,28 +241,98 @@ $J\subseteq\mathbb{R}$ を区間とし、$f\colon J\to\mathbb{R}$ を凸関数�
 
 ## クラメールの定理
 
+::: {#lem-jensen}
+### イェンセンの不等式
+
+任意の凸関数 $f\colon\mathbb{R}\to\mathbb{R}$ と確率変数 $X$ について
+
+\begin{align*}
+\expt{f(X)} &\ge f(\expt{X}).
+\end{align*}
+:::
+::: {.proof}
+### $X$ の像が有限のときの証明
+確率変数 $X$ は $k=1,2,\dotsc,m$ について確率 $p_k$ で値 $a_k$ をとると仮定する。
+$m$ についての帰納法で示す。$m=1$ のときは明らかに成り立つ。
+$X$ の像のサイズが $m$ 未満のときにイェンセンの不等式が成り立つと仮定すると、
+\begin{align*}
+\expt{f(X)} &= \sum_{k=1}^m p_k f(a_k)
+= \left(\sum_{k=1}^{m-1}p_k\right)\sum_{k=1}^{m-1} \frac{p_k}{\sum_{\ell=1}^{m-1}p_\ell} f(a_k) + p_m f(a_m)\\
+&\ge \left(\sum_{k=1}^{m-1}p_k\right) f\left(\sum_{k=1}^{m-1} \frac{p_k}{\sum_{\ell=1}^{m-1}p_\ell}a_k\right) + p_m f(a_m)\quad\text{(帰納法の仮定)}\\
+&\ge  f\left(\left(\sum_{k=1}^{m-1}p_k\right)\sum_{k=1}^{m-1} \frac{p_k}{\sum_{\ell=1}^{m-1}p_\ell}a_k + p_ma_m\right)\quad\text{($f$の凸性)}\\
+&= f\left(\sum_{k=1}^m p_ka_k\right) = f(\expt{X}).
+\end{align*}
+:::
+
 @lem-chrnofsum の右辺を $t$ について最小化することを考えよう。
 
 ::: {#lem-cramer}
-**レート関数** $I_X\colon \mathbb{R} \to\mathbb{R}_{\ge 0}$を
+**レート関数** $I_X\colon \mathbb{R} \to[0,\,+\infty]$を
 \begin{align*}
-I_X(a) &:= \sup_{t \in\mathbb{R}}\left\{at - K_X(t)\right\}
+I_X(a) &:= K_X^*(a) = \sup_{t \in\mathbb{R}}\left\{at - K_X(t)\right\}
 \end{align*}
 と定義する。
 このとき、
+
+1. $\mathrm{dom}(K_X)=\{0\}$ のとき、$I_X(a) = 0$.
+1. ある $\epsilon>0$ が存在して $K_X(\epsilon)<+\infty$ のとき、$\mathbb{E}[X]<+\infty$ であり、
 \begin{align*}
 \sup_{t\ge0}\left\{at-K_X(t)\right\}&=\begin{cases}
 I_X(a)&\text{if } a > \expt{X}\\
 0&\text{otherwise.}
-\end{cases}\\
+\end{cases}
+\end{align*}
+1. ある $\epsilon>0$ が存在して $K_X(-\epsilon)<+\infty$ のとき、$\mathbb{E}[X]>-\infty$ であり、
+\begin{align*}
 \sup_{t\le0}\left\{at-K_X(t)\right\}&=\begin{cases}
 I_X(a)&\text{if } a < \expt{X}\\
 0&\text{otherwise.}
 \end{cases}
 \end{align*}
-である。
 :::
 ::: {.proof}
+1 は自明。
+2 を示す。
+ある $\epsilon>0$ について、$K_X(\epsilon)<+\infty$ と仮定する。
+一般に、
+\begin{align*}
+\mathrm{e}^{tx} &\ge tx + 1\qquad\forall t,x\in\mathbb{R}
+\end{align*}
+より、$M_X(t)\ge t\expt{X}+1$ である。
+よって、
+\begin{align*}
+\expt{X}&\le \frac{M_X(\epsilon)-1}{\epsilon}<+\infty
+\end{align*}
+である。
+また、イェンセンの不等式より、
+\begin{align*}
+K_X(t) &= \log \expt{\mathrm{e}^{tX}} \ge \expt{\log\mathrm{e}^{tX}} = t\expt{X}\qquad\forall t\in\mathbb{R}
+\end{align*}
+である。
+よって、
+\begin{align*}
+I_X(\expt{X}) &= \sup_{t\in\mathbb{R}} \left\{t\expt{X} - K_X(t)\right\} = 0
+\end{align*}
+である。
+任意の $a > \expt{X}$ と $t<0$ について、
+\begin{align*}
+ta - K_X(t) &\le t\expt{X} - K_X(t) \le 0
+\end{align*}
+であるので、任意の $a > \expt{X}$ について
+\begin{align*}
+I_X(a) &:= \sup_{t \in\mathbb{R}}\left\{at - K_X(t)\right\}
+= \sup_{t\ge 0}\left\{at - K_X(t)\right\}
+\end{align*}
+また、$\sup_{t\ge 0}\left\{at - K_X(t)\right\}$ は $a$ について単調なので、
+任意の $a < \expt{X}$ について
+\begin{align*}
+\sup_{t\ge 0}\left\{at - K_X(t)\right\} &= 0
+\end{align*}
+である。
+
+3 は 2 と同様に示せる。
+
+<!--
 $K_X'(0)=\expt{X}$ である。
 よって、
 
@@ -280,15 +351,26 @@ $K_X'(0)=\expt{X}$ である。
 \sup_{t <0}\left\{at - K_X(t)\right\}\qquad\text{for } a<\expt{X}\\
 \end{align*}
 である。
+-->
 :::
 
-よってチェルノフ上界を最適化することで以下を得る。
+よってチェルノフ上界を最適化することで確率の指数的な上界を得る。
 
 ::: {#thm-chernof}
 ### 最適化されたチェルノフ上界
 \begin{align*}
 \Pr\left(\frac1N\sum_{i=1}^N X\ge a\right) &\le \mathrm{e}^{-I_X(a)N}\qquad\forall a>\expt{X}\\
 \Pr\left(\frac1N\sum_{i=1}^N X\le a\right) &\le \mathrm{e}^{-I_X(a)N}\qquad\forall a<\expt{X}.
+\end{align*}
+:::
+
+この指数は漸近的に最適である。証明は少し難しいので紹介しない。
+
+::: {#thm-cramer}
+### クラメールの定理
+\begin{align*}
+\lim_{N\to\infty}\frac1N\log \Pr\left(\frac1N\sum_{i=1}^N X\ge a\right) &= -I_X(a)\qquad\forall a>\expt{X}\\
+\lim_{N\to\infty}\frac1N\log \Pr\left(\frac1N\sum_{i=1}^N X\le a\right) &= -I_X(a)\qquad\forall a<\expt{X}.
 \end{align*}
 :::
 
