@@ -243,6 +243,35 @@ ul.task-list li input[type="checkbox"] {
 \newcommand{\cov}[2]{\mathrm{Cov}\left[#1,\,#2\right]}
 $$
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 
 
@@ -400,8 +429,18 @@ $$
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#中心極限定理" id="toc-中心極限定理" class="nav-link active" data-scroll-target="#中心極限定理"><span class="header-section-number">10.1</span> 中心極限定理</a></li>
+  <li><a href="#特性関数" id="toc-特性関数" class="nav-link" data-scroll-target="#特性関数"><span class="header-section-number">10.2</span> 特性関数</a></li>
+  <li><a href="#特性関数の応用" id="toc-特性関数の応用" class="nav-link" data-scroll-target="#特性関数の応用"><span class="header-section-number">10.3</span> 特性関数の応用</a></li>
+  <li><a href="#連続性定理" id="toc-連続性定理" class="nav-link" data-scroll-target="#連続性定理"><span class="header-section-number">10.4</span> 連続性定理</a></li>
+  <li><a href="#中心極限定理の証明" id="toc-中心極限定理の証明" class="nav-link" data-scroll-target="#中心極限定理の証明"><span class="header-section-number">10.5</span> 中心極限定理の証明</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -426,8 +465,63 @@ $$
 </header>
 
 
+<section id="中心極限定理" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="中心極限定理"><span class="header-section-number">10.1</span> 中心極限定理</h2>
+<p>大数の法則により <span class="math inline">\(\frac1N\sum_{k=1}^N X_k\)</span> は期待値周辺に集中することが分かる。 また、クラメールの定理によりその集中のスピードも精密に評価することができる。 一方で期待値周辺の挙動を <span class="math display">\[\begin{align*}
+\frac1{\sqrt{N}}\left(\sum_{k=1}^N X_k-N\expt{X}\right)
+\end{align*}\]</span> より詳しく見る。</p>
+<div id="thm-clt" class="theorem">
+<p><span class="theorem-title"><strong>定理 10.1 (中心極限定理)</strong></span> 分散を持つ確率変数 <span class="math inline">\(X\)</span> とその i</p>
+<p><span class="math display">\[\begin{align*}
+\frac1{\sqrt{N\var{X}}}\left(\sum_{k=1}^N X_k-N\expt{X}\right)
+\end{align*}\]</span></p>
+</div>
+</section>
+<section id="特性関数" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="特性関数"><span class="header-section-number">10.2</span> 特性関数</h2>
+<div id="def-cf" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 10.1</strong></span> 確率変数 <span class="math inline">\(X\)</span> について、特性関数 <span class="math inline">\(\varphi_X\colon\mathbb{R}\to\mathbb{C}\)</span> を以下で定義する。 <span class="math display">\[\begin{align*}
+\varphi_X(t) &amp;\coloneqq \expt{\mathrm{e}^{itX}}.
+\end{align*}\]</span></p>
+</div>
+<div id="thm-cf" class="theorem">
+<p><span class="theorem-title"><strong>定理 10.2</strong></span> 確率変数 <span class="math inline">\(X,\,Y\)</span> について <span class="math display">\[\begin{align*}
+\varphi_X = \varphi_Y &amp;\iff F_X = F_Y.
+\end{align*}\]</span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>証明</em> (確率変数の像が有限の場合の証明). </span><span class="math inline">\(\mathrm{Image}(X)\)</span> と <span class="math inline">\(\mathrm{Image}(Y)\)</span> が有限の場合に限って証明を与える。 <span class="math display">\[\begin{align*}
+\{x_0,\dotsc,x_{N-1}\} &amp;\coloneqq \mathrm{Image}(X) \cup \mathrm{Image}(Y)
+\end{align*}\]</span> とする。 <span class="math display">\[\begin{align*}
+\varphi_X(t) &amp;= \sum_{k=0}^{N-1} f_X(x_k) \mathrm{e}^{itx_k},&amp;
+\varphi_Y(t) &amp;= \sum_{k=0}^{N-1} f_Y(x_k) \mathrm{e}^{itx_k}
+\end{align*}\]</span> なので、 <span class="math display">\[\begin{align*}
+0 = \varphi_X(t) - \varphi_Y(t) &amp;= \sum_{k=0}^{N-1} (f_X(x_k)-f_Y(x_k)) \mathrm{e}^{itx_k}
+\qquad\forall t\in\mathbb{R}.
+\end{align*}\]</span> よって、 <span class="math display">\[\begin{align}
+\sum_{k=0}^{N-1} (f_X(x_k)-f_Y(x_k)) \mathrm{e}^{i\ell x_k}&amp;=0\qquad\forall \ell\in\{0,1,\dotsc,N-1\}
+\end{align}\]</span> である。 ここで、<span class="math inline">\(N\times N\)</span> 実行列 <span class="math inline">\(V\)</span> を <span class="math display">\[\begin{align*}
+V_{\ell k} &amp;= \mathrm{e}^{i\ell x_k}
+\qquad\forall k,\ell\in\{0,1,\dotsc,N-1\}
+\end{align*}\]</span> とおく。 この行列 <span class="math inline">\(V\)</span> は Vandermonde行列の転置であり正則なので、 <span class="math display">\[\begin{align*}
+&amp;\sum_{k=0}^{N-1} V_{\ell k} g_k=0\qquad\forall \ell\in\{0,1,\dotsc,N-1\}\\
+\implies&amp; g_k = 0 \qquad\forall k\in\{0,1,\dotsc,N-1\}
+\end{align*}\]</span> よって、 <span class="math display">\[\begin{align*}
+f_X(x_k) &amp;= f_Y(x_k) \qquad\forall k\in\{0,1,\dotsc,N-1\}
+\end{align*}\]</span> である。</p>
+</div>
+</section>
+<section id="特性関数の応用" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="特性関数の応用"><span class="header-section-number">10.3</span> 特性関数の応用</h2>
+</section>
+<section id="連続性定理" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="連続性定理"><span class="header-section-number">10.4</span> 連続性定理</h2>
+</section>
+<section id="中心極限定理の証明" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="中心極限定理の証明"><span class="header-section-number">10.5</span> 中心極限定理の証明</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
