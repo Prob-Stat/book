@@ -1,2 +1,80 @@
 # 正規分布と中心極限定理
 
+## 中心極限定理
+
+大数の法則により $\frac1N\sum_{k=1}^N X_k$ は期待値周辺に集中することが分かる。
+また、クラメールの定理によりその集中のスピードも精密に評価することができる。
+一方で期待値周辺の挙動を
+\begin{align*}
+\frac1{\sqrt{N}}\left(\sum_{k=1}^N X_k-N\expt{X}\right)
+\end{align*}
+より詳しく見る。
+
+::: {#thm-clt}
+### 中心極限定理
+
+分散を持つ確率変数 $X$ とその  i
+
+\begin{align*}
+\frac1{\sqrt{N\var{X}}}\left(\sum_{k=1}^N X_k-N\expt{X}\right)
+\end{align*}
+:::
+
+## 特性関数
+
+::: {#def-cf}
+確率変数 $X$ について、特性関数 $\varphi_X\colon\mathbb{R}\to\mathbb{C}$ を以下で定義する。
+\begin{align*}
+\varphi_X(t) &\coloneqq \expt{\mathrm{e}^{itX}}.
+\end{align*}
+:::
+
+::: {#thm-cf}
+確率変数 $X,\,Y$ について
+\begin{align*}
+\varphi_X = \varphi_Y &\iff F_X = F_Y.
+\end{align*}
+:::
+::: {.proof}
+### 確率変数の像が有限の場合の証明
+
+$\mathrm{Image}(X)$ と $\mathrm{Image}(Y)$ が有限の場合に限って証明を与える。
+\begin{align*}
+\{x_0,\dotsc,x_{N-1}\} &\coloneqq \mathrm{Image}(X) \cup \mathrm{Image}(Y)
+\end{align*}
+とする。
+\begin{align*}
+\varphi_X(t) &= \sum_{k=0}^{N-1} f_X(x_k) \mathrm{e}^{itx_k},&
+\varphi_Y(t) &= \sum_{k=0}^{N-1} f_Y(x_k) \mathrm{e}^{itx_k}
+\end{align*}
+なので、
+\begin{align*}
+0 = \varphi_X(t) - \varphi_Y(t) &= \sum_{k=0}^{N-1} (f_X(x_k)-f_Y(x_k)) \mathrm{e}^{itx_k}
+\qquad\forall t\in\mathbb{R}.
+\end{align*}
+よって、
+\begin{align}
+\sum_{k=0}^{N-1} (f_X(x_k)-f_Y(x_k)) \mathrm{e}^{i\ell x_k}&=0\qquad\forall \ell\in\{0,1,\dotsc,N-1\}
+\end{align}
+である。
+ここで、$N\times N$ 実行列 $V$ を
+\begin{align*}
+V_{\ell k} &= \mathrm{e}^{i\ell x_k}
+\qquad\forall k,\ell\in\{0,1,\dotsc,N-1\}
+\end{align*}
+とおく。
+この行列 $V$ は Vandermonde行列の転置であり正則なので、
+\begin{align*}
+&\sum_{k=0}^{N-1} V_{\ell k} g_k=0\qquad\forall \ell\in\{0,1,\dotsc,N-1\}\\
+\implies& g_k = 0 \qquad\forall k\in\{0,1,\dotsc,N-1\}
+\end{align*}
+よって、
+\begin{align*}
+f_X(x_k) &= f_Y(x_k) \qquad\forall k\in\{0,1,\dotsc,N-1\}
+\end{align*}
+である。
+:::
+
+## 特性関数の応用
+## 連続性定理
+## 中心極限定理の証明
