@@ -471,11 +471,17 @@ window.Quarto = {
 \frac1{\sqrt{N}}\left(\sum_{k=1}^N X_k-N\expt{X}\right)
 \end{align*}\]</span> より詳しく見る。</p>
 <div id="thm-clt" class="theorem">
-<p><span class="theorem-title"><strong>定理 10.1 (中心極限定理)</strong></span> 分散を持つ確率変数 <span class="math inline">\(X\)</span> とその i</p>
-<p><span class="math display">\[\begin{align*}
-\frac1{\sqrt{N\var{X}}}\left(\sum_{k=1}^N X_k-N\expt{X}\right)
+<p><span class="theorem-title"><strong>定理 10.1 (中心極限定理)</strong></span> 確率変数 <span class="math inline">\(X\)</span> が<strong>分散を持つ</strong>とする。 確率変数 <span class="math inline">\(X_1,\dotsc,X_N\)</span> が独立で <span class="math inline">\(X\)</span> と同じ分布に従うとする。 また、確率変数 <span class="math inline">\(Z\)</span> は期待値0分散1の正規分布 <span class="math inline">\(N(0,1)\)</span> に従うものとする。 このとき、 <span class="math display">\[\begin{align*}
+\lim_{N\to\infty} \Pr\left(\frac1{\sqrt{N\var{X}}}\left(\sum_{k=1}^N X_k-N\expt{X}\right)\le x\right)
+&amp;= \Pr(Z\le x) \qquad\forall x\in\mathbb{R}.
 \end{align*}\]</span></p>
 </div>
+<p>確率変数 <span class="math inline">\(X_k\)</span> を期待値0分散1に正規化した確率変数 <span class="math display">\[\begin{align*}
+Y_k &amp;\coloneqq \frac{X_k -\expt{X}}{\sqrt{\var{X}}}
+\end{align*}\]</span> を使うと、 <span class="math display">\[\begin{align*}
+\lim_{N\to\infty} F_{\frac{\sum_k Y_k}{\sqrt{N}}}(x)
+&amp;= F_Z(x)\qquad\forall x\in\mathbb{R}
+\end{align*}\]</span></p>
 </section>
 <section id="特性関数" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="特性関数"><span class="header-section-number">10.2</span> 特性関数</h2>
@@ -513,6 +519,31 @@ f_X(x_k) &amp;= f_Y(x_k) \qquad\forall k\in\{0,1,\dotsc,N-1\}
 </section>
 <section id="特性関数の応用" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="特性関数の応用"><span class="header-section-number">10.3</span> 特性関数の応用</h2>
+<p>正規分布の再生性は愚直に確率密度関数の畳み込みを計算しても確認できるが、特性関数と <a href="#thm-cf" class="quarto-xref">定理&nbsp;<span>10.2</span></a> を用いると簡単に証明できる。</p>
+<div id="lem-normal" class="theorem lemma">
+<p><span class="theorem-title"><strong>補題 10.1 (正規分布の再生性)</strong></span> 独立確率変数 <span class="math inline">\(X\sim N(\mu_0,\,\sigma_0^2)\)</span> と <span class="math inline">\(Y\sim N(\mu_1,\,\sigma_1^2)\)</span> について <span class="math inline">\(X+Y\sim N(\mu_0+\mu_1,\,\sigma_0^2+\sigma_1^2)\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>証明</em>. </span><span class="math display">\[\begin{align*}
+\varphi_X(t) &amp;= \mathrm{e}^{i\mu_0 t - \frac12\sigma_0^2 t^2}&amp;
+\varphi_Y(t) &amp;= \mathrm{e}^{i\mu_1 t - \frac12\sigma_1^2 t^2}
+\end{align*}\]</span> より、 <span class="math display">\[\begin{align*}
+\varphi_{X+Y}(t) &amp;= \varphi_X(t)\varphi_Y(t) =
+\mathrm{e}^{i(\mu_0+\mu_1) t - \frac12(\sigma_0^2+\sigma_1^2) t^2}
+\end{align*}\]</span> であるが、これは <span class="math inline">\(N(\mu_0+\mu_1,\,\sigma_0^2+\sigma_1^2)\)</span> の特性関数である。 よって、<a href="#thm-cf" class="quarto-xref">定理&nbsp;<span>10.2</span></a> より <span class="math inline">\(X+Y\sim N(\mu_0+\mu_1,\,\sigma_0^2+\sigma_1^2)\)</span>.</p>
+</div>
+<div id="lem-normal" class="theorem lemma">
+<p><span class="theorem-title"><strong>補題 10.2 (ポアソン分布の再生性)</strong></span> 独立確率変数 <span class="math inline">\(X\sim \mathrm{Poisson}(\lambda_0)\)</span> と <span class="math inline">\(Y\sim \mathrm{Poisson}(\lambda_1)\)</span> について <span class="math inline">\(X+Y\sim \mathrm{Poisson}(\lambda_0+\lambda_1)\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>証明</em>. </span><span class="math display">\[\begin{align*}
+\varphi_X(t) &amp;= \mathrm{e}^{\lambda_0(\mathrm{e}^{it}-1)}&amp;
+\varphi_Y(t) &amp;= \mathrm{e}^{\lambda_1(\mathrm{e}^{it}-1)}&amp;
+\end{align*}\]</span> より、 <span class="math display">\[\begin{align*}
+\varphi_{X+Y}(t) &amp;= \varphi_X(t)\varphi_Y(t) =
+\mathrm{e}^{(\lambda_0+\lambda_1)(\mathrm{e}^{it}-1)}&amp;
+\end{align*}\]</span> であるが、これは <span class="math inline">\(\mathrm{Poisson}(\lambda_0+\lambda_1)\)</span> の特性関数である。 よって、<a href="#thm-cf" class="quarto-xref">定理&nbsp;<span>10.2</span></a> より <span class="math inline">\(X+Y\sim \mathrm{Poisson}(\lambda_0+\lambda_1)\)</span>.</p>
+</div>
 </section>
 <section id="連続性定理" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="連続性定理"><span class="header-section-number">10.4</span> 連続性定理</h2>

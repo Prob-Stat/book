@@ -586,7 +586,7 @@
     "href": "clt.html",
     "title": "10  正規分布と中心極限定理",
     "section": "",
-    "text": "10.1 中心極限定理\n大数の法則により \\(\\frac1N\\sum_{k=1}^N X_k\\) は期待値周辺に集中することが分かる。 また、クラメールの定理によりその集中のスピードも精密に評価することができる。 一方で期待値周辺の挙動を \\[\\begin{align*}\n\\frac1{\\sqrt{N}}\\left(\\sum_{k=1}^N X_k-N\\expt{X}\\right)\n\\end{align*}\\] より詳しく見る。",
+    "text": "10.1 中心極限定理\n大数の法則により \\(\\frac1N\\sum_{k=1}^N X_k\\) は期待値周辺に集中することが分かる。 また、クラメールの定理によりその集中のスピードも精密に評価することができる。 一方で期待値周辺の挙動を \\[\\begin{align*}\n\\frac1{\\sqrt{N}}\\left(\\sum_{k=1}^N X_k-N\\expt{X}\\right)\n\\end{align*}\\] より詳しく見る。\n確率変数 \\(X_k\\) を期待値0分散1に正規化した確率変数 \\[\\begin{align*}\nY_k &\\coloneqq \\frac{X_k -\\expt{X}}{\\sqrt{\\var{X}}}\n\\end{align*}\\] を使うと、 \\[\\begin{align*}\n\\lim_{N\\to\\infty} F_{\\frac{\\sum_k Y_k}{\\sqrt{N}}}(x)\n&= F_Z(x)\\qquad\\forall x\\in\\mathbb{R}\n\\end{align*}\\]",
     "crumbs": [
       "漸近論",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>正規分布と中心極限定理</span>"
@@ -597,7 +597,7 @@
     "href": "clt.html#中心極限定理",
     "title": "10  正規分布と中心極限定理",
     "section": "",
-    "text": "定理 10.1 (中心極限定理) 分散を持つ確率変数 \\(X\\) とその i\n\\[\\begin{align*}\n\\frac1{\\sqrt{N\\var{X}}}\\left(\\sum_{k=1}^N X_k-N\\expt{X}\\right)\n\\end{align*}\\]",
+    "text": "定理 10.1 (中心極限定理) 確率変数 \\(X\\) が分散を持つとする。 確率変数 \\(X_1,\\dotsc,X_N\\) が独立で \\(X\\) と同じ分布に従うとする。 また、確率変数 \\(Z\\) は期待値0分散1の正規分布 \\(N(0,1)\\) に従うものとする。 このとき、 \\[\\begin{align*}\n\\lim_{N\\to\\infty} \\Pr\\left(\\frac1{\\sqrt{N\\var{X}}}\\left(\\sum_{k=1}^N X_k-N\\expt{X}\\right)\\le x\\right)\n&= \\Pr(Z\\le x) \\qquad\\forall x\\in\\mathbb{R}.\n\\end{align*}\\]",
     "crumbs": [
       "漸近論",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>正規分布と中心極限定理</span>"
@@ -619,7 +619,7 @@
     "href": "clt.html#特性関数の応用",
     "title": "10  正規分布と中心極限定理",
     "section": "10.3 特性関数の応用",
-    "text": "10.3 特性関数の応用",
+    "text": "10.3 特性関数の応用\n正規分布の再生性は愚直に確率密度関数の畳み込みを計算しても確認できるが、特性関数と 定理 10.2 を用いると簡単に証明できる。\n\n補題 10.1 (正規分布の再生性) 独立確率変数 \\(X\\sim N(\\mu_0,\\,\\sigma_0^2)\\) と \\(Y\\sim N(\\mu_1,\\,\\sigma_1^2)\\) について \\(X+Y\\sim N(\\mu_0+\\mu_1,\\,\\sigma_0^2+\\sigma_1^2)\\).\n\n\n証明. \\[\\begin{align*}\n\\varphi_X(t) &= \\mathrm{e}^{i\\mu_0 t - \\frac12\\sigma_0^2 t^2}&\n\\varphi_Y(t) &= \\mathrm{e}^{i\\mu_1 t - \\frac12\\sigma_1^2 t^2}\n\\end{align*}\\] より、 \\[\\begin{align*}\n\\varphi_{X+Y}(t) &= \\varphi_X(t)\\varphi_Y(t) =\n\\mathrm{e}^{i(\\mu_0+\\mu_1) t - \\frac12(\\sigma_0^2+\\sigma_1^2) t^2}\n\\end{align*}\\] であるが、これは \\(N(\\mu_0+\\mu_1,\\,\\sigma_0^2+\\sigma_1^2)\\) の特性関数である。 よって、定理 10.2 より \\(X+Y\\sim N(\\mu_0+\\mu_1,\\,\\sigma_0^2+\\sigma_1^2)\\).\n\n\n補題 10.2 (ポアソン分布の再生性) 独立確率変数 \\(X\\sim \\mathrm{Poisson}(\\lambda_0)\\) と \\(Y\\sim \\mathrm{Poisson}(\\lambda_1)\\) について \\(X+Y\\sim \\mathrm{Poisson}(\\lambda_0+\\lambda_1)\\).\n\n\n証明. \\[\\begin{align*}\n\\varphi_X(t) &= \\mathrm{e}^{\\lambda_0(\\mathrm{e}^{it}-1)}&\n\\varphi_Y(t) &= \\mathrm{e}^{\\lambda_1(\\mathrm{e}^{it}-1)}&\n\\end{align*}\\] より、 \\[\\begin{align*}\n\\varphi_{X+Y}(t) &= \\varphi_X(t)\\varphi_Y(t) =\n\\mathrm{e}^{(\\lambda_0+\\lambda_1)(\\mathrm{e}^{it}-1)}&\n\\end{align*}\\] であるが、これは \\(\\mathrm{Poisson}(\\lambda_0+\\lambda_1)\\) の特性関数である。 よって、定理 10.2 より \\(X+Y\\sim \\mathrm{Poisson}(\\lambda_0+\\lambda_1)\\).",
     "crumbs": [
       "漸近論",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>正規分布と中心極限定理</span>"
