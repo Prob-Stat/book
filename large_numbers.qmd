@@ -8,18 +8,18 @@
 ### 大数の弱法則(分散有限を仮定)
 
 確率変数 $X$ が**分散を持つ**とする。
-確率変数 $X_1,\dotsc,X_N$ が独立同分布で $X$ と同じ分布に従うとする。
+確率変数 $X_1,\dotsc,X_N$ が独立で $X$ と同じ分布に従うとする。
 このとき、任意の $\epsilon>0$ について
 \begin{align*}
-\lim_{N\to\infty}\Pr\left(\left|\frac1N\sum_{i=1}^N X_i-\expt{X}\right|\ge\epsilon\right) &= 0
+\lim_{N\to\infty}\Pr\left(\left|\frac1N\sum_{k=1}^N X_k-\expt{X}\right|\ge\epsilon\right) &= 0
 \end{align*}
 が成り立つ。
 :::
 ::: {.proof}
 \begin{align*}
-\Pr\left(\left|\frac1n\sum_{i=1}^N X_i-\expt{X}\right|\ge\epsilon\right)
-&=  \Pr\left(\left(\frac1N\sum_{i=1}^N X_i-\expt{X}\right)^2\ge\epsilon^2\right) \\
-&=  \Pr\left(\left(\sum_{i=1}^N X_i-N\expt{X}\right)^2\ge\epsilon^2N^2\right) \\
+\Pr\left(\left|\frac1n\sum_{k=1}^N X_k-\expt{X}\right|\ge\epsilon\right)
+&=  \Pr\left(\left(\frac1N\sum_{k=1}^N X_k-\expt{X}\right)^2\ge\epsilon^2\right) \\
+&=  \Pr\left(\left(\sum_{k=1}^N X_k-N\expt{X}\right)^2\ge\epsilon^2N^2\right) \\
 &\le \frac{N\var{X}}{\epsilon^2N^2}
 = \frac{\var{X}}{\epsilon^2N}\longrightarrow 0.
 \end{align*}
@@ -54,15 +54,15 @@ $t=0$ のときは不等式の右辺は1となるので、不等式は自明に�
 ### 確率変数の和に対するチェルノフ上界
 任意の確率変数 $X$ と $a\in\mathbb{R}$ について、
 \begin{align*}
-\Pr\left(\frac1N\sum_{i=1}^N X_i\ge a\right) &\le \mathrm{e}^{-(at-K_X(t))N}\qquad\forall t\ge 0\\
-\Pr\left(\frac1N\sum_{i=1}^N X_i\le a\right) &\le \mathrm{e}^{-(at-K_X(t))N}\qquad\forall t\le 0.
+\Pr\left(\frac1N\sum_{k=1}^N X_k\ge a\right) &\le \mathrm{e}^{-(at-K_X(t))N}\qquad\forall t\ge 0\\
+\Pr\left(\frac1N\sum_{k=1}^N X_k\le a\right) &\le \mathrm{e}^{-(at-K_X(t))N}\qquad\forall t\le 0.
 \end{align*}
 :::
 ::: {.proof}
 \begin{align*}
-\Pr\left(\frac1N\sum_{i=1}^N X_i\ge a\right) &= \Pr\left(\sum_{i=1}^N X_i\ge aN\right)\\
-&\le \mathrm{e}^{K_{\sum_i X_i}(t) - atN}\qquad\text{(チェルノフ上界)}\\
-&= \mathrm{e}^{(K_X(t) - at)N}\qquad\left(K_{\sum_i X_i}(t) = \sum_i K_{X_i}(t) = N K_X(t)\right).
+\Pr\left(\frac1N\sum_{k=1}^N X_k\ge a\right) &= \Pr\left(\sum_{k=1}^N X_k\ge aN\right)\\
+&\le \mathrm{e}^{K_{\sum_k X_k}(t) - atN}\qquad\text{(チェルノフ上界)}\\
+&= \mathrm{e}^{(K_X(t) - at)N}\qquad\left(K_{\sum_k X_k}(t) = \sum_k K_{X_k}(t) = N K_X(t)\right).
 \end{align*}
 :::
 
@@ -358,9 +358,11 @@ $K_X'(0)=\expt{X}$ である。
 
 ::: {#thm-chernof}
 ### 最適化されたチェルノフ上界
+確率変数 $X_1,\dotsc,X_N$ が独立で $X$ と同じ分布に従うとする。
+このとき、
 \begin{align*}
-\Pr\left(\frac1N\sum_{i=1}^N X\ge a\right) &\le \mathrm{e}^{-I_X(a)N}\qquad\forall a>\expt{X}\\
-\Pr\left(\frac1N\sum_{i=1}^N X\le a\right) &\le \mathrm{e}^{-I_X(a)N}\qquad\forall a<\expt{X}.
+\Pr\left(\frac1N\sum_{k=1}^N X_k\ge a\right) &\le \mathrm{e}^{-I_X(a)N}\qquad\forall a>\expt{X}\\
+\Pr\left(\frac1N\sum_{k=1}^N X_k\le a\right) &\le \mathrm{e}^{-I_X(a)N}\qquad\forall a<\expt{X}.
 \end{align*}
 :::
 
@@ -368,9 +370,11 @@ $K_X'(0)=\expt{X}$ である。
 
 ::: {#thm-cramer}
 ### クラメールの定理
+確率変数 $X_1,\dotsc,X_N$ が独立で $X$ と同じ分布に従うとする。
+このとき、
 \begin{align*}
-\lim_{N\to\infty}\frac1N\log \Pr\left(\frac1N\sum_{i=1}^N X\ge a\right) &= -I_X(a)\qquad\forall a>\expt{X}\\
-\lim_{N\to\infty}\frac1N\log \Pr\left(\frac1N\sum_{i=1}^N X\le a\right) &= -I_X(a)\qquad\forall a<\expt{X}.
+\lim_{N\to\infty}\frac1N\log \Pr\left(\frac1N\sum_{k=1}^N X_k\ge a\right) &= -I_X(a)\qquad\forall a>\expt{X}\\
+\lim_{N\to\infty}\frac1N\log \Pr\left(\frac1N\sum_{k=1}^N X_k\le a\right) &= -I_X(a)\qquad\forall a<\expt{X}.
 \end{align*}
 :::
 
