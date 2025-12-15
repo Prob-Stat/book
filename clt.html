@@ -434,10 +434,10 @@ window.Quarto = {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#中心極限定理" id="toc-中心極限定理" class="nav-link active" data-scroll-target="#中心極限定理"><span class="header-section-number">10.1</span> 中心極限定理</a></li>
-  <li><a href="#特性関数" id="toc-特性関数" class="nav-link" data-scroll-target="#特性関数"><span class="header-section-number">10.2</span> 特性関数</a></li>
-  <li><a href="#特性関数の応用" id="toc-特性関数の応用" class="nav-link" data-scroll-target="#特性関数の応用"><span class="header-section-number">10.3</span> 特性関数の応用</a></li>
-  <li><a href="#連続性定理" id="toc-連続性定理" class="nav-link" data-scroll-target="#連続性定理"><span class="header-section-number">10.4</span> 連続性定理</a></li>
+  <li><a href="#確率変数の収束" id="toc-確率変数の収束" class="nav-link active" data-scroll-target="#確率変数の収束"><span class="header-section-number">10.1</span> 確率変数の収束</a></li>
+  <li><a href="#中心極限定理" id="toc-中心極限定理" class="nav-link" data-scroll-target="#中心極限定理"><span class="header-section-number">10.2</span> 中心極限定理</a></li>
+  <li><a href="#特性関数" id="toc-特性関数" class="nav-link" data-scroll-target="#特性関数"><span class="header-section-number">10.3</span> 特性関数</a></li>
+  <li><a href="#特性関数の応用" id="toc-特性関数の応用" class="nav-link" data-scroll-target="#特性関数の応用"><span class="header-section-number">10.4</span> 特性関数の応用</a></li>
   <li><a href="#中心極限定理の証明" id="toc-中心極限定理の証明" class="nav-link" data-scroll-target="#中心極限定理の証明"><span class="header-section-number">10.5</span> 中心極限定理の証明</a></li>
   </ul>
 </nav>
@@ -465,13 +465,68 @@ window.Quarto = {
 </header>
 
 
-<section id="中心極限定理" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="中心極限定理"><span class="header-section-number">10.1</span> 中心極限定理</h2>
-<p>大数の法則により <span class="math inline">\(\frac1N\sum_{k=1}^N X_k\)</span> は期待値周辺に集中することが分かる。 また、クラメールの定理によりその集中のスピードも精密に評価することができる。 一方で期待値周辺の挙動を <span class="math display">\[\begin{align*}
+<section id="確率変数の収束" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="確率変数の収束"><span class="header-section-number">10.1</span> 確率変数の収束</h2>
+<div id="def-converge-prob" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 10.1 (確率変数の確率収束)</strong></span> 共通の確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の確率変数の列 <span class="math inline">\((X_n)_{n=1,2,\dotsc,}\)</span> を考える。 確率変数の列 <span class="math inline">\((X_n)_{n=1,2,\dotsc,}\)</span> が同じ確率空間上の確率変数 <span class="math inline">\(X\)</span> に<strong>確率収束</strong>する <span class="math inline">\(\defiff\)</span> <span class="math display">\[\begin{align*}
+\lim_{n\to\infty} \Pr\left(\left|X_n-X\right|&gt;\epsilon\right)= 0\qquad\forall\epsilon&gt;0
+\end{align*}\]</span></p>
+<p>また、このとき <span class="math inline">\(X_n\overset{p}{\longrightarrow} X\)</span> と表す。</p>
+</div>
+<p>この確率収束を使うと大数の弱法則は以下のように表せる。</p>
+<div id="thm-wll" class="theorem">
+<p><span class="theorem-title"><strong>定理 10.1 (大数の弱法則(分散有限を仮定))</strong></span> 確率変数 <span class="math inline">\(X\)</span> が<strong>分散を持つ</strong>とする。 確率変数 <span class="math inline">\(X_1,\dotsc,X_N\)</span> が独立で <span class="math inline">\(X\)</span> と同じ分布に従うとする。 このとき、 <span class="math display">\[\begin{align*}
+\frac1N\sum_{k=1}^N X_k\overset{p}{\longrightarrow}\expt{X}\qquad\text{as } N\to\infty.
+\end{align*}\]</span></p>
+</div>
+<p>一方でより弱い収束の定義に法則収束という概念がある。</p>
+<div id="def-converge-law" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 10.2 (確率変数の法則収束)</strong></span> 確率変数の列 <span class="math inline">\((X_n)_{n=1,2,\dotsc,}\)</span> を考える。これらの確率変数は確率空間 <span class="math inline">\((\Omega,\,P)\)</span> を共有している必要はない(同時確率を考えるわけではないので)。 確率変数の列 <span class="math inline">\((X_n)_{n=1,2,\dotsc,}\)</span> が確率変数 <span class="math inline">\(X\)</span> に<strong>法則収束</strong>する <span class="math inline">\(\defiff\)</span> <span class="math inline">\(X\)</span> の累積分布関数 <span class="math inline">\(F_X\)</span> のすべての連続点 <span class="math inline">\(x\in\mathbb{R}\)</span> について <span class="math display">\[\begin{align*}
+\lim_{n\to\infty} F_{X_n}(x)= F_X(x)
+\end{align*}\]</span></p>
+<p>また、このとき <span class="math inline">\(X_n\overset{d}{\to} X\)</span> と表す。</p>
+</div>
+<div id="lem-converge-law" class="theorem lemma">
+<p><span class="theorem-title"><strong>補題 10.1</strong></span> 共通の確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の確率変数の列 <span class="math inline">\((X_n)_{n=1,2,\dotsc,}\)</span> と確率変数 <span class="math inline">\(X\)</span> について、 <span class="math display">\[\begin{align*}
+X_n\overset{p}{\longrightarrow} X &amp;\implies
+X_n\overset{d}{\longrightarrow} X.
+\end{align*}\]</span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>証明</em>. </span><span class="math inline">\(X_n\overset{p}{\longrightarrow}X\)</span> を仮定する。 つまり、 <span class="math display">\[\begin{align*}
+\lim_{n\to\infty} \Pr\left(\left|X_n-X\right|&gt;\epsilon\right)= 0\qquad\forall\epsilon&gt;0
+\end{align*}\]</span> である。このとき、 <span class="math display">\[\begin{align*}
+F_{X_n}(x)&amp;=\Pr(X_n\le x)\\
+&amp;\le\Pr(X\le x+\epsilon\cup|X_n-X|&gt;\epsilon)\\
+&amp;\le\Pr(X\le x+\epsilon) + \Pr(|X_n-X|&gt;\epsilon)
+\end{align*}\]</span> よって、 <span class="math display">\[\begin{align*}
+\limsup_{n\to\infty} F_{X_n}(x)&amp;\le F_X(x+\epsilon)\qquad\forall x\in\mathbb{R}\quad\epsilon&gt;0.
+\end{align*}\]</span> 同様に <span class="math inline">\(X_n\)</span> と <span class="math inline">\(X\)</span> を逆にすると、 <span class="math display">\[\begin{align*}
+F_{X}(x)&amp;=\Pr(X\le x)\\
+&amp;\le\Pr(X_n\le x+\epsilon\cup|X_n-X|&gt;\epsilon)\\
+&amp;\le\Pr(X_n\le x+\epsilon) + \Pr(|X_n-X|&gt;\epsilon)
+\end{align*}\]</span> よって、 <span class="math display">\[\begin{align*}
+\liminf_{n\to\infty} F_{X_n}(x+\epsilon)&amp;\ge F_X(x)\qquad\forall x\in\mathbb{R}
+\end{align*}\]</span> つまり <span class="math display">\[\begin{align*}
+\liminf_{n\to\infty} F_{X_n}(x)&amp;\ge F_X(x-\epsilon)\qquad\forall x\in\mathbb{R}\quad\epsilon&gt;0.
+\end{align*}\]</span> これらのことから、 <span class="math display">\[\begin{align*}
+F_X(x-\epsilon)&amp;\le \liminf_{n\to\infty} F_{X_n}(x) \le\limsup_{n\to\infty} F_{X_n}(x) \le F_X(x+\epsilon)
+\qquad\forall x\in\mathbb{R}\quad\epsilon&gt;0.
+\end{align*}\]</span> よって <span class="math inline">\(F_X\)</span> が <span class="math inline">\(x\)</span> で連続なとき、<span class="math inline">\(\epsilon\to 0\)</span> 極限を取ることで、 <span class="math display">\[\begin{align*}
+F_X(x)&amp;\le \liminf_{n\to\infty} F_{X_n}(x) \le\limsup_{n\to\infty} F_{X_n}(x) \le F_X(x)
+\end{align*}\]</span> となり、 <span class="math display">\[\begin{align*}
+\lim_{n\to\infty} F_{X_n}(x) = F_X(x)
+\end{align*}\]</span> である。</p>
+</div>
+</section>
+<section id="中心極限定理" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="中心極限定理"><span class="header-section-number">10.2</span> 中心極限定理</h2>
+<p>大数の法則により <span class="math inline">\(\frac1N\sum_{k=1}^N X_k\)</span> は期待値周辺に集中することが分かる。 また、クラメールの定理によりその集中のスピードも精密に評価することができる。</p>
+<p>一方で期待値周辺の挙動を <span class="math display">\[\begin{align*}
 \frac1{\sqrt{N}}\left(\sum_{k=1}^N X_k-N\expt{X}\right)
 \end{align*}\]</span> より詳しく見る。</p>
 <div id="thm-clt" class="theorem">
-<p><span class="theorem-title"><strong>定理 10.1 (中心極限定理)</strong></span> 確率変数 <span class="math inline">\(X\)</span> が<strong>分散を持つ</strong>とする。 確率変数 <span class="math inline">\(X_1,\dotsc,X_N\)</span> が独立で <span class="math inline">\(X\)</span> と同じ分布に従うとする。 また、確率変数 <span class="math inline">\(Z\)</span> は期待値0分散1の正規分布 <span class="math inline">\(N(0,1)\)</span> に従うものとする。 このとき、 <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>定理 10.2 (中心極限定理)</strong></span> 確率変数 <span class="math inline">\(X\)</span> が<strong>分散を持つ</strong>とする。 確率変数 <span class="math inline">\(X_1,\dotsc,X_N\)</span> が独立で <span class="math inline">\(X\)</span> と同じ分布に従うとする。 また、確率変数 <span class="math inline">\(Z\)</span> は期待値0分散1の正規分布 <span class="math inline">\(N(0,1)\)</span> に従うものとする。 このとき、 <span class="math display">\[\begin{align*}
 \lim_{N\to\infty} \Pr\left(\frac1{\sqrt{N\var{X}}}\left(\sum_{k=1}^N X_k-N\expt{X}\right)\le x\right)
 &amp;= \Pr(Z\le x) \qquad\forall x\in\mathbb{R}.
 \end{align*}\]</span></p>
@@ -483,15 +538,15 @@ Y_k &amp;\coloneqq \frac{X_k -\expt{X}}{\sqrt{\var{X}}}
 &amp;= F_Z(x)\qquad\forall x\in\mathbb{R}
 \end{align*}\]</span></p>
 </section>
-<section id="特性関数" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="特性関数"><span class="header-section-number">10.2</span> 特性関数</h2>
+<section id="特性関数" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="特性関数"><span class="header-section-number">10.3</span> 特性関数</h2>
 <div id="def-cf" class="theorem definition">
-<p><span class="theorem-title"><strong>定義 10.1</strong></span> 確率変数 <span class="math inline">\(X\)</span> について、特性関数 <span class="math inline">\(\varphi_X\colon\mathbb{R}\to\mathbb{C}\)</span> を以下で定義する。 <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>定義 10.3</strong></span> 確率変数 <span class="math inline">\(X\)</span> について、特性関数 <span class="math inline">\(\varphi_X\colon\mathbb{R}\to\mathbb{C}\)</span> を以下で定義する。 <span class="math display">\[\begin{align*}
 \varphi_X(t) &amp;\coloneqq \expt{\mathrm{e}^{itX}}.
 \end{align*}\]</span></p>
 </div>
 <div id="thm-cf" class="theorem">
-<p><span class="theorem-title"><strong>定理 10.2</strong></span> 確率変数 <span class="math inline">\(X,\,Y\)</span> について <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>定理 10.3</strong></span> 確率変数 <span class="math inline">\(X,\,Y\)</span> について <span class="math display">\[\begin{align*}
 \varphi_X = \varphi_Y &amp;\iff F_X = F_Y.
 \end{align*}\]</span></p>
 </div>
@@ -517,11 +572,11 @@ f_X(x_k) &amp;= f_Y(x_k) \qquad\forall k\in\{0,1,\dotsc,N-1\}
 \end{align*}\]</span> である。</p>
 </div>
 </section>
-<section id="特性関数の応用" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="特性関数の応用"><span class="header-section-number">10.3</span> 特性関数の応用</h2>
-<p>正規分布の再生性は愚直に確率密度関数の畳み込みを計算しても確認できるが、特性関数と <a href="#thm-cf" class="quarto-xref">定理&nbsp;<span>10.2</span></a> を用いると簡単に証明できる。</p>
+<section id="特性関数の応用" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="特性関数の応用"><span class="header-section-number">10.4</span> 特性関数の応用</h2>
+<p>正規分布の再生性は愚直に確率密度関数の畳み込みを計算しても確認できるが、特性関数と <a href="#thm-cf" class="quarto-xref">定理&nbsp;<span>10.3</span></a> を用いると簡単に証明できる。</p>
 <div id="lem-normal" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 10.1 (正規分布の再生性)</strong></span> 独立確率変数 <span class="math inline">\(X\sim N(\mu_0,\,\sigma_0^2)\)</span> と <span class="math inline">\(Y\sim N(\mu_1,\,\sigma_1^2)\)</span> について <span class="math inline">\(X+Y\sim N(\mu_0+\mu_1,\,\sigma_0^2+\sigma_1^2)\)</span>.</p>
+<p><span class="theorem-title"><strong>補題 10.2 (正規分布の再生性)</strong></span> 独立確率変数 <span class="math inline">\(X\sim N(\mu_0,\,\sigma_0^2)\)</span> と <span class="math inline">\(Y\sim N(\mu_1,\,\sigma_1^2)\)</span> について <span class="math inline">\(X+Y\sim N(\mu_0+\mu_1,\,\sigma_0^2+\sigma_1^2)\)</span>.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>証明</em>. </span><span class="math display">\[\begin{align*}
@@ -530,10 +585,10 @@ f_X(x_k) &amp;= f_Y(x_k) \qquad\forall k\in\{0,1,\dotsc,N-1\}
 \end{align*}\]</span> より、 <span class="math display">\[\begin{align*}
 \varphi_{X+Y}(t) &amp;= \varphi_X(t)\varphi_Y(t) =
 \mathrm{e}^{i(\mu_0+\mu_1) t - \frac12(\sigma_0^2+\sigma_1^2) t^2}
-\end{align*}\]</span> であるが、これは <span class="math inline">\(N(\mu_0+\mu_1,\,\sigma_0^2+\sigma_1^2)\)</span> の特性関数である。 よって、<a href="#thm-cf" class="quarto-xref">定理&nbsp;<span>10.2</span></a> より <span class="math inline">\(X+Y\sim N(\mu_0+\mu_1,\,\sigma_0^2+\sigma_1^2)\)</span>.</p>
+\end{align*}\]</span> であるが、これは <span class="math inline">\(N(\mu_0+\mu_1,\,\sigma_0^2+\sigma_1^2)\)</span> の特性関数である。 よって、<a href="#thm-cf" class="quarto-xref">定理&nbsp;<span>10.3</span></a> より <span class="math inline">\(X+Y\sim N(\mu_0+\mu_1,\,\sigma_0^2+\sigma_1^2)\)</span>.</p>
 </div>
 <div id="lem-normal" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 10.2 (ポアソン分布の再生性)</strong></span> 独立確率変数 <span class="math inline">\(X\sim \mathrm{Poisson}(\lambda_0)\)</span> と <span class="math inline">\(Y\sim \mathrm{Poisson}(\lambda_1)\)</span> について <span class="math inline">\(X+Y\sim \mathrm{Poisson}(\lambda_0+\lambda_1)\)</span>.</p>
+<p><span class="theorem-title"><strong>補題 10.3 (ポアソン分布の再生性)</strong></span> 独立確率変数 <span class="math inline">\(X\sim \mathrm{Poisson}(\lambda_0)\)</span> と <span class="math inline">\(Y\sim \mathrm{Poisson}(\lambda_1)\)</span> について <span class="math inline">\(X+Y\sim \mathrm{Poisson}(\lambda_0+\lambda_1)\)</span>.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>証明</em>. </span><span class="math display">\[\begin{align*}
@@ -542,14 +597,38 @@ f_X(x_k) &amp;= f_Y(x_k) \qquad\forall k\in\{0,1,\dotsc,N-1\}
 \end{align*}\]</span> より、 <span class="math display">\[\begin{align*}
 \varphi_{X+Y}(t) &amp;= \varphi_X(t)\varphi_Y(t) =
 \mathrm{e}^{(\lambda_0+\lambda_1)(\mathrm{e}^{it}-1)}&amp;
-\end{align*}\]</span> であるが、これは <span class="math inline">\(\mathrm{Poisson}(\lambda_0+\lambda_1)\)</span> の特性関数である。 よって、<a href="#thm-cf" class="quarto-xref">定理&nbsp;<span>10.2</span></a> より <span class="math inline">\(X+Y\sim \mathrm{Poisson}(\lambda_0+\lambda_1)\)</span>.</p>
+\end{align*}\]</span> であるが、これは <span class="math inline">\(\mathrm{Poisson}(\lambda_0+\lambda_1)\)</span> の特性関数である。 よって、<a href="#thm-cf" class="quarto-xref">定理&nbsp;<span>10.3</span></a> より <span class="math inline">\(X+Y\sim \mathrm{Poisson}(\lambda_0+\lambda_1)\)</span>.</p>
 </div>
-</section>
-<section id="連続性定理" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="連続性定理"><span class="header-section-number">10.4</span> 連続性定理</h2>
 </section>
 <section id="中心極限定理の証明" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="中心極限定理の証明"><span class="header-section-number">10.5</span> 中心極限定理の証明</h2>
+<p>中心極限定理の証明の概要を紹介する。</p>
+<p><a href="#thm-cf" class="quarto-xref">定理&nbsp;<span>10.3</span></a> は特性関数が確率分布と一対一に対応していることを主張していた。</p>
+<div id="thm-levy" class="theorem">
+<p><span class="theorem-title"><strong>定理 10.4 (レヴィの連続性定理)</strong></span> 確率変数の列 <span class="math inline">\((X_n)_{n=1,2,\dotsc,}\)</span> を考える。これらの確率変数は確率空間 <span class="math inline">\((\Omega,\,P)\)</span> を共有している必要はない(同時確率を考えるわけではないので)。 確率変数列の特性関数列 <span class="math inline">\((\varphi_{X_n})_{n=1,2,\dotsc}\)</span> が各点収束すると仮定する。 このとき、</p>
+<p><span class="math display">\[\begin{align*}
+\varphi(t) &amp;\coloneqq \lim_{n\to\infty} \varphi_{X_n}(t).
+\end{align*}\]</span></p>
+<p>とおくと、ある確率変数 <span class="math inline">\(X\)</span> が存在し、<span class="math inline">\(\varphi_X(t) = \varphi(t)\)</span> であり、<span class="math inline">\((X_n)_n\)</span> は <span class="math inline">\(X\)</span> に法則収束する。</p>
+</div>
+<div id="thm-taylor" class="theorem">
+<p><span class="theorem-title"><strong>定理 10.5 (テイラーの定理)</strong></span> 実関数 <span class="math inline">\(f\colon \mathbb{R}\to\mathbb{R}\)</span> が <span class="math inline">\(a\in\mathbb{R}\)</span> で <span class="math inline">\(k\ge 1\)</span> 回微分可能なとき、ある関数 <span class="math inline">\(h\colon\mathbb{R}\to\mathbb{R}\)</span> で <span class="math inline">\(\lim_{x\to a}h(x) = 0\)</span> であるものが存在し、 <span class="math display">\[\begin{align*}
+f(x) &amp;= \sum_{s=0}^k\frac{f^{(s)}(a)}{s!}(x-a)^s + h(x)(x-a)^k.
+\end{align*}\]</span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>証明</em> (中心極限定理の証明). </span><a href="#thm-levy" class="quarto-xref">定理&nbsp;<span>10.4</span></a> より <span class="math display">\[\begin{align*}
+\lim_{N\to\infty} \varphi_{\frac{\sum_k Y_k}{\sqrt{N}}}(t) &amp;= \varphi_Z(t) = \mathrm{e}^{-\frac{t^2}2}
+\end{align*}\]</span> を示せば十分である。</p>
+<p><span class="math display">\[\begin{align*}
+\varphi_{\frac{\sum_k Y_k}{\sqrt{N}}}(t)
+&amp;= \varphi_{\sum_k Y_k}\left(\frac{t}{\sqrt{N}}\right)\\
+&amp;= \varphi_{Y}\left(\frac{t}{\sqrt{N}}\right)^N\\
+&amp;= \left(\varphi_Y(0) + \varphi'_Y(0)\frac{t}{\sqrt{N}} + \frac{\varphi''_Y(0)}2 \left(\frac{t}{\sqrt{N}}\right)^2 + o\left(\frac{1}{N}\right)\right)^N\\
+&amp;= \left(1 - \frac{1}2 \frac{t^2}{N} + o\left(\frac{1}{N}\right)\right)^N\\
+&amp;\to \mathrm{e}^{-\frac{t^2}2}.
+\end{align*}\]</span></p>
+</div>
 
 
 </section>

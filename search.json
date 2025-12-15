@@ -586,7 +586,18 @@
     "href": "clt.html",
     "title": "10  正規分布と中心極限定理",
     "section": "",
-    "text": "10.1 中心極限定理\n大数の法則により \\(\\frac1N\\sum_{k=1}^N X_k\\) は期待値周辺に集中することが分かる。 また、クラメールの定理によりその集中のスピードも精密に評価することができる。 一方で期待値周辺の挙動を \\[\\begin{align*}\n\\frac1{\\sqrt{N}}\\left(\\sum_{k=1}^N X_k-N\\expt{X}\\right)\n\\end{align*}\\] より詳しく見る。\n確率変数 \\(X_k\\) を期待値0分散1に正規化した確率変数 \\[\\begin{align*}\nY_k &\\coloneqq \\frac{X_k -\\expt{X}}{\\sqrt{\\var{X}}}\n\\end{align*}\\] を使うと、 \\[\\begin{align*}\n\\lim_{N\\to\\infty} F_{\\frac{\\sum_k Y_k}{\\sqrt{N}}}(x)\n&= F_Z(x)\\qquad\\forall x\\in\\mathbb{R}\n\\end{align*}\\]",
+    "text": "10.1 確率変数の収束\nこの確率収束を使うと大数の弱法則は以下のように表せる。\n一方でより弱い収束の定義に法則収束という概念がある。",
+    "crumbs": [
+      "漸近論",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>正規分布と中心極限定理</span>"
+    ]
+  },
+  {
+    "objectID": "clt.html#確率変数の収束",
+    "href": "clt.html#確率変数の収束",
+    "title": "10  正規分布と中心極限定理",
+    "section": "",
+    "text": "定義 10.1 (確率変数の確率収束) 共通の確率空間 \\((\\Omega,\\,P)\\) 上の確率変数の列 \\((X_n)_{n=1,2,\\dotsc,}\\) を考える。 確率変数の列 \\((X_n)_{n=1,2,\\dotsc,}\\) が同じ確率空間上の確率変数 \\(X\\) に確率収束する \\(\\defiff\\) \\[\\begin{align*}\n\\lim_{n\\to\\infty} \\Pr\\left(\\left|X_n-X\\right|&gt;\\epsilon\\right)= 0\\qquad\\forall\\epsilon&gt;0\n\\end{align*}\\]\nまた、このとき \\(X_n\\overset{p}{\\longrightarrow} X\\) と表す。\n\n\n\n定理 10.1 (大数の弱法則(分散有限を仮定)) 確率変数 \\(X\\) が分散を持つとする。 確率変数 \\(X_1,\\dotsc,X_N\\) が独立で \\(X\\) と同じ分布に従うとする。 このとき、 \\[\\begin{align*}\n\\frac1N\\sum_{k=1}^N X_k\\overset{p}{\\longrightarrow}\\expt{X}\\qquad\\text{as } N\\to\\infty.\n\\end{align*}\\]\n\n\n\n定義 10.2 (確率変数の法則収束) 確率変数の列 \\((X_n)_{n=1,2,\\dotsc,}\\) を考える。これらの確率変数は確率空間 \\((\\Omega,\\,P)\\) を共有している必要はない(同時確率を考えるわけではないので)。 確率変数の列 \\((X_n)_{n=1,2,\\dotsc,}\\) が確率変数 \\(X\\) に法則収束する \\(\\defiff\\) \\(X\\) の累積分布関数 \\(F_X\\) のすべての連続点 \\(x\\in\\mathbb{R}\\) について \\[\\begin{align*}\n\\lim_{n\\to\\infty} F_{X_n}(x)= F_X(x)\n\\end{align*}\\]\nまた、このとき \\(X_n\\overset{d}{\\to} X\\) と表す。\n\n\n補題 10.1 共通の確率空間 \\((\\Omega,\\,P)\\) 上の確率変数の列 \\((X_n)_{n=1,2,\\dotsc,}\\) と確率変数 \\(X\\) について、 \\[\\begin{align*}\nX_n\\overset{p}{\\longrightarrow} X &\\implies\nX_n\\overset{d}{\\longrightarrow} X.\n\\end{align*}\\]\n\n\n証明. \\(X_n\\overset{p}{\\longrightarrow}X\\) を仮定する。 つまり、 \\[\\begin{align*}\n\\lim_{n\\to\\infty} \\Pr\\left(\\left|X_n-X\\right|&gt;\\epsilon\\right)= 0\\qquad\\forall\\epsilon&gt;0\n\\end{align*}\\] である。このとき、 \\[\\begin{align*}\nF_{X_n}(x)&=\\Pr(X_n\\le x)\\\\\n&\\le\\Pr(X\\le x+\\epsilon\\cup|X_n-X|&gt;\\epsilon)\\\\\n&\\le\\Pr(X\\le x+\\epsilon) + \\Pr(|X_n-X|&gt;\\epsilon)\n\\end{align*}\\] よって、 \\[\\begin{align*}\n\\limsup_{n\\to\\infty} F_{X_n}(x)&\\le F_X(x+\\epsilon)\\qquad\\forall x\\in\\mathbb{R}\\quad\\epsilon&gt;0.\n\\end{align*}\\] 同様に \\(X_n\\) と \\(X\\) を逆にすると、 \\[\\begin{align*}\nF_{X}(x)&=\\Pr(X\\le x)\\\\\n&\\le\\Pr(X_n\\le x+\\epsilon\\cup|X_n-X|&gt;\\epsilon)\\\\\n&\\le\\Pr(X_n\\le x+\\epsilon) + \\Pr(|X_n-X|&gt;\\epsilon)\n\\end{align*}\\] よって、 \\[\\begin{align*}\n\\liminf_{n\\to\\infty} F_{X_n}(x+\\epsilon)&\\ge F_X(x)\\qquad\\forall x\\in\\mathbb{R}\n\\end{align*}\\] つまり \\[\\begin{align*}\n\\liminf_{n\\to\\infty} F_{X_n}(x)&\\ge F_X(x-\\epsilon)\\qquad\\forall x\\in\\mathbb{R}\\quad\\epsilon&gt;0.\n\\end{align*}\\] これらのことから、 \\[\\begin{align*}\nF_X(x-\\epsilon)&\\le \\liminf_{n\\to\\infty} F_{X_n}(x) \\le\\limsup_{n\\to\\infty} F_{X_n}(x) \\le F_X(x+\\epsilon)\n\\qquad\\forall x\\in\\mathbb{R}\\quad\\epsilon&gt;0.\n\\end{align*}\\] よって \\(F_X\\) が \\(x\\) で連続なとき、\\(\\epsilon\\to 0\\) 極限を取ることで、 \\[\\begin{align*}\nF_X(x)&\\le \\liminf_{n\\to\\infty} F_{X_n}(x) \\le\\limsup_{n\\to\\infty} F_{X_n}(x) \\le F_X(x)\n\\end{align*}\\] となり、 \\[\\begin{align*}\n\\lim_{n\\to\\infty} F_{X_n}(x) = F_X(x)\n\\end{align*}\\] である。",
     "crumbs": [
       "漸近論",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>正規分布と中心極限定理</span>"
@@ -596,8 +607,8 @@
     "objectID": "clt.html#中心極限定理",
     "href": "clt.html#中心極限定理",
     "title": "10  正規分布と中心極限定理",
-    "section": "",
-    "text": "定理 10.1 (中心極限定理) 確率変数 \\(X\\) が分散を持つとする。 確率変数 \\(X_1,\\dotsc,X_N\\) が独立で \\(X\\) と同じ分布に従うとする。 また、確率変数 \\(Z\\) は期待値0分散1の正規分布 \\(N(0,1)\\) に従うものとする。 このとき、 \\[\\begin{align*}\n\\lim_{N\\to\\infty} \\Pr\\left(\\frac1{\\sqrt{N\\var{X}}}\\left(\\sum_{k=1}^N X_k-N\\expt{X}\\right)\\le x\\right)\n&= \\Pr(Z\\le x) \\qquad\\forall x\\in\\mathbb{R}.\n\\end{align*}\\]",
+    "section": "10.2 中心極限定理",
+    "text": "10.2 中心極限定理\n大数の法則により \\(\\frac1N\\sum_{k=1}^N X_k\\) は期待値周辺に集中することが分かる。 また、クラメールの定理によりその集中のスピードも精密に評価することができる。\n一方で期待値周辺の挙動を \\[\\begin{align*}\n\\frac1{\\sqrt{N}}\\left(\\sum_{k=1}^N X_k-N\\expt{X}\\right)\n\\end{align*}\\] より詳しく見る。\n\n定理 10.2 (中心極限定理) 確率変数 \\(X\\) が分散を持つとする。 確率変数 \\(X_1,\\dotsc,X_N\\) が独立で \\(X\\) と同じ分布に従うとする。 また、確率変数 \\(Z\\) は期待値0分散1の正規分布 \\(N(0,1)\\) に従うものとする。 このとき、 \\[\\begin{align*}\n\\lim_{N\\to\\infty} \\Pr\\left(\\frac1{\\sqrt{N\\var{X}}}\\left(\\sum_{k=1}^N X_k-N\\expt{X}\\right)\\le x\\right)\n&= \\Pr(Z\\le x) \\qquad\\forall x\\in\\mathbb{R}.\n\\end{align*}\\]\n\n確率変数 \\(X_k\\) を期待値0分散1に正規化した確率変数 \\[\\begin{align*}\nY_k &\\coloneqq \\frac{X_k -\\expt{X}}{\\sqrt{\\var{X}}}\n\\end{align*}\\] を使うと、 \\[\\begin{align*}\n\\lim_{N\\to\\infty} F_{\\frac{\\sum_k Y_k}{\\sqrt{N}}}(x)\n&= F_Z(x)\\qquad\\forall x\\in\\mathbb{R}\n\\end{align*}\\]",
     "crumbs": [
       "漸近論",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>正規分布と中心極限定理</span>"
@@ -607,8 +618,8 @@
     "objectID": "clt.html#特性関数",
     "href": "clt.html#特性関数",
     "title": "10  正規分布と中心極限定理",
-    "section": "10.2 特性関数",
-    "text": "10.2 特性関数\n\n定義 10.1 確率変数 \\(X\\) について、特性関数 \\(\\varphi_X\\colon\\mathbb{R}\\to\\mathbb{C}\\) を以下で定義する。 \\[\\begin{align*}\n\\varphi_X(t) &\\coloneqq \\expt{\\mathrm{e}^{itX}}.\n\\end{align*}\\]\n\n\n定理 10.2 確率変数 \\(X,\\,Y\\) について \\[\\begin{align*}\n\\varphi_X = \\varphi_Y &\\iff F_X = F_Y.\n\\end{align*}\\]\n\n\n証明 (確率変数の像が有限の場合の証明). \\(\\mathrm{Image}(X)\\) と \\(\\mathrm{Image}(Y)\\) が有限の場合に限って証明を与える。 \\[\\begin{align*}\n\\{x_0,\\dotsc,x_{N-1}\\} &\\coloneqq \\mathrm{Image}(X) \\cup \\mathrm{Image}(Y)\n\\end{align*}\\] とする。 \\[\\begin{align*}\n\\varphi_X(t) &= \\sum_{k=0}^{N-1} f_X(x_k) \\mathrm{e}^{itx_k},&\n\\varphi_Y(t) &= \\sum_{k=0}^{N-1} f_Y(x_k) \\mathrm{e}^{itx_k}\n\\end{align*}\\] なので、 \\[\\begin{align*}\n0 = \\varphi_X(t) - \\varphi_Y(t) &= \\sum_{k=0}^{N-1} (f_X(x_k)-f_Y(x_k)) \\mathrm{e}^{itx_k}\n\\qquad\\forall t\\in\\mathbb{R}.\n\\end{align*}\\] よって、 \\[\\begin{align}\n\\sum_{k=0}^{N-1} (f_X(x_k)-f_Y(x_k)) \\mathrm{e}^{i\\ell x_k}&=0\\qquad\\forall \\ell\\in\\{0,1,\\dotsc,N-1\\}\n\\end{align}\\] である。 ここで、\\(N\\times N\\) 実行列 \\(V\\) を \\[\\begin{align*}\nV_{\\ell k} &= \\mathrm{e}^{i\\ell x_k}\n\\qquad\\forall k,\\ell\\in\\{0,1,\\dotsc,N-1\\}\n\\end{align*}\\] とおく。 この行列 \\(V\\) は Vandermonde行列の転置であり正則なので、 \\[\\begin{align*}\n&\\sum_{k=0}^{N-1} V_{\\ell k} g_k=0\\qquad\\forall \\ell\\in\\{0,1,\\dotsc,N-1\\}\\\\\n\\implies& g_k = 0 \\qquad\\forall k\\in\\{0,1,\\dotsc,N-1\\}\n\\end{align*}\\] よって、 \\[\\begin{align*}\nf_X(x_k) &= f_Y(x_k) \\qquad\\forall k\\in\\{0,1,\\dotsc,N-1\\}\n\\end{align*}\\] である。",
+    "section": "10.3 特性関数",
+    "text": "10.3 特性関数\n\n定義 10.3 確率変数 \\(X\\) について、特性関数 \\(\\varphi_X\\colon\\mathbb{R}\\to\\mathbb{C}\\) を以下で定義する。 \\[\\begin{align*}\n\\varphi_X(t) &\\coloneqq \\expt{\\mathrm{e}^{itX}}.\n\\end{align*}\\]\n\n\n定理 10.3 確率変数 \\(X,\\,Y\\) について \\[\\begin{align*}\n\\varphi_X = \\varphi_Y &\\iff F_X = F_Y.\n\\end{align*}\\]\n\n\n証明 (確率変数の像が有限の場合の証明). \\(\\mathrm{Image}(X)\\) と \\(\\mathrm{Image}(Y)\\) が有限の場合に限って証明を与える。 \\[\\begin{align*}\n\\{x_0,\\dotsc,x_{N-1}\\} &\\coloneqq \\mathrm{Image}(X) \\cup \\mathrm{Image}(Y)\n\\end{align*}\\] とする。 \\[\\begin{align*}\n\\varphi_X(t) &= \\sum_{k=0}^{N-1} f_X(x_k) \\mathrm{e}^{itx_k},&\n\\varphi_Y(t) &= \\sum_{k=0}^{N-1} f_Y(x_k) \\mathrm{e}^{itx_k}\n\\end{align*}\\] なので、 \\[\\begin{align*}\n0 = \\varphi_X(t) - \\varphi_Y(t) &= \\sum_{k=0}^{N-1} (f_X(x_k)-f_Y(x_k)) \\mathrm{e}^{itx_k}\n\\qquad\\forall t\\in\\mathbb{R}.\n\\end{align*}\\] よって、 \\[\\begin{align}\n\\sum_{k=0}^{N-1} (f_X(x_k)-f_Y(x_k)) \\mathrm{e}^{i\\ell x_k}&=0\\qquad\\forall \\ell\\in\\{0,1,\\dotsc,N-1\\}\n\\end{align}\\] である。 ここで、\\(N\\times N\\) 実行列 \\(V\\) を \\[\\begin{align*}\nV_{\\ell k} &= \\mathrm{e}^{i\\ell x_k}\n\\qquad\\forall k,\\ell\\in\\{0,1,\\dotsc,N-1\\}\n\\end{align*}\\] とおく。 この行列 \\(V\\) は Vandermonde行列の転置であり正則なので、 \\[\\begin{align*}\n&\\sum_{k=0}^{N-1} V_{\\ell k} g_k=0\\qquad\\forall \\ell\\in\\{0,1,\\dotsc,N-1\\}\\\\\n\\implies& g_k = 0 \\qquad\\forall k\\in\\{0,1,\\dotsc,N-1\\}\n\\end{align*}\\] よって、 \\[\\begin{align*}\nf_X(x_k) &= f_Y(x_k) \\qquad\\forall k\\in\\{0,1,\\dotsc,N-1\\}\n\\end{align*}\\] である。",
     "crumbs": [
       "漸近論",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>正規分布と中心極限定理</span>"
@@ -618,19 +629,8 @@
     "objectID": "clt.html#特性関数の応用",
     "href": "clt.html#特性関数の応用",
     "title": "10  正規分布と中心極限定理",
-    "section": "10.3 特性関数の応用",
-    "text": "10.3 特性関数の応用\n正規分布の再生性は愚直に確率密度関数の畳み込みを計算しても確認できるが、特性関数と 定理 10.2 を用いると簡単に証明できる。\n\n補題 10.1 (正規分布の再生性) 独立確率変数 \\(X\\sim N(\\mu_0,\\,\\sigma_0^2)\\) と \\(Y\\sim N(\\mu_1,\\,\\sigma_1^2)\\) について \\(X+Y\\sim N(\\mu_0+\\mu_1,\\,\\sigma_0^2+\\sigma_1^2)\\).\n\n\n証明. \\[\\begin{align*}\n\\varphi_X(t) &= \\mathrm{e}^{i\\mu_0 t - \\frac12\\sigma_0^2 t^2}&\n\\varphi_Y(t) &= \\mathrm{e}^{i\\mu_1 t - \\frac12\\sigma_1^2 t^2}\n\\end{align*}\\] より、 \\[\\begin{align*}\n\\varphi_{X+Y}(t) &= \\varphi_X(t)\\varphi_Y(t) =\n\\mathrm{e}^{i(\\mu_0+\\mu_1) t - \\frac12(\\sigma_0^2+\\sigma_1^2) t^2}\n\\end{align*}\\] であるが、これは \\(N(\\mu_0+\\mu_1,\\,\\sigma_0^2+\\sigma_1^2)\\) の特性関数である。 よって、定理 10.2 より \\(X+Y\\sim N(\\mu_0+\\mu_1,\\,\\sigma_0^2+\\sigma_1^2)\\).\n\n\n補題 10.2 (ポアソン分布の再生性) 独立確率変数 \\(X\\sim \\mathrm{Poisson}(\\lambda_0)\\) と \\(Y\\sim \\mathrm{Poisson}(\\lambda_1)\\) について \\(X+Y\\sim \\mathrm{Poisson}(\\lambda_0+\\lambda_1)\\).\n\n\n証明. \\[\\begin{align*}\n\\varphi_X(t) &= \\mathrm{e}^{\\lambda_0(\\mathrm{e}^{it}-1)}&\n\\varphi_Y(t) &= \\mathrm{e}^{\\lambda_1(\\mathrm{e}^{it}-1)}&\n\\end{align*}\\] より、 \\[\\begin{align*}\n\\varphi_{X+Y}(t) &= \\varphi_X(t)\\varphi_Y(t) =\n\\mathrm{e}^{(\\lambda_0+\\lambda_1)(\\mathrm{e}^{it}-1)}&\n\\end{align*}\\] であるが、これは \\(\\mathrm{Poisson}(\\lambda_0+\\lambda_1)\\) の特性関数である。 よって、定理 10.2 より \\(X+Y\\sim \\mathrm{Poisson}(\\lambda_0+\\lambda_1)\\).",
-    "crumbs": [
-      "漸近論",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>正規分布と中心極限定理</span>"
-    ]
-  },
-  {
-    "objectID": "clt.html#連続性定理",
-    "href": "clt.html#連続性定理",
-    "title": "10  正規分布と中心極限定理",
-    "section": "10.4 連続性定理",
-    "text": "10.4 連続性定理",
+    "section": "10.4 特性関数の応用",
+    "text": "10.4 特性関数の応用\n正規分布の再生性は愚直に確率密度関数の畳み込みを計算しても確認できるが、特性関数と 定理 10.3 を用いると簡単に証明できる。\n\n補題 10.2 (正規分布の再生性) 独立確率変数 \\(X\\sim N(\\mu_0,\\,\\sigma_0^2)\\) と \\(Y\\sim N(\\mu_1,\\,\\sigma_1^2)\\) について \\(X+Y\\sim N(\\mu_0+\\mu_1,\\,\\sigma_0^2+\\sigma_1^2)\\).\n\n\n証明. \\[\\begin{align*}\n\\varphi_X(t) &= \\mathrm{e}^{i\\mu_0 t - \\frac12\\sigma_0^2 t^2}&\n\\varphi_Y(t) &= \\mathrm{e}^{i\\mu_1 t - \\frac12\\sigma_1^2 t^2}\n\\end{align*}\\] より、 \\[\\begin{align*}\n\\varphi_{X+Y}(t) &= \\varphi_X(t)\\varphi_Y(t) =\n\\mathrm{e}^{i(\\mu_0+\\mu_1) t - \\frac12(\\sigma_0^2+\\sigma_1^2) t^2}\n\\end{align*}\\] であるが、これは \\(N(\\mu_0+\\mu_1,\\,\\sigma_0^2+\\sigma_1^2)\\) の特性関数である。 よって、定理 10.3 より \\(X+Y\\sim N(\\mu_0+\\mu_1,\\,\\sigma_0^2+\\sigma_1^2)\\).\n\n\n補題 10.3 (ポアソン分布の再生性) 独立確率変数 \\(X\\sim \\mathrm{Poisson}(\\lambda_0)\\) と \\(Y\\sim \\mathrm{Poisson}(\\lambda_1)\\) について \\(X+Y\\sim \\mathrm{Poisson}(\\lambda_0+\\lambda_1)\\).\n\n\n証明. \\[\\begin{align*}\n\\varphi_X(t) &= \\mathrm{e}^{\\lambda_0(\\mathrm{e}^{it}-1)}&\n\\varphi_Y(t) &= \\mathrm{e}^{\\lambda_1(\\mathrm{e}^{it}-1)}&\n\\end{align*}\\] より、 \\[\\begin{align*}\n\\varphi_{X+Y}(t) &= \\varphi_X(t)\\varphi_Y(t) =\n\\mathrm{e}^{(\\lambda_0+\\lambda_1)(\\mathrm{e}^{it}-1)}&\n\\end{align*}\\] であるが、これは \\(\\mathrm{Poisson}(\\lambda_0+\\lambda_1)\\) の特性関数である。 よって、定理 10.3 より \\(X+Y\\sim \\mathrm{Poisson}(\\lambda_0+\\lambda_1)\\).",
     "crumbs": [
       "漸近論",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>正規分布と中心極限定理</span>"
@@ -641,7 +641,7 @@
     "href": "clt.html#中心極限定理の証明",
     "title": "10  正規分布と中心極限定理",
     "section": "10.5 中心極限定理の証明",
-    "text": "10.5 中心極限定理の証明",
+    "text": "10.5 中心極限定理の証明\n中心極限定理の証明の概要を紹介する。\n定理 10.3 は特性関数が確率分布と一対一に対応していることを主張していた。\n\n定理 10.4 (レヴィの連続性定理) 確率変数の列 \\((X_n)_{n=1,2,\\dotsc,}\\) を考える。これらの確率変数は確率空間 \\((\\Omega,\\,P)\\) を共有している必要はない(同時確率を考えるわけではないので)。 確率変数列の特性関数列 \\((\\varphi_{X_n})_{n=1,2,\\dotsc}\\) が各点収束すると仮定する。 このとき、\n\\[\\begin{align*}\n\\varphi(t) &\\coloneqq \\lim_{n\\to\\infty} \\varphi_{X_n}(t).\n\\end{align*}\\]\nとおくと、ある確率変数 \\(X\\) が存在し、\\(\\varphi_X(t) = \\varphi(t)\\) であり、\\((X_n)_n\\) は \\(X\\) に法則収束する。\n\n\n定理 10.5 (テイラーの定理) 実関数 \\(f\\colon \\mathbb{R}\\to\\mathbb{R}\\) が \\(a\\in\\mathbb{R}\\) で \\(k\\ge 1\\) 回微分可能なとき、ある関数 \\(h\\colon\\mathbb{R}\\to\\mathbb{R}\\) で \\(\\lim_{x\\to a}h(x) = 0\\) であるものが存在し、 \\[\\begin{align*}\nf(x) &= \\sum_{s=0}^k\\frac{f^{(s)}(a)}{s!}(x-a)^s + h(x)(x-a)^k.\n\\end{align*}\\]\n\n\n証明 (中心極限定理の証明). 定理 10.4 より \\[\\begin{align*}\n\\lim_{N\\to\\infty} \\varphi_{\\frac{\\sum_k Y_k}{\\sqrt{N}}}(t) &= \\varphi_Z(t) = \\mathrm{e}^{-\\frac{t^2}2}\n\\end{align*}\\] を示せば十分である。\n\\[\\begin{align*}\n\\varphi_{\\frac{\\sum_k Y_k}{\\sqrt{N}}}(t)\n&= \\varphi_{\\sum_k Y_k}\\left(\\frac{t}{\\sqrt{N}}\\right)\\\\\n&= \\varphi_{Y}\\left(\\frac{t}{\\sqrt{N}}\\right)^N\\\\\n&= \\left(\\varphi_Y(0) + \\varphi'_Y(0)\\frac{t}{\\sqrt{N}} + \\frac{\\varphi''_Y(0)}2 \\left(\\frac{t}{\\sqrt{N}}\\right)^2 + o\\left(\\frac{1}{N}\\right)\\right)^N\\\\\n&= \\left(1 - \\frac{1}2 \\frac{t^2}{N} + o\\left(\\frac{1}{N}\\right)\\right)^N\\\\\n&\\to \\mathrm{e}^{-\\frac{t^2}2}.\n\\end{align*}\\]",
     "crumbs": [
       "漸近論",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>正規分布と中心極限定理</span>"
