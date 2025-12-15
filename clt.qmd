@@ -1,9 +1,104 @@
 # 正規分布と中心極限定理
 
-## 中心極限定理
 
+## 確率変数の収束
+
+
+::: {#def-converge-prob}
+### 確率変数の確率収束
+共通の確率空間 $(\Omega,\,P)$ 上の確率変数の列 $(X_n)_{n=1,2,\dotsc,}$ を考える。
+確率変数の列 $(X_n)_{n=1,2,\dotsc,}$ が同じ確率空間上の確率変数 $X$ に**確率収束**する $\defiff$
+\begin{align*}
+\lim_{n\to\infty} \Pr\left(\left|X_n-X\right|>\epsilon\right)= 0\qquad\forall\epsilon>0
+\end{align*}
+
+また、このとき $X_n\overset{p}{\longrightarrow} X$ と表す。
+:::
+
+この確率収束を使うと大数の弱法則は以下のように表せる。
+
+::: {#thm-wll}
+### 大数の弱法則(分散有限を仮定)
+
+確率変数 $X$ が**分散を持つ**とする。
+確率変数 $X_1,\dotsc,X_N$ が独立で $X$ と同じ分布に従うとする。
+このとき、
+\begin{align*}
+\frac1N\sum_{k=1}^N X_k\overset{p}{\longrightarrow}\expt{X}\qquad\text{as } N\to\infty.
+\end{align*}
+:::
+
+一方でより弱い収束の定義に法則収束という概念がある。
+
+::: {#def-converge-law}
+### 確率変数の法則収束
+確率変数の列 $(X_n)_{n=1,2,\dotsc,}$ を考える。これらの確率変数は確率空間 $(\Omega,\,P)$ を共有している必要はない(同時確率を考えるわけではないので)。
+確率変数の列 $(X_n)_{n=1,2,\dotsc,}$ が確率変数 $X$ に**法則収束**する $\defiff$
+$X$ の累積分布関数 $F_X$ のすべての連続点 $x\in\mathbb{R}$ について
+\begin{align*}
+\lim_{n\to\infty} F_{X_n}(x)= F_X(x)
+\end{align*}
+
+また、このとき $X_n\overset{d}{\to} X$ と表す。
+:::
+
+::: {#lem-converge-law}
+共通の確率空間 $(\Omega,\,P)$ 上の確率変数の列 $(X_n)_{n=1,2,\dotsc,}$ と確率変数 $X$ について、
+\begin{align*}
+X_n\overset{p}{\longrightarrow} X &\implies
+X_n\overset{d}{\longrightarrow} X.
+\end{align*}
+:::
+::: {.proof}
+$X_n\overset{p}{\longrightarrow}X$ を仮定する。
+つまり、
+\begin{align*}
+\lim_{n\to\infty} \Pr\left(\left|X_n-X\right|>\epsilon\right)= 0\qquad\forall\epsilon>0
+\end{align*}
+である。このとき、
+\begin{align*}
+F_{X_n}(x)&=\Pr(X_n\le x)\\
+&\le\Pr(X\le x+\epsilon\cup|X_n-X|>\epsilon)\\
+&\le\Pr(X\le x+\epsilon) + \Pr(|X_n-X|>\epsilon)
+\end{align*}
+よって、
+\begin{align*}
+\limsup_{n\to\infty} F_{X_n}(x)&\le F_X(x+\epsilon)\qquad\forall x\in\mathbb{R}\quad\epsilon>0.
+\end{align*}
+同様に $X_n$ と $X$ を逆にすると、
+\begin{align*}
+F_{X}(x)&=\Pr(X\le x)\\
+&\le\Pr(X_n\le x+\epsilon\cup|X_n-X|>\epsilon)\\
+&\le\Pr(X_n\le x+\epsilon) + \Pr(|X_n-X|>\epsilon)
+\end{align*}
+よって、
+\begin{align*}
+\liminf_{n\to\infty} F_{X_n}(x+\epsilon)&\ge F_X(x)\qquad\forall x\in\mathbb{R}
+\end{align*}
+つまり
+\begin{align*}
+\liminf_{n\to\infty} F_{X_n}(x)&\ge F_X(x-\epsilon)\qquad\forall x\in\mathbb{R}\quad\epsilon>0.
+\end{align*}
+これらのことから、
+\begin{align*}
+F_X(x-\epsilon)&\le \liminf_{n\to\infty} F_{X_n}(x) \le\limsup_{n\to\infty} F_{X_n}(x) \le F_X(x+\epsilon)
+\qquad\forall x\in\mathbb{R}\quad\epsilon>0.
+\end{align*}
+よって $F_X$ が $x$ で連続なとき、$\epsilon\to 0$ 極限を取ることで、
+\begin{align*}
+F_X(x)&\le \liminf_{n\to\infty} F_{X_n}(x) \le\limsup_{n\to\infty} F_{X_n}(x) \le F_X(x)
+\end{align*}
+となり、
+\begin{align*}
+\lim_{n\to\infty} F_{X_n}(x) = F_X(x)
+\end{align*}
+である。
+:::
+
+## 中心極限定理
 大数の法則により $\frac1N\sum_{k=1}^N X_k$ は期待値周辺に集中することが分かる。
 また、クラメールの定理によりその集中のスピードも精密に評価することができる。
+
 一方で期待値周辺の挙動を
 \begin{align*}
 \frac1{\sqrt{N}}\left(\sum_{k=1}^N X_k-N\expt{X}\right)
@@ -134,5 +229,49 @@ $X+Y\sim \mathrm{Poisson}(\lambda_0+\lambda_1)$.
 $X+Y\sim \mathrm{Poisson}(\lambda_0+\lambda_1)$.
 :::
 
-## 連続性定理
 ## 中心極限定理の証明
+
+中心極限定理の証明の概要を紹介する。
+
+@thm-cf は特性関数が確率分布と一対一に対応していることを主張していた。
+
+:::{#thm-levy}
+### レヴィの連続性定理
+
+確率変数の列 $(X_n)_{n=1,2,\dotsc,}$ を考える。これらの確率変数は確率空間 $(\Omega,\,P)$ を共有している必要はない(同時確率を考えるわけではないので)。
+確率変数列の特性関数列 $(\varphi_{X_n})_{n=1,2,\dotsc}$ が各点収束すると仮定する。
+このとき、
+
+\begin{align*}
+\varphi(t) &\coloneqq \lim_{n\to\infty} \varphi_{X_n}(t).
+\end{align*}
+
+とおくと、ある確率変数 $X$ が存在し、$\varphi_X(t) = \varphi(t)$ であり、$(X_n)_n$ は $X$ に法則収束する。
+:::
+
+:::{#thm-taylor}
+### テイラーの定理
+実関数 $f\colon \mathbb{R}\to\mathbb{R}$ が $a\in\mathbb{R}$ で $k\ge 1$ 回微分可能なとき、ある関数 $h\colon\mathbb{R}\to\mathbb{R}$ で $\lim_{x\to a}h(x) = 0$ であるものが存在し、
+\begin{align*}
+f(x) &= \sum_{s=0}^k\frac{f^{(s)}(a)}{s!}(x-a)^s + h(x)(x-a)^k.
+\end{align*}
+:::
+
+:::{.proof}
+### 中心極限定理の証明
+
+@thm-levy より
+\begin{align*}
+\lim_{N\to\infty} \varphi_{\frac{\sum_k Y_k}{\sqrt{N}}}(t) &= \varphi_Z(t) = \mathrm{e}^{-\frac{t^2}2}
+\end{align*}
+を示せば十分である。
+
+\begin{align*}
+\varphi_{\frac{\sum_k Y_k}{\sqrt{N}}}(t)
+&= \varphi_{\sum_k Y_k}\left(\frac{t}{\sqrt{N}}\right)\\
+&= \varphi_{Y}\left(\frac{t}{\sqrt{N}}\right)^N\\
+&= \left(\varphi_Y(0) + \varphi'_Y(0)\frac{t}{\sqrt{N}} + \frac{\varphi''_Y(0)}2 \left(\frac{t}{\sqrt{N}}\right)^2 + o\left(\frac{1}{N}\right)\right)^N\\
+&= \left(1 - \frac{1}2 \frac{t^2}{N} + o\left(\frac{1}{N}\right)\right)^N\\
+&\to \mathrm{e}^{-\frac{t^2}2}.
+\end{align*}
+:::
