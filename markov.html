@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; ベイズ推定 – 確率・統計入門</title>
+<title>12&nbsp; マルコフ連鎖 – 確率・統計入門</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./testings.html" rel="next">
-<link href="./moments.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./sanov.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -284,7 +284,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bayes.html">統計学</a></li><li class="breadcrumb-item"><a href="./bayes.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ベイズ推定</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./markov.html">マルコフ連鎖</a></li><li class="breadcrumb-item"><a href="./markov.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">マルコフ連鎖</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
@@ -377,7 +377,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bayes.html" class="sidebar-item-text sidebar-link active">
+  <a href="./bayes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ベイズ推定</span></span></a>
   </div>
 </li>
@@ -429,7 +429,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./markov.html" class="sidebar-item-text sidebar-link">
+  <a href="./markov.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">マルコフ連鎖</span></span></a>
   </div>
 </li>
@@ -451,10 +451,9 @@ window.Quarto = {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#最大事後確率推定" id="toc-最大事後確率推定" class="nav-link active" data-scroll-target="#最大事後確率推定"><span class="header-section-number">7.1</span> 最大事後確率推定</a></li>
-  <li><a href="#最尤推定" id="toc-最尤推定" class="nav-link" data-scroll-target="#最尤推定"><span class="header-section-number">7.2</span> 最尤推定</a></li>
-  <li><a href="#全変動距離" id="toc-全変動距離" class="nav-link" data-scroll-target="#全変動距離"><span class="header-section-number">7.3</span> 全変動距離</a></li>
-  <li><a href="#損失関数" id="toc-損失関数" class="nav-link" data-scroll-target="#損失関数"><span class="header-section-number">7.4</span> 損失関数</a></li>
+  <li><a href="#確率過程とマルコフ連鎖" id="toc-確率過程とマルコフ連鎖" class="nav-link active" data-scroll-target="#確率過程とマルコフ連鎖"><span class="header-section-number">12.1</span> 確率過程とマルコフ連鎖</a></li>
+  <li><a href="#グラフ上のランダムウォーク" id="toc-グラフ上のランダムウォーク" class="nav-link" data-scroll-target="#グラフ上のランダムウォーク"><span class="header-section-number">12.2</span> グラフ上のランダムウォーク</a></li>
+  <li><a href="#確率の計算アルゴリズム" id="toc-確率の計算アルゴリズム" class="nav-link" data-scroll-target="#確率の計算アルゴリズム"><span class="header-section-number">12.3</span> 確率の計算アルゴリズム</a></li>
   </ul>
 </nav>
     </div>
@@ -462,9 +461,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bayes.html">統計学</a></li><li class="breadcrumb-item"><a href="./bayes.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ベイズ推定</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./markov.html">マルコフ連鎖</a></li><li class="breadcrumb-item"><a href="./markov.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">マルコフ連鎖</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ベイズ推定</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">マルコフ連鎖</span></h1>
 </div>
 
 
@@ -481,182 +480,67 @@ window.Quarto = {
 </header>
 
 
-<p>統計的推論とは現実の推定問題を確率論に基づきモデル化し、誤り確率を最小化するように推論する方法論である。 統計的推論には大きく分けて二種類の流派がある。</p>
-<ul>
-<li>ベイズ主義: 推論する対象の分布(事前分布)を仮定する。</li>
-<li>頻度主義: 推論する対象の分布(事前分布)を仮定しない。</li>
-</ul>
-<p>例えば統計的推論は以下のような問題に適用されている。</p>
-<section id="最大事後確率推定" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="最大事後確率推定"><span class="header-section-number">7.1</span> 最大事後確率推定</h2>
-<p>データが取り得る値の集合を <span class="math inline">\(\mathcal{X}\)</span> とし、分布のパラメータの取り得る値の集合を <span class="math inline">\(\Theta\)</span> とする。 簡単のため、<span class="math inline">\(\mathcal{X}\)</span> と <span class="math inline">\(\Theta\)</span> は高々可算集合とする。 データ <span class="math inline">\(x\in\mathcal{X}\)</span> からパラメータ <span class="math inline">\(\theta\in\Theta\)</span> を推定する問題を考える。 このとき、<span class="math inline">\(x\)</span> と <span class="math inline">\(\theta\)</span> が何かしらの確率分布に従っていると仮定する。 パラメータ <span class="math inline">\(\theta\)</span> に対する <span class="math inline">\(x\)</span> の確率質量関数を <span class="math inline">\(p(x\mid \theta)\)</span> と表す。 また、パラメータ <span class="math inline">\(\theta\)</span> の確率質量関数を <span class="math inline">\(\pi(\theta)\)</span> と表す。 つまり、パラメータ <span class="math inline">\(\theta\in\Theta\)</span> とデータ <span class="math inline">\(x\in\mathcal{X}\)</span> が選ばれる確率は <span class="math display">\[\begin{align*}
-\pi(\theta) p(x\mid\theta)
-\end{align*}\]</span> である。 また、 <span class="math display">\[\begin{align*}
-p(x) &amp;= \sum_{\theta\in\Theta}\pi(\theta)p(x\mid\theta),&amp;
-p(\theta\mid x)&amp;\coloneqq \frac{\pi(\theta)p(x\mid\theta)}{p(x)}
-\end{align*}\]</span> と定義する。 ベイズ推定の文脈では</p>
-<ul>
-<li><span class="math inline">\(\pi(\theta)\colon\)</span> 事前確率</li>
-<li><span class="math inline">\(p(x\mid \theta)\colon\)</span> 尤度</li>
-<li><span class="math inline">\(p(\theta\mid x)\colon\)</span> 事後確率</li>
-</ul>
-<p>と呼ぶ。</p>
-<p>得られたデータ <span class="math inline">\(x\in\mathcal{X}\)</span> からパラメータ <span class="math inline">\(\theta\in\Theta\)</span> を推定する関数 <span class="math inline">\(\widehat{\theta}\colon \mathcal{X}\to\Theta\)</span> を<strong>推定量 (estimator)</strong>もしくは推定関数という。 推定量 <span class="math inline">\(\widehat{\theta}\)</span> の誤り確率を <span class="math display">\[\begin{align*}
-P_{\mathrm{err}}(\widehat{\theta})&amp;\coloneqq
-\sum_{\theta\in\Theta} \pi(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) \,\mathbb{I}\{\widehat{\theta}(x)\ne\theta\}
-\end{align*}\]</span> と定義する。 このとき、 <span class="math display">\[\begin{align*}
-P_{\mathrm{err}}(\widehat{\theta})
-&amp;= \sum_{\theta\in\Theta} \pi(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) \,\mathbb{I}\{\widehat{\theta}(x)\ne\theta\}\\
-&amp;= \sum_{\theta\in\Theta} \pi(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta) (1-\mathbb{I}\{\widehat{\theta}(x)=\theta\})\\
-&amp;= 1- \sum_{\theta\in\Theta} \pi(\theta) \sum_{x\in\mathcal{X}} p(x\mid\theta)\, \mathbb{I}\{\widehat{\theta}(x)=\theta\}\\
-&amp;= 1- \sum_{x\in\mathcal{X}}\sum_{\theta\in\Theta} \pi(\theta)  p(x\mid\theta)\, \mathbb{I}\{\widehat{\theta}(x)=\theta\}\\
-&amp;= 1- \sum_{x\in\mathcal{X}}\pi\left(\widehat{\theta}(x)\right)  p\left(x\mid\widehat{\theta}(x)\right)\\
-&amp;\ge 1- \sum_{x\in\mathcal{X}} \max_{\theta\in\Theta} \pi\left(\theta\right)  p\left(x\mid\theta\right)
-\end{align*}\]</span> と下から抑えることができ、 <span class="math display">\[\begin{align*}
-\widehat{\theta}_{\mathrm{MAP}}(x) &amp;\coloneqq
-  \arg\max_{\theta\in\Theta}p\left(\theta\mid x\right)\\
-&amp;= \arg\max_{\theta\in\Theta}p\left(\theta\mid x\right)  p\left(x\right)\\
-&amp;= \arg\max_{\theta\in\Theta}\pi\left(\theta\right)  p\left(x\mid\theta\right)\\
-\end{align*}\]</span> という推定量により等号が達成される。 この推定量を最大事後確率(maximum a posteriori; MAP)推定量と呼ぶ。</p>
-</section>
-<section id="最尤推定" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="最尤推定"><span class="header-section-number">7.2</span> 最尤推定</h2>
-<p>MAP推定は誤り確率を最小化する推定方法であるが、事前確率 <span class="math inline">\(\pi(\theta)\)</span> を仮定しないと用いることができない。 一方で尤度を最大化する推定量 <span class="math display">\[\begin{align*}
-\widehat{\theta}_{\mathrm{ML}}(x) &amp;\coloneqq
-  \arg\max_{\theta\in\Theta}p\left(x\mid\theta\right)
-\end{align*}\]</span> を最尤推定(maximam a priori; ML)量という。 <span class="math inline">\(\Theta\)</span> が有限集合で、事前確率が一様分布 <span class="math inline">\(\pi(\theta)=\frac1{|\Theta|}\)</span> のとき、最尤推定は最大事後確率推定と一致する。</p>
-</section>
-<section id="全変動距離" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="全変動距離"><span class="header-section-number">7.3</span> 全変動距離</h2>
-<p>特にパラメータが二値である場合を考える。この章では <span class="math inline">\(\Theta=\{0,1\}\)</span> とする。 また、 <span class="math display">\[\begin{align*}
-p^{(0)}(x) &amp;\coloneqq p(x\mid 0)&amp;
-p^{(1)}(x) &amp;\coloneqq p(x\mid 1)
-\end{align*}\]</span> とする。 このとき、 <span class="math display">\[\begin{align*}
-P_{\mathrm{err}}(\widehat{\theta}_\mathrm{MAP})
-&amp;= 1- \sum_{x\in\mathcal{X}} \max_{\theta\in\{0,1\}} \pi\left(\theta\right)  p\left(x\mid\theta\right)\\
-&amp;= 1- \sum_{x\in\mathcal{X}} \max \left\{\pi(0)  p^{(0)}\left(x\right),\,\pi(1)  p^{(1)}\left(x\right)\right\}\\
-\end{align*}\]</span> である。 ここで、 <span class="math display">\[\begin{align*}
-\begin{split}
-\max\{a,b\} - \min\{a,b\} &amp;= |\,a-b\,|\\
-\max\{a,b\} + \min\{a,b\} &amp;= a+b
-\end{split}
-\qquad\forall a,b\in\mathbb{R}
-\end{align*}\]</span> であるので、 <span class="math display">\[\begin{align*}
-\max\{a,b\} &amp;= \frac12(a+b+|\,a-b\,|)\qquad\forall a,b\in\mathbb{R}.
+<section id="確率過程とマルコフ連鎖" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="確率過程とマルコフ連鎖"><span class="header-section-number">12.1</span> 確率過程とマルコフ連鎖</h2>
+<p>共通の確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の長さ無限の確率変数列 <span class="math inline">\(X_0,X_1,X_2,\dotsc\)</span> を<strong>離散時間確率過程</strong>という。 各時刻 <span class="math inline">\(t=0,1,2,\dotsc,\)</span> について、 <span class="math inline">\(X_t\)</span> を時刻 <span class="math inline">\(t\)</span> における状態と考える。 離散時間確率過程 <span class="math inline">\(X_0,X_1,\dotsc,\)</span> の各確率変数の像が<strong>有限集合</strong> <span class="math inline">\(S\)</span> であり、 任意の <span class="math inline">\(t\in\mathbb{Z}_{\ge 0}\)</span> と <span class="math inline">\(x_0,\dotsc, x_{t+1}\in S\)</span> について <span class="math display">\[\begin{align*}
+\Pr(X_{t+1} = x_{t+1}\mid X_{t} = x_t,\dotsc,\,X_1=x_1,\,X_0=x_0)
+&amp;= \Pr(X_{t+1} = x\mid X_{t} = x_t)
+\end{align*}\]</span> を満たすとき、それを<strong>有限状態マルコフ連鎖</strong>という。</p>
+<p>さらに、 <span class="math display">\[\begin{align*}
+\Pr(X_{t+1} = x_{t+1}\mid X_{t} = x_t)
+\end{align*}\]</span> が <span class="math inline">\(t\)</span> に依存しないとき<strong>時間的に均一な有限状態マルコフ連鎖</strong>という。</p>
+<p>以下では時間的に均一な有限状態マルコフ連鎖を考える。 有限状態マルコフ連鎖の場合、状態 <span class="math inline">\(S\)</span> は実数の有限部分集合と考えるより、単に有限集合と考えた方が自然な場合も多い。 例えば <span class="math inline">\(S = \{ 晴れ、曇り、雨\}\)</span> や。 このとき、状態集合を便宜上 <span class="math inline">\(S=\{1,2,\dotsc,n\}\)</span> とおき、 <span class="math display">\[\begin{align*}
+p_{i,j} &amp;= \Pr(X_{t+1} = j\mid X_{t} = i)
+\end{align*}\]</span> とする。 この <span class="math inline">\(p_{i,j}\)</span> を <span class="math inline">\((i,j)\)</span> 成分に持つ <span class="math inline">\(n\times n\)</span> 行列 <span class="math inline">\(T\)</span> を<strong>マルコフ遷移行列</strong>という。 マルコフ遷移行列は非負行列であり、行和が1である。 初期確率ベクトル <span class="math inline">\(\pi\)</span> を <span class="math inline">\(\pi_i = \Pr(X_0=i)\)</span> を満たす行ベクトルとする。 <span class="math display">\[\begin{align*}
+\Pr(X_1=j) &amp;= \sum_{i} \Pr(X_0=i) \Pr(X_1=j\mid X_0=i)\\
+&amp;=\sum_{i} \pi_i\, p_{i, j}\\
+&amp;=(\pi T)_j
 \end{align*}\]</span> よって、 <span class="math display">\[\begin{align*}
-%\max_{\theta\in\{0,1\}} \{\pi\left(\theta\right)  p\left(x\mid\theta\right)\}
-\max \left\{\pi(0)  p^{(0)}\left(x\right),\,\pi(1)  p^{(1)}\left(x\right)\right\}
-&amp;= \frac12\left(p(x) +
-\left|\,\pi\left(0\right)  p^{(0)}\left(x\right) - \pi\left(1\right)  p^{(1)}\left(x\right) \,\right|\right)
-\end{align*}\]</span> よって、 <span class="math display">\[\begin{align*}
-P_{\mathrm{err}}(\widehat{\theta}_\mathrm{MAP})
-&amp;= 1- \sum_{x\in\mathcal{X}} \max \left\{\pi(0)  p^{(0)}\left(x\right),\,\pi(1)  p^{(1)}\left(x\right)\right\}\\
-&amp;= 1- \sum_{x\in\mathcal{X}} \frac12\left(p(x) +
-\left|\,\pi\left(0\right)  p^{(0)}\left(x\right) - \pi\left(1\right)  p^{(1)}\left(x\right) \,\right|\right)\\
-&amp;= 1-  \frac12\left(1 +
-\sum_{x\in\mathcal{X}}\left|\,\pi\left(0\right)  p^{(0)}\left(x\right) - \pi\left(1\right)  p^{(1)}\left(x\right) \,\right|\right)\\
-&amp;= \frac12\left(1 -
-\sum_{x\in\mathcal{X}}\left|\,\pi\left(0\right)  p^{(0)}\left(x\right) - \pi\left(1\right)  p^{(1)}\left(x\right) \,\right|\right)\\
-\end{align*}\]</span></p>
-<div id="def-tv" class="theorem definition">
-<p><span class="theorem-title"><strong>定義 7.1 (全変動距離)</strong></span> 高々可算集合 <span class="math inline">\(\mathcal{X}\)</span> 上の関数 <span class="math inline">\(f\)</span> について、 <span class="math display">\[\begin{align*}
-\|f\|_1 &amp;\coloneqq \sum_{x\in\mathcal{X}} \left|\, f(x)\,\right|
-\end{align*}\]</span> と定義する。 また、<span class="math inline">\(\mathcal{X}\)</span> 上の確率質量関数 <span class="math inline">\(p^{(0)}\)</span>, <span class="math inline">\(p^{(1)}\)</span> について、 <span class="math display">\[\begin{align*}
-d_{\mathrm{TV}}(p^{(0)},\, p^{(1)}) &amp;\coloneqq \frac12\left\|\, p^{(0)}-p^{(1)}\,\right\|_1
-\end{align*}\]</span> を <span class="math inline">\(p^{(0)}\)</span> と <span class="math inline">\(p^{(1)}\)</span> の<strong>全変動距離</strong>という。</p>
-</div>
-<p>これらの記法を用いると、 <span class="math display">\[\begin{align*}
-P_{\mathrm{err}}(\widehat{\theta}_\mathrm{MAP})&amp;=\frac12\left(1-\left\|\pi(0)p^{(0)} - \pi(1)p^{(1)}\right\|_1\right)
-\end{align*}\]</span> と表せる。また、<span class="math inline">\(\pi(0)=\pi(1)=1/2\)</span> のとき、 <span class="math display">\[\begin{align*}
-P_{\mathrm{err}}(\widehat{\theta}_\mathrm{MAP})&amp;=\frac12\left(1-d_{\mathrm{TV}}(p^{(0)},\,p^{(1)})\right)
+\Pr(X_n=j) &amp;= (\pi T^n)_j
 \end{align*}\]</span> である。</p>
-<!--
-## 独立なサンプルからの推定
-共通のパラメータを持つ分布からデータを独立に $n$ 回サンプルする場合を考える。
-このとき、尤度関数は
-\begin{align*}
-p_n(x_1,\dotsc,x_n\mid\theta)&\coloneqq\prod_{i=1}^n p(x_i\mid \theta)
-\end{align*}
-で与えられる。
-確率質量関数 $p^{(0)}$ と $p^{(1)}$ について、$d_{\mathrm{TV}}(p^{(0)}_n,\,p^{(1)}_n)$ の定義には $\mathcal{X}^n$ 上の和が表われ、それを計算することは難しい。
-そのため、数学的に扱い易い距離を導入する。
-
-:::{#def-Hellinger}
-## ヘリンガー距離とバタチャリヤ係数
-また、$\mathcal{X}$ 上の確率質量関数 $p^{(0)}$, $p^{(1)}$ について、
-\begin{align*}
-d_{\mathrm{H}}(p^{(0)},\, p^{(1)}) &\coloneqq \sqrt{\frac12\sum_{x\in\mathcal{X}}\left(\sqrt{p^{(0)}(x)} - \sqrt{p^{(1)}(x)}\right)^2}\\
-&=\sqrt{1 - \sum_{x\in\mathcal{X}}\sqrt{p^{(0)}(x)p^{(1)}(x)}}\\
-\end{align*}
-を**ヘリンガー距離**という。
-
-また、
-\begin{align*}
-\mathrm{BC}(p^{(0)},\,p^{(1)})&\coloneqq\sum_{x\in\mathcal{X}} \sqrt{p^{(0)}(x)p^{(1)}(x)}
-\end{align*}
-を**バタチャリヤ係数**という。
-:::
-
-定義より
-\begin{align*}
-d_{\mathrm{H}}(p^{(0)},\,p^{(1)}) &=\sqrt{1-\mathrm{BC}(p^{(0)},\,p^{(1)})}
-\end{align*}
-が成り立つ。
-
-バタチャリヤ係数は
-\begin{align*}
-\mathrm{BC}(p^{(0)}_n,\, p^{(1)}_n)&=\sum_{x_1,\dotsc,x_n\in\mathcal{X}} \sqrt{p^{(0)}_n(x_1,\dotsc,x_n)p^{(1)}_n(x_1,\dotsc,x_n)}\\
-&=\sum_{x_1,\dotsc,x_n\in\mathcal{X}} \sqrt{\prod_{k=1}^np^{(0)}(x_k) \prod_{k=1}^np^{(1)}(x_k)}\\
-&=\sum_{x_1,\dotsc,x_n\in\mathcal{X}} \prod_{k=1}^n\sqrt{p^{(0)}(x_k) p^{(1)}(x_k)}\\
-&=\left(\sum_{x\in\mathcal{X}} \sqrt{p^{(0)}(x) p^{(1)}(x)}\right)^n\\
-&=
-\mathrm{BC}(p^{(0)},\,p^{(1)})^n
-\end{align*}
-である。
-
-::: {#lem-tv-h}
-\begin{align*}
-d_{\mathrm{H}}(p^{(0)},\, p^{(1)})^2
-\le d_{\mathrm{TV}}(p^{(0)},\, p^{(1)})\le
-\sqrt{2} d_{\mathrm{H}}(p^{(0)},\, p^{(1)})
-\end{align*}
-:::
--->
+<p>この確率について、</p>
+<ol type="1">
+<li>もっと単純な数式で表す。</li>
+<li>効率的なアルゴリズムを与える。</li>
+<li><span class="math inline">\(n\to\infty\)</span> の漸近</li>
+</ol>
+<p>遷移行列 <span class="math inline">\(T\)</span> が <span class="math inline">\(T=UDU^{-1}\)</span> と対角化できるとき、</p>
 </section>
-<section id="損失関数" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="損失関数"><span class="header-section-number">7.4</span> 損失関数</h2>
-<p>パラメータが取り得る値の集合が実数の部分集合 <span class="math inline">\(\Theta\subseteq\mathbb{R}\)</span> であると仮定する。 真のパラメータとその推定値の間の「誤差」を表す関数 <span class="math inline">\(L\colon\Theta\times\mathbb{R}\to\mathbb{R}_{\ge 0}\)</span> を<strong>損失関数</strong>と呼ぶ。 また、<strong>期待損失</strong> <span class="math inline">\(R\colon\Theta\times(\mathcal{X}\to\mathbb{R})\to\mathbb{R}_{\ge 0}\)</span> を <span class="math display">\[\begin{align*}
-R(\theta,\,\widehat{\theta}) &amp;\coloneqq \expt{L(\theta,\,\widehat{\theta}(X))\mid\theta}\\
-&amp;=\sum_{x\in\mathcal{X}} L(\theta,\,\widehat{\theta}(x)) p(x\mid\theta)
-\end{align*}\]</span> と定義する。 また、<strong>ベイズリスク</strong> <span class="math inline">\(\rho\colon \mathcal{P}(\Theta)\times(\mathcal{X}\to\mathbb{R})\to\mathbb{R}_{\ge 0}\)</span> を <span class="math display">\[\begin{align*}
-\rho(\pi, \widehat{\theta})&amp;\coloneqq  \expt{L(\theta,\,\widehat{\theta}(X))}\\
-&amp;=\sum_{\theta\in\Theta}\sum_{x\in\mathcal{X}} L(\theta,\,\widehat{\theta}(x)) p(x\mid\theta)\pi(\theta)
-\end{align*}\]</span> と定義する。 <span class="math inline">\(\Theta\subseteq\mathbb{R}\)</span> が非可算無限集合の場合は <span class="math inline">\(\pi(\theta)\)</span> を確率密度関数とし、 <span class="math display">\[\begin{align*}
-\rho(\pi, \widehat{\theta})&amp;\coloneqq  \expt{L(\theta,\,\widehat{\theta}(X))}\\
-&amp;=\int\sum_{x\in\mathcal{X}} L(\theta,\,\widehat{\theta}(x)) p(x\mid\theta)\pi(\theta)\mathrm{d}\theta
-\end{align*}\]</span> と定義する。 このとき、 <span class="math inline">\(p(x\mid\theta)\)</span> は条件付き確率というより、<span class="math inline">\(\theta\in\Theta\)</span> というパラメータを持った確率質量関数(<span class="math inline">\(\theta\in\Theta\)</span> から定まる確率質量関数)と理解すれば十分である。</p>
-<p>例えば <span class="math inline">\(\Theta\)</span> が高々可算集合で、 <span class="math display">\[\begin{align*}
-L(\theta,\,\theta') &amp;= \mathbb{I}\{\theta\ne \theta'\}\qquad\forall\theta,\theta'\in\Theta
-\end{align*}\]</span> と定義すると、ベイズリスク <span class="math inline">\(\rho(\pi, \widehat{\theta})\)</span> は推定量 <span class="math inline">\(\widehat{\theta}\)</span> の誤り確率 <span class="math inline">\(P_\mathrm{err}(\widehat{\theta})\)</span> である。</p>
-<p>その他の重要な損失関数の例として二乗誤差がある。 <span class="math display">\[\begin{align*}
-L(\theta,\,\theta') &amp;= (\theta-\theta')^2.
+<section id="グラフ上のランダムウォーク" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="グラフ上のランダムウォーク"><span class="header-section-number">12.2</span> グラフ上のランダムウォーク</h2>
+<div id="def-graph" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 12.1 (グラフ)</strong></span> 有限集合 <span class="math inline">\(V\)</span> と集合 <span class="math inline">\(E\subseteq \{\{u,v\}\mid u,\, v\in V, u\ne v\}\)</span> のペア <span class="math inline">\(G=(V,\,E)\)</span> を(無向単純)グラフという。 <span class="math inline">\(V\)</span> の元を<strong>頂点</strong>、<span class="math inline">\(E\)</span> の元を<strong>辺</strong>と呼ぶ。</p>
+</div>
+<p>グラフ <span class="math inline">\(G=(V,\,E)\)</span> と <span class="math inline">\(v\in V\)</span> について、 <span class="math display">\[\begin{align*}
+d_v&amp;=|\{u\in V\mid \{u,v\}\in E\}|
+\end{align*}\]</span> を <span class="math inline">\(v\)</span> の<strong>次数</strong>という。 次数0の頂点を<strong>孤立頂点</strong>という。</p>
+<div id="def-rw" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 12.2 (グラフ上のランダムウォーク)</strong></span> 孤立頂点を持たないグラフ <span class="math inline">\(G=(V=\{1,2,\dotsc,n\},\,E)\)</span> 上のランダムウォークは <span class="math inline">\(S=V\)</span> であり、 任意の初期確率ベクトル <span class="math inline">\(\pi\)</span> と <span class="math display">\[\begin{align*}
+p_{i,j} &amp;= \frac1{d_i}
+\end{align*}\]</span> で定義される。</p>
+</div>
+<div id="lem-rw" class="theorem lemma">
+<p><span class="theorem-title"><strong>補題 12.1</strong></span> グラフ上のランダムウォークの遷移行列は対角化可能であり、固有値はすべて実数である。</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>証明</em>. </span>グラフ <span class="math inline">\(G\)</span> の次数行列を <span class="math display">\[\begin{align*}
+D_{i,j} &amp;= d_i\delta_{i,j}
+\end{align*}\]</span> と定義する。 <span class="math display">\[\begin{align*}
+Q &amp;= \sqrt{D} P \sqrt{D}^{-1}
+\end{align*}\]</span> と</p>
+</div>
+</section>
+<section id="確率の計算アルゴリズム" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="確率の計算アルゴリズム"><span class="header-section-number">12.3</span> 確率の計算アルゴリズム</h2>
+<div id="def-fps" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 12.3 (形式的冪級数)</strong></span> &nbsp;</p>
+</div>
+<p>時刻 <span class="math inline">\(n\)</span> で状態 <span class="math inline">\(j\)</span> の確率 <span class="math display">\[\begin{align*}
+\Pr(X_n=j) &amp;= (\pi T^n)_j
+\end{align*}\]</span> を計算するアルゴリズムを考える。 <span class="math display">\[\begin{align*}
+\Pr(X_n=j) &amp;= (\pi T^n)_j\\
+&amp;= \left( [x^n] \sum_{t\ge 0}\pi T^t x^t\right)_j
 \end{align*}\]</span></p>
-<p>損失関数 <span class="math inline">\(L\)</span> を定めたときに、ベイズリスクを最小化する推定量 <span class="math display">\[\begin{align*}
-\widehat{\theta} &amp;= \arg\min_{\widehat{\theta}} \rho(\pi, \widehat{\theta})\\
-\iff \widehat{\theta}(x) &amp;= \arg\min_{\theta'\in\Theta} \sum_{\theta\in\Theta} L(\theta,\,\theta') p(x\mid\theta)\pi(\theta)\qquad\forall x\in\mathcal{X}\\
-\iff \widehat{\theta}(x) &amp;= \arg\min_{\theta'\in\Theta} \sum_{\theta\in\Theta} L(\theta,\,\theta') p(\theta\mid x)p(x)\qquad\forall x\in\mathcal{X}\\
-\iff \widehat{\theta}(x) &amp;= \arg\min_{\theta'\in\Theta} \sum_{\theta\in\Theta} L(\theta,\,\theta') p(\theta\mid x)\qquad\forall x\in\mathcal{X}\\
-\end{align*}\]</span> ここで、 <span class="math display">\[\begin{align*}
-\expt{L(\theta,\,\theta')\mid x}&amp;=  \sum_{\theta\in\Theta} L(\theta,\,\theta') p(\theta\mid x)\qquad\forall x\in\mathcal{X}
-\end{align*}\]</span> を損失関数の事後平均という。 各 <span class="math inline">\(x\in\mathcal{X}\)</span> について、<span class="math inline">\(\theta'=\widehat{\theta}(x)\)</span> が損失関数の事後平均を最小化するとき、ベイズリスクを最小化する。</p>
-<p>損失関数が <span class="math inline">\(L(\theta,\,\theta')\)</span> が各 <span class="math inline">\(\theta\in\Theta\)</span> を固定したときに <span class="math inline">\(\theta'\)</span> について凸関数であるとき、事後平均 <span class="math inline">\(\expt{L(\theta,\,\theta')\mid x}\)</span> も <span class="math inline">\(\theta'\)</span> について凸関数となる(凸関数の非負倍は凸関数であり、凸関数の和は凸関数なので)。 さらに、<span class="math inline">\(L(\theta,\,\theta')\)</span> が <span class="math inline">\(\theta'\)</span> について微分可能なとき、 <span class="math display">\[\begin{align*}
-\frac{\partial \expt{L(\theta,\,\theta')\mid x}}{\partial\, \theta'}&amp;=  \sum_{\theta\in\Theta} \frac{\partial L(\theta,\,\theta')}{\partial\, \theta'} p(\theta\mid x)=0\qquad\forall x\in\mathcal{X}
-\end{align*}\]</span> を満たす <span class="math inline">\(\theta'\)</span> を <span class="math inline">\(\widehat{\theta}(x)\)</span> として選択するのが最適である。 二乗誤差 <span class="math inline">\(L(\theta,\,\theta')=(\theta-\theta')^2\)</span> のとき、この条件は <span class="math display">\[\begin{align*}
-0&amp;=\sum_{\theta} 2(\theta'-\theta) p(\theta\mid x)
-=2\left(\theta' - \sum_{\theta}\theta p(\theta\mid x)\right)
-\end{align*}\]</span> となり、 <span class="math display">\[\begin{align*}
-\widehat{\theta}(x) &amp;= \sum_\theta \theta p(\theta\mid x)
-\end{align*}\]</span> とするのが最適であることが分かる。この右辺の値をパラメータ <span class="math inline">\(\theta\)</span> の事後平均という。</p>
 
 
 </section>
@@ -1077,13 +961,13 @@ L(\theta,\,\theta') &amp;= (\theta-\theta')^2.
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./moments.html" class="pagination-link" aria-label="期待値、分散、モーメント">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">期待値、分散、モーメント</span></span>
+      <a href="./sanov.html" class="pagination-link" aria-label="サノフの定理、KLダイバージェンス">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">サノフの定理、KLダイバージェンス</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./testings.html" class="pagination-link" aria-label="仮説検定">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">仮説検定</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="参考文献">
+        <span class="nav-page-text">参考文献</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
