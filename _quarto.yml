@@ -29,6 +29,9 @@ book:
         - large_numbers.qmd
         - clt.qmd
         - sanov.qmd
+    - part: "マルコフ連鎖"
+      chapters:
+        - markov.qmd
     - references.qmd
 
 bibliography: references.bib
