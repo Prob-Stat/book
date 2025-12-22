@@ -452,8 +452,10 @@ window.Quarto = {
    
   <ul>
   <li><a href="#確率過程とマルコフ連鎖" id="toc-確率過程とマルコフ連鎖" class="nav-link active" data-scroll-target="#確率過程とマルコフ連鎖"><span class="header-section-number">12.1</span> 確率過程とマルコフ連鎖</a></li>
-  <li><a href="#グラフ上のランダムウォーク" id="toc-グラフ上のランダムウォーク" class="nav-link" data-scroll-target="#グラフ上のランダムウォーク"><span class="header-section-number">12.2</span> グラフ上のランダムウォーク</a></li>
-  <li><a href="#確率の計算アルゴリズム" id="toc-確率の計算アルゴリズム" class="nav-link" data-scroll-target="#確率の計算アルゴリズム"><span class="header-section-number">12.3</span> 確率の計算アルゴリズム</a></li>
+  <li><a href="#確率行列と状態遷移図" id="toc-確率行列と状態遷移図" class="nav-link" data-scroll-target="#確率行列と状態遷移図"><span class="header-section-number">12.2</span> 確率行列と状態遷移図</a></li>
+  <li><a href="#時刻-t-の確率分布" id="toc-時刻-t-の確率分布" class="nav-link" data-scroll-target="#時刻-t-の確率分布"><span class="header-section-number">12.3</span> 時刻 <span class="math inline">\(t\)</span> の確率分布</a></li>
+  <li><a href="#グラフ上のランダムウォーク" id="toc-グラフ上のランダムウォーク" class="nav-link" data-scroll-target="#グラフ上のランダムウォーク"><span class="header-section-number">12.4</span> グラフ上のランダムウォーク</a></li>
+  <li><a href="#確率の計算アルゴリズム" id="toc-確率の計算アルゴリズム" class="nav-link" data-scroll-target="#確率の計算アルゴリズム"><span class="header-section-number">12.5</span> 確率の計算アルゴリズム</a></li>
   </ul>
 </nav>
     </div>
@@ -485,29 +487,175 @@ window.Quarto = {
 <p>共通の確率空間 <span class="math inline">\((\Omega,\,P)\)</span> 上の長さ無限の確率変数列 <span class="math inline">\(X_0,X_1,X_2,\dotsc\)</span> を<strong>離散時間確率過程</strong>という。 各時刻 <span class="math inline">\(t=0,1,2,\dotsc,\)</span> について、 <span class="math inline">\(X_t\)</span> を時刻 <span class="math inline">\(t\)</span> における状態と考える。 離散時間確率過程 <span class="math inline">\(X_0,X_1,\dotsc,\)</span> の各確率変数の像が<strong>有限集合</strong> <span class="math inline">\(S\)</span> であり、 任意の <span class="math inline">\(t\in\mathbb{Z}_{\ge 0}\)</span> と <span class="math inline">\(x_0,\dotsc, x_{t+1}\in S\)</span> について <span class="math display">\[\begin{align*}
 \Pr(X_{t+1} = x_{t+1}\mid X_{t} = x_t,\dotsc,\,X_1=x_1,\,X_0=x_0)
 &amp;= \Pr(X_{t+1} = x\mid X_{t} = x_t)
-\end{align*}\]</span> を満たすとき、それを<strong>有限状態マルコフ連鎖</strong>という。</p>
-<p>さらに、 <span class="math display">\[\begin{align*}
+\end{align*}\]</span> を満たすとき、それを<strong>有限状態マルコフ連鎖</strong>という。 さらに、 <span class="math display">\[\begin{align*}
 \Pr(X_{t+1} = x_{t+1}\mid X_{t} = x_t)
-\end{align*}\]</span> が <span class="math inline">\(t\)</span> に依存しないとき<strong>時間的に均一な有限状態マルコフ連鎖</strong>という。</p>
-<p>以下では時間的に均一な有限状態マルコフ連鎖を考える。 有限状態マルコフ連鎖の場合、状態 <span class="math inline">\(S\)</span> は実数の有限部分集合と考えるより、単に有限集合と考えた方が自然な場合も多い。 例えば <span class="math inline">\(S = \{ 晴れ、曇り、雨\}\)</span> や。 このとき、状態集合を便宜上 <span class="math inline">\(S=\{1,2,\dotsc,n\}\)</span> とおき、 <span class="math display">\[\begin{align*}
-p_{i,j} &amp;= \Pr(X_{t+1} = j\mid X_{t} = i)
-\end{align*}\]</span> とする。 この <span class="math inline">\(p_{i,j}\)</span> を <span class="math inline">\((i,j)\)</span> 成分に持つ <span class="math inline">\(n\times n\)</span> 行列 <span class="math inline">\(T\)</span> を<strong>マルコフ遷移行列</strong>という。 マルコフ遷移行列は非負行列であり、行和が1である。 初期確率ベクトル <span class="math inline">\(\pi\)</span> を <span class="math inline">\(\pi_i = \Pr(X_0=i)\)</span> を満たす行ベクトルとする。 <span class="math display">\[\begin{align*}
-\Pr(X_1=j) &amp;= \sum_{i} \Pr(X_0=i) \Pr(X_1=j\mid X_0=i)\\
-&amp;=\sum_{i} \pi_i\, p_{i, j}\\
+\end{align*}\]</span> が <span class="math inline">\(t\in\mathbb{Z}_{\ge 0}\)</span> に依存しないとき<strong>時間的に均一な有限状態マルコフ連鎖</strong>という。 以下では時間的に均一な有限状態マルコフ連鎖を考える。</p>
+</section>
+<section id="確率行列と状態遷移図" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="確率行列と状態遷移図"><span class="header-section-number">12.2</span> 確率行列と状態遷移図</h2>
+<p>有限状態マルコフ連鎖の場合、状態 <span class="math inline">\(S\)</span> は実数の有限部分集合と考えるより、単に有限集合と考えた方が自然な場合も多い。 例えば <span class="math inline">\(S = \{ 晴れ、曇り、雨\}\)</span> や。 このとき、状態集合を便宜上 <span class="math inline">\(S=\{1,2,\dotsc,n\}\)</span> とおき、 <span class="math display">\[\begin{align*}
+p_{i,j} &amp;= \Pr(X_{t+1} = j\mid X_{t} = i)\qquad \forall i,\,j\in S
+\end{align*}\]</span> とする。 この <span class="math inline">\(p_{i,j}\)</span> を <span class="math inline">\((i,j)\)</span> 成分に持つ <span class="math inline">\(n\times n\)</span> 行列 <span class="math inline">\(T\)</span> を<strong>遷移行列</strong>という。 遷移行列は非負行列であり、行和が1である。 一般に、この二つの条件を満たす正方行列を<strong>確率行列</strong>という。 確率行列は遷移行列とみなすことができる。</p>
+<p>一方で、初期確率からなる行ベクトル <span class="math inline">\(\pi\in\mathbb{R}^{|S|}\)</span> を<strong>初期状態ベクトル</strong>という。 つまり、行ベクトル <span class="math inline">\(\pi\)</span> の <span class="math inline">\(i\in S\)</span> 成分を <span class="math inline">\(\pi_i\)</span> とすると、 <span class="math display">\[\begin{align*}
+\pi_i &amp;= \Pr(X_0=i)\qquad i\in S
+\end{align*}\]</span> である。</p>
+<p>初期状態ベクトル <span class="math inline">\(\pi\)</span> と確率行列 <span class="math inline">\(T\)</span> からマルコフ連鎖は定義される。</p>
+<div id="exm-whether" class="theorem example">
+<p><span class="theorem-title"><strong>例 12.1 (天気のマルコフ連鎖)</strong></span> 状態集合 <span class="math inline">\(S=\{晴れ、曇り、雨\}\)</span> 上のマルコフ連鎖を考える。 <span class="math display">\[\begin{align*}
+\Pr(X_0 = 晴れ) &amp;= 1/3\\
+\Pr(X_0 = 曇り) &amp;= 1/2\\
+\Pr(X_0 = 雨) &amp;= 1/6\\
+\Pr(X_{t+1} = 晴れ\mid X_t=晴れ) &amp;= 1/2\\
+\Pr(X_{t+1} = 曇り\mid X_t=晴れ) &amp;= 1/3\\
+\Pr(X_{t+1} = 雨\mid X_t=晴れ) &amp;= 1/6\\
+\Pr(X_{t+1} = 晴れ\mid X_t=曇り) &amp;= 1/4\\
+\Pr(X_{t+1} = 曇り\mid X_t=曇り) &amp;= 1/2\\
+\Pr(X_{t+1} = 雨\mid X_t=曇り) &amp;= 1/4\\
+\Pr(X_{t+1} = 晴れ\mid X_t=雨) &amp;= 1/3\\
+\Pr(X_{t+1} = 曇り\mid X_t=雨) &amp;= 1/3\\
+\Pr(X_{t+1} = 雨\mid X_t=雨) &amp;= 1/3\\
+\end{align*}\]</span> と初期確率と遷移確率が与えられているとする。 このとき、 <span class="math display">\[\begin{align*}
+晴れ&amp;\longleftrightarrow 1&amp;
+曇り&amp;\longleftrightarrow 2&amp;
+雨&amp;\longleftrightarrow 3&amp;
+\end{align*}\]</span> と対応させると、初期状態ベクトル <span class="math inline">\(\pi\)</span> と遷移行列 <span class="math inline">\(T\)</span> は <span class="math display">\[\begin{align*}
+\pi&amp;=
+\begin{bmatrix}
+1/3&amp;1/2&amp;1/6
+\end{bmatrix}&amp;
+T&amp;=
+\begin{bmatrix}
+1/2&amp;1/3&amp;1/6\\
+1/4&amp;1/2&amp;1/4\\
+1/3&amp;1/3&amp;1/3
+\end{bmatrix}
+\end{align*}\]</span> である。</p>
+</div>
+<p>確率の遷移確率を有向グラフで表したものを<strong>状態遷移図</strong>という。 上記の天気のマルコフ連鎖の状態遷移図は以下の通りである。 状態遷移図において遷移確率が0の有向辺は通常は描かない。</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 223.78 130.31" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 126.31)">
+<title>Markov</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-126.31 219.78,-126.31 219.78,4 -4,4"></polygon>
+<!-- 1 -->
+<g id="node1" class="node">
+<title>1</title>
+<ellipse fill="none" stroke="black" cx="18" cy="-22.51" rx="18" ry="18"></ellipse>
+<text text-anchor="middle" x="18" y="-20.41" font-family="Times,serif" font-size="7.00">晴れ</text>
+</g>
+<!-- 1&#45;&gt;1 -->
+<g id="edge1" class="edge">
+<title>1-&gt;1</title>
+<path fill="none" stroke="black" d="M10.33,-38.8C8.48,-48.9 11.04,-58.51 18,-58.51 22.46,-58.51 25.11,-54.56 25.95,-49.07"></path>
+<polygon fill="black" stroke="black" points="29.45,-48.7 25.67,-38.8 22.45,-48.89 29.45,-48.7"></polygon>
+<text text-anchor="middle" x="18" y="-62.71" font-family="Times,serif" font-size="14.00">1/2</text>
+</g>
+<!-- 2 -->
+<g id="node2" class="node">
+<title>2</title>
+<ellipse fill="none" stroke="black" cx="107.89" cy="-69.51" rx="18" ry="18"></ellipse>
+<text text-anchor="middle" x="107.89" y="-67.41" font-family="Times,serif" font-size="7.00">曇り</text>
+</g>
+<!-- 1&#45;&gt;2 -->
+<g id="edge2" class="edge">
+<title>1-&gt;2</title>
+<path fill="none" stroke="black" d="M29.58,-36.37C35.89,-43.71 44.52,-52.28 54,-57.51 61.85,-61.84 71.19,-64.61 79.81,-66.38"></path>
+<polygon fill="black" stroke="black" points="79.38,-69.86 89.83,-68.08 80.56,-62.96 79.38,-69.86"></polygon>
+<text text-anchor="middle" x="62.94" y="-67.71" font-family="Times,serif" font-size="14.00">1/3</text>
+</g>
+<!-- 3 -->
+<g id="node3" class="node">
+<title>3</title>
+<ellipse fill="none" stroke="black" cx="197.78" cy="-22.51" rx="18" ry="18"></ellipse>
+<text text-anchor="middle" x="197.78" y="-20.41" font-family="Times,serif" font-size="7.00">雨</text>
+</g>
+<!-- 1&#45;&gt;3 -->
+<g id="edge3" class="edge">
+<title>1-&gt;3</title>
+<path fill="none" stroke="black" d="M36.05,-22.51C66.9,-22.51 132.22,-22.51 169.4,-22.51"></path>
+<polygon fill="black" stroke="black" points="169.52,-26.01 179.52,-22.51 169.52,-19.01 169.52,-26.01"></polygon>
+<text text-anchor="middle" x="107.89" y="-26.71" font-family="Times,serif" font-size="14.00">1/6</text>
+</g>
+<!-- 2&#45;&gt;1 -->
+<g id="edge4" class="edge">
+<title>2-&gt;1</title>
+<path fill="none" stroke="black" d="M95.46,-56.01C89.13,-49.33 80.77,-41.65 71.89,-36.71 63.97,-32.3 54.63,-29.21 46.01,-27.06"></path>
+<polygon fill="black" stroke="black" points="46.52,-23.59 36,-24.89 45.03,-30.43 46.52,-23.59"></polygon>
+<text text-anchor="middle" x="62.94" y="-40.71" font-family="Times,serif" font-size="14.00">1/4</text>
+</g>
+<!-- 2&#45;&gt;2 -->
+<g id="edge5" class="edge">
+<title>2-&gt;2</title>
+<path fill="none" stroke="black" d="M100.22,-85.8C98.37,-95.9 100.93,-105.51 107.89,-105.51 112.35,-105.51 115,-101.56 115.84,-96.07"></path>
+<polygon fill="black" stroke="black" points="119.34,-95.7 115.56,-85.8 112.34,-95.89 119.34,-95.7"></polygon>
+<text text-anchor="middle" x="107.89" y="-109.71" font-family="Times,serif" font-size="14.00">1/2</text>
+</g>
+<!-- 2&#45;&gt;3 -->
+<g id="edge6" class="edge">
+<title>2-&gt;3</title>
+<path fill="none" stroke="black" d="M125.95,-68.08C136.76,-66.6 150.73,-63.6 161.78,-57.51 168.15,-53.99 174.13,-48.97 179.29,-43.83"></path>
+<polygon fill="black" stroke="black" points="181.97,-46.08 186.2,-36.37 176.84,-41.33 181.97,-46.08"></polygon>
+<text text-anchor="middle" x="152.83" y="-67.71" font-family="Times,serif" font-size="14.00">1/4</text>
+</g>
+<!-- 3&#45;&gt;1 -->
+<g id="edge7" class="edge">
+<title>3-&gt;1</title>
+<path fill="none" stroke="black" d="M180.74,-16.37C166.56,-11.29 145.19,-4.48 125.89,-1.71 110.05,0.57 105.73,0.57 89.89,-1.71 74.51,-3.92 57.82,-8.69 44.49,-13.11"></path>
+<polygon fill="black" stroke="black" points="43.35,-9.8 35.04,-16.37 45.63,-16.42 43.35,-9.8"></polygon>
+<text text-anchor="middle" x="107.89" y="-5.71" font-family="Times,serif" font-size="14.00">1/3</text>
+</g>
+<!-- 3&#45;&gt;2 -->
+<g id="edge8" class="edge">
+<title>3-&gt;2</title>
+<path fill="none" stroke="black" d="M179.78,-24.89C168.99,-26.91 155.02,-30.51 143.89,-36.71 138.06,-39.95 132.46,-44.37 127.5,-48.92"></path>
+<polygon fill="black" stroke="black" points="124.98,-46.5 120.32,-56.01 129.9,-51.48 124.98,-46.5"></polygon>
+<text text-anchor="middle" x="152.83" y="-40.71" font-family="Times,serif" font-size="14.00">1/3</text>
+</g>
+<!-- 3&#45;&gt;3 -->
+<g id="edge9" class="edge">
+<title>3-&gt;3</title>
+<path fill="none" stroke="black" d="M190.11,-38.8C188.26,-48.9 190.82,-58.51 197.78,-58.51 202.24,-58.51 204.89,-54.56 205.73,-49.07"></path>
+<polygon fill="black" stroke="black" points="209.22,-48.7 205.45,-38.8 202.23,-48.89 209.22,-48.7"></polygon>
+<text text-anchor="middle" x="197.78" y="-62.71" font-family="Times,serif" font-size="14.00">1/3</text>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="時刻-t-の確率分布" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="時刻-t-の確率分布"><span class="header-section-number">12.3</span> 時刻 <span class="math inline">\(t\)</span> の確率分布</h2>
+<p>初期状態ベクトル <span class="math inline">\(\pi\)</span> と遷移行列 <span class="math inline">\(T\)</span> が与えられているとき、<span class="math inline">\(X_1\)</span> の確率は <span class="math display">\[\begin{align*}
+\Pr(X_1=j) &amp;= \sum_{i\in S} \Pr(X_0=i) \Pr(X_1=j\mid X_0=i)\\
+&amp;=\sum_{i\in S} \pi_i\, p_{i, j}\\
 &amp;=(\pi T)_j
-\end{align*}\]</span> よって、 <span class="math display">\[\begin{align*}
+\end{align*}\]</span> と表せる。よって、 <span class="math display">\[\begin{align*}
 \Pr(X_n=j) &amp;= (\pi T^n)_j
 \end{align*}\]</span> である。</p>
-<p>この確率について、</p>
-<ol type="1">
-<li>もっと単純な数式で表す。</li>
-<li>効率的なアルゴリズムを与える。</li>
-<li><span class="math inline">\(n\to\infty\)</span> の漸近</li>
-</ol>
-<p>遷移行列 <span class="math inline">\(T\)</span> が <span class="math inline">\(T=UDU^{-1}\)</span> と対角化できるとき、</p>
+<p>任意の遷移行列 <span class="math inline">\(T\)</span> とすべて1の列ベクトル <span class="math inline">\(\mathrm{1}\in\mathbb{R}^{|S|}\)</span> について、 <span class="math display">\[\begin{align*}
+T \mathrm{1} = \mathrm{1}
+\end{align*}\]</span> である。よって <span class="math inline">\(T\)</span> は固有値1を持つ。 よって <span class="math inline">\(T-I\)</span> は正則ではないので、左固有ベクトル <span class="math inline">\(\mu\)</span> を持つ。 つまり、 <span class="math display">\[\begin{align*}
+\mu T = \mu
+\end{align*}\]</span> を満たす <span class="math inline">\(\mu\)</span> が存在する。 この <span class="math inline">\(\mu\)</span> を<strong>定常確率ベクトル</strong>という。</p>
+<!--
+この確率について、
+
+1. もっと単純な数式で表す。
+1. 効率的なアルゴリズムを与える。
+1. $n\to\infty$ の漸近
+
+遷移行列 $T$ が $T=UDU^{-1}$ と対角化できるとき、
+-->
 </section>
-<section id="グラフ上のランダムウォーク" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="グラフ上のランダムウォーク"><span class="header-section-number">12.2</span> グラフ上のランダムウォーク</h2>
+<section id="グラフ上のランダムウォーク" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="グラフ上のランダムウォーク"><span class="header-section-number">12.4</span> グラフ上のランダムウォーク</h2>
 <div id="def-graph" class="theorem definition">
 <p><span class="theorem-title"><strong>定義 12.1 (グラフ)</strong></span> 有限集合 <span class="math inline">\(V\)</span> と集合 <span class="math inline">\(E\subseteq \{\{u,v\}\mid u,\, v\in V, u\ne v\}\)</span> のペア <span class="math inline">\(G=(V,\,E)\)</span> を(無向単純)グラフという。 <span class="math inline">\(V\)</span> の元を<strong>頂点</strong>、<span class="math inline">\(E\)</span> の元を<strong>辺</strong>と呼ぶ。</p>
 </div>
@@ -530,8 +678,8 @@ Q &amp;= \sqrt{D} P \sqrt{D}^{-1}
 \end{align*}\]</span> と</p>
 </div>
 </section>
-<section id="確率の計算アルゴリズム" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="確率の計算アルゴリズム"><span class="header-section-number">12.3</span> 確率の計算アルゴリズム</h2>
+<section id="確率の計算アルゴリズム" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="確率の計算アルゴリズム"><span class="header-section-number">12.5</span> 確率の計算アルゴリズム</h2>
 <div id="def-fps" class="theorem definition">
 <p><span class="theorem-title"><strong>定義 12.3 (形式的冪級数)</strong></span> &nbsp;</p>
 </div>

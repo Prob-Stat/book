@@ -652,18 +652,29 @@
     "href": "markov.html",
     "title": "12  マルコフ連鎖",
     "section": "",
-    "text": "12.1 確率過程とマルコフ連鎖\n共通の確率空間 \\((\\Omega,\\,P)\\) 上の長さ無限の確率変数列 \\(X_0,X_1,X_2,\\dotsc\\) を離散時間確率過程という。 各時刻 \\(t=0,1,2,\\dotsc,\\) について、 \\(X_t\\) を時刻 \\(t\\) における状態と考える。 離散時間確率過程 \\(X_0,X_1,\\dotsc,\\) の各確率変数の像が有限集合 \\(S\\) であり、 任意の \\(t\\in\\mathbb{Z}_{\\ge 0}\\) と \\(x_0,\\dotsc, x_{t+1}\\in S\\) について \\[\\begin{align*}\n\\Pr(X_{t+1} = x_{t+1}\\mid X_{t} = x_t,\\dotsc,\\,X_1=x_1,\\,X_0=x_0)\n&= \\Pr(X_{t+1} = x\\mid X_{t} = x_t)\n\\end{align*}\\] を満たすとき、それを有限状態マルコフ連鎖という。\nさらに、 \\[\\begin{align*}\n\\Pr(X_{t+1} = x_{t+1}\\mid X_{t} = x_t)\n\\end{align*}\\] が \\(t\\) に依存しないとき時間的に均一な有限状態マルコフ連鎖という。\n以下では時間的に均一な有限状態マルコフ連鎖を考える。 有限状態マルコフ連鎖の場合、状態 \\(S\\) は実数の有限部分集合と考えるより、単に有限集合と考えた方が自然な場合も多い。 例えば \\(S = \\{ 晴れ、曇り、雨\\}\\) や。 このとき、状態集合を便宜上 \\(S=\\{1,2,\\dotsc,n\\}\\) とおき、 \\[\\begin{align*}\np_{i,j} &= \\Pr(X_{t+1} = j\\mid X_{t} = i)\n\\end{align*}\\] とする。 この \\(p_{i,j}\\) を \\((i,j)\\) 成分に持つ \\(n\\times n\\) 行列 \\(T\\) をマルコフ遷移行列という。 マルコフ遷移行列は非負行列であり、行和が1である。 初期確率ベクトル \\(\\pi\\) を \\(\\pi_i = \\Pr(X_0=i)\\) を満たす行ベクトルとする。 \\[\\begin{align*}\n\\Pr(X_1=j) &= \\sum_{i} \\Pr(X_0=i) \\Pr(X_1=j\\mid X_0=i)\\\\\n&=\\sum_{i} \\pi_i\\, p_{i, j}\\\\\n&=(\\pi T)_j\n\\end{align*}\\] よって、 \\[\\begin{align*}\n\\Pr(X_n=j) &= (\\pi T^n)_j\n\\end{align*}\\] である。\nこの確率について、\n遷移行列 \\(T\\) が \\(T=UDU^{-1}\\) と対角化できるとき、",
+    "text": "12.1 確率過程とマルコフ連鎖\n共通の確率空間 \\((\\Omega,\\,P)\\) 上の長さ無限の確率変数列 \\(X_0,X_1,X_2,\\dotsc\\) を離散時間確率過程という。 各時刻 \\(t=0,1,2,\\dotsc,\\) について、 \\(X_t\\) を時刻 \\(t\\) における状態と考える。 離散時間確率過程 \\(X_0,X_1,\\dotsc,\\) の各確率変数の像が有限集合 \\(S\\) であり、 任意の \\(t\\in\\mathbb{Z}_{\\ge 0}\\) と \\(x_0,\\dotsc, x_{t+1}\\in S\\) について \\[\\begin{align*}\n\\Pr(X_{t+1} = x_{t+1}\\mid X_{t} = x_t,\\dotsc,\\,X_1=x_1,\\,X_0=x_0)\n&= \\Pr(X_{t+1} = x\\mid X_{t} = x_t)\n\\end{align*}\\] を満たすとき、それを有限状態マルコフ連鎖という。 さらに、 \\[\\begin{align*}\n\\Pr(X_{t+1} = x_{t+1}\\mid X_{t} = x_t)\n\\end{align*}\\] が \\(t\\in\\mathbb{Z}_{\\ge 0}\\) に依存しないとき時間的に均一な有限状態マルコフ連鎖という。 以下では時間的に均一な有限状態マルコフ連鎖を考える。",
     "crumbs": [
       "マルコフ連鎖",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>マルコフ連鎖</span>"
     ]
   },
   {
-    "objectID": "markov.html#確率過程とマルコフ連鎖",
-    "href": "markov.html#確率過程とマルコフ連鎖",
+    "objectID": "markov.html#確率行列と状態遷移図",
+    "href": "markov.html#確率行列と状態遷移図",
     "title": "12  マルコフ連鎖",
-    "section": "",
-    "text": "もっと単純な数式で表す。\n効率的なアルゴリズムを与える。\n\\(n\\to\\infty\\) の漸近",
+    "section": "12.2 確率行列と状態遷移図",
+    "text": "12.2 確率行列と状態遷移図\n有限状態マルコフ連鎖の場合、状態 \\(S\\) は実数の有限部分集合と考えるより、単に有限集合と考えた方が自然な場合も多い。 例えば \\(S = \\{ 晴れ、曇り、雨\\}\\) や。 このとき、状態集合を便宜上 \\(S=\\{1,2,\\dotsc,n\\}\\) とおき、 \\[\\begin{align*}\np_{i,j} &= \\Pr(X_{t+1} = j\\mid X_{t} = i)\\qquad \\forall i,\\,j\\in S\n\\end{align*}\\] とする。 この \\(p_{i,j}\\) を \\((i,j)\\) 成分に持つ \\(n\\times n\\) 行列 \\(T\\) を遷移行列という。 遷移行列は非負行列であり、行和が1である。 一般に、この二つの条件を満たす正方行列を確率行列という。 確率行列は遷移行列とみなすことができる。\n一方で、初期確率からなる行ベクトル \\(\\pi\\in\\mathbb{R}^{|S|}\\) を初期状態ベクトルという。 つまり、行ベクトル \\(\\pi\\) の \\(i\\in S\\) 成分を \\(\\pi_i\\) とすると、 \\[\\begin{align*}\n\\pi_i &= \\Pr(X_0=i)\\qquad i\\in S\n\\end{align*}\\] である。\n初期状態ベクトル \\(\\pi\\) と確率行列 \\(T\\) からマルコフ連鎖は定義される。\n\n例 12.1 (天気のマルコフ連鎖) 状態集合 \\(S=\\{晴れ、曇り、雨\\}\\) 上のマルコフ連鎖を考える。 \\[\\begin{align*}\n\\Pr(X_0 = 晴れ) &= 1/3\\\\\n\\Pr(X_0 = 曇り) &= 1/2\\\\\n\\Pr(X_0 = 雨) &= 1/6\\\\\n\\Pr(X_{t+1} = 晴れ\\mid X_t=晴れ) &= 1/2\\\\\n\\Pr(X_{t+1} = 曇り\\mid X_t=晴れ) &= 1/3\\\\\n\\Pr(X_{t+1} = 雨\\mid X_t=晴れ) &= 1/6\\\\\n\\Pr(X_{t+1} = 晴れ\\mid X_t=曇り) &= 1/4\\\\\n\\Pr(X_{t+1} = 曇り\\mid X_t=曇り) &= 1/2\\\\\n\\Pr(X_{t+1} = 雨\\mid X_t=曇り) &= 1/4\\\\\n\\Pr(X_{t+1} = 晴れ\\mid X_t=雨) &= 1/3\\\\\n\\Pr(X_{t+1} = 曇り\\mid X_t=雨) &= 1/3\\\\\n\\Pr(X_{t+1} = 雨\\mid X_t=雨) &= 1/3\\\\\n\\end{align*}\\] と初期確率と遷移確率が与えられているとする。 このとき、 \\[\\begin{align*}\n晴れ&\\longleftrightarrow 1&\n曇り&\\longleftrightarrow 2&\n雨&\\longleftrightarrow 3&\n\\end{align*}\\] と対応させると、初期状態ベクトル \\(\\pi\\) と遷移行列 \\(T\\) は \\[\\begin{align*}\n\\pi&=\n\\begin{bmatrix}\n1/3&1/2&1/6\n\\end{bmatrix}&\nT&=\n\\begin{bmatrix}\n1/2&1/3&1/6\\\\\n1/4&1/2&1/4\\\\\n1/3&1/3&1/3\n\\end{bmatrix}\n\\end{align*}\\] である。\n\n確率の遷移確率を有向グラフで表したものを状態遷移図という。 上記の天気のマルコフ連鎖の状態遷移図は以下の通りである。 状態遷移図において遷移確率が0の有向辺は通常は描かない。\n\n\n\n\n\n\n\nMarkov\n\n\n\n1\n\n晴れ\n\n\n\n1-&gt;1\n\n\n1/2\n\n\n\n2\n\n曇り\n\n\n\n1-&gt;2\n\n\n1/3\n\n\n\n3\n\n雨\n\n\n\n1-&gt;3\n\n\n1/6\n\n\n\n2-&gt;1\n\n\n1/4\n\n\n\n2-&gt;2\n\n\n1/2\n\n\n\n2-&gt;3\n\n\n1/4\n\n\n\n3-&gt;1\n\n\n1/3\n\n\n\n3-&gt;2\n\n\n1/3\n\n\n\n3-&gt;3\n\n\n1/3",
+    "crumbs": [
+      "マルコフ連鎖",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>マルコフ連鎖</span>"
+    ]
+  },
+  {
+    "objectID": "markov.html#時刻-t-の確率分布",
+    "href": "markov.html#時刻-t-の確率分布",
+    "title": "12  マルコフ連鎖",
+    "section": "12.3 時刻 \\(t\\) の確率分布",
+    "text": "12.3 時刻 \\(t\\) の確率分布\n初期状態ベクトル \\(\\pi\\) と遷移行列 \\(T\\) が与えられているとき、\\(X_1\\) の確率は \\[\\begin{align*}\n\\Pr(X_1=j) &= \\sum_{i\\in S} \\Pr(X_0=i) \\Pr(X_1=j\\mid X_0=i)\\\\\n&=\\sum_{i\\in S} \\pi_i\\, p_{i, j}\\\\\n&=(\\pi T)_j\n\\end{align*}\\] と表せる。よって、 \\[\\begin{align*}\n\\Pr(X_n=j) &= (\\pi T^n)_j\n\\end{align*}\\] である。\n任意の遷移行列 \\(T\\) とすべて1の列ベクトル \\(\\mathrm{1}\\in\\mathbb{R}^{|S|}\\) について、 \\[\\begin{align*}\nT \\mathrm{1} = \\mathrm{1}\n\\end{align*}\\] である。よって \\(T\\) は固有値1を持つ。 よって \\(T-I\\) は正則ではないので、左固有ベクトル \\(\\mu\\) を持つ。 つまり、 \\[\\begin{align*}\n\\mu T = \\mu\n\\end{align*}\\] を満たす \\(\\mu\\) が存在する。 この \\(\\mu\\) を定常確率ベクトルという。",
     "crumbs": [
       "マルコフ連鎖",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>マルコフ連鎖</span>"
@@ -673,8 +684,8 @@
     "objectID": "markov.html#グラフ上のランダムウォーク",
     "href": "markov.html#グラフ上のランダムウォーク",
     "title": "12  マルコフ連鎖",
-    "section": "12.2 グラフ上のランダムウォーク",
-    "text": "12.2 グラフ上のランダムウォーク\n\n定義 12.1 (グラフ) 有限集合 \\(V\\) と集合 \\(E\\subseteq \\{\\{u,v\\}\\mid u,\\, v\\in V, u\\ne v\\}\\) のペア \\(G=(V,\\,E)\\) を(無向単純)グラフという。 \\(V\\) の元を頂点、\\(E\\) の元を辺と呼ぶ。\n\nグラフ \\(G=(V,\\,E)\\) と \\(v\\in V\\) について、 \\[\\begin{align*}\nd_v&=|\\{u\\in V\\mid \\{u,v\\}\\in E\\}|\n\\end{align*}\\] を \\(v\\) の次数という。 次数0の頂点を孤立頂点という。\n\n定義 12.2 (グラフ上のランダムウォーク) 孤立頂点を持たないグラフ \\(G=(V=\\{1,2,\\dotsc,n\\},\\,E)\\) 上のランダムウォークは \\(S=V\\) であり、 任意の初期確率ベクトル \\(\\pi\\) と \\[\\begin{align*}\np_{i,j} &= \\frac1{d_i}\n\\end{align*}\\] で定義される。\n\n\n補題 12.1 グラフ上のランダムウォークの遷移行列は対角化可能であり、固有値はすべて実数である。\n\n\n証明. グラフ \\(G\\) の次数行列を \\[\\begin{align*}\nD_{i,j} &= d_i\\delta_{i,j}\n\\end{align*}\\] と定義する。 \\[\\begin{align*}\nQ &= \\sqrt{D} P \\sqrt{D}^{-1}\n\\end{align*}\\] と",
+    "section": "12.4 グラフ上のランダムウォーク",
+    "text": "12.4 グラフ上のランダムウォーク\n\n定義 12.1 (グラフ) 有限集合 \\(V\\) と集合 \\(E\\subseteq \\{\\{u,v\\}\\mid u,\\, v\\in V, u\\ne v\\}\\) のペア \\(G=(V,\\,E)\\) を(無向単純)グラフという。 \\(V\\) の元を頂点、\\(E\\) の元を辺と呼ぶ。\n\nグラフ \\(G=(V,\\,E)\\) と \\(v\\in V\\) について、 \\[\\begin{align*}\nd_v&=|\\{u\\in V\\mid \\{u,v\\}\\in E\\}|\n\\end{align*}\\] を \\(v\\) の次数という。 次数0の頂点を孤立頂点という。\n\n定義 12.2 (グラフ上のランダムウォーク) 孤立頂点を持たないグラフ \\(G=(V=\\{1,2,\\dotsc,n\\},\\,E)\\) 上のランダムウォークは \\(S=V\\) であり、 任意の初期確率ベクトル \\(\\pi\\) と \\[\\begin{align*}\np_{i,j} &= \\frac1{d_i}\n\\end{align*}\\] で定義される。\n\n\n補題 12.1 グラフ上のランダムウォークの遷移行列は対角化可能であり、固有値はすべて実数である。\n\n\n証明. グラフ \\(G\\) の次数行列を \\[\\begin{align*}\nD_{i,j} &= d_i\\delta_{i,j}\n\\end{align*}\\] と定義する。 \\[\\begin{align*}\nQ &= \\sqrt{D} P \\sqrt{D}^{-1}\n\\end{align*}\\] と",
     "crumbs": [
       "マルコフ連鎖",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>マルコフ連鎖</span>"
@@ -684,8 +695,8 @@
     "objectID": "markov.html#確率の計算アルゴリズム",
     "href": "markov.html#確率の計算アルゴリズム",
     "title": "12  マルコフ連鎖",
-    "section": "12.3 確率の計算アルゴリズム",
-    "text": "12.3 確率の計算アルゴリズム\n\n定義 12.3 (形式的冪級数)  \n\n時刻 \\(n\\) で状態 \\(j\\) の確率 \\[\\begin{align*}\n\\Pr(X_n=j) &= (\\pi T^n)_j\n\\end{align*}\\] を計算するアルゴリズムを考える。 \\[\\begin{align*}\n\\Pr(X_n=j) &= (\\pi T^n)_j\\\\\n&= \\left( [x^n] \\sum_{t\\ge 0}\\pi T^t x^t\\right)_j\n\\end{align*}\\]",
+    "section": "12.5 確率の計算アルゴリズム",
+    "text": "12.5 確率の計算アルゴリズム\n\n定義 12.3 (形式的冪級数)  \n\n時刻 \\(n\\) で状態 \\(j\\) の確率 \\[\\begin{align*}\n\\Pr(X_n=j) &= (\\pi T^n)_j\n\\end{align*}\\] を計算するアルゴリズムを考える。 \\[\\begin{align*}\n\\Pr(X_n=j) &= (\\pi T^n)_j\\\\\n&= \\left( [x^n] \\sum_{t\\ge 0}\\pi T^t x^t\\right)_j\n\\end{align*}\\]",
     "crumbs": [
       "マルコフ連鎖",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>マルコフ連鎖</span>"
