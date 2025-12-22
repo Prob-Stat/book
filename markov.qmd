@@ -117,7 +117,7 @@ digraph Markov {
 \end{align*}
 と表せる。よって、
 \begin{align*}
-\Pr(X_n=j) &= (\pi T^n)_j
+\Pr(X_t=j) &= (\pi T^t)_j
 \end{align*}
 である。
 
@@ -271,16 +271,16 @@ P &= \sqrt{D}^{-1}Q\sqrt{D} = \sqrt{D}^{-1}V\Lambda V^T\sqrt{D}
 が成り立ち、$P$ も対角化可能であり、固有値はすべて実数である。
 :::
 
-$T=U\Lambda U^{-1}$ と対角化できるとき、$n$ ステップ後の確率は
+$T=U\Lambda U^{-1}$ と対角化できるとき、$t$ ステップ後の確率は
 \begin{align*}
-\pi T^n &= \pi (U \Lambda U^{-1})^n\\
-&= \pi U \Lambda^n U^{-1}
+\pi T^t &= \pi (U \Lambda U^{-1})^t\\
+&= \pi U \Lambda^t U^{-1}
 \end{align*}
 と表せる。
-$T$ の固有値の絶対値は 1 以下であるので、$n\to\infty$ 極限では $\Lambda^n$ は固有値 $\pm1$ の部分だけが残る。
+$T$ の固有値の絶対値は 1 以下であるので、$t\to\infty$ 極限では $\Lambda^t$ は固有値 $\pm1$ の部分だけが残る。
 特に**固有値1が一つだけであり、固有値 $-1$ を持たないとき**、初期分布 $\pi$ によらず、唯一の定常分布 $\mu$ に収束する。
 \begin{align*}
-\lim_{n\to\infty} \pi T^n  &= \mu
+\lim_{t\to\infty} \pi T^t  &= \mu
 \end{align*}
 
 :::{#lem-graph-eigen}
