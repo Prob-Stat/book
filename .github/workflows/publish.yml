@@ -17,6 +17,9 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Install Chromium for diagram rendering (pdf/docx)
+        run: quarto install chromium
+
       - name: Install uv
         uses: astral-sh/setup-uv@v5
         with:
