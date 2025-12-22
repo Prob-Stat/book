@@ -17,9 +17,6 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Install Chromium for diagram rendering (pdf/docx)
-        run: quarto install chromium
-
       - name: Install uv
         uses: astral-sh/setup-uv@v5
         with:
@@ -56,6 +53,9 @@ jobs:
           quarto install tinytex --update-path --no-prompt --log-level warning
           tlmgr update --self
           tlmgr install $(cat tinytex_packages.txt)
+
+      - name: Install Chromium for diagram rendering (pdf/docx)
+        run: quarto install chromium
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
