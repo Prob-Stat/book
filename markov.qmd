@@ -125,15 +125,54 @@ digraph Markov {
 \begin{align*}
 T \mathrm{1} = \mathrm{1}
 \end{align*}
-である。よって $T$ は固有値1を持つ。
-よって $T-I$ は正則ではないので、左固有ベクトル $\mu$ を持つ。
+である。
+<!-- よって $T$ は固有値1を持つ。-->
+よって $I-T$ は正則ではないので固有値1を持ち、対応する左固有ベクトル $\mu$ を持つ。
 つまり、
 \begin{align*}
 \mu T = \mu
 \end{align*}
-を満たす $\mu$ が存在する。
-この $\mu$ を**定常確率ベクトル**という。
+を満たす非零行ベクトル $\mu$ が存在する。
+非負で和が1の行ベクトル $\mu$ で $\mu T = \mu$ を満たすものを**定常確率ベクトル**もしくは**定常分布**という。
+現時点では定常確率ベクトルの存在は明らかではないが、任意の遷移行列 $T$ について定常確率ベクトルが存在する。
 
+:::{.callout-note}
+以下の不動点定理を認めると、定常確率ベクトルの存在が直ちに証明できる。
+
+**ブラウワーの不動点定理**: ユークリッド空間のコンパクト凸集合 $K$ からそれ自身への連続関数は不動点を持つ。
+
+$K$ を非負で和が1のベクトルの集合とおけばよい。$T$ を右から掛けるという写像は連続写像なのでブラウワーの不動点定理が適用できる。
+:::
+
+:::{#exm-whether-stab}
+### 天気のマルコフ連鎖の定常確率ベクトル
+\begin{align*}
+T&=
+\begin{bmatrix}
+1/2&1/3&1/6\\
+1/4&1/2&1/4\\
+1/3&1/3&1/3
+\end{bmatrix}
+\end{align*}
+のとき、
+\begin{align*}
+I-T&=
+\begin{bmatrix}
+1/2&-1/3&-1/6\\
+-1/4&1/2&-1/4\\
+-1/3&-1/3&2/3
+\end{bmatrix}
+\end{align*}
+の左カーネルとして
+\begin{align*}
+\mu&=
+\begin{bmatrix}
+9/25&2/5&6/25
+\end{bmatrix}
+\end{align*}
+が取れる。これは非負で和が1なので、定常確率ベクトルである。
+$I-T$ のランクは2であり、これが唯一の定常確率ベクトルである。
+:::
 
 <!--
 この確率について、
@@ -145,7 +184,32 @@ T \mathrm{1} = \mathrm{1}
 遷移行列 $T$ が $T=UDU^{-1}$ と対角化できるとき、
 -->
 
-## グラフ上のランダムウォーク
+::: {#lem-spectral}
+任意の確率行列の任意の固有値の絶対値は1以下である。
+:::
+::: {.proof}
+遷移行列 $T$ の固有値 $\lambda\in\mathbb{C}$ に対応する固有ベクトルを $v$ とすると
+\begin{align*}
+Tv &= \lambda v
+\end{align*}
+が成り立つ。
+$v$ の成分で絶対値最大のものを第 $i$ 成分とする。
+第 $i$ 成分に注目すると
+\begin{align*}
+\sum_{j\in S}T_{i,j}v_j &= \lambda v_i
+\end{align*}
+が成り立つ。ここで
+\begin{align*}
+|\lambda| |v_i| &= \left|\sum_{j\in S}T_{i,j}v_j\right|\\
+&\le \sum_{j\in S}T_{i,j}\left|v_j\right|\\
+&\le \sum_{j\in S}T_{i,j}\left|v_i\right|\\
+&=\left|v_i\right|
+\end{align*}
+より、 $|\lambda|\le 1$ である。
+:::
+
+
+## マルコフ連鎖の例: グラフ上のランダムウォーク
 :::{#def-graph}
 ### グラフ
 有限集合 $V$ と集合 $E\subseteq \{\{u,v\}\mid u,\, v\in V, u\ne v\}$ のペア $G=(V,\,E)$ を(無向単純)グラフという。
@@ -164,7 +228,11 @@ d_v&=|\{u\in V\mid \{u,v\}\in E\}|
 孤立頂点を持たないグラフ $G=(V=\{1,2,\dotsc,n\},\,E)$ 上のランダムウォークは $S=V$ であり、
 任意の初期確率ベクトル $\pi$ と
 \begin{align*}
-p_{i,j} &= \frac1{d_i}
+p_{i,j} &=
+\begin{cases}
+ \frac1{d_i}&\text{if } \{i,j\}\in E\\
+ 0&\text{otherwise}
+\end{cases}
 \end{align*}
 で定義される。
 :::
@@ -178,12 +246,69 @@ p_{i,j} &= \frac1{d_i}
 D_{i,j} &= d_i\delta_{i,j}
 \end{align*}
 と定義する。
+ここで $\delta_{i,j}$ はクロネッカーのデルタである。
 \begin{align*}
 Q &= \sqrt{D} P \sqrt{D}^{-1}
 \end{align*}
-と
+とすると、その $(i,j)$ 成分は
+\begin{align*}
+Q_{i,j} &= \sqrt{d_i} p_{i,j} \frac1{\sqrt{d_j}}\\
+ &= \begin{cases}
+ \sqrt{d_i} \frac1{d_i} \frac1{\sqrt{d_j}} = \frac1{\sqrt{d_id_j}}&\text{if } \{i,j\}\in E\\
+ 0&\text{otherwise}
+ \end{cases}
+\end{align*}
+である。よって$Q$ は実対称行列であり、スペクトル分解定理より、直交行列で対角化でき、すべての固有値は実数である。
+つまり、ある直交行列 $V$ と実対角行列 $\Lambda$ が存在して
+\begin{align*}
+Q &= V\Lambda V^T
+\end{align*}
+である。
+よって、
+\begin{align*}
+P &= \sqrt{D}^{-1}Q\sqrt{D} = \sqrt{D}^{-1}V\Lambda V^T\sqrt{D}
+\end{align*}
+が成り立ち、$P$ も対角化可能であり、固有値はすべて実数である。
 :::
 
+$T=U\Lambda U^{-1}$ と対角化できるとき、$n$ ステップ後の確率は
+\begin{align*}
+\pi T^n &= \pi (U \Lambda U^{-1})^n\\
+&= \pi U \Lambda^n U^{-1}
+\end{align*}
+と表せる。
+$T$ の固有値の絶対値は 1 以下であるので、$n\to\infty$ 極限では $\Lambda^n$ は固有値 $\pm1$ の部分だけが残る。
+特に**固有値1が一つだけであり、固有値 $-1$ を持たないとき**、初期分布 $\pi$ によらず、唯一の定常分布 $\mu$ に収束する。
+\begin{align*}
+\lim_{n\to\infty} \pi T^n  &= \mu
+\end{align*}
+
+:::{#lem-graph-eigen}
+グラフ上のランダムウォークの遷移行列 $T$ に含まれる固有値1の個数はグラフの**連結成分の個数**である。
+:::
+:::{.proof}
+まず、「固有値1の個数 $\le$ グラフの連結成分の個数」を証明する。
+グラフの連結成分 $C\subseteq V$ について、列ベクトル $\mathrm{1}_C$ をインデックスが $C$ に含まれるとき1、そうでないとき 0 と定義する。
+このとき、$T\mathrm{1}_C=\mathrm{1}_C$ であるので、固有値1の右固有ベクトルとなる。
+各連結成分 $C$ について $\mathrm{1}_C$ は線形独立であるので、「固有値1の個数 $\le$ グラフの連結成分の個数」が示された。
+
+次に、「固有値1の個数 $\ge$ グラフの連結成分の個数」を証明する。
+$v$ を固有値1に対応する固有ベクトルとすると、
+\begin{align*}
+Tv &=  v
+\end{align*}
+が成り立つ。
+:::
+
+:::{#lem-graph-eigenb}
+グラフ上のランダムウォークの遷移行列 $T$ に含まれる固有値-1の個数はグラフの**連結二部グラフの個数**である。
+:::
+:::{.proof}
+執筆中
+:::
+
+よって、グラフが**連結していて二部グラフでない**場合は遷移行列は固有値1を一つだけ持ち、固有値-1を持たない。
+<!--
 ## 確率の計算アルゴリズム
 
 :::{#def-fps}
@@ -199,4 +324,4 @@ Q &= \sqrt{D} P \sqrt{D}^{-1}
 \Pr(X_n=j) &= (\pi T^n)_j\\
 &= \left( [x^n] \sum_{t\ge 0}\pi T^t x^t\right)_j
 \end{align*}
-
+-->
