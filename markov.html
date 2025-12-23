@@ -642,7 +642,7 @@ T&amp;=
 T \mathrm{1} = \mathrm{1}
 \end{align*}\]</span> である。 <!-- よって $T$ は固有値1を持つ。--> よって <span class="math inline">\(I-T\)</span> は正則ではないので固有値1を持ち、対応する左固有ベクトル <span class="math inline">\(\mu\)</span> を持つ。 つまり、 <span class="math display">\[\begin{align*}
 \mu T = \mu
-\end{align*}\]</span> を満たす非零行ベクトル <span class="math inline">\(\mu\)</span> が存在する。 非負で和が1の行ベクトル <span class="math inline">\(\mu\)</span> で <span class="math inline">\(\mu T = \mu\)</span> を満たすものを<strong>定常確率ベクトル</strong>もしくは<strong>定常分布</strong>という。 現時点では定常確率ベクトルの存在は明らかではないが、任意の遷移行列 <span class="math inline">\(T\)</span> について定常確率ベクトルが存在する。</p>
+\end{align*}\]</span> を満たす非零行ベクトル <span class="math inline">\(\mu\)</span> が存在する。 非負で成分の和が1の行ベクトル <span class="math inline">\(\mu\)</span> で <span class="math inline">\(\mu T = \mu\)</span> を満たすものを<strong>定常確率ベクトル</strong>もしくは<strong>定常分布</strong>という。 現時点では定常確率ベクトルの存在は明らかではないが、任意の遷移行列 <span class="math inline">\(T\)</span> について定常確率ベクトルが存在する。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -655,7 +655,7 @@ T \mathrm{1} = \mathrm{1}
 <div class="callout-body-container callout-body">
 <p>以下の不動点定理を認めると、定常確率ベクトルの存在が直ちに証明できる。</p>
 <p><strong>ブラウワーの不動点定理</strong>: ユークリッド空間のコンパクト凸集合 <span class="math inline">\(K\)</span> からそれ自身への連続関数は不動点を持つ。</p>
-<p><span class="math inline">\(K\)</span> を非負で和が1のベクトルの集合とおけばよい。<span class="math inline">\(T\)</span> を右から掛けるという写像は連続写像なのでブラウワーの不動点定理が適用できる。</p>
+<p><span class="math inline">\(K\)</span> を非負で成分の和が1のベクトルの集合とおけばよい。<span class="math inline">\(T\)</span> を右から掛けるという写像は連続写像なのでブラウワーの不動点定理が適用できる。</p>
 </div>
 </div>
 <div id="exm-whether-stab" class="theorem example">
@@ -678,7 +678,7 @@ I-T&amp;=
 \begin{bmatrix}
 9/25&amp;2/5&amp;6/25
 \end{bmatrix}
-\end{align*}\]</span> が取れる。これは非負で和が1なので、定常確率ベクトルである。 <span class="math inline">\(I-T\)</span> のランクは2であり、これが唯一の定常確率ベクトルである。</p>
+\end{align*}\]</span> が取れる。これは非負で成分の和が1なので、定常確率ベクトルである。 <span class="math inline">\(I-T\)</span> のランクは2であり、これが唯一の定常確率ベクトルである。</p>
 </div>
 <!--
 この確率について、
@@ -747,7 +747,7 @@ P &amp;= \sqrt{D}^{-1}Q\sqrt{D} = \sqrt{D}^{-1}V\Lambda V^T\sqrt{D}
 <p><span class="math inline">\(T=U\Lambda U^{-1}\)</span> と対角化できるとき、<span class="math inline">\(t\)</span> ステップ後の確率は <span class="math display">\[\begin{align*}
 \pi T^t &amp;= \pi (U \Lambda U^{-1})^t\\
 &amp;= \pi U \Lambda^t U^{-1}
-\end{align*}\]</span> と表せる。 <span class="math inline">\(T\)</span> の固有値の絶対値は 1 以下であるので、<span class="math inline">\(t\to\infty\)</span> 極限では <span class="math inline">\(\Lambda^t\)</span> は固有値 <span class="math inline">\(\pm1\)</span> の部分だけが残る。 特に<strong>固有値1が一つだけであり、固有値 <span class="math inline">\(-1\)</span> を持たないとき</strong>、初期分布 <span class="math inline">\(\pi\)</span> によらず、唯一の定常分布 <span class="math inline">\(\mu\)</span> に収束する。 <span class="math display">\[\begin{align*}
+\end{align*}\]</span> と表せる。 <span class="math inline">\(T\)</span> の固有値の絶対値は 1 以下であるので、グラフ上のランダムウォークの場合、<span class="math inline">\(t\to\infty\)</span> 極限では <span class="math inline">\(\Lambda^t\)</span> は固有値 <span class="math inline">\(\pm1\)</span> の部分だけが残る。 特に<strong>固有値1が一つだけであり、固有値 <span class="math inline">\(-1\)</span> を持たないとき</strong>、初期分布 <span class="math inline">\(\pi\)</span> によらず、唯一の定常分布 <span class="math inline">\(\mu\)</span> に収束する。 <span class="math display">\[\begin{align*}
 \lim_{t\to\infty} \pi T^t  &amp;= \mu
 \end{align*}\]</span></p>
 <div id="lem-graph-eigen" class="theorem lemma">
@@ -760,7 +760,7 @@ Tv &amp;=  v
 \end{align*}\]</span> が成り立つ。 これは <span class="math display">\[\begin{align*}
 \sum_{j\in S}T_{i,j} v_j &amp;=  v_i\qquad\forall i\in V
 \end{align*}\]</span> を意味する。 グラフの連結成分 <span class="math inline">\(C\subseteq V\)</span> を固定する。 そして、 <span class="math display">\[\begin{align*}
-i &amp;= \arg\max_{j\in C} v_j
+i &amp;\in \arg\max_{j\in C} v_j
 \end{align*}\]</span> とおく。 このとき、 <span class="math display">\[\begin{align*}
 v_i &amp;= \sum_{j\in S}T_{i,j} v_j\\
 &amp;\le \sum_{j\in S}T_{i,j} v_i\\
