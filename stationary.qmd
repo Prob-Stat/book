@@ -28,17 +28,17 @@ E&=\left\{(u,v)\in V\times V\mid T_{u,v}>0\right\}.
 ### 有向グラフのウォーク
 有向グラフ $G=(V,E)$ の頂点列
 \begin{align*}
-(v_0,v_1,\dotsc,v_w)
+(v_0,v_1,\dotsc,v_\ell)
 \end{align*}
-で各 $i=0,1,\dotsc,w-1$ について $(v_i,\,v_{i+1})\in E$ を満たすものを**($v_0$ から $v_{w}$ への)ウォーク**という。
-また、$w$ をウォークの**長さ**という。
+で各 $i=0,1,\dotsc,\ell-1$ について $(v_i,\,v_{i+1})\in E$ を満たすものを**($v_0$ から $v_{\ell}$ への)ウォーク**という。
+また、$\ell$ をウォークの**長さ**という。
 :::
 
 頂点列 $(v)$ は長さ0のウォークであることに気をつけよう。
 遷移グラフの定義より、任意の $u,v\in S$ について
 \begin{align*}
-&\text{遷移グラフ上に $u$ から $v$ への長さ $w$ のウォークが存在する} \iff (T^w)_{u,v} > 0\\
-\iff&\Pr(X_w=v\mid X_0=u) > 0
+&\text{遷移グラフ上に $u$ から $v$ への長さ $\ell$ のウォークが存在する} \iff (T^\ell)_{u,v} > 0\\
+\iff&\Pr(X_\ell=v\mid X_0=u) > 0
 \end{align*}
 である。
 
@@ -78,7 +78,7 @@ $\iff$
 マルコフ連鎖をその遷移グラフ
 
 ::: {#lem-irred}
-既約なマルコフ連鎖について $\mathrm{Ker}(I-T))=\mathrm{span}(1)$ である。
+既約なマルコフ連鎖について $\mathrm{Ker}(I-T)=\mathrm{span}(1)$ である。
 :::
 ::: {.proof}
 列ベクトル $v\in\mathbb{R}^n$ を
@@ -89,7 +89,8 @@ $\iff$
 このとき、$i\in\arg\max_{k\in S} v_k$ とすると
 \begin{align*}
 v_i &= \sum_{j\in S} T_{i,j} v_j\\
-&\le \sum_{j\in S} T_{i,j} v_i\\
+&= \sum_{j\in S\colon\,(i,j)\in E} T_{i,j} v_j\\
+&\le \sum_{j\in S\colon\,(i,j)\in E} T_{i,j} v_i\\
 &= v_i
 \end{align*}
 という不等式が得られる。
@@ -97,22 +98,29 @@ v_i &= \sum_{j\in S} T_{i,j} v_j\\
 \begin{align*}
 v_j &= v_i\qquad\text{if } (i, j)\in E
 \end{align*}
+である。
+この議論を繰り返すと $i\le_T j$ である $j$ について $v_j=v_i$ である。
+マルコフ連鎖が既約であることから、任意の $j\in S$ について $i\le j$ であり、$v = v_i 1$ である。
+したがって、$\mathrm{Ker}(I-T)=\mathrm{span}(1)$ である。
 :::
 
 :::{.callout-note}
-既約なマルコフ連鎖が定常分布を持つことの証明には大きくいって3通りの方法がある。
+既約なマルコフ連鎖が定常分布を持つことの証明には大きく分類して3通りの方法がある。
 
-1. ブラウアーの不動点定理。
-1. 確率論的(再帰時間)
-1. 線形代数的(マルコフ連鎖木定理)
+1. ブラウワーの不動点定理。
+1. 確率論的な議論(再帰時間)で明示的に定常状態を与える。定常状態は直感的に記述できる。
+1. 線形代数的な議論(マルコフ連鎖木定理)で組合せ的な記述で明示的に定常状態を与える。
+
+以下では3番目の手法に従い、明示的な定常状態は与えず、その存在だけを示す。
 :::
 
 ::: {#thm-irred}
 既約なマルコフ連鎖は唯一の定常分布 $\mu\in\mathbb{R}_{>0}^n$ を持つ。
 :::
 :::{.proof}
-行列 $\Lambda \coloneqq I-T$ と定義する(ラプラシアン行列と呼ばれることがある)。
-余因子展開
+マルコフ連鎖の**ラプラシアン行列**を $\Lambda \coloneqq I-T$ と定義する。
+ラプラシアン行列の余因子行列を $\mathrm{adj}(\Lambda)$ で表す($\mathrm{adj}(\Lambda)$ の $(i,j)$ 成分は $(j,i)$ 余因子である)。
+余因子展開より
 \begin{align*}
 \mathrm{adj}(\Lambda)\Lambda &= \Lambda\,\mathrm{adj}(\Lambda) = \det(\Lambda)I
 \end{align*}
@@ -122,7 +130,7 @@ v_j &= v_i\qquad\text{if } (i, j)\in E
 \mathrm{adj}(\Lambda)\Lambda &= \Lambda\,\mathrm{adj}(\Lambda) = O
 \end{align*}
 である。
-まず、$\Lambda\,\mathrm{adj}(\Lambda)=O$ と @lem-irred より $\mathrm{adj}(\Lambda)$ の列は $1$ のスカラー倍である。よって、$\mathrm{adj}(\Lambda)$ の行はすべて等しい。
+まず、$\Lambda\,\mathrm{adj}(\Lambda)=O$ と @lem-irred より $\mathrm{adj}(\Lambda)$ の各列は $1$ のスカラー倍である。よって、$\mathrm{adj}(\Lambda)$ の行はすべて等しい。
 次に、$\mathrm{adj}(\Lambda)\Lambda=O$ より、$\mathrm{adj}(\Lambda)$ の行 $\mu\in\mathbb{R}^n$ は $\mu\Lambda=0$ を満たす。
 ここで、$\mathrm{adj}(\Lambda)$ の行がすべて等しいことから
 \begin{align*}
@@ -134,6 +142,61 @@ v_j &= v_i\qquad\text{if } (i, j)\in E
 \mathrm{adj}(\Lambda)_{i,i}&>0\qquad\forall i\in S
 \end{align*}
 を示せば十分である。
+余因子行列の定義より、
+\begin{align*}
+\mathrm{adj}(\Lambda)_{i,i}&= \det(I - T^{(i)})
+\end{align*}
+である。ここで、$T^{(i)}$ は $T$ の $i$ 行目と $i$ 列目を削除して得られる行列である。
+正方行列 $A$ の固有値の多重集合を $\mathrm{spec}(A)$ で表すことにする。
+実多項式の実数でない根はその複素共役とペアで現れることに注意すると、
+\begin{align*}
+\det(I-T^{(i)})&= \prod_{\lambda\in\mathrm{spec}(T^{(i)})} (1-\lambda)\\
+&= \prod_{\lambda\in\mathrm{spec}(T^{(i)})\cap\mathbb{R}} (1-\lambda)
+\cdot \prod_{\lambda\in\mathrm{spec}(T^{(i)})\setminus\mathbb{R}} (1-\lambda)\\
+&= \prod_{\lambda\in\mathrm{spec}(T^{(i)})\cap\mathbb{R}} (1-\lambda)
+\cdot \prod_{\lambda\in\mathrm{spec}(T^{(i)})\setminus\mathbb{R}} |1-\lambda|\\
+\end{align*}
+
+よって、$\rho(T^{(i)})<1$ を示せば $\mathrm{adj}(\Lambda)_{i,i}=\det(I-T') > 0$ がしたがう。
+
+任意の $k\in\mathbb{Z}_{\ge 0}$ について、
+\begin{align*}
+\rho(T^{(i)k}) &= \rho(T^{(i)})^k
+\end{align*}
+より、
+\begin{align*}
+\rho(T^{(i)k}) < 1 &\iff \rho(T^{(i)}) < 1
+\end{align*}
+である。
+$T^{(i)}$ の絶対値最大の固有値を $\lambda$ とおき、対応する固有ベクトルを $v$ とする。
+このとき
+\begin{align*}
+T^{(i)}v &= \lambda v
+\end{align*}
+が成り立つ。
+$v$ の絶対値最大の成分のインデックスを $j\in S\setminus\{i\}$ とおく。
+マルコフ連鎖が既約であることから、その遷移グラフ上で $j$ から $i$ へのウォークが存在する。
+そのウォークの長さを $\ell\in\mathbb{Z}_{\ge 1}$ とおく。
+このとき、$S\coloneqq T^{(i)\ell}$ とおくと、
+\begin{align*}
+S v &= \lambda^\ell v
+\end{align*}
+である。
+ここで、$S$ の $j$ 行目の和は
+\begin{align*}
+\sum_k S_{j,k} &= \Pr(X_1\ne i,\dotsc,X_\ell \ne i\mid X_0 = j) < 1
+\end{align*}
+である。
+よって、
+\begin{align*}
+|\lambda^\ell v_j| &= |(S v)_j|\\
+&= \left|\sum_{k}S_{j,k} v_k\right|\\
+&\le \sum_{k}S_{j,k} \left|v_k\right|\\
+&\le \sum_{k}S_{j,k} |v_j|\\
+&< |v_j|\\
+\end{align*}
+である。$|v_j|>0$ より、$|\lambda|<1$ である。
+したがって、$\rho(T^{(i)}) < 1$ であることが示された。
 :::
 
 

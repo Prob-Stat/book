@@ -243,6 +243,18 @@ A^*A&=
 より、$A^*A$ の固有値は 0 と 2 である。
 よって、$A$ のスペクトルノルムは $\|A\|_2=\sqrt{2} > 1 =\rho(A)$ である。
 ここで、$A$ は確率行列であり、二つの異なる固有値を持つので対角化可能である。
+
+また、スペクトル半径はノルムにもならない。
+\begin{align*}
+\rho\left(\begin{bmatrix}0&1\\0&0\end{bmatrix}\right) &= 0
+\end{align*}
+であるし、
+\begin{align*}
+1&=\rho\left(\begin{bmatrix}0&1\\1&0\end{bmatrix}\right) >
+\rho\left(\begin{bmatrix}0&1\\0&0\end{bmatrix}\right) +
+\rho\left(\begin{bmatrix}0&0\\1&0\end{bmatrix}\right) = 0
+\end{align*}
+なので三角不等式も満たさない。
 :::
 
 ::: {#lem-spectral}
