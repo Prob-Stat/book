@@ -7,7 +7,127 @@
 を満たす確率ベクトル(非負で成分の和が1) $\mu$ を定常分布と呼ぶのであった。
 定常分布の存在、唯一性、極限分布との一致について考える。
 
+:::{#def-digraph}
+### 有向グラフ
+有限集合 $V$ と集合 $E\subseteq V\times V$ のペア $G=(V,\,E)$ を有向グラフという。
+$V$ の元を**頂点**、$E$ の元を**辺(有向辺)**と呼ぶ。
+:::
+
+有向辺 $(u,v)\in E$ は頂点 $u$ から頂点 $v$ への有向辺と解釈することにする。
+
+:::{#def-trgraph}
+### 遷移グラフ
+有向グラフ $G=(V,\,E)$ が状態集合 $S$ 上のマルコフ連鎖の遷移行列 $T$ の**遷移グラフ** $\defiff$
+\begin{align*}
+V&= S\\
+E&=\left\{(u,v)\in V\times V\mid T_{u,v}>0\right\}.
+\end{align*}
+:::
+
+:::{#def-cycle}
+### 有向グラフのウォーク
+有向グラフ $G=(V,E)$ の有向辺集合
+\begin{align*}
+\{(v_i,v_{i+1})\mid i=1,2,\dotsc,w\}\subseteq E
+\end{align*}
+を**($v_1$ から $v_{w+1}$ への)ウォーク**という。
+:::
+
+遷移グラフの定義より
+
+:::{#def-equiv}
+### 順序関係
+推移行列 $T$ を持つマルコフ連鎖の状態 $u,v\in S$ について $u\le_T v$ $\defiff$ その遷移グラフにおいて $u$ から $v$ へのウォークが存在する。
+また、$u\le_T v$ かつ $v\le_T u$ のとき、$u\sim_T v$ とする。
+:::
+
+この $\le_T$ は以下の前順序関係の公理を満たす。
+
+* (反射律) $\forall u\in S,\, u\le_T u$.
+* (推移律) $\forall u,v,w\in S,\, (u\le_T v\,\land\, v\le_T w) \implies u\le_T w$.
+
+また、$\sim_T$ は以下の同値関係の公理を満たす。
+
+* (反射律) $\forall u\in S,\, u\sim_T u$.
+* (対称律) $\forall u,v\in S,\, u\sim_T v\implies v\sim_T u$.
+* (推移律) $\forall u,v,w\in S,\, (u\sim_T v\,\land\, v\sim_T w) \implies u\sim_T w$.
+
+
 ::: {#def-irred}
 ### マルコフ連鎖の既約性
+
+マルコフ連鎖が**既約**である $\defiff$
+任意の $u,v\in S$ について $u\sim_T v$.
+<!--
+任意の $x,y\in S$ についてある $t\in\mathbb{Z}_{\ge 0}$ が存在して、
+\begin{align*}
+\Pr(X_t=y\mid X_0 = x)&>0
+\end{align*}
+$\iff$
+任意の $x,y\in S$ についてある $t\in\mathbb{Z}_{\ge 0}$ が存在して、$(T^t)_{x,y}>0$.
+-->
 :::
+
+マルコフ連鎖をその遷移グラフ
+
+::: {#lem-irred}
+既約なマルコフ連鎖について $\mathrm{Ker}(I-T))=\mathrm{span}(1)$ である。
+:::
+::: {.proof}
+列ベクトル $v\in\mathbb{R}^n$ を
+\begin{align*}
+(I-T)v = 0 &\iff Tv = v
+\end{align*}
+を満たすとする。
+このとき、$i\in\arg\max_{k\in S} v_k$ とすると
+\begin{align*}
+v_i &= \sum_{j\in S} T_{i,j} v_j\\
+&\le \sum_{j\in S} T_{i,j} v_i\\
+&= v_i
+\end{align*}
+という不等式が得られる。
+この不等号は等号でなくてはいけないので、
+\begin{align*}
+v_j &= v_i\qquad\text{if } (i, j)\in E
+\end{align*}
+:::
+
+:::{.callout-note}
+既約なマルコフ連鎖が定常分布を持つことの証明には大きくいって3通りの方法がある。
+
+1. ブラウアーの不動点定理。
+1. 確率論的(再帰時間)
+1. 線形代数的(マルコフ連鎖木定理)
+:::
+
+::: {#thm-irred}
+既約なマルコフ連鎖は唯一の定常分布 $\mu\in\mathbb{R}_{>0}^n$ を持つ。
+:::
+:::{.proof}
+行列 $\Lambda \coloneqq I-T$ と定義する(ラプラシアン行列と呼ばれることがある)。
+余因子展開
+\begin{align*}
+\mathrm{adj}(\Lambda)\Lambda &= \Lambda\,\mathrm{adj}(\Lambda) = \det(\Lambda)I
+\end{align*}
+である。確率行列 $T$ は固有値1を持つので、$\det(\Lambda)=0$ である。
+よって、
+\begin{align*}
+\mathrm{adj}(\Lambda)\Lambda &= \Lambda\,\mathrm{adj}(\Lambda) = O
+\end{align*}
+である。
+まず、$\Lambda\,\mathrm{adj}(\Lambda)=O$ と @lem-irred より $\mathrm{adj}(\Lambda)$ の列は $1$ のスカラー倍である。よって、$\mathrm{adj}(\Lambda)$ の行はすべて等しい。
+次に、$\mathrm{adj}(\Lambda)\Lambda=O$ より、$\mathrm{adj}(\Lambda)$ の行 $\mu\in\mathbb{R}^n$ は $\mu\Lambda=0$ を満たす。
+ここで、$\mathrm{adj}(\Lambda)$ の行がすべて等しいことから
+\begin{align*}
+\mu_i &= \mathrm{adj}(\Lambda)_{i,i}\qquad\forall i\in S
+\end{align*}
+が成り立つ。
+よって
+\begin{align*}
+\mathrm{adj}(\Lambda)_{i,i}&>0\qquad\forall i\in S
+\end{align*}
+を示せば十分である。
+:::
+
+
 
