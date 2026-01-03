@@ -54,8 +54,9 @@ jobs:
           tlmgr update --self
           tlmgr install $(cat tinytex_packages.txt)
 
-      - name: Install Chromium for diagram rendering (pdf/docx)
-        run: quarto install chromium
+      - name: Setup Chrome
+        id: setup-chrome
+        uses: browser-actions/setup-chrome@v2
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
@@ -63,3 +64,5 @@ jobs:
           target: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          QUARTO_CHROMIUM: ${{ steps.setup-chrome.outputs.chrome-path }}
+          QUARTO_CHROMIUM_HEADLESS_MODE: new
