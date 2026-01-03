@@ -679,6 +679,7 @@ I-T&amp;=
 9/25&amp;2/5&amp;6/25
 \end{bmatrix}
 \end{align*}\]</span> が取れる。これは非負で成分の和が1なので、定常確率ベクトルである。 <span class="math inline">\(I-T\)</span> のランクは2であり、これが唯一の定常確率ベクトルである。</p>
+<p>一方で、この例においては <span class="math inline">\(T\)</span> を対角化することはできない。</p>
 </div>
 <!--
 この確率について、
@@ -689,11 +690,57 @@ I-T&amp;=
 
 遷移行列 $T$ が $T=UDU^{-1}$ と対角化できるとき、
 -->
+<div id="def-spectral" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 12.1 (スペクトル半径)</strong></span> 正方行列 <span class="math inline">\(A\in\mathbb{C}^{n\times n}\)</span> について、その固有値の絶対値の最大値を<strong>スペクトル半径</strong>といい <span class="math inline">\(\rho(A)\)</span> で表す。</p>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+注意
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>スペクトルノルム</strong>はスペクトル半径と似た概念であるが異なるものである。 正方行列とは限らない行列 <span class="math inline">\(A\in\mathbb{C}^{n\times m}\)</span> のスペクトルノルムは <span class="math display">\[\begin{align*}
+\|A\|_2&amp;\coloneqq \max_{x\in\mathbb{C}^m \setminus\{0\}} \frac{\|Ax\|_2}{\|x\|_2}
+\end{align*}\]</span> と定義される。 ここで、右辺の <span class="math inline">\(\|\cdot\|_2\)</span> は複素ユークリッド空間上の <strong><span class="math inline">\(L_2\)</span> ノルム</strong>を表す。ここで、 <span class="math display">\[\begin{align*}
+\|A\|_2&amp;=
+\max_{x\in\mathbb{C}^m \setminus\{0\}} \left\|A\frac{x}{\|x\|_2}\right\|_2\\
+&amp;=\max_{x\in\mathbb{C}^m\colon\, \|x\|_2=1} \left\|Ax\right\|_2\\
+&amp;=\max_{x\in\mathbb{C}^m\colon\, \|x\|_2=1} \sqrt{\left\|Ax\right\|_2^2}\\
+&amp;=\sqrt{\max_{x\in\mathbb{C}^m\colon\, \|x\|_2=1} x^*A^*Ax}\\
+&amp;=\sqrt{\lambda_{\max}(A^*A)}\\
+&amp;=\sigma_{\max}(A)
+\end{align*}\]</span> である。<span class="math inline">\(\lambda_{\max}\)</span> と <span class="math inline">\(\sigma_{\max}\)</span> は最大固有値と最大特異値を表す。</p>
+<p>直感的な意味としては</p>
+<ul>
+<li>スペクトルノルム<span class="math inline">\(\colon\)</span> 線形写像 <span class="math inline">\(A\)</span> が <span class="math inline">\(L_2\)</span> ノルムをどれだけ大きくするか？</li>
+<li>スペクトル半径 <span class="math inline">\(\colon\)</span> 線形写像 <span class="math inline">\(A\)</span> が<strong>向きを変えずに</strong> <span class="math inline">\(L_2\)</span> ノルムをどれだけ大きくするか？</li>
+</ul>
+<p>ということになる。 これらの意味から <span class="math inline">\(\|A\|_2\ge\rho(A)\)</span> であることが分かる。 実際 <span class="math inline">\(\|A\|_2\)</span> の定義の中で <span class="math inline">\(x\)</span> として <span class="math inline">\(A\)</span> の絶対値最大固有値に対応する固有ベクトルを選べばこの不等式が得られる。</p>
+<p>正方行列 <span class="math inline">\(A\in\mathbb{C}^{n\times n}\)</span> が<strong>正規行列</strong>のとき、スペクトル分解定理よりユニタリ行列 <span class="math inline">\(U\)</span> と対角行列 <span class="math inline">\(D\)</span> を用いて <span class="math inline">\(A = UDU^*\)</span> と表せる。 このとき、<span class="math inline">\(A^*A=UD^*DU^*\)</span> であることから、簡単な計算により <span class="math inline">\(\|A\|_2=\rho(A)\)</span> であることが分かる。</p>
+<p>しかし一般的には(対角化可能であっても)スペクトル半径とスペクトルノルムは異なる。 例えば、 <span class="math display">\[\begin{align*}
+A&amp;=\begin{bmatrix}
+1&amp;0\\
+1&amp;0
+\end{bmatrix}
+\end{align*}\]</span> とすると、 <span class="math inline">\(A\)</span> の固有値は 0 と 1 なので<span class="math inline">\(\rho(A)=1\)</span> である。 一方で、 <span class="math display">\[\begin{align*}
+A^*A&amp;=
+\begin{bmatrix}
+2&amp;0\\
+0&amp;0
+\end{bmatrix}
+\end{align*}\]</span> より、<span class="math inline">\(A^*A\)</span> の固有値は 0 と 2 である。 よって、<span class="math inline">\(A\)</span> のスペクトルノルムは <span class="math inline">\(\|A\|_2=\sqrt{2} &gt; 1 =\rho(A)\)</span> である。 ここで、<span class="math inline">\(A\)</span> は確率行列であり、二つの異なる固有値を持つので対角化可能である。</p>
+</div>
+</div>
 <div id="lem-spectral" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 12.1</strong></span> 任意の確率行列の任意の固有値の絶対値は1以下である。</p>
+<p><span class="theorem-title"><strong>補題 12.1</strong></span> 任意の確率行列 <span class="math inline">\(T\)</span> について、<span class="math inline">\(\rho(T)=1\)</span> である。</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span>遷移行列 <span class="math inline">\(T\)</span> の固有値 <span class="math inline">\(\lambda\in\mathbb{C}\)</span> に対応する固有ベクトルを <span class="math inline">\(v\)</span> とすると <span class="math display">\[\begin{align*}
+<p><span class="proof-title"><em>証明</em>. </span>すべての成分が1の列ベクトルは確率行列 <span class="math inline">\(T\)</span> の固有値1に対する右固有ベクトルになるので、<span class="math inline">\(\rho(T)\ge 1\)</span> である。</p>
+<p>以下では <span class="math inline">\(\rho(T)\le 1\)</span> を示す。 遷移行列 <span class="math inline">\(T\)</span> の固有値 <span class="math inline">\(\lambda\in\mathbb{C}\)</span> に対応する固有ベクトルを <span class="math inline">\(v\)</span> とすると <span class="math display">\[\begin{align*}
 Tv &amp;= \lambda v
 \end{align*}\]</span> が成り立つ。 <span class="math inline">\(v\)</span> の成分で絶対値最大のものを第 <span class="math inline">\(i\)</span> 成分とする。 第 <span class="math inline">\(i\)</span> 成分に注目すると <span class="math display">\[\begin{align*}
 \sum_{j\in S}T_{i,j}v_j &amp;= \lambda v_i
@@ -702,13 +749,13 @@ Tv &amp;= \lambda v
 &amp;\le \sum_{j\in S}T_{i,j}\left|v_j\right|\\
 &amp;\le \sum_{j\in S}T_{i,j}\left|v_i\right|\\
 &amp;=\left|v_i\right|
-\end{align*}\]</span> より、 <span class="math inline">\(|\lambda|\le 1\)</span> である。</p>
+\end{align*}\]</span> と <span class="math inline">\(|v_i|&gt;0\)</span> より、 <span class="math inline">\(|\lambda|\le 1\)</span> である。</p>
 </div>
 </section>
 <section id="マルコフ連鎖の例-グラフ上のランダムウォーク" class="level2" data-number="12.4">
 <h2 data-number="12.4" class="anchored" data-anchor-id="マルコフ連鎖の例-グラフ上のランダムウォーク"><span class="header-section-number">12.4</span> マルコフ連鎖の例: グラフ上のランダムウォーク</h2>
 <div id="def-graph" class="theorem definition">
-<p><span class="theorem-title"><strong>定義 12.1 (グラフ)</strong></span> 有限集合 <span class="math inline">\(V\)</span> と集合 <span class="math inline">\(E\subseteq \{\{u,v\}\mid u,\, v\in V, u\ne v\}\)</span> のペア <span class="math inline">\(G=(V,\,E)\)</span> を(無向単純)グラフという。 <span class="math inline">\(V\)</span> の元を<strong>頂点</strong>、<span class="math inline">\(E\)</span> の元を<strong>辺</strong>と呼ぶ。</p>
+<p><span class="theorem-title"><strong>定義 12.2 (グラフ)</strong></span> 有限集合 <span class="math inline">\(V\)</span> と集合 <span class="math inline">\(E\subseteq \{\{u,v\}\mid u,\, v\in V, u\ne v\}\)</span> のペア <span class="math inline">\(G=(V,\,E)\)</span> を(無向単純)グラフという。 <span class="math inline">\(V\)</span> の元を<strong>頂点</strong>、<span class="math inline">\(E\)</span> の元を<strong>辺</strong>と呼ぶ。</p>
 </div>
 <p>グラフ <span class="math inline">\(G=(V,\,E)\)</span> と <span class="math inline">\(v\in V\)</span> について、 <span class="math display">\[\begin{align*}
 N(v)&amp;\coloneqq\{u\in V\mid \{u,v\}\in E\}
@@ -716,7 +763,7 @@ N(v)&amp;\coloneqq\{u\in V\mid \{u,v\}\in E\}
 d_v&amp;\coloneqq|N(v)|
 \end{align*}\]</span> を <span class="math inline">\(v\)</span> の<strong>次数</strong>という。 次数0の頂点を<strong>孤立頂点</strong>という。</p>
 <div id="def-rw" class="theorem definition">
-<p><span class="theorem-title"><strong>定義 12.2 (グラフ上のランダムウォーク)</strong></span> 孤立頂点を持たないグラフ <span class="math inline">\(G=(V=\{1,2,\dotsc,n\},\,E)\)</span> 上のランダムウォークは <span class="math inline">\(S=V\)</span> であり、 任意の初期確率ベクトル <span class="math inline">\(\pi\)</span> と <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>定義 12.3 (グラフ上のランダムウォーク)</strong></span> 孤立頂点を持たないグラフ <span class="math inline">\(G=(V=\{1,2,\dotsc,n\},\,E)\)</span> 上のランダムウォークは <span class="math inline">\(S=V\)</span> であり、 任意の初期確率ベクトル <span class="math inline">\(\pi\)</span> と <span class="math display">\[\begin{align*}
 p_{i,j} &amp;=
 \begin{cases}
 \frac1{d_i}&amp;\text{if } \{i,j\}\in E\\
@@ -751,31 +798,53 @@ P &amp;= \sqrt{D}^{-1}Q\sqrt{D} = \sqrt{D}^{-1}V\Lambda V^T\sqrt{D}
 \lim_{t\to\infty} \pi T^t  &amp;= \mu
 \end{align*}\]</span></p>
 <div id="lem-graph-eigen" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 12.3</strong></span> グラフ上のランダムウォークの遷移行列 <span class="math inline">\(T\)</span> に含まれる固有値1の個数はグラフの<strong>連結成分の個数</strong>である。</p>
+<p><span class="theorem-title"><strong>補題 12.3</strong></span> グラフ上のランダムウォークの遷移行列 <span class="math inline">\(T\)</span> に含まれる固有値1の重複度はグラフの<strong>連結成分の個数</strong>である。</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span>まず、「固有値1の個数 <span class="math inline">\(\ge\)</span> グラフの連結成分の個数」を証明する。 グラフの連結成分 <span class="math inline">\(C\subseteq V\)</span> について、列ベクトル <span class="math inline">\(\mathrm{1}_C\)</span> をインデックスが <span class="math inline">\(C\)</span> に含まれるとき1、そうでないとき 0 と定義する。 このとき、<span class="math inline">\(T\mathrm{1}_C=\mathrm{1}_C\)</span> であるので、固有値1の右固有ベクトルとなる。 各連結成分 <span class="math inline">\(C\)</span> について <span class="math inline">\(\mathrm{1}_C\)</span> は線形独立であるので、「固有値1の個数 <span class="math inline">\(\ge\)</span> グラフの連結成分の個数」が示された。</p>
-<p>次に、「固有値1の個数 <span class="math inline">\(\le\)</span> グラフの連結成分の個数」を証明する。 <span class="math inline">\(v\)</span> を固有値1に対応する固有ベクトルとすると、 <span class="math display">\[\begin{align*}
+<p><span class="proof-title"><em>証明</em>. </span>まず、「固有値1の重複度 <span class="math inline">\(\ge\)</span> グラフの連結成分の個数」を証明する。 グラフの連結成分 <span class="math inline">\(C\subseteq V\)</span> について、列ベクトル <span class="math inline">\(\mathrm{1}_C\)</span> を成分のインデックスが <span class="math inline">\(C\)</span> に含まれるとき1、そうでないとき 0 と定義する。 このとき、<span class="math inline">\(T\mathrm{1}_C=\mathrm{1}_C\)</span> であるので、固有値1の右固有ベクトルとなる。 各連結成分 <span class="math inline">\(C\)</span> について <span class="math inline">\(\mathrm{1}_C\)</span> は線形独立であるので、「固有値1の重複度 <span class="math inline">\(\ge\)</span> グラフの連結成分の個数」が示された。</p>
+<p>次に、「固有値1の重複度 <span class="math inline">\(\le\)</span> グラフの連結成分の個数」を証明する。 <span class="math inline">\(v\)</span> を固有値1に対応する固有ベクトルとすると、 <span class="math display">\[\begin{align*}
 Tv &amp;=  v
 \end{align*}\]</span> が成り立つ。 これは <span class="math display">\[\begin{align*}
 \sum_{j\in S}T_{i,j} v_j &amp;=  v_i\qquad\forall i\in V
 \end{align*}\]</span> を意味する。 グラフの連結成分 <span class="math inline">\(C\subseteq V\)</span> を固定する。 そして、 <span class="math display">\[\begin{align*}
 i &amp;\in \arg\max_{j\in C} v_j
-\end{align*}\]</span> とおく。 このとき、 <span class="math display">\[\begin{align*}
+\end{align*}\]</span> とする。 このとき、 <span class="math display">\[\begin{align*}
 v_i &amp;= \sum_{j\in S}T_{i,j} v_j\\
 &amp;\le \sum_{j\in S}T_{i,j} v_i\\
 &amp;= v_i
 \end{align*}\]</span> という不等式が得られるが、この不等式が等号で満たされなければならない。 よって、<span class="math inline">\(j\in N(i)\)</span> について <span class="math inline">\(v_j=v_i\)</span> であることが必要である。 よって <span class="math inline">\(j\in C\)</span> について <span class="math inline">\(v_j=v_i\)</span> である必要がある。 したがって、グラフの連結成分を <span class="math inline">\(C_1,\dotsc,C_k\)</span> とすると <span class="math display">\[\begin{align*}
 v&amp;\in\mathrm{span}(\mathrm{1}_{C_1},\dotsc,\mathrm{1}_{C_k})
-\end{align*}\]</span> である。 以上のことから「固有値1の個数 <span class="math inline">\(\le\)</span> グラフの連結成分の個数」が示された。</p>
+\end{align*}\]</span> である。 以上のことから「固有値1の重複度 <span class="math inline">\(\le\)</span> グラフの連結成分の個数」が示された。</p>
 </div>
 <div id="lem-graph-eigenb" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 12.4</strong></span> グラフ上のランダムウォークの遷移行列 <span class="math inline">\(T\)</span> に含まれる固有値-1の個数はグラフの<strong>連結二部グラフの個数</strong>である。</p>
+<p><span class="theorem-title"><strong>補題 12.4</strong></span> グラフ上のランダムウォークの遷移行列 <span class="math inline">\(T\)</span> に含まれる固有値 <span class="math inline">\(-1\)</span> の重複度はグラフの<strong>二部連結成分の個数</strong>である。</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span>執筆中</p>
+<p><span class="proof-title"><em>証明</em>. </span>まず、「固有値 <span class="math inline">\(-1\)</span> の重複度 <span class="math inline">\(\ge\)</span> グラフの二部連結成分の個数」を証明する。 グラフの二部連結成分 <span class="math inline">\(L\cup R\subseteq V\)</span> について、列ベクトル <span class="math inline">\(\mathrm{1}_{L,R}\)</span> を成分のインデックスが <span class="math inline">\(L\)</span> に含まれるとき <span class="math inline">\(+1\)</span>、<span class="math inline">\(R\)</span> に含まれるとき <span class="math inline">\(-1\)</span>、それ以外のとき 0 と定義する。 このとき、<span class="math inline">\(T\mathrm{1}_{L,R}=-\mathrm{1}_{L,R}\)</span> であるので、固有値<span class="math inline">\(-1\)</span>の右固有ベクトルとなる。 各二部連結成分 <span class="math inline">\(L\cup R\)</span> について <span class="math inline">\(\mathrm{1}_{L,R}\)</span> は線形独立であるので、「固有値 <span class="math inline">\(-1\)</span> の重複度 <span class="math inline">\(\ge\)</span> グラフの二部連結成分の個数」が示された。</p>
+<p>次に、「固有値 <span class="math inline">\(-1\)</span> の重複度 <span class="math inline">\(\le\)</span> グラフの二部連結成分の個数」を証明する。 <span class="math inline">\(v\)</span> を固有値 <span class="math inline">\(-1\)</span> に対応する固有ベクトルとすると、 <span class="math display">\[\begin{align*}
+Tv &amp;=  -v
+\end{align*}\]</span> が成り立つ。 これは <span class="math display">\[\begin{align*}
+\sum_{j\in S}T_{i,j} v_j &amp;=  -v_i\qquad\forall i\in V
+\end{align*}\]</span> を意味する。 グラフの二部連結成分 <span class="math inline">\(L\cup R\subseteq V\)</span> を固定する。 そして、 <span class="math display">\[\begin{align*}
+i &amp;\in \arg\max_{j\in L\cup R} |v_j|
+\end{align*}\]</span> とする。 このとき、 <span class="math display">\[\begin{align*}
+-v_i &amp;= \sum_{j\in S}T_{i,j} v_j\\
+&amp;\le \sum_{j\in S}T_{i,j} |v_i|\\
+&amp;= |v_i|
+\end{align*}\]</span> という不等式が得られるが、<span class="math inline">\(v_i\le 0\)</span> のとき、この不等式が等号で満たされなければならない。 よって、<span class="math inline">\(v_i\le 0\)</span> のとき、<span class="math inline">\(j\in N(i)\)</span> について <span class="math inline">\(v_j=-v_i\)</span> であることが必要である。 同様に、 <span class="math display">\[\begin{align*}
+-v_i &amp;= \sum_{j\in S}T_{i,j} v_j\\
+&amp;\ge -\sum_{j\in S}T_{i,j} |v_i|\\
+&amp;= -|v_i|
+\end{align*}\]</span> より、<span class="math inline">\(v_i\ge 0\)</span> のときも、<span class="math inline">\(j\in N(i)\)</span> について <span class="math inline">\(v_j=-v_i\)</span> であることが必要である。 よって <span class="math inline">\(j\in L\cup R\)</span> について <span class="math display">\[\begin{align*}
+v_j&amp;=\begin{cases}
+v_i&amp;\text{if } \{i,j\}\subseteq L\text{ or } \{i,j\}\subseteq R\\
+-v_i&amp;\text{otherwise}
+\end{cases}
+\end{align*}\]</span> である必要がある。 したがって、グラフの二部連結成分を <span class="math inline">\(L_1\cup R_1,\dotsc,L_k\cup R_k\)</span> とすると <span class="math display">\[\begin{align*}
+v&amp;\in\mathrm{span}(\mathrm{1}_{L_1,R_1},\dotsc,\mathrm{1}_{L_k,R_k})
+\end{align*}\]</span> である。 以上のことから「固有値 <span class="math inline">\(-1\)</span> の重複度 <span class="math inline">\(\le\)</span> グラフの二部連結成分の個数」が示された。</p>
 </div>
-<p>よって、グラフが<strong>連結していて二部グラフでない</strong>場合は遷移行列は固有値1を一つだけ持ち、固有値-1を持たない。 <!--
+<p>よって、グラフが<strong>連結していて二部グラフでない</strong>場合は遷移行列は固有値 <span class="math inline">\(1\)</span> を一つだけ持ち、固有値 <span class="math inline">\(-1\)</span> を持たない。 この場合は、初期分布 <span class="math inline">\(\pi\)</span> によらず、唯一の定常分布に収束する。 <!--
 ## 確率の計算アルゴリズム
 
 :::{#def-fps}
