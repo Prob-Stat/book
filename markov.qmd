@@ -204,12 +204,12 @@ $I-T$ のランクは2であり、これが唯一の定常確率ベクトルで�
 \|A\|_2&=
 \max_{x\in\mathbb{C}^m \setminus\{0\}} \left\|A\frac{x}{\|x\|_2}\right\|_2\\
 &=\max_{x\in\mathbb{C}^m\colon\, \|x\|_2=1} \left\|Ax\right\|_2\\
-&=\max_{x\in\mathbb{C}^m\colon\, \|x\|_2=1} \sqrt{\left\|Ax\right\|^2_2}\\
+&=\max_{x\in\mathbb{C}^m\colon\, \|x\|_2=1} \sqrt{\left\|Ax\right\|_2^2}\\
 &=\sqrt{\max_{x\in\mathbb{C}^m\colon\, \|x\|_2=1} x^*A^*Ax}\\
-&=\sqrt{\lambda_\max(A^*A)}\\
-&=\rho_\max(A)
+&=\sqrt{\lambda_{\max}(A^*A)}\\
+&=\sigma_{\max}(A)
 \end{align*}
-である。$\lambda_\max$ と $\rho_\max$ は最大固有値と最大特異値を表す。
+である。$\lambda_{\max}$ と $\sigma_{\max}$ は最大固有値と最大特異値を表す。
 
 直感的な意味としては
 
