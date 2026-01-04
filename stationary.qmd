@@ -1,3 +1,11 @@
+---
+format:
+  html:
+    include-in-header:
+      text: |
+         <style>
+         </style>
+---
 # 定常分布
 
 マルコフ連鎖の推移行列 $T$ について、
@@ -75,7 +83,28 @@ $\iff$
 -->
 :::
 
-マルコフ連鎖をその遷移グラフ
+有向グラフ $G$ の任意の頂点 $u, v\in V$ について $u$ から $v$ へのウォークが存在するとき、$G$ は**強連結**であるという。
+よってマルコフ連鎖が既約 $\iff$ 遷移グラフが強連結である。
+
+```{dot}
+//| fig-width: 7
+//| fig-height: 3
+//| fig-cap: 既約なマルコフ連鎖の遷移グラフ。任意の頂点 $u, v\in V$ について、$u$ から $v$ へのウォークが存在する。
+digraph irreduc_graph {
+  graph [rankdir=LR];
+  node [shape=circle, width=0.1, fontsize=20];
+
+  1 -> 2;
+  2 -> 3;
+  3 -> 1;
+
+  3 -> 4;
+  4 -> 2;
+  2 -> 5;
+  5 -> 1;
+}
+```
+
 
 ::: {#lem-irred}
 既約なマルコフ連鎖について $\mathrm{Ker}(I-T)=\mathrm{span}(1)$ である。
@@ -85,7 +114,7 @@ $\iff$
 \begin{align*}
 (I-T)v = 0 &\iff Tv = v
 \end{align*}
-を満たすとする。
+を満たすものとする。
 このとき、$i\in\arg\max_{k\in S} v_k$ とすると
 \begin{align*}
 v_i &= \sum_{j\in S} T_{i,j} v_j\\
@@ -105,16 +134,17 @@ v_j &= v_i\qquad\text{if } (i, j)\in E
 :::
 
 よって既約なマルコフ連鎖に対して定常分布は高々一つである。
-実際、既約なマルコフ連鎖は一つの定常分布を持つ。
+実際には既約なマルコフ連鎖は一つの定常分布を持つ。
 
 :::{.callout-note}
+### 証明の方針
 既約なマルコフ連鎖が定常分布を持つことの証明には大きく分類して3通りの方法がある。
 
 1. ブラウワーの不動点定理。
 1. 確率論的な議論(再帰時間)で明示的に定常状態を与える。定常状態は直感的に記述できる。
 1. 線形代数的な議論(マルコフ連鎖木定理)で組合せ的な記述で明示的に定常状態を与える。
 
-以下では3番目の手法に従い、明示的な定常状態は与えず、その存在だけを示す。
+以下では3番目の方針に従い、明示的な定常状態は与えず、その存在だけを示す。
 :::
 
 ::: {#thm-irred}
@@ -149,19 +179,41 @@ v_j &= v_i\qquad\text{if } (i, j)\in E
 \begin{align*}
 \mathrm{adj}(\Lambda)_{i,i}&= \det(I - T^{(i)})
 \end{align*}
-である。ここで、$T^{(i)}$ は $T$ の $i$ 行目と $i$ 列目を削除して得られる行列である。
+である。
+ここで、$T^{(i)}$ は $T$ の $i$ 行目と $i$ 列目を削除して得られる行列である。
+
+目標である $\det(I-T^{(i)})>0$ を示すためには $\rho(T^{(i)})<1$ を示せば十分である。
+
+:::{.callout-note}
+### $\rho(A)<1\implies \det(I-A)>0$ の代数的な証明
 正方行列 $A$ の固有値の多重集合を $\mathrm{spec}(A)$ で表すことにする。
 実多項式の実数でない根はその複素共役とペアで現れることに注意すると、
 \begin{align*}
-\det(I-T^{(i)})&= \prod_{\lambda\in\mathrm{spec}(T^{(i)})} (1-\lambda)\\
-&= \prod_{\lambda\in\mathrm{spec}(T^{(i)})\cap\mathbb{R}} (1-\lambda)
-\cdot \prod_{\lambda\in\mathrm{spec}(T^{(i)})\setminus\mathbb{R}} (1-\lambda)\\
-&= \prod_{\lambda\in\mathrm{spec}(T^{(i)})\cap\mathbb{R}} (1-\lambda)
-\cdot \prod_{\lambda\in\mathrm{spec}(T^{(i)})\setminus\mathbb{R}} |1-\lambda|\\
+\det(I-A)&= \prod_{\lambda\in\mathrm{spec}(A)} (1-\lambda)\\
+&= \prod_{\lambda\in\mathrm{spec}(A)\cap\mathbb{R}} (1-\lambda)
+\cdot \prod_{\lambda\in\mathrm{spec}(A)\setminus\mathbb{R}} (1-\lambda)\\
+&= \prod_{\lambda\in\mathrm{spec}(A)\cap\mathbb{R}} (1-\lambda)
+\cdot \prod_{\lambda\in\mathrm{spec}(A)\setminus\mathbb{R}} |1-\lambda|\\
 \end{align*}
+よって $\rho(A)<1$ であれば $p_A(1)>0$ である。
+:::
 
-よって、$\rho(T^{(i)})<1$ を示せば $\mathrm{adj}(\Lambda)_{i,i}=\det(I-T') > 0$ がしたがう。
 
+:::{.callout-note}
+### $\rho(A)<1\implies \det(I-A)>0$ の解析的な証明
+正方行列 $A$ の特性多項式を
+\begin{align*}
+p_A(x) &\coloneqq \det(xI - A)
+\end{align*}
+と定義する。
+これはモニックな多項式であるため $x\to+\infty$ で $p_A(x)\to+\infty$ である。
+よって $p_A(x)$ が実根を持たないもしくは、すべての実根が 1 未満であれば $p_A(1)>0$ である。
+よって $\rho(A)<1$ であれば $p_A(1)=\det(I-A)>0$ である。
+:::
+
+よって、$\rho(T^{(i)})<1$ を示せば $\mathrm{adj}(\Lambda)_{i,i}=\det(I-T^{(i)}) > 0$ がしたがう。
+
+<!--
 任意の $k\in\mathbb{Z}_{\ge 0}$ について、
 \begin{align*}
 \rho(T^{(i)k}) &= \rho(T^{(i)})^k
@@ -171,6 +223,7 @@ v_j &= v_i\qquad\text{if } (i, j)\in E
 \rho(T^{(i)k}) < 1 &\iff \rho(T^{(i)}) < 1
 \end{align*}
 である。
+-->
 $T^{(i)}$ の絶対値最大の固有値を $\lambda$ とおき、対応する固有ベクトルを $v$ とする。
 このとき
 \begin{align*}
@@ -216,11 +269,116 @@ E&=\left\{(u,v)\in V\times V\mid \exists u\in U, v\in V\quad T_{u,v}>0\right\}.
 :::
 
 マルコフ連鎖の遷移グラフから同値類の遷移グラフは定まる。
-遷移グラフから同値類の遷移グラフを構成する操作をグラフの**強連結成分分解**という。
+
+:::{#def-digraph-scc}
+### 強連結成分と縮約グラフ
+
+有向グラフ $G=(V,E)$ について、$V$ 上の同値関係を $u\sim v\defiff \text{$u$ と $v$ の間に両方向のパスがある}$と定義する。
+この同値関係の同値類を $G$ の**強連結成分**と呼ぶ。
+
+$G$ の強連結成分を頂点に持つ**縮約グラフ** $G'=(V',E')$ を
+\begin{align*}
+V'&=V/\sim\\
+E'&=\left\{(A,B)\in V'\times V'\mid \exists a\in A, \exists b\in B, (a,b)\in E, A\ne B\right\}
+\end{align*}
+と定義する。
+:::
+
+```{dot}
+//| fig-width: 7
+//| fig-height: 3
+//| fig-cap: 有向グラフの例。強連結ではない。
+digraph tgraph {
+  graph [rankdir=LR];
+  node [shape=circle, width=0.1, fontsize=20];
+
+  1 -> 2;
+  2 -> 3;
+  3 -> 1;
+
+  2 -> 4;
+  2 -> 5;
+  5 -> 6;
+  6 -> 5;
+  4 -> 7;
+  6 -> 7;
+  1 -> 7;
+  7 -> 7;
+}
+```
+```{dot}
+//| fig-width: 7
+//| fig-height: 3
+//| fig-cap: 上の図の有向グラフの縮約グラフ。
+digraph tgraph_equiv {
+  rankdir=LR;
+  node [shape=circle, width=0.6, margin="0.01", fixedsize=true, fontsize=10];
+
+  a [label="{1, 2, 3}"]
+  b [label="{4}"]
+  c [label="{5, 6}"]
+  d [label="{7}"]
+
+  a -> b;
+  a -> d;
+  a -> c;
+  b -> d;
+  c -> d;
+}
+```
+
 
 :::{#def-dag}
 ### 有向非巡回グラフ
+有向グラフ $G$ のウォーク $(v_0,\dotsc,v_\ell)$ が
 
+1. $v_\ell=v_0$.
+1. $v_0,\dotsc,v_{\ell-1}$ がすべて異なる。
+
+を満たすとき、**サイクル**という。
+サイクルを持たない有向グラフを**有向非巡回グラフ(directed acyclic graph; DAG)**という。
 :::
 
+同値類の遷移グラフはDAGである。
+$S$ に対する前順序関係 $\le_T$ を同値類 $S/\sim_T$ についても同様に定義する。
+このとき、$\le_T$ は
 
+* (反対称律) $\forall u,v\in S/\sim_T,\,((u\le_T v\land v\le_T u)\implies u=v)$
+
+を満たし、**半順序**関係となる。
+
+::: {.callout-note}
+逆に一般の有限半順序集合からDAGを作ることもできる([ハッセ図](https://ja.wikipedia.org/wiki/%E3%83%8F%E3%83%83%E3%82%BB%E5%9B%B3))。
+任意のDAGが半順序集合のハッセ図になる訳ではない。
+:::
+
+DAGの頂点で出次数(外に出ていく有向辺の個数)が0のものを**シンク**という。
+(有限サイズの)DAGは必ずシンクを一つ以上持つ。
+一般のマルコフ連鎖の定常分布について、その同値類の遷移グラフを用いて考察する。
+マルコフ連鎖の同値類の遷移グラフにおいてシンクに対応する同値類やそれに含まれる状態を**再帰的**であるという。
+
+:::{#lem-stat-trans}
+マルコフ連鎖の定常状態を $\mu\in\mathbb{R}^n$ とすると、再帰的でない状態 $s\in S$ について $\mu(s)=0$ である。
+:::
+:::{.proof}
+定常分布 $\mu\in\mathbb{R}^n$ が再帰的でない状態 $s\in S$ について$\mu(s)>0$ であると仮定する。
+状態 $s$ に対して再帰的な状態 $t\in S$ が存在して、$s\le_T t$ である。
+この再帰的な状態 $t\in S$ が属する同値類を $C$ とおくと、定常分布におけるこの同値類の確率の総和
+\begin{align*}
+\sum_{s\in C} \mu(s)
+\end{align*}
+もマルコフ連鎖の遷移によって不変である。
+しかし、最初に確率1で$s$に入る状態からマルコフ連鎖をスタートしたとき、十分長いステップ(例えば状態数 $n$)遷移すると必ず正の確率で同値類 $C$ に遷移してしまう。
+よって、再帰的な同値類 $C$ の確率の総和は増加してしまう。
+これは矛盾であるので、定常分布 $\mu$ において再帰的でない状態 $s\in S$ の確率は0である。
+:::
+
+よって、一般のマルコフ連鎖の定常状態を考えるときは、非再帰的な状態を削除してしまって考えてもよい。
+このとき、再帰的な同値類 $C_1,C_2,\dotsc,C_k$ は互いに遷移できないので、独立に考えることができる。
+それぞれの再帰的な同値類 $C_i$ について、$C_i$ だけに確率を持つ定常分布 $\mu_i$ が唯一存在する。
+定常分布は凸集合に閉じているので、
+\begin{align*}
+\sum_{i=1}^k p_i \mu_i
+\end{align*}
+も定常分布となる。
+逆に $\mu$ が定常分布のとき、それを $C_i$ に制限したものも定常ベクトルになる。よって、それは $\mu_i$ の非負倍に等しい。
