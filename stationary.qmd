@@ -1,5 +1,5 @@
 # 定常分布
-
+## 遷移グラフ
 マルコフ連鎖の推移行列 $T$ について、
 \begin{align*}
 \mu T &= \mu
@@ -25,6 +25,11 @@ E&=\left\{(u,v)\in V\times V\mid T_{u,v}>0\right\}.
 \end{align*}
 :::
 
+マルコフ連鎖の定常分布や収束に関する議論をする際には遷移確率は 0 か正かということが問題になり、具体的な値は問題にならない。
+したがって、定常分布が唯一であるための条件などは遷移グラフの性質として表すことができる。
+
+## 既約性と定常分布
+
 :::{#def-cycle}
 ### 有向グラフのウォーク
 有向グラフ $G=(V,E)$ の頂点列
@@ -42,6 +47,8 @@ E&=\left\{(u,v)\in V\times V\mid T_{u,v}>0\right\}.
 \iff&\Pr(X_\ell=v\mid X_0=u) > 0
 \end{align*}
 である。
+
+
 
 :::{#def-equiv}
 ### 順序関係
@@ -95,6 +102,7 @@ digraph irreduc_graph {
   4 -> 2;
   2 -> 5;
   5 -> 1;
+  4 -> 4;
 }
 ```
 
@@ -179,7 +187,7 @@ v_j &= v_i\qquad\text{if } (i, j)\in E
 
 :::{.callout-note}
 ### $\rho(A)<1\implies \det(I-A)>0$ の代数的な証明
-正方行列 $A$ の固有値の多重集合を $\mathrm{spec}(A)$ で表すことにする。
+実正方行列 $A$ の固有値の多重集合を $\mathrm{spec}(A)$ で表すことにする。
 実多項式の実数でない根はその複素共役とペアで現れることに注意すると、
 \begin{align*}
 \det(I-A)&= \prod_{\lambda\in\mathrm{spec}(A)} (1-\lambda)\\
@@ -188,20 +196,20 @@ v_j &= v_i\qquad\text{if } (i, j)\in E
 &= \prod_{\lambda\in\mathrm{spec}(A)\cap\mathbb{R}} (1-\lambda)
 \cdot \prod_{\lambda\in\mathrm{spec}(A)\setminus\mathbb{R}} |1-\lambda|\\
 \end{align*}
-よって $\rho(A)<1$ であれば $p_A(1)>0$ である。
+よって $\rho(A)<1$ であれば $\det(I-A)>0$ である。
 :::
 
 
 :::{.callout-note}
 ### $\rho(A)<1\implies \det(I-A)>0$ の解析的な証明
-正方行列 $A$ の特性多項式を
+実正方行列 $A$ の特性多項式を
 \begin{align*}
 p_A(x) &\coloneqq \det(xI - A)
 \end{align*}
 と定義する。
 これはモニックな多項式であるため $x\to+\infty$ で $p_A(x)\to+\infty$ である。
 よって $p_A(x)$ が実根を持たないもしくは、すべての実根が 1 未満であれば $p_A(1)>0$ である。
-よって $\rho(A)<1$ であれば $p_A(1)=\det(I-A)>0$ である。
+特性多項式 $p_A$ の根は $A$ の固有値なので、$\rho(A)<1$ であれば $p_A(1)=\det(I-A)>0$ である。
 :::
 
 よって、$\rho(T^{(i)})<1$ を示せば $\mathrm{adj}(\Lambda)_{i,i}=\det(I-T^{(i)}) > 0$ がしたがう。
@@ -247,6 +255,8 @@ S v &= \lambda^\ell v
 である。$|v_j|>0$ より、$|\lambda|<1$ である。
 したがって、$\rho(T^{(i)}) < 1$ であることが示された。
 :::
+
+## 一般のマルコフ連鎖の定常分布
 
 次に既約とは限らない一般のマルコフ連鎖について考える。
 マルコフ連鎖の状態集合 $S$ を同値関係 $\sim_T$ で割った同値類 $S/\sim_T$ を考える。
