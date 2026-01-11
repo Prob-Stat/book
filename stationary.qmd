@@ -333,7 +333,7 @@ digraph tgraph_equiv {
 
 :::{#def-dag}
 ### 有向非巡回グラフ
-有向グラフ $G$ のウォーク $(v_0,\dotsc,v_\ell)$ が
+有向グラフ $G$ の長さ1以上のウォーク $(v_0,\dotsc,v_\ell)$ が
 
 1. $v_\ell=v_0$.
 1. $v_0,\dotsc,v_{\ell-1}$ がすべて異なる。
