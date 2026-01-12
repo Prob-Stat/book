@@ -267,7 +267,7 @@ S v &= \lambda^\ell v
 有向グラフ $G=(V,\,E)$ が状態集合 $S$ 上のマルコフ連鎖の遷移行列 $T$ の**遷移グラフ** $\defiff$
 \begin{align*}
 V&= S/\sim_T\\
-E&=\left\{(u,v)\in V\times V\mid \exists u\in U, v\in V\quad T_{u,v}>0\right\}.
+E&=\left\{(A,B)\in V\times V\mid \exists a\in A, b\in B\quad T_{a,b}>0,\,A\ne B\right\}.
 \end{align*}
 :::
 
