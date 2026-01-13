@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>13&nbsp; 定常分布 – 確率・統計入門</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./markov.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-7e34ecb6a0e7991f0346b0751d4a7c3f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "一致なし",
+    "search-matching-documents-text": "一致した文書",
+    "search-copy-link-title": "検索へのリンクをコピー",
+    "search-hide-matches-text": "追加の検索結果を非表示",
+    "search-more-match-text": "追加の検索結果",
+    "search-more-matches-text": "追加の検索結果",
+    "search-clear-button-title": "消去",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "検索",
+    "search-label": "サーチ"
+  }
+}</script>
+</head><body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>$$
+\newcommand{\defiff}{\overset{\text{def}}{\iff}}
+\newcommand{\expt}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\var}[1]{\mathrm{Var}\left[#1\right]}
+\newcommand{\cov}[2]{\mathrm{Cov}\left[#1,\,#2\right]}
+$$
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./markov.html">マルコフ連鎖</a></li><li class="breadcrumb-item"><a href="./stationary.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">定常分布</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">確率・統計入門</a> 
+        <div class="sidebar-tools-main">
+    <a href="./確率・統計入門.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="ダークモードの切り替え"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="サーチ"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">前書き</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">確率論</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">はじめに</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">集合論</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob-space.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">確率空間</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">確率変数と確率分布</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">複数の確率変数</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./moments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">期待値、分散、モーメント</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">統計学</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ベイズ推定</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./testings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">仮説検定</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">漸近論</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./large_numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">大数の法則と集中不等式</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./clt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">正規分布と中心極限定理</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sanov.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">サノフの定理、KLダイバージェンス</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">マルコフ連鎖</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./markov.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">マルコフ連鎖</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stationary.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">定常分布</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">参考文献</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#遷移グラフ" id="toc-遷移グラフ" class="nav-link active" data-scroll-target="#遷移グラフ"><span class="header-section-number">13.1</span> 遷移グラフ</a></li>
+  <li><a href="#既約性と定常分布" id="toc-既約性と定常分布" class="nav-link" data-scroll-target="#既約性と定常分布"><span class="header-section-number">13.2</span> 既約性と定常分布</a></li>
+  <li><a href="#一般のマルコフ連鎖の定常分布" id="toc-一般のマルコフ連鎖の定常分布" class="nav-link" data-scroll-target="#一般のマルコフ連鎖の定常分布"><span class="header-section-number">13.3</span> 一般のマルコフ連鎖の定常分布</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./markov.html">マルコフ連鎖</a></li><li class="breadcrumb-item"><a href="./stationary.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">定常分布</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">定常分布</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="遷移グラフ" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="遷移グラフ"><span class="header-section-number">13.1</span> 遷移グラフ</h2>
+<p>マルコフ連鎖の推移行列 <span class="math inline">\(T\)</span> について、 <span class="math display">\[\begin{align*}
+\mu T &amp;= \mu
+\end{align*}\]</span> を満たす確率ベクトル(非負で成分の和が1) <span class="math inline">\(\mu\)</span> を定常分布と呼ぶのであった。 定常分布の存在、唯一性、極限分布との一致について考える。 参考文献 <span class="citation" data-cites="levin2017markov">(<a href="references.html#ref-levin2017markov" role="doc-biblioref">Levin and Peres 2017</a>)</span>。</p>
+<div id="def-digraph" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 13.1 (有向グラフ)</strong></span> 有限集合 <span class="math inline">\(V\)</span> と集合 <span class="math inline">\(E\subseteq V\times V\)</span> のペア <span class="math inline">\(G=(V,\,E)\)</span> を有向グラフという。 <span class="math inline">\(V\)</span> の元を<strong>頂点</strong>、<span class="math inline">\(E\)</span> の元を<strong>辺(有向辺)</strong>と呼ぶ。</p>
+</div>
+<p>有向辺 <span class="math inline">\((u,v)\in E\)</span> は頂点 <span class="math inline">\(u\)</span> から頂点 <span class="math inline">\(v\)</span> への有向辺と解釈することにする。</p>
+<div id="def-trgraph" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 13.2 (遷移グラフ)</strong></span> 有向グラフ <span class="math inline">\(G=(V,\,E)\)</span> が状態集合 <span class="math inline">\(S\)</span> 上のマルコフ連鎖の遷移行列 <span class="math inline">\(T\)</span> の<strong>遷移グラフ</strong> <span class="math inline">\(\defiff\)</span> <span class="math display">\[\begin{align*}
+V&amp;= S\\
+E&amp;=\left\{(u,v)\in V\times V\mid T_{u,v}&gt;0\right\}.
+\end{align*}\]</span></p>
+</div>
+<p>マルコフ連鎖の定常分布や収束に関する議論をする際には遷移確率は 0 か正かということが問題になり、具体的な値は問題にならない。 したがって、定常分布が唯一であるための条件などは遷移グラフの性質として表すことができる。</p>
+</section>
+<section id="既約性と定常分布" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="既約性と定常分布"><span class="header-section-number">13.2</span> 既約性と定常分布</h2>
+<div id="def-cycle" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 13.3 (有向グラフのウォーク)</strong></span> 有向グラフ <span class="math inline">\(G=(V,E)\)</span> の頂点列 <span class="math display">\[\begin{align*}
+(v_0,v_1,\dotsc,v_\ell)
+\end{align*}\]</span> で各 <span class="math inline">\(i=0,1,\dotsc,\ell-1\)</span> について <span class="math inline">\((v_i,\,v_{i+1})\in E\)</span> を満たすものを<strong>(<span class="math inline">\(v_0\)</span> から <span class="math inline">\(v_{\ell}\)</span> への)ウォーク</strong>という。 また、<span class="math inline">\(\ell\)</span> をウォークの<strong>長さ</strong>という。</p>
+</div>
+<p>頂点列 <span class="math inline">\((v)\)</span> は長さ0のウォークであることに気をつけよう。 遷移グラフの定義より、任意の <span class="math inline">\(u,v\in S\)</span> について <span class="math display">\[\begin{align*}
+&amp;\text{遷移グラフ上に $u$ から $v$ への長さ $\ell$ のウォークが存在する} \iff (T^\ell)_{u,v} &gt; 0\\
+\iff&amp;\Pr(X_\ell=v\mid X_0=u) &gt; 0
+\end{align*}\]</span> である。</p>
+<div id="def-equiv" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 13.4 (順序関係)</strong></span> 推移行列 <span class="math inline">\(T\)</span> を持つマルコフ連鎖の状態 <span class="math inline">\(u,v\in S\)</span> について <span class="math inline">\(u\le_T v\)</span> <span class="math inline">\(\defiff\)</span> その遷移グラフにおいて <span class="math inline">\(u\)</span> から <span class="math inline">\(v\)</span> へのウォークが存在する。 また、<span class="math inline">\(u\le_T v\)</span> かつ <span class="math inline">\(v\le_T u\)</span> のとき、<span class="math inline">\(u\sim_T v\)</span> とする。</p>
+</div>
+<p>この <span class="math inline">\(\le_T\)</span> は以下の前順序関係の公理を満たす。</p>
+<ul>
+<li>(反射律) <span class="math inline">\(\forall u\in S,\, u\le_T u\)</span>.</li>
+<li>(推移律) <span class="math inline">\(\forall u,v,w\in S,\, (u\le_T v\,\land\, v\le_T w) \implies u\le_T w\)</span>.</li>
+</ul>
+<p>また、<span class="math inline">\(\sim_T\)</span> は以下の同値関係の公理を満たす。</p>
+<ul>
+<li>(反射律) <span class="math inline">\(\forall u\in S,\, u\sim_T u\)</span>.</li>
+<li>(対称律) <span class="math inline">\(\forall u,v\in S,\, u\sim_T v\implies v\sim_T u\)</span>.</li>
+<li>(推移律) <span class="math inline">\(\forall u,v,w\in S,\, (u\sim_T v\,\land\, v\sim_T w) \implies u\sim_T w\)</span>.</li>
+</ul>
+<div id="def-irred" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 13.5 (マルコフ連鎖の既約性)</strong></span> マルコフ連鎖が<strong>既約</strong>である <span class="math inline">\(\defiff\)</span> 任意の <span class="math inline">\(u,v\in S\)</span> について <span class="math inline">\(u\sim_T v\)</span>. <!--
+任意の $x,y\in S$ についてある $t\in\mathbb{Z}_{\ge 0}$ が存在して、
+\begin{align*}
+\Pr(X_t=y\mid X_0 = x)&>0
+\end{align*}
+$\iff$
+任意の $x,y\in S$ についてある $t\in\mathbb{Z}_{\ge 0}$ が存在して、$(T^t)_{x,y}>0$.
+--></p>
+</div>
+<p>有向グラフ <span class="math inline">\(G\)</span> の任意の頂点 <span class="math inline">\(u, v\in V\)</span> について <span class="math inline">\(u\)</span> から <span class="math inline">\(v\)</span> へのウォークが存在するとき、<span class="math inline">\(G\)</span> は<strong>強連結</strong>であるという。 よってマルコフ連鎖が既約 <span class="math inline">\(\iff\)</span> 遷移グラフが強連結である。</p>
+<div class="cell" data-fig-width="7" data-fig-height="3" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="288" viewbox="0.00 0.00 297.02 155.25" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 151.25)">
+<title>irreduc_graph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-151.25 293.02,-151.25 293.02,4 -4,4"></polygon>
+<!-- 1 -->
+<g id="node1" class="node">
+<title>1</title>
+<ellipse fill="none" stroke="black" cx="22.63" cy="-73.63" rx="22.76" ry="22.76"></ellipse>
+<text text-anchor="middle" x="22.63" y="-67.63" font-family="Times,serif" font-size="20.00">1</text>
+</g>
+<!-- 2 -->
+<g id="node2" class="node">
+<title>2</title>
+<ellipse fill="none" stroke="black" cx="103.88" cy="-73.63" rx="22.76" ry="22.76"></ellipse>
+<text text-anchor="middle" x="103.88" y="-67.63" font-family="Times,serif" font-size="20.00">2</text>
+</g>
+<!-- 1&#45;&gt;2 -->
+<g id="edge1" class="edge">
+<title>1-&gt;2</title>
+<path fill="none" stroke="black" d="M45.28,-73.63C53.23,-73.63 62.41,-73.63 71.07,-73.63"></path>
+<polygon fill="black" stroke="black" points="71.25,-77.13 81.25,-73.63 71.25,-70.13 71.25,-77.13"></polygon>
+</g>
+<!-- 3 -->
+<g id="node3" class="node">
+<title>3</title>
+<ellipse fill="none" stroke="black" cx="185.14" cy="-124.63" rx="22.76" ry="22.76"></ellipse>
+<text text-anchor="middle" x="185.14" y="-118.63" font-family="Times,serif" font-size="20.00">3</text>
+</g>
+<!-- 2&#45;&gt;3 -->
+<g id="edge2" class="edge">
+<title>2-&gt;3</title>
+<path fill="none" stroke="black" d="M123.26,-85.46C133.29,-91.91 145.9,-100.02 157.04,-107.19"></path>
+<polygon fill="black" stroke="black" points="155.28,-110.22 165.58,-112.69 159.06,-104.33 155.28,-110.22"></polygon>
+</g>
+<!-- 5 -->
+<g id="node5" class="node">
+<title>5</title>
+<ellipse fill="none" stroke="black" cx="185.14" cy="-22.63" rx="22.76" ry="22.76"></ellipse>
+<text text-anchor="middle" x="185.14" y="-16.63" font-family="Times,serif" font-size="20.00">5</text>
+</g>
+<!-- 2&#45;&gt;5 -->
+<g id="edge6" class="edge">
+<title>2-&gt;5</title>
+<path fill="none" stroke="black" d="M123.26,-61.8C133.29,-55.34 145.9,-47.23 157.04,-40.06"></path>
+<polygon fill="black" stroke="black" points="159.06,-42.92 165.58,-34.57 155.28,-37.04 159.06,-42.92"></polygon>
+</g>
+<!-- 3&#45;&gt;1 -->
+<g id="edge3" class="edge">
+<title>3-&gt;1</title>
+<path fill="none" stroke="black" d="M162.32,-122.67C141.12,-120.29 108.26,-115.33 81.25,-105.63 70.83,-101.89 60.06,-96.4 50.69,-91.03"></path>
+<polygon fill="black" stroke="black" points="52.23,-87.87 41.85,-85.76 48.64,-93.88 52.23,-87.87"></polygon>
+</g>
+<!-- 4 -->
+<g id="node4" class="node">
+<title>4</title>
+<ellipse fill="none" stroke="black" cx="266.39" cy="-98.63" rx="22.76" ry="22.76"></ellipse>
+<text text-anchor="middle" x="266.39" y="-92.63" font-family="Times,serif" font-size="20.00">4</text>
+</g>
+<!-- 3&#45;&gt;4 -->
+<g id="edge4" class="edge">
+<title>3-&gt;4</title>
+<path fill="none" stroke="black" d="M206.96,-117.8C215.52,-114.99 225.59,-111.68 234.95,-108.62"></path>
+<polygon fill="black" stroke="black" points="236.3,-111.86 244.71,-105.41 234.11,-105.2 236.3,-111.86"></polygon>
+</g>
+<!-- 4&#45;&gt;2 -->
+<g id="edge5" class="edge">
+<title>4-&gt;2</title>
+<path fill="none" stroke="black" d="M243.83,-95.27C216.28,-90.98 168.35,-83.51 136.62,-78.57"></path>
+<polygon fill="black" stroke="black" points="136.95,-75.08 126.53,-77 135.87,-82 136.95,-75.08"></polygon>
+</g>
+<!-- 4&#45;&gt;4 -->
+<g id="edge8" class="edge">
+<title>4-&gt;4</title>
+<path fill="none" stroke="black" d="M252.58,-116.59C248.97,-128.14 253.58,-139.25 266.39,-139.25 275.2,-139.25 280.13,-134 281.18,-126.96"></path>
+<polygon fill="black" stroke="black" points="284.62,-126.22 280.21,-116.59 277.66,-126.87 284.62,-126.22"></polygon>
+</g>
+<!-- 5&#45;&gt;1 -->
+<g id="edge7" class="edge">
+<title>5-&gt;1</title>
+<path fill="none" stroke="black" d="M162.32,-24.58C141.12,-26.96 108.26,-31.93 81.25,-41.63 70.83,-45.37 60.06,-50.85 50.69,-56.23"></path>
+<polygon fill="black" stroke="black" points="48.64,-53.37 41.85,-61.5 52.23,-59.38 48.64,-53.37"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p><figcaption> 既約なマルコフ連鎖の遷移グラフ。任意の頂点 <span class="math inline">\(u, v\in V\)</span> について、<span class="math inline">\(u\)</span> から <span class="math inline">\(v\)</span> へのウォークが存在する。</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+<div id="lem-irred" class="theorem lemma">
+<p><span class="theorem-title"><strong>補題 13.1</strong></span> 既約なマルコフ連鎖について <span class="math inline">\(\mathrm{Ker}(I-T)=\mathrm{span}(1)\)</span> である。</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>証明</em>. </span>列ベクトル <span class="math inline">\(v\in\mathbb{R}^n\)</span> を <span class="math display">\[\begin{align*}
+(I-T)v = 0 &amp;\iff Tv = v
+\end{align*}\]</span> を満たすものとする。 このとき、<span class="math inline">\(i\in\arg\max_{k\in S} v_k\)</span> とすると <span class="math display">\[\begin{align*}
+v_i &amp;= \sum_{j\in S} T_{i,j} v_j\\
+&amp;= \sum_{j\in S\colon\,(i,j)\in E} T_{i,j} v_j\\
+&amp;\le \sum_{j\in S\colon\,(i,j)\in E} T_{i,j} v_i\\
+&amp;= v_i
+\end{align*}\]</span> という不等式が得られる。 この不等号は等号でなくてはいけないので、 <span class="math display">\[\begin{align*}
+v_j &amp;= v_i\qquad\text{if } (i, j)\in E
+\end{align*}\]</span> である。 この議論を繰り返すと <span class="math inline">\(i\le_T j\)</span> である <span class="math inline">\(j\)</span> について <span class="math inline">\(v_j=v_i\)</span> である。 マルコフ連鎖が既約であることから、任意の <span class="math inline">\(j\in S\)</span> について <span class="math inline">\(i\le j\)</span> であり、<span class="math inline">\(v = v_i 1\)</span> である。 したがって、<span class="math inline">\(\mathrm{Ker}(I-T)=\mathrm{span}(1)\)</span> である。</p>
+</div>
+<p>よって既約なマルコフ連鎖に対して定常分布は高々一つである。 実際には既約なマルコフ連鎖は一つの定常分布を持つ。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>証明の方針
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>既約なマルコフ連鎖が定常分布を持つことの証明には大きく分類して3通りの方法がある。</p>
+<ol type="1">
+<li>ブラウワーの不動点定理。</li>
+<li>確率論的な議論(再帰時間)で明示的に定常状態を与える。定常状態は直感的に記述できる。</li>
+<li>線形代数的な議論(マルコフ連鎖木定理)で組合せ的な記述で明示的に定常状態を与える。</li>
+</ol>
+<p>以下では3番目の方針に従い、明示的な定常状態は与えず、その存在だけを示す。</p>
+</div>
+</div>
+<div id="thm-irred" class="theorem">
+<p><span class="theorem-title"><strong>定理 13.1</strong></span> 既約なマルコフ連鎖は唯一の定常分布 <span class="math inline">\(\mu\in\mathbb{R}_{&gt;0}^n\)</span> を持つ。</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>証明</em>. </span>マルコフ連鎖の<strong>ラプラシアン行列</strong>を <span class="math inline">\(\Lambda \coloneqq I-T\)</span> と定義する。 ラプラシアン行列の余因子行列を <span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> で表す(<span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> の <span class="math inline">\((i,j)\)</span> 成分は <span class="math inline">\((j,i)\)</span> 余因子である)。 余因子展開より <span class="math display">\[\begin{align*}
+\mathrm{adj}(\Lambda)\Lambda &amp;= \Lambda\,\mathrm{adj}(\Lambda) = \det(\Lambda)I
+\end{align*}\]</span> である。確率行列 <span class="math inline">\(T\)</span> は固有値1を持つので、<span class="math inline">\(\det(\Lambda)=0\)</span> である。 よって、 <span class="math display">\[\begin{align*}
+\mathrm{adj}(\Lambda)\Lambda &amp;= \Lambda\,\mathrm{adj}(\Lambda) = O
+\end{align*}\]</span> である。 まず、<span class="math inline">\(\Lambda\,\mathrm{adj}(\Lambda)=O\)</span> と <a href="#lem-irred" class="quarto-xref">補題&nbsp;<span>13.1</span></a> より <span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> の各列は <span class="math inline">\(1\)</span> のスカラー倍である。よって、<span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> の行はすべて等しい。 次に、<span class="math inline">\(\mathrm{adj}(\Lambda)\Lambda=O\)</span> より、<span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> の行 <span class="math inline">\(\mu\in\mathbb{R}^n\)</span> は <span class="math inline">\(\mu\Lambda=0\)</span> を満たす。 ここで、<span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> の行がすべて等しいことから <span class="math display">\[\begin{align*}
+\mu_i &amp;= \mathrm{adj}(\Lambda)_{i,i}\qquad\forall i\in S
+\end{align*}\]</span> が成り立つ。 よって <span class="math display">\[\begin{align*}
+\mathrm{adj}(\Lambda)_{i,i}&amp;&gt;0\qquad\forall i\in S
+\end{align*}\]</span> を示せば十分である。 余因子行列の定義より、 <span class="math display">\[\begin{align*}
+\mathrm{adj}(\Lambda)_{i,i}&amp;= \det(I - T^{(i)})
+\end{align*}\]</span> である。 ここで、<span class="math inline">\(T^{(i)}\)</span> は <span class="math inline">\(T\)</span> の <span class="math inline">\(i\)</span> 行目と <span class="math inline">\(i\)</span> 列目を削除して得られる行列である。</p>
+<p>目標である <span class="math inline">\(\det(I-T^{(i)})&gt;0\)</span> を示すためには <span class="math inline">\(\rho(T^{(i)})&lt;1\)</span> を示せば十分である。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span><span class="math inline">\(\rho(A)&lt;1\implies \det(I-A)&gt;0\)</span> の代数的な証明
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>実正方行列 <span class="math inline">\(A\)</span> の固有値の多重集合を <span class="math inline">\(\mathrm{spec}(A)\)</span> で表すことにする。 実多項式の実数でない根はその複素共役とペアで現れることに注意すると、 <span class="math display">\[\begin{align*}
+\det(I-A)&amp;= \prod_{\lambda\in\mathrm{spec}(A)} (1-\lambda)\\
+&amp;= \prod_{\lambda\in\mathrm{spec}(A)\cap\mathbb{R}} (1-\lambda)
+\cdot \prod_{\lambda\in\mathrm{spec}(A)\setminus\mathbb{R}} (1-\lambda)\\
+&amp;= \prod_{\lambda\in\mathrm{spec}(A)\cap\mathbb{R}} (1-\lambda)
+\cdot \prod_{\lambda\in\mathrm{spec}(A)\setminus\mathbb{R}} |1-\lambda|\\
+\end{align*}\]</span> よって <span class="math inline">\(\rho(A)&lt;1\)</span> であれば <span class="math inline">\(\det(I-A)&gt;0\)</span> である。</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span><span class="math inline">\(\rho(A)&lt;1\implies \det(I-A)&gt;0\)</span> の解析的な証明
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>実正方行列 <span class="math inline">\(A\)</span> の特性多項式を <span class="math display">\[\begin{align*}
+p_A(x) &amp;\coloneqq \det(xI - A)
+\end{align*}\]</span> と定義する。 これはモニックな多項式であるため <span class="math inline">\(x\to+\infty\)</span> で <span class="math inline">\(p_A(x)\to+\infty\)</span> である。 よって <span class="math inline">\(p_A(x)\)</span> が実根を持たないもしくは、すべての実根が 1 未満であれば <span class="math inline">\(p_A(1)&gt;0\)</span> である。 特性多項式 <span class="math inline">\(p_A\)</span> の根は <span class="math inline">\(A\)</span> の固有値なので、<span class="math inline">\(\rho(A)&lt;1\)</span> であれば <span class="math inline">\(p_A(1)=\det(I-A)&gt;0\)</span> である。</p>
+</div>
+</div>
+<p>よって、<span class="math inline">\(\rho(T^{(i)})&lt;1\)</span> を示せば <span class="math inline">\(\mathrm{adj}(\Lambda)_{i,i}=\det(I-T^{(i)}) &gt; 0\)</span> がしたがう。</p>
+<!--
+任意の $k\in\mathbb{Z}_{\ge 0}$ について、
+\begin{align*}
+\rho(T^{(i)k}) &= \rho(T^{(i)})^k
+\end{align*}
+より、
+\begin{align*}
+\rho(T^{(i)k}) < 1 &\iff \rho(T^{(i)}) < 1
+\end{align*}
+である。
+-->
+<p><span class="math inline">\(T^{(i)}\)</span> の絶対値最大の固有値を <span class="math inline">\(\lambda\)</span> とおき、対応する固有ベクトルを <span class="math inline">\(v\)</span> とする。 このとき <span class="math display">\[\begin{align*}
+T^{(i)}v &amp;= \lambda v
+\end{align*}\]</span> が成り立つ。 <span class="math inline">\(v\)</span> の絶対値最大の成分のインデックスを <span class="math inline">\(j\in S\setminus\{i\}\)</span> とおく。 マルコフ連鎖が既約であることから、その遷移グラフ上で <span class="math inline">\(j\)</span> から <span class="math inline">\(i\)</span> へのウォークが存在する。 そのウォークの長さを <span class="math inline">\(\ell\in\mathbb{Z}_{\ge 1}\)</span> とおく。 このとき、<span class="math inline">\(S\coloneqq T^{(i)\ell}\)</span> とおくと、 <span class="math display">\[\begin{align*}
+S v &amp;= \lambda^\ell v
+\end{align*}\]</span> である。 ここで、<span class="math inline">\(S\)</span> の <span class="math inline">\(j\)</span> 行目の和は <span class="math display">\[\begin{align*}
+\sum_k S_{j,k} &amp;= \Pr(X_1\ne i,\dotsc,X_\ell \ne i\mid X_0 = j) &lt; 1
+\end{align*}\]</span> である。 よって、 <span class="math display">\[\begin{align*}
+|\lambda^\ell v_j| &amp;= |(S v)_j|\\
+&amp;= \left|\sum_{k}S_{j,k} v_k\right|\\
+&amp;\le \sum_{k}S_{j,k} \left|v_k\right|\\
+&amp;\le \sum_{k}S_{j,k} |v_j|\\
+&amp;&lt; |v_j|\\
+\end{align*}\]</span> である。<span class="math inline">\(|v_j|&gt;0\)</span> より、<span class="math inline">\(|\lambda|&lt;1\)</span> である。 したがって、<span class="math inline">\(\rho(T^{(i)}) &lt; 1\)</span> であることが示された。</p>
+</div>
+</section>
+<section id="一般のマルコフ連鎖の定常分布" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="一般のマルコフ連鎖の定常分布"><span class="header-section-number">13.3</span> 一般のマルコフ連鎖の定常分布</h2>
+<p>次に既約とは限らない一般のマルコフ連鎖について考える。 マルコフ連鎖の状態集合 <span class="math inline">\(S\)</span> を同値関係 <span class="math inline">\(\sim_T\)</span> で割った同値類 <span class="math inline">\(S/\sim_T\)</span> を考える。 そして、その同値類の遷移グラフを考える。</p>
+<div id="def-digraph-equiv" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 13.6 (同値類の遷移グラフ)</strong></span> 有向グラフ <span class="math inline">\(G=(V,\,E)\)</span> が状態集合 <span class="math inline">\(S\)</span> 上のマルコフ連鎖の遷移行列 <span class="math inline">\(T\)</span> の<strong>遷移グラフ</strong> <span class="math inline">\(\defiff\)</span> <span class="math display">\[\begin{align*}
+V&amp;= S/\sim_T\\
+E&amp;=\left\{(A,B)\in V\times V\mid \exists a\in A, b\in B\quad T_{a,b}&gt;0,\,A\ne B\right\}.
+\end{align*}\]</span></p>
+</div>
+<p>マルコフ連鎖の遷移グラフから同値類の遷移グラフは定まる。</p>
+<div id="def-digraph-scc" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 13.7 (強連結成分と縮約グラフ)</strong></span> 有向グラフ <span class="math inline">\(G=(V,E)\)</span> について、<span class="math inline">\(V\)</span> 上の同値関係を <span class="math inline">\(u\sim v\defiff \text{$u$ と $v$ の間に両方向のパスがある}\)</span>と定義する。 この同値関係の同値類を <span class="math inline">\(G\)</span> の<strong>強連結成分</strong>と呼ぶ。</p>
+<p><span class="math inline">\(G\)</span> の強連結成分を頂点に持つ<strong>縮約グラフ</strong> <span class="math inline">\(G'=(V',E')\)</span> を <span class="math display">\[\begin{align*}
+V'&amp;=V/\sim\\
+E'&amp;=\left\{(A,B)\in V'\times V'\mid \exists a\in A, \exists b\in B, (a,b)\in E, A\ne B\right\}
+\end{align*}\]</span> と定義する。</p>
+</div>
+<div class="cell" data-fig-width="7" data-fig-height="3" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="288" viewbox="0.00 0.00 378.27 175.58" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 171.58)">
+<title>tgraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-171.58 374.27,-171.58 374.27,4 -4,4"></polygon>
+<!-- 1 -->
+<g id="node1" class="node">
+<title>1</title>
+<ellipse fill="none" stroke="black" cx="22.63" cy="-93.95" rx="22.76" ry="22.76"></ellipse>
+<text text-anchor="middle" x="22.63" y="-87.95" font-family="Times,serif" font-size="20.00">1</text>
+</g>
+<!-- 2 -->
+<g id="node2" class="node">
+<title>2</title>
+<ellipse fill="none" stroke="black" cx="103.88" cy="-93.95" rx="22.76" ry="22.76"></ellipse>
+<text text-anchor="middle" x="103.88" y="-87.95" font-family="Times,serif" font-size="20.00">2</text>
+</g>
+<!-- 1&#45;&gt;2 -->
+<g id="edge1" class="edge">
+<title>1-&gt;2</title>
+<path fill="none" stroke="black" d="M45.28,-93.95C53.23,-93.95 62.41,-93.95 71.07,-93.95"></path>
+<polygon fill="black" stroke="black" points="71.25,-97.45 81.25,-93.95 71.25,-90.45 71.25,-97.45"></polygon>
+</g>
+<!-- 7 -->
+<g id="node7" class="node">
+<title>7</title>
+<ellipse fill="none" stroke="black" cx="347.65" cy="-42.95" rx="22.76" ry="22.76"></ellipse>
+<text text-anchor="middle" x="347.65" y="-36.95" font-family="Times,serif" font-size="20.00">7</text>
+</g>
+<!-- 1&#45;&gt;7 -->
+<g id="edge10" class="edge">
+<title>1-&gt;7</title>
+<path fill="none" stroke="black" d="M40.61,-79.57C65.45,-59.58 114.04,-24.33 162.51,-10.95 216.71,4.01 234.59,3.15 289.02,-10.95 299.93,-13.78 310.98,-19.17 320.44,-24.73"></path>
+<polygon fill="black" stroke="black" points="318.63,-27.73 328.97,-30.04 322.33,-21.78 318.63,-27.73"></polygon>
+</g>
+<!-- 3 -->
+<g id="node3" class="node">
+<title>3</title>
+<ellipse fill="none" stroke="black" cx="185.14" cy="-144.95" rx="22.76" ry="22.76"></ellipse>
+<text text-anchor="middle" x="185.14" y="-138.95" font-family="Times,serif" font-size="20.00">3</text>
+</g>
+<!-- 2&#45;&gt;3 -->
+<g id="edge2" class="edge">
+<title>2-&gt;3</title>
+<path fill="none" stroke="black" d="M123.26,-105.78C133.29,-112.23 145.9,-120.35 157.04,-127.52"></path>
+<polygon fill="black" stroke="black" points="155.28,-130.54 165.58,-133.01 159.06,-124.66 155.28,-130.54"></polygon>
+</g>
+<!-- 4 -->
+<g id="node4" class="node">
+<title>4</title>
+<ellipse fill="none" stroke="black" cx="266.39" cy="-105.95" rx="22.76" ry="22.76"></ellipse>
+<text text-anchor="middle" x="266.39" y="-99.95" font-family="Times,serif" font-size="20.00">4</text>
+</g>
+<!-- 2&#45;&gt;4 -->
+<g id="edge4" class="edge">
+<title>2-&gt;4</title>
+<path fill="none" stroke="black" d="M126.53,-95.57C154.05,-97.63 201.8,-101.2 233.49,-103.57"></path>
+<polygon fill="black" stroke="black" points="233.34,-107.06 243.58,-104.32 233.86,-100.08 233.34,-107.06"></polygon>
+</g>
+<!-- 5 -->
+<g id="node5" class="node">
+<title>5</title>
+<ellipse fill="none" stroke="black" cx="185.14" cy="-42.95" rx="22.76" ry="22.76"></ellipse>
+<text text-anchor="middle" x="185.14" y="-36.95" font-family="Times,serif" font-size="20.00">5</text>
+</g>
+<!-- 2&#45;&gt;5 -->
+<g id="edge5" class="edge">
+<title>2-&gt;5</title>
+<path fill="none" stroke="black" d="M123.26,-82.12C133.29,-75.67 145.9,-67.55 157.04,-60.39"></path>
+<polygon fill="black" stroke="black" points="159.06,-63.25 165.58,-54.89 155.28,-57.36 159.06,-63.25"></polygon>
+</g>
+<!-- 3&#45;&gt;1 -->
+<g id="edge3" class="edge">
+<title>3-&gt;1</title>
+<path fill="none" stroke="black" d="M162.32,-142.99C141.12,-140.61 108.26,-135.65 81.25,-125.95 70.83,-122.21 60.06,-116.73 50.69,-111.35"></path>
+<polygon fill="black" stroke="black" points="52.23,-108.19 41.85,-106.08 48.64,-114.21 52.23,-108.19"></polygon>
+</g>
+<!-- 4&#45;&gt;7 -->
+<g id="edge8" class="edge">
+<title>4-&gt;7</title>
+<path fill="none" stroke="black" d="M284.59,-92.28C295.39,-83.7 309.51,-72.47 321.55,-62.9"></path>
+<polygon fill="black" stroke="black" points="323.83,-65.56 329.48,-56.59 319.48,-60.08 323.83,-65.56"></polygon>
+</g>
+<!-- 6 -->
+<g id="node6" class="node">
+<title>6</title>
+<ellipse fill="none" stroke="black" cx="266.39" cy="-42.95" rx="22.76" ry="22.76"></ellipse>
+<text text-anchor="middle" x="266.39" y="-36.95" font-family="Times,serif" font-size="20.00">6</text>
+</g>
+<!-- 5&#45;&gt;6 -->
+<g id="edge6" class="edge">
+<title>5-&gt;6</title>
+<path fill="none" stroke="black" d="M206.96,-36.93C215.36,-36.23 225.22,-36.03 234.43,-36.35"></path>
+<polygon fill="black" stroke="black" points="234.25,-39.84 244.43,-36.92 234.65,-32.85 234.25,-39.84"></polygon>
+</g>
+<!-- 6&#45;&gt;5 -->
+<g id="edge7" class="edge">
+<title>6-&gt;5</title>
+<path fill="none" stroke="black" d="M244.43,-48.99C236.02,-49.68 226.15,-49.87 216.95,-49.55"></path>
+<polygon fill="black" stroke="black" points="217.15,-46.06 206.96,-48.97 216.74,-53.04 217.15,-46.06"></polygon>
+</g>
+<!-- 6&#45;&gt;7 -->
+<g id="edge9" class="edge">
+<title>6-&gt;7</title>
+<path fill="none" stroke="black" d="M289.05,-42.95C297,-42.95 306.17,-42.95 314.83,-42.95"></path>
+<polygon fill="black" stroke="black" points="315.02,-46.45 325.02,-42.95 315.02,-39.45 315.02,-46.45"></polygon>
+</g>
+<!-- 7&#45;&gt;7 -->
+<g id="edge11" class="edge">
+<title>7-&gt;7</title>
+<path fill="none" stroke="black" d="M333.83,-60.91C330.23,-72.46 334.83,-83.58 347.65,-83.58 356.46,-83.58 361.38,-78.32 362.43,-71.29"></path>
+<polygon fill="black" stroke="black" points="365.88,-70.54 361.46,-60.91 358.91,-71.2 365.88,-70.54"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p><figcaption> 有向グラフの例。強連結ではない。</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+<div class="cell" data-fig-width="7" data-fig-height="3" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="288" viewbox="0.00 0.00 209.00 125.06" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 121.06)">
+<title>tgraph_equiv</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-121.06 205,-121.06 205,4 -4,4"></polygon>
+<!-- a -->
+<g id="node1" class="node">
+<title>a</title>
+<ellipse fill="none" stroke="black" cx="21.5" cy="-34.56" rx="21.5" ry="21.5"></ellipse>
+<text text-anchor="middle" x="21.5" y="-31.56" font-family="Times,serif" font-size="10.00">{1, 2, 3}</text>
+</g>
+<!-- b -->
+<g id="node2" class="node">
+<title>b</title>
+<ellipse fill="none" stroke="black" cx="100.5" cy="-95.56" rx="21.5" ry="21.5"></ellipse>
+<text text-anchor="middle" x="100.5" y="-92.56" font-family="Times,serif" font-size="10.00">{4}</text>
+</g>
+<!-- a&#45;&gt;b -->
+<g id="edge1" class="edge">
+<title>a-&gt;b</title>
+<path fill="none" stroke="black" d="M38.83,-47.5C49.34,-55.83 63.21,-66.81 75.03,-76.17"></path>
+<polygon fill="black" stroke="black" points="73.18,-79.17 83.19,-82.64 77.53,-73.69 73.18,-79.17"></polygon>
+</g>
+<!-- c -->
+<g id="node3" class="node">
+<title>c</title>
+<ellipse fill="none" stroke="black" cx="100.5" cy="-34.56" rx="21.5" ry="21.5"></ellipse>
+<text text-anchor="middle" x="100.5" y="-31.56" font-family="Times,serif" font-size="10.00">{5, 6}</text>
+</g>
+<!-- a&#45;&gt;c -->
+<g id="edge3" class="edge">
+<title>a-&gt;c</title>
+<path fill="none" stroke="black" d="M43.13,-34.56C50.99,-34.56 60.12,-34.56 68.71,-34.56"></path>
+<polygon fill="black" stroke="black" points="68.81,-38.06 78.81,-34.56 68.81,-31.06 68.81,-38.06"></polygon>
+</g>
+<!-- d -->
+<g id="node4" class="node">
+<title>d</title>
+<ellipse fill="none" stroke="black" cx="179.5" cy="-34.56" rx="21.5" ry="21.5"></ellipse>
+<text text-anchor="middle" x="179.5" y="-31.56" font-family="Times,serif" font-size="10.00">{7}</text>
+</g>
+<!-- a&#45;&gt;d -->
+<g id="edge2" class="edge">
+<title>a-&gt;d</title>
+<path fill="none" stroke="black" d="M39.36,-22.37C50.12,-15.35 64.69,-7.23 79,-3.56 97.51,1.19 103.49,1.19 122,-3.56 132.73,-6.31 143.61,-11.57 152.92,-16.98"></path>
+<polygon fill="black" stroke="black" points="151.3,-20.09 161.64,-22.37 154.97,-14.14 151.3,-20.09"></polygon>
+</g>
+<!-- b&#45;&gt;d -->
+<g id="edge4" class="edge">
+<title>b-&gt;d</title>
+<path fill="none" stroke="black" d="M117.83,-82.62C128.34,-74.29 142.21,-63.31 154.03,-53.95"></path>
+<polygon fill="black" stroke="black" points="156.53,-56.43 162.19,-47.48 152.18,-50.94 156.53,-56.43"></polygon>
+</g>
+<!-- c&#45;&gt;d -->
+<g id="edge5" class="edge">
+<title>c-&gt;d</title>
+<path fill="none" stroke="black" d="M122.13,-34.56C129.99,-34.56 139.12,-34.56 147.71,-34.56"></path>
+<polygon fill="black" stroke="black" points="147.81,-38.06 157.81,-34.56 147.81,-31.06 147.81,-38.06"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p><figcaption> 上の図の有向グラフの縮約グラフ。</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+<div id="def-dag" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 13.8 (有向非巡回グラフ)</strong></span> 有向グラフ <span class="math inline">\(G\)</span> の長さ1以上のウォーク <span class="math inline">\((v_0,\dotsc,v_\ell)\)</span> が</p>
+<ol type="1">
+<li><span class="math inline">\(v_\ell=v_0\)</span>.</li>
+<li><span class="math inline">\(v_0,\dotsc,v_{\ell-1}\)</span> がすべて異なる。</li>
+</ol>
+<p>を満たすとき、<strong>サイクル</strong>という。 サイクルを持たない有向グラフを<strong>有向非巡回グラフ(directed acyclic graph; DAG)</strong>という。</p>
+</div>
+<p>同値類の遷移グラフはDAGである。 <span class="math inline">\(S\)</span> に対する前順序関係 <span class="math inline">\(\le_T\)</span> を同値類 <span class="math inline">\(S/\sim_T\)</span> についても同様に定義する。 このとき、<span class="math inline">\(\le_T\)</span> は</p>
+<ul>
+<li>(反対称律) <span class="math inline">\(\forall u,v\in S/\sim_T,\,((u\le_T v\land v\le_T u)\implies u=v)\)</span></li>
+</ul>
+<p>を満たし、<strong>半順序</strong>関係となる。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+ノート
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>逆に一般の有限半順序集合からDAGを作ることもできる(<a href="https://ja.wikipedia.org/wiki/%E3%83%8F%E3%83%83%E3%82%BB%E5%9B%B3">ハッセ図</a>)。 任意のDAGが半順序集合のハッセ図になる訳ではない。</p>
+</div>
+</div>
+<p>DAGの頂点で出次数(外に出ていく有向辺の個数)が0のものを<strong>シンク</strong>という。 (有限サイズの)DAGは必ずシンクを一つ以上持つ。 一般のマルコフ連鎖の定常分布について、その同値類の遷移グラフを用いて考察する。 マルコフ連鎖の同値類の遷移グラフにおいてシンクに対応する同値類やそれに含まれる状態を<strong>再帰的</strong>であるという。</p>
+<div id="lem-stat-trans" class="theorem lemma">
+<p><span class="theorem-title"><strong>補題 13.2</strong></span> マルコフ連鎖の定常状態を <span class="math inline">\(\mu\in\mathbb{R}^n\)</span> とすると、再帰的でない状態 <span class="math inline">\(s\in S\)</span> について <span class="math inline">\(\mu(s)=0\)</span> である。</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>証明</em>. </span>定常分布 <span class="math inline">\(\mu\in\mathbb{R}^n\)</span> が再帰的でない状態 <span class="math inline">\(s\in S\)</span> について<span class="math inline">\(\mu(s)&gt;0\)</span> であると仮定する。 状態 <span class="math inline">\(s\)</span> に対して再帰的な状態 <span class="math inline">\(t\in S\)</span> が存在して、<span class="math inline">\(s\le_T t\)</span> である。 この再帰的な状態 <span class="math inline">\(t\in S\)</span> が属する同値類を <span class="math inline">\(C\)</span> とおくと、定常分布におけるこの同値類の確率の総和 <span class="math display">\[\begin{align*}
+\sum_{s\in C} \mu(s)
+\end{align*}\]</span> もマルコフ連鎖の遷移によって不変である。 しかし、最初に確率1で<span class="math inline">\(s\)</span>に入る状態からマルコフ連鎖をスタートしたとき、十分長いステップ(例えば状態数 <span class="math inline">\(n\)</span>)遷移すると必ず正の確率で同値類 <span class="math inline">\(C\)</span> に遷移してしまう。 よって、再帰的な同値類 <span class="math inline">\(C\)</span> の確率の総和は増加してしまう。 これは矛盾であるので、定常分布 <span class="math inline">\(\mu\)</span> において再帰的でない状態 <span class="math inline">\(s\in S\)</span> の確率は0である。</p>
+</div>
+<p>よって、一般のマルコフ連鎖の定常状態を考えるときは、非再帰的な状態を削除してしまって考えてもよい。 このとき、再帰的な同値類 <span class="math inline">\(C_1,C_2,\dotsc,C_k\)</span> は互いに遷移できないので、独立に考えることができる。 それぞれの再帰的な同値類 <span class="math inline">\(C_i\)</span> について、<span class="math inline">\(C_i\)</span> だけに確率を持つ定常分布 <span class="math inline">\(\mu_i\)</span> が唯一存在する。 定常分布は凸集合に閉じているので、 <span class="math display">\[\begin{align*}
+\sum_{i=1}^k p_i \mu_i
+\end{align*}\]</span> も定常分布となる。 逆に <span class="math inline">\(\mu\)</span> が定常分布のとき、それを <span class="math inline">\(C_i\)</span> に制限したものも定常ベクトルになる。よって、それは <span class="math inline">\(\mu_i\)</span> の非負倍に等しい。</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-levin2017markov" class="csl-entry" role="listitem">
+Levin, David A, and Yuval Peres. 2017. <em>Markov Chains and Mixing Times</em>. Vol. 107. American Mathematical Soc. <a href="https://pages.uoregon.edu/dlevin/MARKOV/">https://pages.uoregon.edu/dlevin/MARKOV/</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "コピーしました");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "コピーしました");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./markov.html" class="pagination-link" aria-label="マルコフ連鎖">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">マルコフ連鎖</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="参考文献">
+        <span class="nav-page-text">参考文献</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -690,5 +690,59 @@
       "マルコフ連鎖",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>マルコフ連鎖</span>"
     ]
+  },
+  {
+    "objectID": "stationary.html",
+    "href": "stationary.html",
+    "title": "13  定常分布",
+    "section": "",
+    "text": "13.1 遷移グラフ\nマルコフ連鎖の推移行列 \\(T\\) について、 \\[\\begin{align*}\n\\mu T &= \\mu\n\\end{align*}\\] を満たす確率ベクトル(非負で成分の和が1) \\(\\mu\\) を定常分布と呼ぶのであった。 定常分布の存在、唯一性、極限分布との一致について考える。 参考文献 (Levin and Peres 2017)。\n有向辺 \\((u,v)\\in E\\) は頂点 \\(u\\) から頂点 \\(v\\) への有向辺と解釈することにする。\nマルコフ連鎖の定常分布や収束に関する議論をする際には遷移確率は 0 か正かということが問題になり、具体的な値は問題にならない。 したがって、定常分布が唯一であるための条件などは遷移グラフの性質として表すことができる。",
+    "crumbs": [
+      "マルコフ連鎖",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>定常分布</span>"
+    ]
+  },
+  {
+    "objectID": "stationary.html#遷移グラフ",
+    "href": "stationary.html#遷移グラフ",
+    "title": "13  定常分布",
+    "section": "",
+    "text": "定義 13.1 (有向グラフ) 有限集合 \\(V\\) と集合 \\(E\\subseteq V\\times V\\) のペア \\(G=(V,\\,E)\\) を有向グラフという。 \\(V\\) の元を頂点、\\(E\\) の元を辺(有向辺)と呼ぶ。\n\n\n\n定義 13.2 (遷移グラフ) 有向グラフ \\(G=(V,\\,E)\\) が状態集合 \\(S\\) 上のマルコフ連鎖の遷移行列 \\(T\\) の遷移グラフ \\(\\defiff\\) \\[\\begin{align*}\nV&= S\\\\\nE&=\\left\\{(u,v)\\in V\\times V\\mid T_{u,v}&gt;0\\right\\}.\n\\end{align*}\\]",
+    "crumbs": [
+      "マルコフ連鎖",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>定常分布</span>"
+    ]
+  },
+  {
+    "objectID": "stationary.html#既約性と定常分布",
+    "href": "stationary.html#既約性と定常分布",
+    "title": "13  定常分布",
+    "section": "13.2 既約性と定常分布",
+    "text": "13.2 既約性と定常分布\n\n定義 13.3 (有向グラフのウォーク) 有向グラフ \\(G=(V,E)\\) の頂点列 \\[\\begin{align*}\n(v_0,v_1,\\dotsc,v_\\ell)\n\\end{align*}\\] で各 \\(i=0,1,\\dotsc,\\ell-1\\) について \\((v_i,\\,v_{i+1})\\in E\\) を満たすものを(\\(v_0\\) から \\(v_{\\ell}\\) への)ウォークという。 また、\\(\\ell\\) をウォークの長さという。\n\n頂点列 \\((v)\\) は長さ0のウォークであることに気をつけよう。 遷移グラフの定義より、任意の \\(u,v\\in S\\) について \\[\\begin{align*}\n&\\text{遷移グラフ上に $u$ から $v$ への長さ $\\ell$ のウォークが存在する} \\iff (T^\\ell)_{u,v} &gt; 0\\\\\n\\iff&\\Pr(X_\\ell=v\\mid X_0=u) &gt; 0\n\\end{align*}\\] である。\n\n定義 13.4 (順序関係) 推移行列 \\(T\\) を持つマルコフ連鎖の状態 \\(u,v\\in S\\) について \\(u\\le_T v\\) \\(\\defiff\\) その遷移グラフにおいて \\(u\\) から \\(v\\) へのウォークが存在する。 また、\\(u\\le_T v\\) かつ \\(v\\le_T u\\) のとき、\\(u\\sim_T v\\) とする。\n\nこの \\(\\le_T\\) は以下の前順序関係の公理を満たす。\n\n(反射律) \\(\\forall u\\in S,\\, u\\le_T u\\).\n(推移律) \\(\\forall u,v,w\\in S,\\, (u\\le_T v\\,\\land\\, v\\le_T w) \\implies u\\le_T w\\).\n\nまた、\\(\\sim_T\\) は以下の同値関係の公理を満たす。\n\n(反射律) \\(\\forall u\\in S,\\, u\\sim_T u\\).\n(対称律) \\(\\forall u,v\\in S,\\, u\\sim_T v\\implies v\\sim_T u\\).\n(推移律) \\(\\forall u,v,w\\in S,\\, (u\\sim_T v\\,\\land\\, v\\sim_T w) \\implies u\\sim_T w\\).\n\n\n定義 13.5 (マルコフ連鎖の既約性) マルコフ連鎖が既約である \\(\\defiff\\) 任意の \\(u,v\\in S\\) について \\(u\\sim_T v\\). \n\n有向グラフ \\(G\\) の任意の頂点 \\(u, v\\in V\\) について \\(u\\) から \\(v\\) へのウォークが存在するとき、\\(G\\) は強連結であるという。 よってマルコフ連鎖が既約 \\(\\iff\\) 遷移グラフが強連結である。\n\n\n\n\n\n\n\nirreduc_graph\n\n\n\n1\n\n1\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\n\n\n\n3\n\n3\n\n\n\n2-&gt;3\n\n\n\n\n\n5\n\n5\n\n\n\n2-&gt;5\n\n\n\n\n\n3-&gt;1\n\n\n\n\n\n4\n\n4\n\n\n\n3-&gt;4\n\n\n\n\n\n4-&gt;2\n\n\n\n\n\n4-&gt;4\n\n\n\n\n\n5-&gt;1\n\n\n\n\n\n\n 既約なマルコフ連鎖の遷移グラフ。任意の頂点 \\(u, v\\in V\\) について、\\(u\\) から \\(v\\) へのウォークが存在する。 \n\n\n\n\n補題 13.1 既約なマルコフ連鎖について \\(\\mathrm{Ker}(I-T)=\\mathrm{span}(1)\\) である。\n\n\n証明. 列ベクトル \\(v\\in\\mathbb{R}^n\\) を \\[\\begin{align*}\n(I-T)v = 0 &\\iff Tv = v\n\\end{align*}\\] を満たすものとする。 このとき、\\(i\\in\\arg\\max_{k\\in S} v_k\\) とすると \\[\\begin{align*}\nv_i &= \\sum_{j\\in S} T_{i,j} v_j\\\\\n&= \\sum_{j\\in S\\colon\\,(i,j)\\in E} T_{i,j} v_j\\\\\n&\\le \\sum_{j\\in S\\colon\\,(i,j)\\in E} T_{i,j} v_i\\\\\n&= v_i\n\\end{align*}\\] という不等式が得られる。 この不等号は等号でなくてはいけないので、 \\[\\begin{align*}\nv_j &= v_i\\qquad\\text{if } (i, j)\\in E\n\\end{align*}\\] である。 この議論を繰り返すと \\(i\\le_T j\\) である \\(j\\) について \\(v_j=v_i\\) である。 マルコフ連鎖が既約であることから、任意の \\(j\\in S\\) について \\(i\\le j\\) であり、\\(v = v_i 1\\) である。 したがって、\\(\\mathrm{Ker}(I-T)=\\mathrm{span}(1)\\) である。\n\nよって既約なマルコフ連鎖に対して定常分布は高々一つである。 実際には既約なマルコフ連鎖は一つの定常分布を持つ。\n\n\n\n\n\n\nノート証明の方針\n\n\n\n既約なマルコフ連鎖が定常分布を持つことの証明には大きく分類して3通りの方法がある。\n\nブラウワーの不動点定理。\n確率論的な議論(再帰時間)で明示的に定常状態を与える。定常状態は直感的に記述できる。\n線形代数的な議論(マルコフ連鎖木定理)で組合せ的な記述で明示的に定常状態を与える。\n\n以下では3番目の方針に従い、明示的な定常状態は与えず、その存在だけを示す。\n\n\n\n定理 13.1 既約なマルコフ連鎖は唯一の定常分布 \\(\\mu\\in\\mathbb{R}_{&gt;0}^n\\) を持つ。\n\n\n証明. マルコフ連鎖のラプラシアン行列を \\(\\Lambda \\coloneqq I-T\\) と定義する。 ラプラシアン行列の余因子行列を \\(\\mathrm{adj}(\\Lambda)\\) で表す(\\(\\mathrm{adj}(\\Lambda)\\) の \\((i,j)\\) 成分は \\((j,i)\\) 余因子である)。 余因子展開より \\[\\begin{align*}\n\\mathrm{adj}(\\Lambda)\\Lambda &= \\Lambda\\,\\mathrm{adj}(\\Lambda) = \\det(\\Lambda)I\n\\end{align*}\\] である。確率行列 \\(T\\) は固有値1を持つので、\\(\\det(\\Lambda)=0\\) である。 よって、 \\[\\begin{align*}\n\\mathrm{adj}(\\Lambda)\\Lambda &= \\Lambda\\,\\mathrm{adj}(\\Lambda) = O\n\\end{align*}\\] である。 まず、\\(\\Lambda\\,\\mathrm{adj}(\\Lambda)=O\\) と 補題 13.1 より \\(\\mathrm{adj}(\\Lambda)\\) の各列は \\(1\\) のスカラー倍である。よって、\\(\\mathrm{adj}(\\Lambda)\\) の行はすべて等しい。 次に、\\(\\mathrm{adj}(\\Lambda)\\Lambda=O\\) より、\\(\\mathrm{adj}(\\Lambda)\\) の行 \\(\\mu\\in\\mathbb{R}^n\\) は \\(\\mu\\Lambda=0\\) を満たす。 ここで、\\(\\mathrm{adj}(\\Lambda)\\) の行がすべて等しいことから \\[\\begin{align*}\n\\mu_i &= \\mathrm{adj}(\\Lambda)_{i,i}\\qquad\\forall i\\in S\n\\end{align*}\\] が成り立つ。 よって \\[\\begin{align*}\n\\mathrm{adj}(\\Lambda)_{i,i}&&gt;0\\qquad\\forall i\\in S\n\\end{align*}\\] を示せば十分である。 余因子行列の定義より、 \\[\\begin{align*}\n\\mathrm{adj}(\\Lambda)_{i,i}&= \\det(I - T^{(i)})\n\\end{align*}\\] である。 ここで、\\(T^{(i)}\\) は \\(T\\) の \\(i\\) 行目と \\(i\\) 列目を削除して得られる行列である。\n目標である \\(\\det(I-T^{(i)})&gt;0\\) を示すためには \\(\\rho(T^{(i)})&lt;1\\) を示せば十分である。\n\n\n\n\n\n\nノート\\(\\rho(A)&lt;1\\implies \\det(I-A)&gt;0\\) の代数的な証明\n\n\n\n実正方行列 \\(A\\) の固有値の多重集合を \\(\\mathrm{spec}(A)\\) で表すことにする。 実多項式の実数でない根はその複素共役とペアで現れることに注意すると、 \\[\\begin{align*}\n\\det(I-A)&= \\prod_{\\lambda\\in\\mathrm{spec}(A)} (1-\\lambda)\\\\\n&= \\prod_{\\lambda\\in\\mathrm{spec}(A)\\cap\\mathbb{R}} (1-\\lambda)\n\\cdot \\prod_{\\lambda\\in\\mathrm{spec}(A)\\setminus\\mathbb{R}} (1-\\lambda)\\\\\n&= \\prod_{\\lambda\\in\\mathrm{spec}(A)\\cap\\mathbb{R}} (1-\\lambda)\n\\cdot \\prod_{\\lambda\\in\\mathrm{spec}(A)\\setminus\\mathbb{R}} |1-\\lambda|\\\\\n\\end{align*}\\] よって \\(\\rho(A)&lt;1\\) であれば \\(\\det(I-A)&gt;0\\) である。\n\n\n\n\n\n\n\n\nノート\\(\\rho(A)&lt;1\\implies \\det(I-A)&gt;0\\) の解析的な証明\n\n\n\n実正方行列 \\(A\\) の特性多項式を \\[\\begin{align*}\np_A(x) &\\coloneqq \\det(xI - A)\n\\end{align*}\\] と定義する。 これはモニックな多項式であるため \\(x\\to+\\infty\\) で \\(p_A(x)\\to+\\infty\\) である。 よって \\(p_A(x)\\) が実根を持たないもしくは、すべての実根が 1 未満であれば \\(p_A(1)&gt;0\\) である。 特性多項式 \\(p_A\\) の根は \\(A\\) の固有値なので、\\(\\rho(A)&lt;1\\) であれば \\(p_A(1)=\\det(I-A)&gt;0\\) である。\n\n\nよって、\\(\\rho(T^{(i)})&lt;1\\) を示せば \\(\\mathrm{adj}(\\Lambda)_{i,i}=\\det(I-T^{(i)}) &gt; 0\\) がしたがう。\n\n\\(T^{(i)}\\) の絶対値最大の固有値を \\(\\lambda\\) とおき、対応する固有ベクトルを \\(v\\) とする。 このとき \\[\\begin{align*}\nT^{(i)}v &= \\lambda v\n\\end{align*}\\] が成り立つ。 \\(v\\) の絶対値最大の成分のインデックスを \\(j\\in S\\setminus\\{i\\}\\) とおく。 マルコフ連鎖が既約であることから、その遷移グラフ上で \\(j\\) から \\(i\\) へのウォークが存在する。 そのウォークの長さを \\(\\ell\\in\\mathbb{Z}_{\\ge 1}\\) とおく。 このとき、\\(S\\coloneqq T^{(i)\\ell}\\) とおくと、 \\[\\begin{align*}\nS v &= \\lambda^\\ell v\n\\end{align*}\\] である。 ここで、\\(S\\) の \\(j\\) 行目の和は \\[\\begin{align*}\n\\sum_k S_{j,k} &= \\Pr(X_1\\ne i,\\dotsc,X_\\ell \\ne i\\mid X_0 = j) &lt; 1\n\\end{align*}\\] である。 よって、 \\[\\begin{align*}\n|\\lambda^\\ell v_j| &= |(S v)_j|\\\\\n&= \\left|\\sum_{k}S_{j,k} v_k\\right|\\\\\n&\\le \\sum_{k}S_{j,k} \\left|v_k\\right|\\\\\n&\\le \\sum_{k}S_{j,k} |v_j|\\\\\n&&lt; |v_j|\\\\\n\\end{align*}\\] である。\\(|v_j|&gt;0\\) より、\\(|\\lambda|&lt;1\\) である。 したがって、\\(\\rho(T^{(i)}) &lt; 1\\) であることが示された。",
+    "crumbs": [
+      "マルコフ連鎖",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>定常分布</span>"
+    ]
+  },
+  {
+    "objectID": "stationary.html#一般のマルコフ連鎖の定常分布",
+    "href": "stationary.html#一般のマルコフ連鎖の定常分布",
+    "title": "13  定常分布",
+    "section": "13.3 一般のマルコフ連鎖の定常分布",
+    "text": "13.3 一般のマルコフ連鎖の定常分布\n次に既約とは限らない一般のマルコフ連鎖について考える。 マルコフ連鎖の状態集合 \\(S\\) を同値関係 \\(\\sim_T\\) で割った同値類 \\(S/\\sim_T\\) を考える。 そして、その同値類の遷移グラフを考える。\n\n定義 13.6 (同値類の遷移グラフ) 有向グラフ \\(G=(V,\\,E)\\) が状態集合 \\(S\\) 上のマルコフ連鎖の遷移行列 \\(T\\) の遷移グラフ \\(\\defiff\\) \\[\\begin{align*}\nV&= S/\\sim_T\\\\\nE&=\\left\\{(A,B)\\in V\\times V\\mid \\exists a\\in A, b\\in B\\quad T_{a,b}&gt;0,\\,A\\ne B\\right\\}.\n\\end{align*}\\]\n\nマルコフ連鎖の遷移グラフから同値類の遷移グラフは定まる。\n\n定義 13.7 (強連結成分と縮約グラフ) 有向グラフ \\(G=(V,E)\\) について、\\(V\\) 上の同値関係を \\(u\\sim v\\defiff \\text{$u$ と $v$ の間に両方向のパスがある}\\)と定義する。 この同値関係の同値類を \\(G\\) の強連結成分と呼ぶ。\n\\(G\\) の強連結成分を頂点に持つ縮約グラフ \\(G'=(V',E')\\) を \\[\\begin{align*}\nV'&=V/\\sim\\\\\nE'&=\\left\\{(A,B)\\in V'\\times V'\\mid \\exists a\\in A, \\exists b\\in B, (a,b)\\in E, A\\ne B\\right\\}\n\\end{align*}\\] と定義する。\n\n\n\n\n\n\n\n\ntgraph\n\n\n\n1\n\n1\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\n\n\n\n7\n\n7\n\n\n\n1-&gt;7\n\n\n\n\n\n3\n\n3\n\n\n\n2-&gt;3\n\n\n\n\n\n4\n\n4\n\n\n\n2-&gt;4\n\n\n\n\n\n5\n\n5\n\n\n\n2-&gt;5\n\n\n\n\n\n3-&gt;1\n\n\n\n\n\n4-&gt;7\n\n\n\n\n\n6\n\n6\n\n\n\n5-&gt;6\n\n\n\n\n\n6-&gt;5\n\n\n\n\n\n6-&gt;7\n\n\n\n\n\n7-&gt;7\n\n\n\n\n\n\n 有向グラフの例。強連結ではない。 \n\n\n\n\n\n\n\n\n\n\ntgraph_equiv\n\n\n\na\n\n{1, 2, 3}\n\n\n\nb\n\n{4}\n\n\n\na-&gt;b\n\n\n\n\n\nc\n\n{5, 6}\n\n\n\na-&gt;c\n\n\n\n\n\nd\n\n{7}\n\n\n\na-&gt;d\n\n\n\n\n\nb-&gt;d\n\n\n\n\n\nc-&gt;d\n\n\n\n\n\n\n 上の図の有向グラフの縮約グラフ。 \n\n\n\n\n定義 13.8 (有向非巡回グラフ) 有向グラフ \\(G\\) の長さ1以上のウォーク \\((v_0,\\dotsc,v_\\ell)\\) が\n\n\\(v_\\ell=v_0\\).\n\\(v_0,\\dotsc,v_{\\ell-1}\\) がすべて異なる。\n\nを満たすとき、サイクルという。 サイクルを持たない有向グラフを有向非巡回グラフ(directed acyclic graph; DAG)という。\n\n同値類の遷移グラフはDAGである。 \\(S\\) に対する前順序関係 \\(\\le_T\\) を同値類 \\(S/\\sim_T\\) についても同様に定義する。 このとき、\\(\\le_T\\) は\n\n(反対称律) \\(\\forall u,v\\in S/\\sim_T,\\,((u\\le_T v\\land v\\le_T u)\\implies u=v)\\)\n\nを満たし、半順序関係となる。\n\n\n\n\n\n\nノート\n\n\n\n逆に一般の有限半順序集合からDAGを作ることもできる(ハッセ図)。 任意のDAGが半順序集合のハッセ図になる訳ではない。\n\n\nDAGの頂点で出次数(外に出ていく有向辺の個数)が0のものをシンクという。 (有限サイズの)DAGは必ずシンクを一つ以上持つ。 一般のマルコフ連鎖の定常分布について、その同値類の遷移グラフを用いて考察する。 マルコフ連鎖の同値類の遷移グラフにおいてシンクに対応する同値類やそれに含まれる状態を再帰的であるという。\n\n補題 13.2 マルコフ連鎖の定常状態を \\(\\mu\\in\\mathbb{R}^n\\) とすると、再帰的でない状態 \\(s\\in S\\) について \\(\\mu(s)=0\\) である。\n\n\n証明. 定常分布 \\(\\mu\\in\\mathbb{R}^n\\) が再帰的でない状態 \\(s\\in S\\) について\\(\\mu(s)&gt;0\\) であると仮定する。 状態 \\(s\\) に対して再帰的な状態 \\(t\\in S\\) が存在して、\\(s\\le_T t\\) である。 この再帰的な状態 \\(t\\in S\\) が属する同値類を \\(C\\) とおくと、定常分布におけるこの同値類の確率の総和 \\[\\begin{align*}\n\\sum_{s\\in C} \\mu(s)\n\\end{align*}\\] もマルコフ連鎖の遷移によって不変である。 しかし、最初に確率1で\\(s\\)に入る状態からマルコフ連鎖をスタートしたとき、十分長いステップ(例えば状態数 \\(n\\))遷移すると必ず正の確率で同値類 \\(C\\) に遷移してしまう。 よって、再帰的な同値類 \\(C\\) の確率の総和は増加してしまう。 これは矛盾であるので、定常分布 \\(\\mu\\) において再帰的でない状態 \\(s\\in S\\) の確率は0である。\n\nよって、一般のマルコフ連鎖の定常状態を考えるときは、非再帰的な状態を削除してしまって考えてもよい。 このとき、再帰的な同値類 \\(C_1,C_2,\\dotsc,C_k\\) は互いに遷移できないので、独立に考えることができる。 それぞれの再帰的な同値類 \\(C_i\\) について、\\(C_i\\) だけに確率を持つ定常分布 \\(\\mu_i\\) が唯一存在する。 定常分布は凸集合に閉じているので、 \\[\\begin{align*}\n\\sum_{i=1}^k p_i \\mu_i\n\\end{align*}\\] も定常分布となる。 逆に \\(\\mu\\) が定常分布のとき、それを \\(C_i\\) に制限したものも定常ベクトルになる。よって、それは \\(\\mu_i\\) の非負倍に等しい。\n\n\n\n\nLevin, David A, and Yuval Peres. 2017. Markov Chains and Mixing Times. Vol. 107. American Mathematical Soc. https://pages.uoregon.edu/dlevin/MARKOV/.",
+    "crumbs": [
+      "マルコフ連鎖",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>定常分布</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "参考文献",
+    "section": "",
+    "text": "Levin, David A, and Yuval Peres. 2017. Markov Chains and Mixing\nTimes. Vol. 107. American Mathematical Soc. https://pages.uoregon.edu/dlevin/MARKOV/.",
+    "crumbs": [
+      "参考文献"
+    ]
   }
 ]
