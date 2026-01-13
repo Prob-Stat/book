@@ -241,7 +241,9 @@ S v &= \lambda^\ell v
 である。
 ここで、$S$ の $j$ 行目の和は
 \begin{align*}
-\sum_k S_{j,k} &= \Pr(X_1\ne i,\dotsc,X_\ell \ne i\mid X_0 = j) < 1
+\sum_{k\in S\setminus\{i\}} S_{j,k} &= \sum_{k\in S\setminus\{i\}} \Pr(X_1\ne i,\dotsc,X_{\ell-1} \ne i,X_\ell=k\mid X_0 = j)\\
+ &= \Pr(X_1\ne i,\dotsc,X_{\ell} \ne i\mid X_0 = j)\\
+&\le \Pr(X_\ell\ne i\mid X_0 = j) < 1
 \end{align*}
 である。
 よって、
