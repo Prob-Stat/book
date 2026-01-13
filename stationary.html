@@ -755,7 +755,9 @@ T^{(i)}v &amp;= \lambda v
 \end{align*}\]</span> が成り立つ。 <span class="math inline">\(v\)</span> の絶対値最大の成分のインデックスを <span class="math inline">\(j\in S\setminus\{i\}\)</span> とおく。 マルコフ連鎖が既約であることから、その遷移グラフ上で <span class="math inline">\(j\)</span> から <span class="math inline">\(i\)</span> へのウォークが存在する。 そのウォークの長さを <span class="math inline">\(\ell\in\mathbb{Z}_{\ge 1}\)</span> とおく。 このとき、<span class="math inline">\(S\coloneqq T^{(i)\ell}\)</span> とおくと、 <span class="math display">\[\begin{align*}
 S v &amp;= \lambda^\ell v
 \end{align*}\]</span> である。 ここで、<span class="math inline">\(S\)</span> の <span class="math inline">\(j\)</span> 行目の和は <span class="math display">\[\begin{align*}
-\sum_k S_{j,k} &amp;= \Pr(X_1\ne i,\dotsc,X_\ell \ne i\mid X_0 = j) &lt; 1
+\sum_{k\in S\setminus\{i\}} S_{j,k} &amp;= \sum_{k\in S\setminus\{i\}} \Pr(X_1\ne i,\dotsc,X_{\ell-1} \ne i,X_\ell=k\mid X_0 = j)\\
+&amp;= \Pr(X_1\ne i,\dotsc,X_{\ell} \ne i\mid X_0 = j)\\
+&amp;\le \Pr(X_\ell\ne i\mid X_0 = j) &lt; 1
 \end{align*}\]</span> である。 よって、 <span class="math display">\[\begin{align*}
 |\lambda^\ell v_j| &amp;= |(S v)_j|\\
 &amp;= \left|\sum_{k}S_{j,k} v_k\right|\\
