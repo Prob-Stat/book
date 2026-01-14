@@ -46,15 +46,107 @@ T&=
 ## 周期
 :::{#def-period}
 ## 状態の周期
-マルコフ連鎖の状態 $s\in S$ について
+マルコフ連鎖の状態 $i\in S$ について
 \begin{align*}
-d(i) &\coloneqq\mathrm{gcd}\left(\left\{n\ge0\mid T^n_{i,i}>0\right\}\right)
+S(i) &\coloneqq\left\{n\ge 0\mid (T^n)_{i,i}>0\right\}\\
+d(i) &\coloneqq\mathrm{gcd}\left(S(i)\right)
 \end{align*}
+と定義する($0$ と $n\ge0$ の最大公約数は $n$ とする)。
+
+:::{.callout-note}
+### 最大公約数の単位元
+$a,b,c\in\mathbb{Z}_{\ge 1}$ について
+\begin{align*}
+\mathrm{gcd}(\mathrm{gcd}(a,b), c) =
+\mathrm{gcd}(a,\mathrm{gcd}(b,c))
+\end{align*}
+より、$\mathrm{gcd}$ は二項演算として結合法則を満たす。
+そのため、$(\mathbb{Z}_{\ge 1},\,\mathrm{gcd})$ は可換な半群となるが、単位元があると便利である。
+任意の $n\in\mathbb{Z}_{\ge 0}$ について
+\begin{align*}
+\mathrm{gcd}(0,n)&=n
+\end{align*}
+と定義することにする。任意の $n\in\mathbb{Z}_{\ge 1}$ は 0 を割り切るので自然な定義である。
+唯一 $\mathrm{gcd}(0, 0) = 0$ だけ少し違和感を感じるかもしれないが、こうするととても綺麗な定義になる。
+「最大」公約数の「最大」というのを半順序 $a\preceq b \defiff a \mid b$ の意味で「最大」だと思うと 0 は「最大」の数なので自然である。
+また、任意の $a,b,d\in\mathbb{Z}_{\ge 0}$ について
+\begin{align*}
+\mathrm{gcd}(a,\,b) = d&\iff
+\left\{sa + tb \mid s, t\in\mathbb{Z}\right\}\cap\mathbb{Z}_{\ge 0} = d\cdot \mathbb{Z}_{\ge 0}
+\end{align*}
+という特徴付けも $a$ や $b$ が 0 の場合も含めて成り立つ。
+また、ユークリッドの互除法のアルゴリズムも
+
+```{python}
+#| code-fold: false
+def gcd(a, b):
+  if a == 0:
+    return b
+  else:
+    return gcd(b % a, a)
+```
+
+と端的に書くことができる(ここで `b % a` は `b` を `a` で割った余りという意味)。
+このように様々な意味で $\mathrm{gcd}(0,\,0)=0$ は自然な定義である。
+この定義から $(\mathbb{Z}_{\ge 0},\, \mathrm{gcd})$ は 0 を単位元とする可換なモノイドになる。
+
+空集合の和は和の単位元である 0だと定義するし
+空集合の積は積の単位元である 1と定義する。
+それと同様に
+空集合の $\mathrm{gcd}$ は $\mathrm{gcd}$ の単位元である 0 と自然に定義することができる。
+
+<!-- 環や体の標数において $+\infty$ でなく 0 を採用するのもおそらく同じ理由であろう。-->
+:::
+
+戻ってこれない状態 $i\in S$ について、$S(i)=\{0\}$ となるため $d(i)=0$ である。
+これを $d(i)=+\infty$ としている文献もある。
+しかし、このような状態の周期を考えることがそもそもあまりないので、この違いは気にしないことにする。
+
+状態 $i\in S$ について $d(i)$ を $i$ の**周期**という。
+周期が1である状態を**非周期的**であるという。
+非周期的でない状態を**周期的**であるという。
 :::
 
 :::{#lem-period}
-## 周期は不変
+## 周期は不変量
+マルコフ連鎖の状態 $i, j\in S$ について
 \begin{align*}
-i\sim_T j&\implies d(i) = d(j)
+i\sim_T j&\implies d(i) = d(j).
+\end{align*}
+:::
+::: {.proof}
+$i\sim_T j$ より、ある $a,b\in\mathbb{Z}_{\ge 0}$ が存在して、
+\begin{align*}
+T^{a}_{i,j} &> 0,&
+T^{b}_{j,i} &> 0
+\end{align*}
+が成り立つ。
+このとき、$a+b\in S(i)$ である。
+よって、任意の $c\in S(j)$ について
+\begin{align*}
+(T^{a+c+b})_{i,i} &\ge (T^a)_{i, j} (T^c)_{j, j} (T^b)_{j, i} > 0
+\end{align*}
+である。よって、$a+b+c\in S(i)$ である。
+これらのことから、$d(i)$ は $a+b$ と $a+b+c$ の両方を割り切るため、$d(i)$ は $c$ を割り切る。
+よって、$d(i)$ は $S(j)$ のすべての要素を割り切るため、$d(j)$ を割り切る。
+同様に $d(j)$ は $d(i)$ を割り切るため、$d(i)=d(j)$ である。
+:::
+
+:::{#lem-aperiod}
+マルコフ連鎖の状態 $i\in S$ が非周期的であるとき、ある $r_0\in\mathbb{Z}_{\ge 0}$ が存在して、
+任意の $r\ge r_0$ と $j\sim_T i$ について
+\begin{align*}
+(T^r)_{i,j}&>0.
+\end{align*}
+:::
+
+## 定常分布への収束
+
+:::{#thm-doeblin}
+### Doeblin の定理
+推移行列 $T$ を持つマルコフ連鎖について、ある $i\in S$ と $\epsilon>0$ が存在して、 任意の $j\in S$ について $T_{j, i} \ge \epsilon$ と仮定する。
+このとき、定常分布 $\mu$ が存在し、任意の確率ベクトル $\pi$ について
+\begin{align*}
+\|\pi T^n-\mu\|_1\le (1-\epsilon)^n\|\pi-\mu\|_1\le 2(1-\epsilon)^n\qquad \forall n\ge 0.
 \end{align*}
 :::
