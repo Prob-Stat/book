@@ -43,6 +43,92 @@ T&=
 の場合も既約であり、唯一の定常分布 $\begin{bmatrix}1/3&1/3&1/3\end{bmatrix}$ を持つが、定常分布以外の分布からスタートすると収束しない。
 この場合は固有値は $1, \mathrm{e}^{\frac{2\pi}{3}},\mathrm{e}^{\frac{4\pi}{3}}$ である。
 
+## 指数関数的な収束
+
+行ベクトル $v\in\mathbb{R}^S$ について
+
+\begin{align*}
+\|v\|_1 &\coloneqq \sum_{i\in S} |v_i|
+\end{align*}
+と定義する。
+確率ベクトル $\pi,\mu\in\mathbb{R}^S$ について
+\begin{align*}
+\frac12\|\pi-\mu\|_1
+\end{align*}
+は確率分布 $\pi$ と $\mu$ の全変動距離となる。
+
+:::{#thm-doeblin}
+### Doeblin の定理
+推移行列 $T$ を持つマルコフ連鎖について、ある $i_0\in S$ と $\epsilon>0$ が存在して、 任意の $j\in S$ について $T_{j, i_0} \ge \epsilon$ と仮定する。
+このとき、唯一の定常分布 $\mu\in\mathbb{R}^S$ が存在し、任意の確率ベクトル $\pi\in\mathbb{R}^S$ について
+\begin{align*}
+\|\pi T^n-\mu\|_1\le (1-\epsilon)^n\|\pi-\mu\|_1\le 2(1-\epsilon)^n\qquad \forall n\ge 0.
+\end{align*}
+:::
+::: {.proof}
+<!--
+定理の条件を満たす状態 $i_0$ を含む同値類を $A\subseteq S$ とおく。
+同値類 $A$ は再帰的である(他の同値類の遷移しない)ので、$A$ に限定したマルコフ連鎖を考えることができる。
+このマルコフ連鎖は既約であるので、唯一の定常分布を持つ。
+この $A$ 上の定常分布は元の $S$ 上のマルコフ連鎖の定常分布にもなる。
+よって、このマルコフ連鎖は定常分布を持つ。
+-->
+
+任意の(有限状態)マルコフ連鎖は定常分布を持つので、このマルコフ連鎖は定常分布 $\mu\in\mathbb{R}^S$ を持つ。
+
+推移行列 $T$ が定理の条件を満たすとする。
+まず最初にベクトル $\rho\in\mathbb{R}^S$ について、
+\begin{align*}
+\sum_{i\in S} \rho_i = 0 &\implies \|\rho T\|_1 \le (1-\epsilon)\|\rho\|_1
+\end{align*}
+を示す。
+任意の $\sum_{i\in S}\rho_i = 0$ を満たす $\rho\in\mathbb{R}^S$ と任意の $j\in S$ について
+\begin{align*}
+|(\rho T)_j| &= \left|\sum_{k\in S} \rho_k T_{k,j}\right|\\
+&= \left|\sum_{k\in S} \rho_{k} (T_{k,j}-\epsilon\delta_{j,i_0})\right|\\
+&\le \sum_{k\in S} \left|\rho_k\right| (T_{k,j}-\epsilon\delta_{j,i_0})\\
+\end{align*}
+であるので
+\begin{align*}
+\|\rho T\|_1 &= \sum_{j\in S} |(\rho T)_j|\\
+&\le \sum_{j\in S}\sum_{k\in S} \left|\rho_k\right| (T_{k,j}-\epsilon\delta_{j,i_0})\\
+&= \sum_{k\in S} \left|\rho_k\right|\sum_{j\in S} (T_{k,j}-\epsilon\delta_{j,i_0})\\
+&= \sum_{k\in S} \left|\rho_k\right|(1 - \epsilon)\\
+&= (1-\epsilon)\|\rho\|_1.
+\end{align*}
+よって
+\begin{align*}
+\|\pi T^n-\mu\|_1 &= \|(\pi-\mu)T^n\|_1\\
+&\le (1-\epsilon)\|(\pi-\mu)T^{n-1}\|_1\\
+&\le (1-\epsilon)^n\|\pi-\mu\|_1\le 2(1-\epsilon)^n\qquad \forall n\ge 0.
+\end{align*}
+:::
+
+@thm-doeblin の条件は厳しいので、直接は使いづらい。
+しかし、簡単な考察によりこの条件を弱めることができる。
+
+:::{#lem-limit}
+推移行列 $T$ を持つマルコフ連鎖について、ある $M\ge 1$ と $\epsilon>0$ が存在して、
+\begin{align*}
+\max_{j\in S}\min_{i\in S} (T^M)_{i,j}\ge \epsilon
+\end{align*}
+を満たすと仮定する。
+このとき、唯一の定常分布 $\mu\in\mathbb{R}^S$ が存在し、任意の確率ベクトル $\pi\in\mathbb{R}^S$ について
+\begin{align*}
+\|\pi T^n-\mu\|_1\le 2(1-\epsilon)^{\lfloor n/M\rfloor}\qquad \forall n\ge 0.
+\end{align*}
+:::
+:::{.proof}
+推移行列 $T$ が補題の条件を満たすとする。
+任意の $n\ge 0$ について、$M$ で割った商と余りを $q\in\mathbb{Z}_{\ge 0}$ と $r\in\{0,1,\dotsc,M-1\}$ とし、  $n = qM + r$ を満たすものとする。
+このとき、
+\begin{align*}
+\|\pi T^n-\mu\|_1 &= \|\pi T^{qM+r}-\mu\|_1\\
+&= \|(\pi T^r) (T^{M})^q-\mu\|_1\\
+&\le (1-\epsilon)^{q}\|\pi T^r-\mu\|_1\le 2(1-\epsilon)^{\lfloor n/M\rfloor}\qquad \forall n\ge 0.
+\end{align*}
+:::
+
 ## 周期
 :::{#def-period}
 ## 状態の周期
@@ -67,7 +153,7 @@ $a,b,c\in\mathbb{Z}_{\ge 1}$ について
 \mathrm{gcd}(0,n)&=n
 \end{align*}
 と定義することにする。任意の $n\in\mathbb{Z}_{\ge 1}$ は 0 を割り切るので自然な定義である。
-唯一 $\mathrm{gcd}(0, 0) = 0$ だけ少し違和感を感じるかもしれないが、こうするととても綺麗な定義になる。
+唯一 $\mathrm{gcd}(0, 0) = 0$ だけ少し違和感を感じるかもしれないが、こうすると色々な観点からとても綺麗な定義になる。
 「最大」公約数の「最大」というのを半順序 $a\preceq b \defiff a \mid b$ の意味で「最大」だと思うと 0 は「最大」の数なので自然である。
 また、任意の $a,b,d\in\mathbb{Z}_{\ge 0}$ について
 \begin{align*}
@@ -115,10 +201,11 @@ i\sim_T j&\implies d(i) = d(j).
 \end{align*}
 :::
 ::: {.proof}
-$i\sim_T j$ より、ある $a,b\in\mathbb{Z}_{\ge 0}$ が存在して、
+状態 $i,j\in S$ が $i\sim_T j$ を満たすと仮定する。
+このとき、ある $a,b\in\mathbb{Z}_{\ge 0}$ が存在して、
 \begin{align*}
-T^{a}_{i,j} &> 0,&
-T^{b}_{j,i} &> 0
+(T^{a})_{i,j} &> 0,&
+(T^{b})_{j,i} &> 0
 \end{align*}
 が成り立つ。
 このとき、$a+b\in S(i)$ である。
@@ -128,25 +215,28 @@ T^{b}_{j,i} &> 0
 \end{align*}
 である。よって、$a+b+c\in S(i)$ である。
 これらのことから、$d(i)$ は $a+b$ と $a+b+c$ の両方を割り切るため、$d(i)$ は $c$ を割り切る。
-よって、$d(i)$ は $S(j)$ のすべての要素を割り切るため、$d(j)$ を割り切る。
+よって、$d(i)$ は $S(j)$ のすべての要素を割り切るため、$S(j)$ の公約数であり$d(j)$ を割り切る。
 同様に $d(j)$ は $d(i)$ を割り切るため、$d(i)=d(j)$ である。
 :::
 
 :::{#lem-aperiod}
-マルコフ連鎖の状態 $i\in S$ が非周期的であるとき、ある $r_0\in\mathbb{Z}_{\ge 0}$ が存在して、
-任意の $r\ge r_0$ と $j\sim_T i$ について
+マルコフ連鎖の任意の状態 $i\in S$ について、ある $r_0\in\mathbb{Z}_{\ge 0}$ が存在して任意の $r\ge r_0$ について
 \begin{align*}
-(T^r)_{i,j}&>0.
+(T^{d(i)r})_{i,i}&>0.
 \end{align*}
 :::
-
-## 定常分布への収束
-
-:::{#thm-doeblin}
-### Doeblin の定理
-推移行列 $T$ を持つマルコフ連鎖について、ある $i\in S$ と $\epsilon>0$ が存在して、 任意の $j\in S$ について $T_{j, i} \ge \epsilon$ と仮定する。
-このとき、定常分布 $\mu$ が存在し、任意の確率ベクトル $\pi$ について
+:::{.proof}
+非負整数の集合 $S\subseteq\mathbb{Z}_{\ge 0}$ が
 \begin{align*}
-\|\pi T^n-\mu\|_1\le (1-\epsilon)^n\|\pi-\mu\|_1\le 2(1-\epsilon)^n\qquad \forall n\ge 0.
+a+b\in S\qquad \forall a,b\in S
 \end{align*}
+を満たすとき、集合 $S$ は**和について閉じている**という。
+集合 $S(i)$ は和について閉じている。
+よって、任意の和について閉じている集合 $S\subseteq\mathbb{Z}_{\ge 0}$ について、
+ある $r_0\in\mathbb{Z}_{\ge 0}$ が存在して、
+\begin{align*}
+\mathrm{gcd}(S)\cdot r\in S\qquad\forall r\ge r_0
+\end{align*}
+を証明すれば十分である。
 :::
+
