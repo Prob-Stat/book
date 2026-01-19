@@ -3,7 +3,7 @@
 ## 定常分布への収束
 
 マルコフ連鎖が推移行列 $T$ を持つとする。
-ある確率ベクトル $\mu\in\mathbb{R}_{\ge 0}^n$ が存在して、任意の確率ベクトル $\pi\in\mathbb{R}_{\ge0}^n$ について、
+ある確率ベクトル $\mu\in\mathbb{R}_{\ge 0}^S$ が存在して、任意の確率ベクトル $\pi\in\mathbb{R}_{\ge0}^S$ について、
 \begin{align*}
 \lim_{t\to\infty} \pi T^t &= \mu
 \end{align*}
@@ -56,6 +56,15 @@ T&=
 \frac12\|\pi-\mu\|_1
 \end{align*}
 は確率分布 $\pi$ と $\mu$ の全変動距離となる。
+
+一般に確率ベクトルとは限らないベクトル $\rho\in\mathbb{R}^S$ と確率行列 $T$ について
+\begin{align*}
+\|\rho T\|_1 &= \sum_{i\in S} \left|(\rho T)_i\right|\\
+&= \sum_{i\in S} \left|\sum_{j\in S}\rho_j T_{j,i}\right|\\
+&\le \sum_{i\in S} \sum_{j\in S}\left|\rho_j\right| T_{j,i}\\
+&= \sum_{j\in S}\left|\rho_j\right| \sum_{i\in S} T_{j,i}\\
+&= \sum_{j\in S}\left|\rho_j\right| = \|\rho\|_1.
+\end{align*}
 
 :::{#thm-doeblin}
 ### Doeblin の定理
@@ -115,7 +124,7 @@ T&=
 を満たすと仮定する。
 このとき、唯一の定常分布 $\mu\in\mathbb{R}^S$ が存在し、任意の確率ベクトル $\pi\in\mathbb{R}^S$ について
 \begin{align*}
-\|\pi T^n-\mu\|_1\le 2(1-\epsilon)^{\lfloor n/M\rfloor}\qquad \forall n\ge 0.
+\|\pi T^n-\mu\|_1\le (1-\epsilon)^{\lfloor n/M\rfloor}\|\pi-\mu\|_1\le 2(1-\epsilon)^{\lfloor n/M\rfloor}\qquad \forall n\ge 0.
 \end{align*}
 :::
 :::{.proof}
@@ -124,8 +133,10 @@ T&=
 このとき、
 \begin{align*}
 \|\pi T^n-\mu\|_1 &= \|\pi T^{qM+r}-\mu\|_1\\
-&= \|(\pi T^r) (T^{M})^q-\mu\|_1\\
-&\le (1-\epsilon)^{q}\|\pi T^r-\mu\|_1\le 2(1-\epsilon)^{\lfloor n/M\rfloor}\qquad \forall n\ge 0.
+&= \left\|\left(\pi T^{qM}-\mu\right)T^r\right\|_1\\
+&\le \left\|\pi T^{qM}-\mu\right\|_1\\
+&= \|\pi (T^{M})^q-\mu\|_1\\
+&\le (1-\epsilon)^{q}\|\pi -\mu\|_1\le 2(1-\epsilon)^{\lfloor n/M\rfloor}\qquad \forall n\ge 0.
 \end{align*}
 :::
 
@@ -238,5 +249,61 @@ a+b\in S\qquad \forall a,b\in S
 \mathrm{gcd}(S)\cdot r\in S\qquad\forall r\ge r_0
 \end{align*}
 を証明すれば十分である。
+
 :::
 
+
+:::{#thm-limit}
+推移行列 $T$ を持つマルコフ連鎖について、ある非周期的な状態 $i_0\in S$ が存在して、任意の $j\in S$ について $j\le_T i_0$ と仮定する。
+このとき、唯一の定常分布 $\mu\in\mathbb{R}^S$ とある $C\in\mathbb{R}_{>0}$ と $\delta\in(0,1)$ が存在して、
+任意の確率ベクトル $\pi\in\mathbb{R}^S$ について
+\begin{align*}
+\|\pi T^n-\mu\|_1&\le C\delta^n
+\end{align*}
+:::
+:::{.proof}
+任意の $j\in S$ について $j\le_T i_0$ より、ある $m(j)\in\mathbb{Z}_{\ge 0}$ が存在して、
+\begin{align*}
+(T^{m(j)})_{j,i_0}&> 0
+\end{align*}
+である。
+また、@lem-aperiod より、ある $r_0\in\mathbb{Z}_{\ge 0}$ が存在して、任意の $r\ge r_0$ について
+\begin{align*}
+(T^{r})_{i_0,i_0}>0
+\end{align*}
+である。
+よって、任意の $j\in S$ と $r\ge r_0+m(j)$ について、
+\begin{align*}
+(T^{r})_{j,i_0}>0
+\end{align*}
+よって、$M=r_0+\max_{j\in S} m(j)$ について、
+\begin{align*}
+(T^{M})_{j,i_0}>0\qquad\forall j\in S
+\end{align*}
+である。
+\begin{align*}
+\epsilon &= \min_{j\in S} (T^{M})_{j,i_0}
+\end{align*}
+とおくと、@lem-limit より、
+\begin{align*}
+\|\pi T^n - \mu\|_1 &\le 2(1-\epsilon)^{\lfloor n/M\rfloor}
+\le\frac{2}{1-\epsilon}\left((1-\epsilon)^{1/M}\right)^n
+\end{align*}
+が成り立つ。よって
+\begin{align*}
+C &= \frac{2}{1-\epsilon}&
+\delta &= (1-\epsilon)^{1/M}
+\end{align*}
+とおくと定理が成り立つ。
+:::
+
+:::{#cor-limit}
+既約で非周期的なマルコフ連鎖について、
+このとき、唯一の定常分布 $\mu\in\mathbb{R}^S$ とある $C\in\mathbb{R}_{>0}$ と $\delta\in(0,1)$ が存在して、
+任意の確率ベクトル $\pi\in\mathbb{R}^S$ について
+\begin{align*}
+\|\pi T^n-\mu\|_1&\le C\delta^n.
+\end{align*}
+:::
+
+既約で非周期的なマルコフ連鎖を**エルゴード的**であるという。
