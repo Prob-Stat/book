@@ -33,6 +33,7 @@ book:
       chapters:
         - markov.qmd
         - stationary.qmd
+        - ergodic.qmd
     - references.qmd
 
 bibliography: references.bib

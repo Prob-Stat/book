@@ -7,7 +7,7 @@
 \begin{align*}
 \lim_{t\to\infty} \pi T^t &= \mu
 \end{align*}
-が成り立つとき、**エルゴード的**であるという。
+が成り立つ条件について考えよう。
 このとき、
 \begin{align*}
 \mu &= \lim_{t\to\infty} \pi T^{t}\\
@@ -16,7 +16,7 @@
 \end{align*}
 より、収束先である $\mu$ は定常分布である。
 初期分布が定常分布のとき、収束先は初期状態そのものである。
-そのため、「エルゴード的 $\implies$ 定常分布は唯一」が成り立つ。
+そのため、「初期分布によらない極限分布に収束 $\implies$ 定常分布は唯一」が成り立つ。
 しかし、その逆は成り立たない。
 例えば、推移行列が
 \begin{align*}
@@ -28,8 +28,7 @@ T&=
 のとき、既約なマルコフ連鎖なので定常分布は唯一である。
 唯一の定常確率ベクトルは $\begin{bmatrix}1/2&1/2\end{bmatrix}$ である。
 しかし、初期分布が $\begin{bmatrix}1&0\end{bmatrix}$ のとき、
-$\begin{bmatrix}1&0\end{bmatrix}$ と $\begin{bmatrix}0&1\end{bmatrix}$ を交互に遷移するため、エルゴード的ではないことが分かる。
-初期分布が $\begin{bmatrix}1/2+\epsilon&1/2-\epsilon\end{bmatrix}$ のように定常分布に近い場合でも収束しない。
+$\begin{bmatrix}1&0\end{bmatrix}$ と $\begin{bmatrix}0&1\end{bmatrix}$ を交互に遷移するため、分布が収束しないことが分かる。初期分布が $\begin{bmatrix}1/2+\epsilon&1/2-\epsilon\end{bmatrix}$ のように定常分布に近い場合でも収束しない。
 このことは $T$ の固有値が $\pm1$ であることから理解することができる。
 <!-- これは二部グラフ $G=(\{1,2\},\{\{1,2\}\})$ 上のランダムウォークなので。-->
 
@@ -249,6 +248,7 @@ a+b\in S\qquad \forall a,b\in S
 \mathrm{gcd}(S)\cdot r\in S\qquad\forall r\ge r_0
 \end{align*}
 を証明すれば十分である。
+
 
 :::
 
