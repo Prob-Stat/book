@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; 期待値、分散、モーメント – 確率・統計入門</title>
+<title>14&nbsp; エルゴード性 – 確率・統計入門</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./bayes.html" rel="next">
-<link href="./multivariate.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./stationary.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -284,7 +319,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">確率論</a></li><li class="breadcrumb-item"><a href="./moments.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">期待値、分散、モーメント</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./markov.html">マルコフ連鎖</a></li><li class="breadcrumb-item"><a href="./ergodic.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">エルゴード性</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
@@ -360,7 +395,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./moments.html" class="sidebar-item-text sidebar-link active">
+  <a href="./moments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">期待値、分散、モーメント</span></span></a>
   </div>
 </li>
@@ -441,7 +476,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ergodic.html" class="sidebar-item-text sidebar-link">
+  <a href="./ergodic.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">エルゴード性</span></span></a>
   </div>
 </li>
@@ -463,10 +498,9 @@ window.Quarto = {
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#期待値" id="toc-期待値" class="nav-link active" data-scroll-target="#期待値"><span class="header-section-number">6.1</span> 期待値</a></li>
-  <li><a href="#分散" id="toc-分散" class="nav-link" data-scroll-target="#分散"><span class="header-section-number">6.2</span> 分散</a></li>
-  <li><a href="#共分散" id="toc-共分散" class="nav-link" data-scroll-target="#共分散"><span class="header-section-number">6.3</span> 共分散</a></li>
-  <li><a href="#モーメントとモーメント母関数" id="toc-モーメントとモーメント母関数" class="nav-link" data-scroll-target="#モーメントとモーメント母関数"><span class="header-section-number">6.4</span> モーメントとモーメント母関数</a></li>
+  <li><a href="#定常分布への収束" id="toc-定常分布への収束" class="nav-link active" data-scroll-target="#定常分布への収束"><span class="header-section-number">14.1</span> 定常分布への収束</a></li>
+  <li><a href="#指数関数的な収束" id="toc-指数関数的な収束" class="nav-link" data-scroll-target="#指数関数的な収束"><span class="header-section-number">14.2</span> 指数関数的な収束</a></li>
+  <li><a href="#周期" id="toc-周期" class="nav-link" data-scroll-target="#周期"><span class="header-section-number">14.3</span> 周期</a></li>
   </ul>
 </nav>
     </div>
@@ -474,9 +508,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">確率論</a></li><li class="breadcrumb-item"><a href="./moments.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">期待値、分散、モーメント</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./markov.html">マルコフ連鎖</a></li><li class="breadcrumb-item"><a href="./ergodic.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">エルゴード性</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">期待値、分散、モーメント</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">エルゴード性</span></h1>
 </div>
 
 
@@ -493,366 +527,189 @@ window.Quarto = {
 </header>
 
 
-<section id="期待値" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="期待値"><span class="header-section-number">6.1</span> 期待値</h2>
-<div id="def-exp" class="theorem definition">
-<p><span class="theorem-title"><strong>定義 6.1 (期待値)</strong></span> 離散型確率変数 <span class="math inline">\(X\)</span> の<strong>期待値</strong>は</p>
-<p><span class="math display">\[\begin{align*}
-\expt{X}
-% &amp;= \sum_{\omega \in \Omega} X(\omega) P(\{\omega\})\\
-%&amp;= \sum_{x\in \mathrm{Image}(X)} x P(\{\omega\mid X(\omega)=x\})\\
-&amp;\coloneqq \sum_{x\in \mathrm{Image}(X)} x \Pr(X=x)\\
-&amp;= \sum_{x\in \mathrm{Image}(X)} x f_X(x)
-\end{align*}\]</span></p>
-<p>と定義される。ここで、<strong>右辺の和が絶対収束しない場合は(適当な順番で和を取って収束したとしても)期待値は定義されない</strong>。</p>
-<p>連続型確率変数 <span class="math inline">\(X\)</span> が確率密度関数 <span class="math inline">\(f_X\)</span> を持つとき、その<strong>期待値</strong>は</p>
-<p><span class="math display">\[
-\expt{X}\coloneqq \int_{-\infty}^\infty x f_X(x) \mathrm{d}x
-\]</span></p>
-<p>と定義される。ただし、広義積分で上記の積分が存在する場合でも <span class="math display">\[
-\int_{-\infty}^\infty |x| f_X(x) \mathrm{d}x
-\]</span> が存在しない場合は期待値は定義されない。</p>
-</div>
-<p>連続型確率変数の期待値に関する様々な証明はルベーグ積分の知識を必要とするので本書では扱わない。 以下、証明はすべて離散確率変数の場合に限って与える。</p>
-<div id="lem-exp-pair" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 6.1</strong></span> 確率変数 <span class="math inline">\(X,\,Y\)</span> について <span class="math display">\[\begin{align*}
-\expt{X+Y}&amp;=\expt{X}+\expt{Y}
-\end{align*}\]</span> である。 また、<span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> が独立のとき、 <span class="math display">\[\begin{align*}
-\expt{XY}&amp;=\expt{X}\,\expt{Y}
-\end{align*}\]</span> である。</p>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span><span class="math display">\[\begin{align*}
-\expt{X+Y} &amp;= \sum_{z} z f_{X+Y}(z)\\
-&amp;= \sum_{z} z \sum_x f_{X,\,Y}(x, z-x)\\
-&amp;= \sum_{x,\,y} (x+y) f_{X,\,Y}(x, y)\qquad (y=z-x)\\
-&amp;= \sum_{x,\,y} xf_{X,\,Y}(x,y) + \sum_{x,\,y} yf_{X,\,Y}(x,y)\\
-&amp;= \sum_{x} xf_{X}(x) + \sum_{y} yf_{Y}(y)\\
-&amp;= \expt{X} + \expt{Y}.
-\end{align*}\]</span> <span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> が独立のとき、 <span class="math display">\[\begin{align*}
-\expt{XY} &amp;= \sum_{z} z f_{XY}(z)\\
-&amp;= \sum_{z} z \sum_{x\ne 0}f_{X,\,Y}(x,z/x)\\
-&amp;= \sum_{z} z \sum_{x\ne 0}f_{X}(x)f_Y(z/x)\\
-&amp;= \sum_{x\ne 0,\, y} xy f_{X}(x)f_Y(y)\qquad(y=z/x)\\
-&amp;= \sum_{x,\, y} xy f_{X}(x)f_Y(y)\\
-&amp;= \left(\sum_{x} xf_{X}(x)\right)\left(\sum_y yf_Y(y)\right)\\
-&amp;= \expt{X}\,\expt{Y}
-\end{align*}\]</span></p>
-</div>
-<div id="lem-lotus" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 6.2 (Law of the unconscious statistician (LOTUS))</strong></span> 任意の関数 <span class="math inline">\(g\colon\mathbb{R}\to\mathbb{R}\)</span> について、</p>
-<ol type="1">
-<li><span class="math inline">\(X\)</span> が離散型確率変数のとき、 <span class="math display">\[\begin{align*}
-\expt{g(X)} &amp;= \sum_{x} g(x) f_X(x).
-\end{align*}\]</span></li>
-<li><span class="math inline">\(X\)</span> が連続型確率変数で確率密度関数を持つとき、 <span class="math display">\[\begin{align*}
-\expt{g(X)} &amp;= \int_{-\infty}^\infty g(x) f_X(x) \mathrm{d}x.
-\end{align*}\]</span></li>
-</ol>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span><span class="math inline">\(X\)</span> を離散型確率変数とする。 <span class="math display">\[\begin{align*}
-\expt{g(X)}
-%&amp;= \sum_{x} x f_{g(X)}(x)\\
-&amp;= \sum_{x} x \Pr(g(X) = x)\\
-&amp;= \sum_{x} x P(\{\omega\in\Omega\mid g(X(\omega)) = x\})\\
-&amp;= \sum_{x} x P\left(\bigcup_{y\in\mathrm{Image}(X)\colon\, g(y) = x}\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
-&amp;= \sum_{x}\sum_{y\in\mathrm{Image}(X)\colon\, g(y) = x} x P\left(\{\omega\in\Omega\mid X(\omega) = y\}\right)\\
-&amp;= \sum_{y\in\mathrm{Image}(X)} g(y) f_X(y).
-\end{align*}\]</span> <!--
-$X$ が連続型確率変数で確率密度関数を持つとする。
-\begin{align*}
-\expt{g(X)}
-&= \int_{-\infty}^\infty x f_{g(X)}(x)\mathrm{d}x\\
-\end{align*}
---></p>
-</div>
-<div id="prp-exp" class="theorem proposition">
-<p><span class="theorem-title"><strong>命題 6.1 (期待値の性質)</strong></span> 任意の確率変数 <span class="math inline">\(X\)</span> と <span class="math inline">\(a\in\mathbb{R}\)</span> について <span class="math display">\[\begin{align*}
-\expt{X+a} &amp;= \expt{X}+a\\
-\expt{aX} &amp;= a\expt{X}.
-\end{align*}\]</span></p>
-</div>
-<div id="thm-markov" class="theorem">
-<p><span class="theorem-title"><strong>定理 6.1 (マルコフの不等式)</strong></span> 任意の<strong>非負</strong>確率変数 <span class="math inline">\(X\)</span> と <span class="math inline">\(a&gt;0\)</span> について <span class="math display">\[
-\Pr(X\ge a)\le\frac{\expt{X}}{a}.
-\]</span></p>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span><span class="math display">\[\begin{align*}
-\expt{X} &amp;= \sum_{x\in \mathrm{Image}(X)} f_X(x) x\\
-&amp;= \sum_{\mathrm{Image}(X)\colon\, x\ge a} f_X(x) x + \sum_{\mathrm{Image}(X)\colon\, x &lt; a} f_X(x) x\\
-&amp;\ge \sum_{\mathrm{Image}(X)\colon\, x\ge a} f_X(x) x\qquad\qquad (\Pr(X\ge 0)=1)\\
-&amp;\ge \sum_{\mathrm{Image}(X)\colon\, x\ge a} f_X(x) a\\
-&amp;= \Pr(X\ge a) a.
-\end{align*}\]</span></p>
-</div>
-<!--
-::: {#exm-exp}
-## 確率変数と期待値の例
-
-非負整数に値を取る確率変数が
-
-$$
-\Pr(X = n) = \frac1{2^{n+1}}
-$$
-
-を満たすとき、
-
-\begin{align*}
-\expt{X} &= \sum_{n\ge 0}\frac{n}{2^{n+1}}\\
-&= \left.\sum_{n\ge 0}\frac{n}{x^{n+1}}\right|_{x=2}\\
-&= \left.\left(-\sum_{n\ge 0}\frac{1}{x^{n}}\right)'\right|_{x=2}\\
-&= \left.\left(-\frac{1}{1-x^{-1}}\right)'\right|_{x=2}\\
-\end{align*}
-:::
--->
+<section id="定常分布への収束" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="定常分布への収束"><span class="header-section-number">14.1</span> 定常分布への収束</h2>
+<p>マルコフ連鎖が推移行列 <span class="math inline">\(T\)</span> を持つとする。 ある確率ベクトル <span class="math inline">\(\mu\in\mathbb{R}_{\ge 0}^S\)</span> が存在して、任意の確率ベクトル <span class="math inline">\(\pi\in\mathbb{R}_{\ge0}^S\)</span> について、 <span class="math display">\[\begin{align*}
+\lim_{t\to\infty} \pi T^t &amp;= \mu
+\end{align*}\]</span> が成り立つ条件について考えよう。 このとき、 <span class="math display">\[\begin{align*}
+\mu &amp;= \lim_{t\to\infty} \pi T^{t}\\
+&amp;= \lim_{t\to\infty} \pi T^{t-1}T\\
+&amp;= \mu T
+\end{align*}\]</span> より、収束先である <span class="math inline">\(\mu\)</span> は定常分布である。 初期分布が定常分布のとき、収束先は初期状態そのものである。 そのため、「初期分布によらない極限分布に収束 <span class="math inline">\(\implies\)</span> 定常分布は唯一」が成り立つ。 しかし、その逆は成り立たない。 例えば、推移行列が <span class="math display">\[\begin{align*}
+T&amp;=
+\begin{bmatrix}
+0&amp;1\\1&amp;0
+\end{bmatrix}
+\end{align*}\]</span> のとき、既約なマルコフ連鎖なので定常分布は唯一である。 唯一の定常確率ベクトルは <span class="math inline">\(\begin{bmatrix}1/2&amp;1/2\end{bmatrix}\)</span> である。 しかし、初期分布が <span class="math inline">\(\begin{bmatrix}1&amp;0\end{bmatrix}\)</span> のとき、 <span class="math inline">\(\begin{bmatrix}1&amp;0\end{bmatrix}\)</span> と <span class="math inline">\(\begin{bmatrix}0&amp;1\end{bmatrix}\)</span> を交互に遷移するため、分布が収束しないことが分かる。初期分布が <span class="math inline">\(\begin{bmatrix}1/2+\epsilon&amp;1/2-\epsilon\end{bmatrix}\)</span> のように定常分布に近い場合でも収束しない。 このことは <span class="math inline">\(T\)</span> の固有値が <span class="math inline">\(\pm1\)</span> であることから理解することができる。 <!-- これは二部グラフ $G=(\{1,2\},\{\{1,2\}\})$ 上のランダムウォークなので。--></p>
+<p>同様に <span class="math display">\[\begin{align*}
+T&amp;=
+\begin{bmatrix}
+0&amp;1&amp;0\\0&amp;0&amp;1\\1&amp;0&amp;0
+\end{bmatrix}
+\end{align*}\]</span> の場合も既約であり、唯一の定常分布 <span class="math inline">\(\begin{bmatrix}1/3&amp;1/3&amp;1/3\end{bmatrix}\)</span> を持つが、定常分布以外の分布からスタートすると収束しない。 この場合は固有値は <span class="math inline">\(1, \mathrm{e}^{\frac{2\pi}{3}},\mathrm{e}^{\frac{4\pi}{3}}\)</span> である。</p>
 </section>
-<section id="分散" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="分散"><span class="header-section-number">6.2</span> 分散</h2>
-<div id="def-var" class="theorem definition">
-<p><span class="theorem-title"><strong>定義 6.2 (分散)</strong></span> 確率変数 <span class="math inline">\(X\)</span> が期待値を持つとき、その<strong>分散</strong>を</p>
-<p><span class="math display">\[
-\var{X}\coloneqq  \expt{(X-\expt{X})^2}
-\]</span></p>
-<p>と定義する。 また、分散の平方根を<strong>標準偏差</strong>という。</p>
-</div>
-<p>確率変数 <span class="math inline">\(X\)</span> が分散を持つとき、</p>
+<section id="指数関数的な収束" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="指数関数的な収束"><span class="header-section-number">14.2</span> 指数関数的な収束</h2>
+<p>行ベクトル <span class="math inline">\(v\in\mathbb{R}^S\)</span> について</p>
 <p><span class="math display">\[\begin{align*}
-\var{X} &amp;= \expt{(X-\expt{X})^2}\\
-&amp;= \expt{X^2-2X\expt{X}+\expt{X}^2}\\
-&amp;= \expt{X^2}-2\expt{X}\expt{X}+\expt{X}^2\\
-&amp;= \expt{X^2}-\expt{X}^2
+\|v\|_1 &amp;\coloneqq \sum_{i\in S} |v_i|
+\end{align*}\]</span> と定義する。 確率ベクトル <span class="math inline">\(\pi,\mu\in\mathbb{R}^S\)</span> について <span class="math display">\[\begin{align*}
+\frac12\|\pi-\mu\|_1
+\end{align*}\]</span> は確率分布 <span class="math inline">\(\pi\)</span> と <span class="math inline">\(\mu\)</span> の全変動距離となる。</p>
+<p>一般に確率ベクトルとは限らないベクトル <span class="math inline">\(\rho\in\mathbb{R}^S\)</span> と確率行列 <span class="math inline">\(T\)</span> について <span class="math display">\[\begin{align*}
+\|\rho T\|_1 &amp;= \sum_{i\in S} \left|(\rho T)_i\right|\\
+&amp;= \sum_{i\in S} \left|\sum_{j\in S}\rho_j T_{j,i}\right|\\
+&amp;\le \sum_{i\in S} \sum_{j\in S}\left|\rho_j\right| T_{j,i}\\
+&amp;= \sum_{j\in S}\left|\rho_j\right| \sum_{i\in S} T_{j,i}\\
+&amp;= \sum_{j\in S}\left|\rho_j\right| = \|\rho\|_1.
 \end{align*}\]</span></p>
-<p>である。 分散は定義より非負の値を取る。</p>
-<div id="prp-var" class="theorem proposition">
-<p><span class="theorem-title"><strong>命題 6.2 (分散の性質)</strong></span> 任意の確率変数 <span class="math inline">\(X\)</span> と <span class="math inline">\(a\in\mathbb{R}\)</span> について <span class="math display">\[\begin{align*}
-\var{X+a} &amp;= \var{X}\\
-\var{aX} &amp;= a^2\var{X}.
-\end{align*}\]</span></p>
-</div>
-<p>分散は直感的には期待値からのはずれ具合を表す値である。</p>
-<div id="thm-chebyshev" class="theorem">
-<p><span class="theorem-title"><strong>定理 6.2 (チェビシェフの不等式)</strong></span> 任意の確率変数 <span class="math inline">\(X\)</span> と <span class="math inline">\(a&gt;0\)</span> について <span class="math display">\[
-\Pr(|X-\expt{X}|\ge a)\le\frac{\var{X}}{a^2}.
-\]</span></p>
-</div>
-<div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span><span class="math display">\[\begin{align*}
-\Pr(|X-\expt{X}|\ge a)&amp;= \Pr((X-\expt{X})^2\ge a^2)\\
-&amp;\le
-\frac{\expt{(X-\expt{X})^2}}{a^2} = \frac{\var{X}}{a^2}.
-\end{align*}\]</span></p>
-</div>
-<div id="lem-pairwise-var" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 6.3 (互いに独立な確率変数の和)</strong></span> 確率変数 <span class="math inline">\(X_1,\,X_2,\dotsc,X_n\)</span> が互いに独立のとき</p>
-<p><span class="math display">\[\begin{align*}
-\var{X_1+\dotsb+X_n} &amp;= \var{X_1} +\dotsb + \var{X_n}.
+<div id="thm-doeblin" class="theorem">
+<p><span class="theorem-title"><strong>定理 14.1 (Doeblin の定理)</strong></span> 推移行列 <span class="math inline">\(T\)</span> を持つマルコフ連鎖について、ある <span class="math inline">\(i_0\in S\)</span> と <span class="math inline">\(\epsilon&gt;0\)</span> が存在して、 任意の <span class="math inline">\(j\in S\)</span> について <span class="math inline">\(T_{j, i_0} \ge \epsilon\)</span> と仮定する。 このとき、唯一の定常分布 <span class="math inline">\(\mu\in\mathbb{R}^S\)</span> が存在し、任意の確率ベクトル <span class="math inline">\(\pi\in\mathbb{R}^S\)</span> について <span class="math display">\[\begin{align*}
+\|\pi T^n-\mu\|_1\le (1-\epsilon)^n\|\pi-\mu\|_1\le 2(1-\epsilon)^n\qquad \forall n\ge 0.
 \end{align*}\]</span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span><span class="math display">\[\begin{align*}
-\var{X_1+\dotsb+X_n} &amp;= \expt{\left((X_1+\dotsb+X_n) - \expt{X_1+\dotsb+X_n}\right)^2}\\
-&amp;= \expt{\left((X_1- \expt{X_1}) + \dotsb + (X_n-\expt{X_n})\right)^2}\\
-&amp;= \expt{\sum_i (X_i- \expt{X_i})^2  + 2\sum_{i &lt; j}\left(X_i-\expt{X_i}\right)\left(X_j-\expt{X_j}\right)}\\
-&amp;= \sum_i \expt{(X_i- \expt{X_i})^2} +  2\sum_{i &lt; j}\expt{\left(X_i-\expt{X_i}\right)\left(X_j-\expt{X_j}\right)}\\
-&amp;= \sum_i \expt{(X_i- \expt{X_i})^2} +  2\sum_{i &lt; j}\expt{X_i-\expt{X_i}}\expt{X_j-\expt{X_j}}\\
-&amp;= \sum_i \expt{(X_i- \expt{X_i})^2}
-=\sum_i \var{X_i}.
+<p><span class="proof-title"><em>証明</em>. </span></p>
+<!--
+定理の条件を満たす状態 $i_0$ を含む同値類を $A\subseteq S$ とおく。
+同値類 $A$ は再帰的である(他の同値類の遷移しない)ので、$A$ に限定したマルコフ連鎖を考えることができる。
+このマルコフ連鎖は既約であるので、唯一の定常分布を持つ。
+この $A$ 上の定常分布は元の $S$ 上のマルコフ連鎖の定常分布にもなる。
+よって、このマルコフ連鎖は定常分布を持つ。
+-->
+<p>任意の(有限状態)マルコフ連鎖は定常分布を持つので、このマルコフ連鎖は定常分布 <span class="math inline">\(\mu\in\mathbb{R}^S\)</span> を持つ。</p>
+<p>推移行列 <span class="math inline">\(T\)</span> が定理の条件を満たすとする。 まず最初にベクトル <span class="math inline">\(\rho\in\mathbb{R}^S\)</span> について、 <span class="math display">\[\begin{align*}
+\sum_{i\in S} \rho_i = 0 &amp;\implies \|\rho T\|_1 \le (1-\epsilon)\|\rho\|_1
+\end{align*}\]</span> を示す。 任意の <span class="math inline">\(\sum_{i\in S}\rho_i = 0\)</span> を満たす <span class="math inline">\(\rho\in\mathbb{R}^S\)</span> と任意の <span class="math inline">\(j\in S\)</span> について <span class="math display">\[\begin{align*}
+|(\rho T)_j| &amp;= \left|\sum_{k\in S} \rho_k T_{k,j}\right|\\
+&amp;= \left|\sum_{k\in S} \rho_{k} (T_{k,j}-\epsilon\delta_{j,i_0})\right|\\
+&amp;\le \sum_{k\in S} \left|\rho_k\right| (T_{k,j}-\epsilon\delta_{j,i_0})\\
+\end{align*}\]</span> であるので <span class="math display">\[\begin{align*}
+\|\rho T\|_1 &amp;= \sum_{j\in S} |(\rho T)_j|\\
+&amp;\le \sum_{j\in S}\sum_{k\in S} \left|\rho_k\right| (T_{k,j}-\epsilon\delta_{j,i_0})\\
+&amp;= \sum_{k\in S} \left|\rho_k\right|\sum_{j\in S} (T_{k,j}-\epsilon\delta_{j,i_0})\\
+&amp;= \sum_{k\in S} \left|\rho_k\right|(1 - \epsilon)\\
+&amp;= (1-\epsilon)\|\rho\|_1.
+\end{align*}\]</span> よって <span class="math display">\[\begin{align*}
+\|\pi T^n-\mu\|_1 &amp;= \|(\pi-\mu)T^n\|_1\\
+&amp;\le (1-\epsilon)\|(\pi-\mu)T^{n-1}\|_1\\
+&amp;\le (1-\epsilon)^n\|\pi-\mu\|_1\le 2(1-\epsilon)^n\qquad \forall n\ge 0.
 \end{align*}\]</span></p>
 </div>
-<div id="exm-pairwise" class="theorem example">
-<p><span class="theorem-title"><strong>例 6.1</strong></span> 互いに独立な確率変数 <span class="math inline">\(X_1,\dotsc,X_n\)</span> のそれぞれが確率変数 <span class="math inline">\(X\)</span> と同分布であるとし、 <span class="math display">\[\begin{align*}
-Y&amp;\coloneqq \frac1{n} (X_1+\dotsb+X_n)
-\end{align*}\]</span> と定義する。 このとき、 <span class="math display">\[\begin{align*}
-\expt{Y} &amp;= \expt{X}\\
-\var{Y} &amp;= \frac1{n}\var{X}
-\end{align*}\]</span> である。互いに独立な確率変数の平均を取ると期待値は変わらず、分散は小さくなる。</p>
+<p><a href="#thm-doeblin" class="quarto-xref">定理&nbsp;<span>14.1</span></a> の条件は厳しいので、直接は使いづらい。 しかし、簡単な考察によりこの条件を弱めることができる。</p>
+<div id="lem-limit" class="theorem lemma">
+<p><span class="theorem-title"><strong>補題 14.1</strong></span> 推移行列 <span class="math inline">\(T\)</span> を持つマルコフ連鎖について、ある <span class="math inline">\(M\ge 1\)</span> と <span class="math inline">\(\epsilon&gt;0\)</span> が存在して、 <span class="math display">\[\begin{align*}
+\max_{j\in S}\min_{i\in S} (T^M)_{i,j}\ge \epsilon
+\end{align*}\]</span> を満たすと仮定する。 このとき、唯一の定常分布 <span class="math inline">\(\mu\in\mathbb{R}^S\)</span> が存在し、任意の確率ベクトル <span class="math inline">\(\pi\in\mathbb{R}^S\)</span> について <span class="math display">\[\begin{align*}
+\|\pi T^n-\mu\|_1\le (1-\epsilon)^{\lfloor n/M\rfloor}\|\pi-\mu\|_1\le 2(1-\epsilon)^{\lfloor n/M\rfloor}\qquad \forall n\ge 0.
+\end{align*}\]</span></p>
 </div>
-<div id="exm-pairwise-exp" class="theorem example">
-<p><span class="theorem-title"><strong>例 6.2</strong></span> 独立確率変数 <span class="math inline">\(X_1,\dotsc,X_n\sim\mathrm{Ber}(1/2)\)</span> について <span class="math display">\[\begin{align*}
-Y_S &amp;\coloneqq \sum_{i\in S} X_i \mod 2\qquad\forall S\subseteq\{1,2,\dotsc,n\}
-\end{align*}\]</span> と定義すると、これらは互いに独立である。 また、<span class="math inline">\(S\ne\varnothing\)</span> について <span class="math inline">\(Y_S\sim\mathrm{Ber}(1/2)\)</span> である。 任意の関数 <span class="math inline">\(g\colon\,\{0,1\}\to\mathbb{R}\)</span> について、 <span class="math display">\[\begin{align*}
-Y&amp;\coloneqq \frac1{2^n-1} \sum_{S\subseteq\{1,\dotsc,n\}\colon\, S\ne\varnothing} g(Y_S)
-\end{align*}\]</span> と定義すると、<span class="math inline">\(X\sim\mathrm{Ber}(1/2)\)</span> について、 <span class="math display">\[\begin{align*}
-\expt{Y} &amp;= \expt{g(X)}\\
-\var{Y} &amp;= \frac1{2^n-1}\var{g(X)}.
+<div class="proof">
+<p><span class="proof-title"><em>証明</em>. </span>推移行列 <span class="math inline">\(T\)</span> が補題の条件を満たすとする。 任意の <span class="math inline">\(n\ge 0\)</span> について、<span class="math inline">\(M\)</span> で割った商と余りを <span class="math inline">\(q\in\mathbb{Z}_{\ge 0}\)</span> と <span class="math inline">\(r\in\{0,1,\dotsc,M-1\}\)</span> とし、 <span class="math inline">\(n = qM + r\)</span> を満たすものとする。 このとき、 <span class="math display">\[\begin{align*}
+\|\pi T^n-\mu\|_1 &amp;= \|\pi T^{qM+r}-\mu\|_1\\
+&amp;= \left\|\left(\pi T^{qM}-\mu\right)T^r\right\|_1\\
+&amp;\le \left\|\pi T^{qM}-\mu\right\|_1\\
+&amp;= \|\pi (T^{M})^q-\mu\|_1\\
+&amp;\le (1-\epsilon)^{q}\|\pi -\mu\|_1\le 2(1-\epsilon)^{\lfloor n/M\rfloor}\qquad \forall n\ge 0.
 \end{align*}\]</span></p>
 </div>
 </section>
-<section id="共分散" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="共分散"><span class="header-section-number">6.3</span> 共分散</h2>
-<div id="def-exp" class="theorem definition">
-<p><span class="theorem-title"><strong>定義 6.3 (共分散)</strong></span> 確率変数 <span class="math inline">\(X,Y\)</span> が期待値を持つとき、その<strong>共分散</strong>を</p>
-<p><span class="math display">\[\begin{align*}
-\cov{X}{Y} &amp;\coloneqq \expt{(X-\expt{X})(Y-\expt{Y})}\\
-&amp;= \expt{XY}-\expt{X}\,\expt{Y}
-\end{align*}\]</span></p>
-<p>と定義する。 共分散がゼロである確率変数のペアを<strong>無相関</strong>であるという。</p>
+<section id="周期" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="周期"><span class="header-section-number">14.3</span> 周期</h2>
+<div id="def-period" class="theorem definition">
+<p><span class="theorem-title"><strong>定義 14.1 (状態の周期)</strong></span> マルコフ連鎖の状態 <span class="math inline">\(i\in S\)</span> について <span class="math display">\[\begin{align*}
+S(i) &amp;\coloneqq\left\{n\ge 0\mid (T^n)_{i,i}&gt;0\right\}\\
+d(i) &amp;\coloneqq\mathrm{gcd}\left(S(i)\right)
+\end{align*}\]</span> と定義する(<span class="math inline">\(0\)</span> と <span class="math inline">\(n\ge0\)</span> の最大公約数は <span class="math inline">\(n\)</span> とする)。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>定義より、<span class="math inline">\(\cov{X}{X}=\var{X}\)</span> であることが分かる。</p>
-<div id="prp-ind-cov" class="theorem proposition">
-<p><span class="theorem-title"><strong>命題 6.3</strong></span> 独立確率変数 <span class="math inline">\(X,Y\)</span> は無相関である。</p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>最大公約数の単位元
 </div>
-<p>逆に無相関であっても独立とは限らない。</p>
-<div id="exm-ind-cov" class="theorem example">
-<p><span class="theorem-title"><strong>例 6.3</strong></span> 確率変数 <span class="math inline">\(X\)</span> を <span class="math display">\[\begin{align*}
-f_X(0)= f_X(+1)= f_X(-1)= \frac13
-\end{align*}\]</span> を満たすものとし、<span class="math inline">\(Y=X^2\)</span> とする。 このとき、 <span class="math display">\[\begin{align*}
-\cov{X}{Y} &amp;= \expt{XY} - \expt{X}\expt{Y}\\
-&amp;= \expt{X^3} - \expt{X}\expt{X^2}\\
-&amp;= \expt{X} - \expt{X}\expt{X^2}\\
-&amp;= \expt{X}(1-\expt{X^2})\\
-&amp;= 0
-\end{align*}\]</span> なので、<span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> は無相関である。 一方で <span class="math display">\[\begin{align*}
-f_{Y}(0) &amp;= \frac13&amp;
-f_{Y}(1) &amp;= \frac23\\
-f_{X,\,Y}(0, 0) &amp;= \frac13&amp;
-f_{X,\,Y}(1, 1) &amp;= \frac13&amp;
-f_{X,\,Y}(-1, 1) &amp;= \frac13&amp;
-\end{align*}\]</span> なので <span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> は独立ではない。</p>
 </div>
-<p>共分散は正の値も負の値も取り得る。 大雑把に言うと、</p>
-<ul>
-<li><span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> の共分散が正 <span class="math inline">\(\iff\)</span> <span class="math inline">\(X\)</span> が大きいとき <span class="math inline">\(Y\)</span> も大きい</li>
-<li><span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> の共分散が負 <span class="math inline">\(\iff\)</span> <span class="math inline">\(X\)</span> が大きいとき <span class="math inline">\(Y\)</span> は小さい</li>
-</ul>
-<p>という意味になる。</p>
-<div id="lem-var-sum" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 6.4</strong></span> 任意の確率変数 <span class="math inline">\(X_1,\dotsc,X_n\)</span> について <span class="math display">\[\begin{align*}
-\var{\sum_i X_i} &amp;= \sum_i \var{X_i} + 2\sum_{i &lt; j} \cov{X_i}{X_j}.
-\end{align*}\]</span></p>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(a,b,c\in\mathbb{Z}_{\ge 1}\)</span> について <span class="math display">\[\begin{align*}
+\mathrm{gcd}(\mathrm{gcd}(a,b), c) =
+\mathrm{gcd}(a,\mathrm{gcd}(b,c))
+\end{align*}\]</span> より、<span class="math inline">\(\mathrm{gcd}\)</span> は二項演算として結合法則を満たす。 そのため、<span class="math inline">\((\mathbb{Z}_{\ge 1},\,\mathrm{gcd})\)</span> は可換な半群となるが、単位元があると便利である。 任意の <span class="math inline">\(n\in\mathbb{Z}_{\ge 0}\)</span> について <span class="math display">\[\begin{align*}
+\mathrm{gcd}(0,n)&amp;=n
+\end{align*}\]</span> と定義することにする。任意の <span class="math inline">\(n\in\mathbb{Z}_{\ge 1}\)</span> は 0 を割り切るので自然な定義である。 唯一 <span class="math inline">\(\mathrm{gcd}(0, 0) = 0\)</span> だけ少し違和感を感じるかもしれないが、こうすると色々な観点からとても綺麗な定義になる。 「最大」公約数の「最大」というのを半順序 <span class="math inline">\(a\preceq b \defiff a \mid b\)</span> の意味で「最大」だと思うと 0 は「最大」の数なので自然である。 また、任意の <span class="math inline">\(a,b,d\in\mathbb{Z}_{\ge 0}\)</span> について <span class="math display">\[\begin{align*}
+\mathrm{gcd}(a,\,b) = d&amp;\iff
+\left\{sa + tb \mid s, t\in\mathbb{Z}\right\}\cap\mathbb{Z}_{\ge 0} = d\cdot \mathbb{Z}_{\ge 0}
+\end{align*}\]</span> という特徴付けも <span class="math inline">\(a\)</span> や <span class="math inline">\(b\)</span> が 0 の場合も含めて成り立つ。 また、ユークリッドの互除法のアルゴリズムも</p>
+<div id="efd43ad3" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gcd(a, b):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> a <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> b</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> gcd(b <span class="op">%</span> a, a)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span><a href="#lem-pairwise-var" class="quarto-xref">補題&nbsp;<span>6.3</span></a> の証明参照。</p>
+<p>と端的に書くことができる(ここで <code>b % a</code> は <code>b</code> を <code>a</code> で割った余りという意味)。 このように様々な意味で <span class="math inline">\(\mathrm{gcd}(0,\,0)=0\)</span> は自然な定義である。 この定義から <span class="math inline">\((\mathbb{Z}_{\ge 0},\, \mathrm{gcd})\)</span> は 0 を単位元とする可換なモノイドになる。</p>
+<p>空集合の和は和の単位元である 0だと定義するし 空集合の積は積の単位元である 1と定義する。 それと同様に 空集合の <span class="math inline">\(\mathrm{gcd}\)</span> は <span class="math inline">\(\mathrm{gcd}\)</span> の単位元である 0 と自然に定義することができる。</p>
+<!-- 環や体の標数において $+\infty$ でなく 0 を採用するのもおそらく同じ理由であろう。-->
 </div>
-</section>
-<section id="モーメントとモーメント母関数" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="モーメントとモーメント母関数"><span class="header-section-number">6.4</span> モーメントとモーメント母関数</h2>
-<div id="def-moment" class="theorem definition">
-<p><span class="theorem-title"><strong>定義 6.4 (モーメント)</strong></span> 確率変数 <span class="math inline">\(X\)</span> と正の整数 <span class="math inline">\(n\ge 1\)</span> について、</p>
-<p><span class="math display">\[
-\mu_n(X)\coloneqq \expt{X^n}
-\]</span></p>
-<p>を <span class="math inline">\(X\)</span> の <span class="math inline">\(n\)</span> 次モーメントという。</p>
 </div>
-<div id="def-mg" class="theorem definition">
-<p><span class="theorem-title"><strong>定義 6.5 (モーメント母関数(積率母関数))</strong></span> 確率変数 <span class="math inline">\(X\)</span> について、</p>
-<p><span class="math display">\[
-M_X(t) \coloneqq \expt{\mathrm{e}^{tX}}\qquad t\in\mathbb{R}
-\]</span></p>
-<p>を <span class="math inline">\(X\)</span> の<strong>モーメント母関数</strong>という。 すべての <span class="math inline">\(t\in\mathbb{R}\)</span> で <span class="math inline">\(M_X(t)\)</span> が存在しない場合もある。 また、</p>
-<p><span class="math display">\[
-K_X(t) \coloneqq \log M_X(t)
-\]</span> を <span class="math inline">\(X\)</span> の<strong>キュムラント母関数</strong>という。</p>
+<p>戻ってこれない状態 <span class="math inline">\(i\in S\)</span> について、<span class="math inline">\(S(i)=\{0\}\)</span> となるため <span class="math inline">\(d(i)=0\)</span> である。 これを <span class="math inline">\(d(i)=+\infty\)</span> としている文献もある。 しかし、このような状態の周期を考えることがそもそもあまりないので、この違いは気にしないことにする。</p>
+<p>状態 <span class="math inline">\(i\in S\)</span> について <span class="math inline">\(d(i)\)</span> を <span class="math inline">\(i\)</span> の<strong>周期</strong>という。 周期が1である状態を<strong>非周期的</strong>であるという。 非周期的でない状態を<strong>周期的</strong>であるという。</p>
 </div>
-<!--
-::: {#thm-convergence}
-
-## ルベーグの優収束定理(概要)
-
-関数列 $(f_n)_{n\ge 0}$ がある関数 $f$ に各点収束するとする。
-また、ある関数 $g$ が存在し、
-
-1. $|f_n(x)|\le g(x)$.
-1. $\int_{-\infty}^\infty g(x)\mathrm{d}x<\infty$.
-
-を満たすとする。
-このとき、
-
-$$
-\lim_{n\to\infty} \int_{-\infty}^\infty f_n(x)\mathrm{d}x = \int_{-\infty}^\infty f(x)\mathrm{d}x.
-$$
-
-:::
--->
-<p>今後は以下の補題を認めることにする。証明にはルベーグ積分の知識が必要である。</p>
-<div id="thm-moment" class="theorem">
-<p><span class="theorem-title"><strong>定理 6.3</strong></span> 確率変数 <span class="math inline">\(X\)</span> について、ある <span class="math inline">\(\epsilon &gt;0\)</span> が存在し、モーメント母関数 <span class="math inline">\(M_X(t)\)</span> が <strong><span class="math inline">\(t\in(-\epsilon,\epsilon)\)</span> で存在するとき</strong>、</p>
-<p><span class="math display">\[\begin{align*}
-M_X(t) &amp;=\sum_{n\ge 0}\frac{\expt{X^n}}{n!}t^n\qquad\forall t\in(-\epsilon,\epsilon)\\
-\mu_n(X) &amp;= \left.\frac{\mathrm{d}^n M_X(t)}{\mathrm{d} t^n}\right|_{t=0}.
+<div id="lem-period" class="theorem lemma">
+<p><span class="theorem-title"><strong>補題 14.2 (周期は不変量)</strong></span> マルコフ連鎖の状態 <span class="math inline">\(i, j\in S\)</span> について <span class="math display">\[\begin{align*}
+i\sim_T j&amp;\implies d(i) = d(j).
 \end{align*}\]</span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span>前半の証明を与える。 離散型確率変数 <span class="math inline">\(X\)</span> について、 <span class="math display">\[\begin{align*}
-M_X(t) &amp;= \expt{\mathrm{e}^{tX}}\\
-&amp;= \sum_x \mathrm{e}^{tx} f_X(x)\\
-&amp;= \sum_x \left(\sum_{n\ge0}\frac{(tx)^n}{n!}\right) f_X(x)
-\end{align*}\]</span> である。 ここで、任意の <span class="math inline">\(t\in(-\epsilon,\epsilon)\)</span> について <span class="math display">\[\begin{align*}
-&amp;\sum_x \sum_{n\ge0}\left|\frac{(tx)^n}{n!} f_X(x)\right|\\
-&amp;= \sum_x \sum_{n\ge0}\frac{|tx|^n}{n!} f_X(x)\\
-&amp;= \sum_x \mathrm{e}^{|tx|} f_X(x)\\
-&amp;\le \sum_x (\mathrm{e}^{tx}+\mathrm{e}^{-tx}) f_X(x)\\
-&amp;= \expt{\mathrm{e}^{tX}} + \expt{\mathrm{e}^{-tX}}\\
-&amp;= M_X(t) + M_X(-t) &lt; \infty
-\end{align*}\]</span> よって、無限和 <span class="math display">\[\begin{align*}
-\sum_x \sum_{n\ge0}\frac{(tx)^n}{n!} f_X(x)
-\end{align*}\]</span> は任意の <span class="math inline">\(t\in(-\epsilon,\epsilon)\)</span> について<strong>絶対収束する</strong>。 そのため、和の順序を変えても収束値は変化しない。 よって、 <span class="math display">\[\begin{align*}
-M_X(t) &amp;= \expt{\mathrm{e}^{tX}}\\
-&amp;= \sum_x \left(\sum_{n\ge0}\frac{(tx)^n}{n!}\right) f_X(x)\\
-&amp;= \sum_{n\ge 0} \sum_{x}\frac{(tx)^n}{n!}f_X(x)\\
-&amp;= \sum_{n\ge 0} \frac{\sum_xx^n f_X(x)}{n!}t^n\\
-&amp;= \sum_{n\ge 0} \frac{\expt{X^n}}{n!}t^n\qquad\forall t\in(-\epsilon,\epsilon).
-\end{align*}\]</span> <!--
-(概要)
-\begin{align*}
-M_X(t) &= \expt{\mathrm{e}^{tX}}\\
-&=\expt{\sum_{n\ge 0}\frac{(tX)^n}{n!}}\\
-&=\sum_{n\ge 0}\expt{\frac{(tX)^n}{n!}}\qquad\text{\textsf{(この無限和と期待値の交換が定理の条件より正当化される)}}.
-\end{align*}
---></p>
+<p><span class="proof-title"><em>証明</em>. </span>状態 <span class="math inline">\(i,j\in S\)</span> が <span class="math inline">\(i\sim_T j\)</span> を満たすと仮定する。 このとき、ある <span class="math inline">\(a,b\in\mathbb{Z}_{\ge 0}\)</span> が存在して、 <span class="math display">\[\begin{align*}
+(T^{a})_{i,j} &amp;&gt; 0,&amp;
+(T^{b})_{j,i} &amp;&gt; 0
+\end{align*}\]</span> が成り立つ。 このとき、<span class="math inline">\(a+b\in S(i)\)</span> である。 よって、任意の <span class="math inline">\(c\in S(j)\)</span> について <span class="math display">\[\begin{align*}
+(T^{a+c+b})_{i,i} &amp;\ge (T^a)_{i, j} (T^c)_{j, j} (T^b)_{j, i} &gt; 0
+\end{align*}\]</span> である。よって、<span class="math inline">\(a+b+c\in S(i)\)</span> である。 これらのことから、<span class="math inline">\(d(i)\)</span> は <span class="math inline">\(a+b\)</span> と <span class="math inline">\(a+b+c\)</span> の両方を割り切るため、<span class="math inline">\(d(i)\)</span> は <span class="math inline">\(c\)</span> を割り切る。 よって、<span class="math inline">\(d(i)\)</span> は <span class="math inline">\(S(j)\)</span> のすべての要素を割り切るため、<span class="math inline">\(S(j)\)</span> の公約数であり<span class="math inline">\(d(j)\)</span> を割り切る。 同様に <span class="math inline">\(d(j)\)</span> は <span class="math inline">\(d(i)\)</span> を割り切るため、<span class="math inline">\(d(i)=d(j)\)</span> である。</p>
 </div>
-<div id="cor-cumulant" class="theorem corollary">
-<p><span class="theorem-title"><strong>系 6.1</strong></span> 確率変数 <span class="math inline">\(X\)</span> について、ある <span class="math inline">\(\epsilon &gt;0\)</span> が存在し、モーメント母関数 <span class="math inline">\(M_X(t)\)</span> が <strong><span class="math inline">\(t\in(-\epsilon,\epsilon)\)</span> で存在するとき</strong>、</p>
-<p><span class="math display">\[\begin{align*}
-\left.\frac{\mathrm{d} K_X(t)}{\mathrm{d} t}\right|_{t=0} &amp;= \expt{X}\\
-\left.\frac{\mathrm{d}^2 K_X(t)}{\mathrm{d} t^2}\right|_{t=0} &amp;=  \var{X}.
+<div id="lem-aperiod" class="theorem lemma">
+<p><span class="theorem-title"><strong>補題 14.3</strong></span> マルコフ連鎖の任意の状態 <span class="math inline">\(i\in S\)</span> について、ある <span class="math inline">\(r_0\in\mathbb{Z}_{\ge 0}\)</span> が存在して任意の <span class="math inline">\(r\ge r_0\)</span> について <span class="math display">\[\begin{align*}
+(T^{d(i)r})_{i,i}&amp;&gt;0.
 \end{align*}\]</span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span><span class="math display">\[\begin{align*}
-\left.\frac{\mathrm{d} K_X(t)}{\mathrm{d} t}\right|_{t=0} &amp;= \left.\frac{M'_X(t)}{M_X(t)}\right|_{t=0}=\expt{X}\\
-\left.\frac{\mathrm{d}^2 K_X(t)}{\mathrm{d} t^2}\right|_{t=0} &amp;= \left.\frac{M''_X(t)M_X(t) - M'_X(t)^2}{M_X(t)^2}\right|_{t=0} = M''_X(0) - M'_X(0)^2 = \var{X}.
-\end{align*}\]</span></p>
+<p><span class="proof-title"><em>証明</em>. </span>非負整数の集合 <span class="math inline">\(S\subseteq\mathbb{Z}_{\ge 0}\)</span> が <span class="math display">\[\begin{align*}
+a+b\in S\qquad \forall a,b\in S
+\end{align*}\]</span> を満たすとき、集合 <span class="math inline">\(S\)</span> は<strong>和について閉じている</strong>という。 集合 <span class="math inline">\(S(i)\)</span> は和について閉じている。 よって、任意の和について閉じている集合 <span class="math inline">\(S\subseteq\mathbb{Z}_{\ge 0}\)</span> について、 ある <span class="math inline">\(r_0\in\mathbb{Z}_{\ge 0}\)</span> が存在して、 <span class="math display">\[\begin{align*}
+\mathrm{gcd}(S)\cdot r\in S\qquad\forall r\ge r_0
+\end{align*}\]</span> を証明すれば十分である。</p>
 </div>
-<p>また、重要度は低くなるが、</p>
-<p><span class="math display">\[\begin{align*}
-\left.\frac{\mathrm{d}^3 K_X(t)}{\mathrm{d} t^3}\right|_{t=0} &amp;= \expt{(X - \expt{X})^3}\\
-\left.\frac{\mathrm{d}^4 K_X(t)}{\mathrm{d} t^4}\right|_{t=0} &amp;= \expt{(X - \expt{X})^4} - 3\var{X}^2
+<div id="thm-limit" class="theorem">
+<p><span class="theorem-title"><strong>定理 14.2</strong></span> 推移行列 <span class="math inline">\(T\)</span> を持つマルコフ連鎖について、ある非周期的な状態 <span class="math inline">\(i_0\in S\)</span> が存在して、任意の <span class="math inline">\(j\in S\)</span> について <span class="math inline">\(j\le_T i_0\)</span> と仮定する。 このとき、唯一の定常分布 <span class="math inline">\(\mu\in\mathbb{R}^S\)</span> とある <span class="math inline">\(C\in\mathbb{R}_{&gt;0}\)</span> と <span class="math inline">\(\delta\in(0,1)\)</span> が存在して、 任意の確率ベクトル <span class="math inline">\(\pi\in\mathbb{R}^S\)</span> について <span class="math display">\[\begin{align*}
+\|\pi T^n-\mu\|_1&amp;\le C\delta^n
 \end{align*}\]</span></p>
-<p>が成り立つ。 一般に <span class="math display">\[\begin{align*}
-\kappa_n(X) &amp;\coloneqq \left.\frac{\mathrm{d}^n K_X(t)}{\mathrm{d} t^n}\right|_{t=0}
-\end{align*}\]</span> を <span class="math inline">\(X\)</span> の <strong><span class="math inline">\(n\)</span> 次キュムラント</strong> と呼ぶ。</p>
-<div id="thm-moment" class="theorem">
-<p><span class="theorem-title"><strong>定理 6.4</strong></span> 確率変数 <span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> のモーメント母関数が0を含む開区間 <span class="math inline">\((-\epsilon,\,\epsilon)\)</span> で存在し、それらが等しいとき、<span class="math inline">\(X\)</span> の分布と <span class="math inline">\(Y\)</span> の分布は等しい。</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span><span class="math inline">\(\mathrm{Image}(X)\)</span> と <span class="math inline">\(\mathrm{Image}(Y)\)</span> が有限の場合に限って証明を与える (この場合はモーメント母関数は <span class="math inline">\(\mathbb{R}\)</span> 全体で存在するのだが)。 <span class="math display">\[\begin{align*}
-\{x_0,\dotsc,x_{N-1}\} &amp;\coloneqq \mathrm{Image}(X) \cup \mathrm{Image}(Y)
-\end{align*}\]</span> とする。 <span class="math display">\[\begin{align*}
-M_X(t) &amp;= \sum_{k=0}^{N-1} f_X(x_k) \mathrm{e}^{tx_k}\\
-M_Y(t) &amp;= \sum_{k=0}^{N-1} f_Y(x_k) \mathrm{e}^{tx_k}
-\end{align*}\]</span> なので、 <span class="math display">\[\begin{align*}
-0 = M_X(t) - M_Y(t) &amp;= \sum_{k=0}^{N-1} (f_X(x_k)-f_Y(x_k)) \mathrm{e}^{tx_k}\qquad\forall t\in(-\epsilon,\epsilon)
-\end{align*}\]</span> 各 <span class="math inline">\(k\in\{0,1,\dotsc,N-1\}\)</span> について、<span class="math inline">\(t_k\coloneqq \epsilon\frac{k}{N}\)</span> とおくと、 <span class="math display">\[\begin{align}
-\sum_{k=0}^{N-1} (f_X(x_k)-f_Y(x_k)) \mathrm{e}^{t_\ell x_k}&amp;=0\qquad\forall \ell\in\{0,1,\dotsc,N-1\}
-\end{align}\]</span> である。 ここで、<span class="math inline">\(N\times N\)</span> 実行列 <span class="math inline">\(V\)</span> を <span class="math display">\[\begin{align*}
-V_{\ell k} &amp;= \mathrm{e}^{t_\ell x_k}
-= \mathrm{e}^{\frac{\epsilon x_k}{N} \ell}\qquad\forall k,\ell\in\{0,1,\dotsc,N-1\}
-\end{align*}\]</span> とおく。 この行列 <span class="math inline">\(V\)</span> は Vandermonde行列の転置であり正則なので、 <span class="math display">\[\begin{align*}
-&amp;\sum_{k=0}^{N-1} V_{\ell k} g_k=0\qquad\forall \ell\in\{0,1,\dotsc,N-1\}\\
-\implies&amp; g_k = 0 \qquad\forall k\in\{0,1,\dotsc,N-1\}
-\end{align*}\]</span> よって、 <span class="math display">\[\begin{align*}
-f_X(x_k) &amp;= f_Y(x_k) \qquad\forall k\in\{0,1,\dotsc,N-1\}
-\end{align*}\]</span> である。</p>
+<p><span class="proof-title"><em>証明</em>. </span>任意の <span class="math inline">\(j\in S\)</span> について <span class="math inline">\(j\le_T i_0\)</span> より、ある <span class="math inline">\(m(j)\in\mathbb{Z}_{\ge 0}\)</span> が存在して、 <span class="math display">\[\begin{align*}
+(T^{m(j)})_{j,i_0}&amp;&gt; 0
+\end{align*}\]</span> である。 また、<a href="#lem-aperiod" class="quarto-xref">補題&nbsp;<span>14.3</span></a> より、ある <span class="math inline">\(r_0\in\mathbb{Z}_{\ge 0}\)</span> が存在して、任意の <span class="math inline">\(r\ge r_0\)</span> について <span class="math display">\[\begin{align*}
+(T^{r})_{i_0,i_0}&gt;0
+\end{align*}\]</span> である。 よって、任意の <span class="math inline">\(j\in S\)</span> と <span class="math inline">\(r\ge r_0+m(j)\)</span> について、 <span class="math display">\[\begin{align*}
+(T^{r})_{j,i_0}&gt;0
+\end{align*}\]</span> よって、<span class="math inline">\(M=r_0+\max_{j\in S} m(j)\)</span> について、 <span class="math display">\[\begin{align*}
+(T^{M})_{j,i_0}&gt;0\qquad\forall j\in S
+\end{align*}\]</span> である。 <span class="math display">\[\begin{align*}
+\epsilon &amp;= \min_{j\in S} (T^{M})_{j,i_0}
+\end{align*}\]</span> とおくと、<a href="#lem-limit" class="quarto-xref">補題&nbsp;<span>14.1</span></a> より、 <span class="math display">\[\begin{align*}
+\|\pi T^n - \mu\|_1 &amp;\le 2(1-\epsilon)^{\lfloor n/M\rfloor}
+\le\frac{2}{1-\epsilon}\left((1-\epsilon)^{1/M}\right)^n
+\end{align*}\]</span> が成り立つ。よって <span class="math display">\[\begin{align*}
+C &amp;= \frac{2}{1-\epsilon}&amp;
+\delta &amp;= (1-\epsilon)^{1/M}
+\end{align*}\]</span> とおくと定理が成り立つ。</p>
 </div>
-<p><a href="#thm-moment" class="quarto-xref">定理&nbsp;<span>6.4</span></a> より、モーメント母関数には確率変数の分布のすべての情報が含まれていると言える。 ただし、モーメント母関数は原点まわりで存在しないこともあるので、分布の情報をすべて含む関数としては<strong>特性関数</strong> <span class="math display">\[\begin{align*}
-\varphi_X(t) &amp;\coloneqq \expt{\mathrm{e}^{itX}}\qquad\forall t\in\mathbb{R}
-\end{align*}\]</span> の方が優秀である。 特性関数は常に存在する。 一方でモーメント母関数は確率の集中を示す文脈では中心的な役割を果たす。</p>
-<!--
-## 特性関数
--->
+<div id="cor-limit" class="theorem corollary">
+<p><span class="theorem-title"><strong>系 14.1</strong></span> 既約で非周期的なマルコフ連鎖について、 このとき、唯一の定常分布 <span class="math inline">\(\mu\in\mathbb{R}^S\)</span> とある <span class="math inline">\(C\in\mathbb{R}_{&gt;0}\)</span> と <span class="math inline">\(\delta\in(0,1)\)</span> が存在して、 任意の確率ベクトル <span class="math inline">\(\pi\in\mathbb{R}^S\)</span> について <span class="math display">\[\begin{align*}
+\|\pi T^n-\mu\|_1&amp;\le C\delta^n.
+\end{align*}\]</span></p>
+</div>
+<p>既約で非周期的なマルコフ連鎖を<strong>エルゴード的</strong>であるという。</p>
 
 
 </section>
@@ -1273,13 +1130,13 @@ f_X(x_k) &amp;= f_Y(x_k) \qquad\forall k\in\{0,1,\dotsc,N-1\}
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./multivariate.html" class="pagination-link" aria-label="複数の確率変数">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">複数の確率変数</span></span>
+      <a href="./stationary.html" class="pagination-link" aria-label="定常分布">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">定常分布</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./bayes.html" class="pagination-link" aria-label="ベイズ推定">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ベイズ推定</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="参考文献">
+        <span class="nav-page-text">参考文献</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
