@@ -660,10 +660,10 @@ $\iff$
 </div>
 </div>
 <div id="lem-irred" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 13.1</strong></span> 既約なマルコフ連鎖について <span class="math inline">\(\mathrm{Ker}(I-T)=\mathrm{span}(1)\)</span> である。</p>
+<p><span class="theorem-title"><strong>補題 13.1</strong></span> 既約なマルコフ連鎖について <span class="math inline">\(\mathrm{Ker}(I-T)=\mathrm{span}(\mathbf{1})\)</span> である。</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span>列ベクトル <span class="math inline">\(v\in\mathbb{R}^n\)</span> を <span class="math display">\[\begin{align*}
+<p><span class="proof-title"><em>証明</em>. </span>列ベクトル <span class="math inline">\(v\in\mathbb{R}^S\)</span> を <span class="math display">\[\begin{align*}
 (I-T)v = 0 &amp;\iff Tv = v
 \end{align*}\]</span> を満たすものとする。 このとき、<span class="math inline">\(i\in\arg\max_{k\in S} v_k\)</span> とすると <span class="math display">\[\begin{align*}
 v_i &amp;= \sum_{j\in S} T_{i,j} v_j\\
@@ -672,7 +672,7 @@ v_i &amp;= \sum_{j\in S} T_{i,j} v_j\\
 &amp;= v_i
 \end{align*}\]</span> という不等式が得られる。 この不等号は等号でなくてはいけないので、 <span class="math display">\[\begin{align*}
 v_j &amp;= v_i\qquad\text{if } (i, j)\in E
-\end{align*}\]</span> である。 この議論を繰り返すと <span class="math inline">\(i\le_T j\)</span> である <span class="math inline">\(j\)</span> について <span class="math inline">\(v_j=v_i\)</span> である。 マルコフ連鎖が既約であることから、任意の <span class="math inline">\(j\in S\)</span> について <span class="math inline">\(i\le j\)</span> であり、<span class="math inline">\(v = v_i 1\)</span> である。 したがって、<span class="math inline">\(\mathrm{Ker}(I-T)=\mathrm{span}(1)\)</span> である。</p>
+\end{align*}\]</span> である。 この議論を繰り返すと <span class="math inline">\(i\le_T j\)</span> である <span class="math inline">\(j\)</span> について <span class="math inline">\(v_j=v_i\)</span> である。 マルコフ連鎖が既約であることから、任意の <span class="math inline">\(j\in S\)</span> について <span class="math inline">\(i\le j\)</span> であり、<span class="math inline">\(v = v_i \mathbf{1}\)</span> である。 したがって、<span class="math inline">\(\mathrm{Ker}(I-T)=\mathrm{span}(\mathbf{1})\)</span> である。</p>
 </div>
 <p>よって既約なマルコフ連鎖に対して定常分布は高々一つである。 実際には既約なマルコフ連鎖は一つの定常分布を持つ。</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -695,14 +695,14 @@ v_j &amp;= v_i\qquad\text{if } (i, j)\in E
 </div>
 </div>
 <div id="thm-irred" class="theorem">
-<p><span class="theorem-title"><strong>定理 13.1</strong></span> 既約なマルコフ連鎖は唯一の定常分布 <span class="math inline">\(\mu\in\mathbb{R}_{&gt;0}^n\)</span> を持つ。</p>
+<p><span class="theorem-title"><strong>定理 13.1</strong></span> 既約なマルコフ連鎖は唯一の定常分布 <span class="math inline">\(\mu\in\mathbb{R}_{&gt;0}^S\)</span> を持つ。</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>証明</em>. </span>マルコフ連鎖の<strong>ラプラシアン行列</strong>を <span class="math inline">\(\Lambda \coloneqq I-T\)</span> と定義する。 ラプラシアン行列の余因子行列を <span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> で表す(<span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> の <span class="math inline">\((i,j)\)</span> 成分は <span class="math inline">\((j,i)\)</span> 余因子である)。 余因子展開より <span class="math display">\[\begin{align*}
 \mathrm{adj}(\Lambda)\Lambda &amp;= \Lambda\,\mathrm{adj}(\Lambda) = \det(\Lambda)I
 \end{align*}\]</span> である。確率行列 <span class="math inline">\(T\)</span> は固有値1を持つので、<span class="math inline">\(\det(\Lambda)=0\)</span> である。 よって、 <span class="math display">\[\begin{align*}
 \mathrm{adj}(\Lambda)\Lambda &amp;= \Lambda\,\mathrm{adj}(\Lambda) = O
-\end{align*}\]</span> である。 まず、<span class="math inline">\(\Lambda\,\mathrm{adj}(\Lambda)=O\)</span> と <a href="#lem-irred" class="quarto-xref">補題&nbsp;<span>13.1</span></a> より <span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> の各列は <span class="math inline">\(1\)</span> のスカラー倍である。よって、<span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> の行はすべて等しい。 次に、<span class="math inline">\(\mathrm{adj}(\Lambda)\Lambda=O\)</span> より、<span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> の行 <span class="math inline">\(\mu\in\mathbb{R}^n\)</span> は <span class="math inline">\(\mu\Lambda=0\)</span> を満たす。 ここで、<span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> の行がすべて等しいことから <span class="math display">\[\begin{align*}
+\end{align*}\]</span> である。 まず、<span class="math inline">\(\Lambda\,\mathrm{adj}(\Lambda)=O\)</span> と <a href="#lem-irred" class="quarto-xref">補題&nbsp;<span>13.1</span></a> より <span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> の各列は <span class="math inline">\(1\)</span> のスカラー倍である。よって、<span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> の行はすべて等しい。 次に、<span class="math inline">\(\mathrm{adj}(\Lambda)\Lambda=O\)</span> より、<span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> の行 <span class="math inline">\(\mu\in\mathbb{R}^S\)</span> は <span class="math inline">\(\mu\Lambda=0\)</span> を満たす。 ここで、<span class="math inline">\(\mathrm{adj}(\Lambda)\)</span> の行がすべて等しいことから <span class="math display">\[\begin{align*}
 \mu_i &amp;= \mathrm{adj}(\Lambda)_{i,i}\qquad\forall i\in S
 \end{align*}\]</span> が成り立つ。 よって <span class="math display">\[\begin{align*}
 \mathrm{adj}(\Lambda)_{i,i}&amp;&gt;0\qquad\forall i\in S
@@ -1012,10 +1012,10 @@ E'&amp;=\left\{(A,B)\in V'\times V'\mid \exists a\in A, \exists b\in B, (a,b)\in
 </div>
 <p>DAGの頂点で出次数(外に出ていく有向辺の個数)が0のものを<strong>シンク</strong>という。 (有限サイズの)DAGは必ずシンクを一つ以上持つ。 一般のマルコフ連鎖の定常分布について、その同値類の遷移グラフを用いて考察する。 マルコフ連鎖の同値類の遷移グラフにおいてシンクに対応する同値類やそれに含まれる状態を<strong>再帰的</strong>であるという。</p>
 <div id="lem-stat-trans" class="theorem lemma">
-<p><span class="theorem-title"><strong>補題 13.2</strong></span> マルコフ連鎖の定常状態を <span class="math inline">\(\mu\in\mathbb{R}^n\)</span> とすると、再帰的でない状態 <span class="math inline">\(s\in S\)</span> について <span class="math inline">\(\mu(s)=0\)</span> である。</p>
+<p><span class="theorem-title"><strong>補題 13.2</strong></span> マルコフ連鎖の定常状態を <span class="math inline">\(\mu\in\mathbb{R}^S\)</span> とすると、再帰的でない状態 <span class="math inline">\(s\in S\)</span> について <span class="math inline">\(\mu(s)=0\)</span> である。</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span>定常分布 <span class="math inline">\(\mu\in\mathbb{R}^n\)</span> が再帰的でない状態 <span class="math inline">\(s\in S\)</span> について<span class="math inline">\(\mu(s)&gt;0\)</span> であると仮定する。 状態 <span class="math inline">\(s\)</span> に対して再帰的な状態 <span class="math inline">\(t\in S\)</span> が存在して、<span class="math inline">\(s\le_T t\)</span> である。 この再帰的な状態 <span class="math inline">\(t\in S\)</span> が属する同値類を <span class="math inline">\(C\)</span> とおくと、定常分布におけるこの同値類の確率の総和 <span class="math display">\[\begin{align*}
+<p><span class="proof-title"><em>証明</em>. </span>定常分布 <span class="math inline">\(\mu\in\mathbb{R}^S\)</span> が再帰的でない状態 <span class="math inline">\(s\in S\)</span> について<span class="math inline">\(\mu(s)&gt;0\)</span> であると仮定する。 状態 <span class="math inline">\(s\)</span> に対して再帰的な状態 <span class="math inline">\(t\in S\)</span> が存在して、<span class="math inline">\(s\le_T t\)</span> である。 この再帰的な状態 <span class="math inline">\(t\in S\)</span> が属する同値類を <span class="math inline">\(C\)</span> とおくと、定常分布におけるこの同値類の確率の総和 <span class="math display">\[\begin{align*}
 \sum_{s\in C} \mu(s)
 \end{align*}\]</span> もマルコフ連鎖の遷移によって不変である。 しかし、最初に確率1で<span class="math inline">\(s\)</span>に入る状態からマルコフ連鎖をスタートしたとき、十分長いステップ(例えば状態数 <span class="math inline">\(n\)</span>)遷移すると必ず正の確率で同値類 <span class="math inline">\(C\)</span> に遷移してしまう。 よって、再帰的な同値類 <span class="math inline">\(C\)</span> の確率の総和は増加してしまう。 これは矛盾であるので、定常分布 <span class="math inline">\(\mu\)</span> において再帰的でない状態 <span class="math inline">\(s\in S\)</span> の確率は0である。</p>
 </div>

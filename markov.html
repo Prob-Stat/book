@@ -507,7 +507,7 @@ window.Quarto = {
 <p>有限状態マルコフ連鎖の場合、状態 <span class="math inline">\(S\)</span> は実数の有限部分集合と考えるより、単に有限集合と考えた方が自然な場合も多い。 例えば <span class="math inline">\(S = \{ 晴れ、曇り、雨\}\)</span> や。 このとき、状態集合を便宜上 <span class="math inline">\(S=\{1,2,\dotsc,n\}\)</span> とおき、 <span class="math display">\[\begin{align*}
 p_{i,j} &amp;= \Pr(X_{t+1} = j\mid X_{t} = i)\qquad \forall i,\,j\in S
 \end{align*}\]</span> とする。 この <span class="math inline">\(p_{i,j}\)</span> を <span class="math inline">\((i,j)\)</span> 成分に持つ <span class="math inline">\(n\times n\)</span> 行列 <span class="math inline">\(T\)</span> を<strong>遷移行列</strong>という。 遷移行列は非負行列であり、行和が1である。 一般に、この二つの条件を満たす正方行列を<strong>確率行列</strong>という。 確率行列は遷移行列とみなすことができる。</p>
-<p>一方で、初期確率からなる行ベクトル <span class="math inline">\(\pi\in\mathbb{R}^{|S|}\)</span> を<strong>初期状態ベクトル</strong>という。 つまり、行ベクトル <span class="math inline">\(\pi\)</span> の <span class="math inline">\(i\in S\)</span> 成分を <span class="math inline">\(\pi_i\)</span> とすると、 <span class="math display">\[\begin{align*}
+<p>一方で、初期確率からなる行ベクトル <span class="math inline">\(\pi\in\mathbb{R}^{S}\)</span> を<strong>初期状態ベクトル</strong>という。 つまり、行ベクトル <span class="math inline">\(\pi\)</span> の <span class="math inline">\(i\in S\)</span> 成分を <span class="math inline">\(\pi_i\)</span> とすると、 <span class="math display">\[\begin{align*}
 \pi_i &amp;= \Pr(X_0=i)\qquad i\in S
 \end{align*}\]</span> である。</p>
 <p>初期状態ベクトル <span class="math inline">\(\pi\)</span> と確率行列 <span class="math inline">\(T\)</span> からマルコフ連鎖は定義される。</p>
@@ -650,8 +650,8 @@ T&amp;=
 \end{align*}\]</span> と表せる。よって、 <span class="math display">\[\begin{align*}
 \Pr(X_t=j) &amp;= (\pi T^t)_j
 \end{align*}\]</span> である。</p>
-<p>任意の遷移行列 <span class="math inline">\(T\)</span> とすべて1の列ベクトル <span class="math inline">\(\mathrm{1}\in\mathbb{R}^{|S|}\)</span> について、 <span class="math display">\[\begin{align*}
-T \mathrm{1} = \mathrm{1}
+<p>任意の遷移行列 <span class="math inline">\(T\)</span> とすべて1の列ベクトル <span class="math inline">\(\mathrm{1}\in\mathbb{R}^{S}\)</span> について、 <span class="math display">\[\begin{align*}
+T \mathbf{1} = \mathbf{1}
 \end{align*}\]</span> である。 <!-- よって $T$ は固有値1を持つ。--> よって <span class="math inline">\(I-T\)</span> は正則ではないので固有値1を持ち、対応する左固有ベクトル <span class="math inline">\(\mu\)</span> を持つ。 つまり、 <span class="math display">\[\begin{align*}
 \mu T = \mu
 \end{align*}\]</span> を満たす非零行ベクトル <span class="math inline">\(\mu\)</span> が存在する。 非負で成分の和が1の行ベクトル <span class="math inline">\(\mu\)</span> で <span class="math inline">\(\mu T = \mu\)</span> を満たすものを<strong>定常確率ベクトル</strong>もしくは<strong>定常分布</strong>という。 現時点では定常確率ベクトルの存在は明らかではないが、任意の遷移行列 <span class="math inline">\(T\)</span> について定常確率ベクトルが存在する。</p>
@@ -820,7 +820,7 @@ P &amp;= \sqrt{D}^{-1}Q\sqrt{D} = \sqrt{D}^{-1}V\Lambda V^T\sqrt{D}
 <p><span class="theorem-title"><strong>補題 12.3</strong></span> グラフ上のランダムウォークの遷移行列 <span class="math inline">\(T\)</span> に含まれる固有値1の重複度はグラフの<strong>連結成分の個数</strong>である。</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span>まず、「固有値1の重複度 <span class="math inline">\(\ge\)</span> グラフの連結成分の個数」を証明する。 グラフの連結成分 <span class="math inline">\(C\subseteq V\)</span> について、列ベクトル <span class="math inline">\(\mathrm{1}_C\)</span> を成分のインデックスが <span class="math inline">\(C\)</span> に含まれるとき1、そうでないとき 0 と定義する。 このとき、<span class="math inline">\(T\mathrm{1}_C=\mathrm{1}_C\)</span> であるので、固有値1の右固有ベクトルとなる。 各連結成分 <span class="math inline">\(C\)</span> について <span class="math inline">\(\mathrm{1}_C\)</span> は線形独立であるので、「固有値1の重複度 <span class="math inline">\(\ge\)</span> グラフの連結成分の個数」が示された。</p>
+<p><span class="proof-title"><em>証明</em>. </span>まず、「固有値1の重複度 <span class="math inline">\(\ge\)</span> グラフの連結成分の個数」を証明する。 グラフの連結成分 <span class="math inline">\(C\subseteq V\)</span> について、列ベクトル <span class="math inline">\(\mathbf{1}_C\)</span> を成分のインデックスが <span class="math inline">\(C\)</span> に含まれるとき1、そうでないとき 0 と定義する。 このとき、<span class="math inline">\(T\mathbf{1}_C=\mathbf{1}_C\)</span> であるので、固有値1の右固有ベクトルとなる。 各連結成分 <span class="math inline">\(C\)</span> について <span class="math inline">\(\mathbf{1}_C\)</span> は線形独立であるので、「固有値1の重複度 <span class="math inline">\(\ge\)</span> グラフの連結成分の個数」が示された。</p>
 <p>次に、「固有値1の重複度 <span class="math inline">\(\le\)</span> グラフの連結成分の個数」を証明する。 <span class="math inline">\(v\)</span> を固有値1に対応する固有ベクトルとすると、 <span class="math display">\[\begin{align*}
 Tv &amp;=  v
 \end{align*}\]</span> が成り立つ。 これは <span class="math display">\[\begin{align*}
@@ -832,14 +832,14 @@ v_i &amp;= \sum_{j\in S}T_{i,j} v_j\\
 &amp;\le \sum_{j\in S}T_{i,j} v_i\\
 &amp;= v_i
 \end{align*}\]</span> という不等式が得られるが、この不等式が等号で満たされなければならない。 よって、<span class="math inline">\(j\in N(i)\)</span> について <span class="math inline">\(v_j=v_i\)</span> であることが必要である。 よって <span class="math inline">\(j\in C\)</span> について <span class="math inline">\(v_j=v_i\)</span> である必要がある。 したがって、グラフの連結成分を <span class="math inline">\(C_1,\dotsc,C_k\)</span> とすると <span class="math display">\[\begin{align*}
-v&amp;\in\mathrm{span}(\mathrm{1}_{C_1},\dotsc,\mathrm{1}_{C_k})
+v&amp;\in\mathrm{span}(\mathbf{1}_{C_1},\dotsc,\mathbf{1}_{C_k})
 \end{align*}\]</span> である。 以上のことから「固有値1の重複度 <span class="math inline">\(\le\)</span> グラフの連結成分の個数」が示された。</p>
 </div>
 <div id="lem-graph-eigenb" class="theorem lemma">
 <p><span class="theorem-title"><strong>補題 12.4</strong></span> グラフ上のランダムウォークの遷移行列 <span class="math inline">\(T\)</span> に含まれる固有値 <span class="math inline">\(-1\)</span> の重複度はグラフの<strong>二部連結成分の個数</strong>である。</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>証明</em>. </span>まず、「固有値 <span class="math inline">\(-1\)</span> の重複度 <span class="math inline">\(\ge\)</span> グラフの二部連結成分の個数」を証明する。 グラフの二部連結成分 <span class="math inline">\(L\cup R\subseteq V\)</span> について、列ベクトル <span class="math inline">\(\mathrm{1}_{L,R}\)</span> を成分のインデックスが <span class="math inline">\(L\)</span> に含まれるとき <span class="math inline">\(+1\)</span>、<span class="math inline">\(R\)</span> に含まれるとき <span class="math inline">\(-1\)</span>、それ以外のとき 0 と定義する。 このとき、<span class="math inline">\(T\mathrm{1}_{L,R}=-\mathrm{1}_{L,R}\)</span> であるので、固有値<span class="math inline">\(-1\)</span>の右固有ベクトルとなる。 各二部連結成分 <span class="math inline">\(L\cup R\)</span> について <span class="math inline">\(\mathrm{1}_{L,R}\)</span> は線形独立であるので、「固有値 <span class="math inline">\(-1\)</span> の重複度 <span class="math inline">\(\ge\)</span> グラフの二部連結成分の個数」が示された。</p>
+<p><span class="proof-title"><em>証明</em>. </span>まず、「固有値 <span class="math inline">\(-1\)</span> の重複度 <span class="math inline">\(\ge\)</span> グラフの二部連結成分の個数」を証明する。 グラフの二部連結成分 <span class="math inline">\(L\cup R\subseteq V\)</span> について、列ベクトル <span class="math inline">\(\mathbf{1}_{L,R}\)</span> を成分のインデックスが <span class="math inline">\(L\)</span> に含まれるとき <span class="math inline">\(+1\)</span>、<span class="math inline">\(R\)</span> に含まれるとき <span class="math inline">\(-1\)</span>、それ以外のとき 0 と定義する。 このとき、<span class="math inline">\(T\mathbf{1}_{L,R}=-\mathbf{1}_{L,R}\)</span> であるので、固有値<span class="math inline">\(-1\)</span>の右固有ベクトルとなる。 各二部連結成分 <span class="math inline">\(L\cup R\)</span> について <span class="math inline">\(\mathbf{1}_{L,R}\)</span> は線形独立であるので、「固有値 <span class="math inline">\(-1\)</span> の重複度 <span class="math inline">\(\ge\)</span> グラフの二部連結成分の個数」が示された。</p>
 <p>次に、「固有値 <span class="math inline">\(-1\)</span> の重複度 <span class="math inline">\(\le\)</span> グラフの二部連結成分の個数」を証明する。 <span class="math inline">\(v\)</span> を固有値 <span class="math inline">\(-1\)</span> に対応する固有ベクトルとすると、 <span class="math display">\[\begin{align*}
 Tv &amp;=  -v
 \end{align*}\]</span> が成り立つ。 これは <span class="math display">\[\begin{align*}
@@ -860,7 +860,7 @@ v_i&amp;\text{if } \{i,j\}\subseteq L\text{ or } \{i,j\}\subseteq R\\
 -v_i&amp;\text{otherwise}
 \end{cases}
 \end{align*}\]</span> である必要がある。 したがって、グラフの二部連結成分を <span class="math inline">\(L_1\cup R_1,\dotsc,L_k\cup R_k\)</span> とすると <span class="math display">\[\begin{align*}
-v&amp;\in\mathrm{span}(\mathrm{1}_{L_1,R_1},\dotsc,\mathrm{1}_{L_k,R_k})
+v&amp;\in\mathrm{span}(\mathbf{1}_{L_1,R_1},\dotsc,\mathbf{1}_{L_k,R_k})
 \end{align*}\]</span> である。 以上のことから「固有値 <span class="math inline">\(-1\)</span> の重複度 <span class="math inline">\(\le\)</span> グラフの二部連結成分の個数」が示された。</p>
 </div>
 <p>よって、グラフが<strong>連結していて二部グラフでない</strong>場合は遷移行列は固有値 <span class="math inline">\(1\)</span> を一つだけ持ち、固有値 <span class="math inline">\(-1\)</span> を持たない。 この場合は、初期分布 <span class="math inline">\(\pi\)</span> によらず、唯一の定常分布に収束する。 <!--
