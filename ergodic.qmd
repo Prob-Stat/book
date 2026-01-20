@@ -168,7 +168,7 @@ $a,b,c\in\mathbb{Z}_{\ge 1}$ について
 また、任意の $a,b,d\in\mathbb{Z}_{\ge 0}$ について
 \begin{align*}
 \mathrm{gcd}(a,\,b) = d&\iff
-\left\{sa + tb \mid s, t\in\mathbb{Z}\right\}\cap\mathbb{Z}_{\ge 0} = d\cdot \mathbb{Z}_{\ge 0}
+\left\{sa + tb \mid s, t\in\mathbb{Z}\right\} = d\cdot \mathbb{Z}
 \end{align*}
 という特徴付けも $a$ や $b$ が 0 の場合も含めて成り立つ。
 また、ユークリッドの互除法のアルゴリズムも
