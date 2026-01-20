@@ -108,10 +108,10 @@ digraph irreduc_graph {
 
 
 ::: {#lem-irred}
-既約なマルコフ連鎖について $\mathrm{Ker}(I-T)=\mathrm{span}(1)$ である。
+既約なマルコフ連鎖について $\mathrm{Ker}(I-T)=\mathrm{span}(\mathbf{1})$ である。
 :::
 ::: {.proof}
-列ベクトル $v\in\mathbb{R}^n$ を
+列ベクトル $v\in\mathbb{R}^S$ を
 \begin{align*}
 (I-T)v = 0 &\iff Tv = v
 \end{align*}
@@ -130,8 +130,8 @@ v_j &= v_i\qquad\text{if } (i, j)\in E
 \end{align*}
 である。
 この議論を繰り返すと $i\le_T j$ である $j$ について $v_j=v_i$ である。
-マルコフ連鎖が既約であることから、任意の $j\in S$ について $i\le j$ であり、$v = v_i 1$ である。
-したがって、$\mathrm{Ker}(I-T)=\mathrm{span}(1)$ である。
+マルコフ連鎖が既約であることから、任意の $j\in S$ について $i\le j$ であり、$v = v_i \mathbf{1}$ である。
+したがって、$\mathrm{Ker}(I-T)=\mathrm{span}(\mathbf{1})$ である。
 :::
 
 よって既約なマルコフ連鎖に対して定常分布は高々一つである。
@@ -149,7 +149,7 @@ v_j &= v_i\qquad\text{if } (i, j)\in E
 :::
 
 ::: {#thm-irred}
-既約なマルコフ連鎖は唯一の定常分布 $\mu\in\mathbb{R}_{>0}^n$ を持つ。
+既約なマルコフ連鎖は唯一の定常分布 $\mu\in\mathbb{R}_{>0}^S$ を持つ。
 :::
 :::{.proof}
 マルコフ連鎖の**ラプラシアン行列**を $\Lambda \coloneqq I-T$ と定義する。
@@ -165,7 +165,7 @@ v_j &= v_i\qquad\text{if } (i, j)\in E
 \end{align*}
 である。
 まず、$\Lambda\,\mathrm{adj}(\Lambda)=O$ と @lem-irred より $\mathrm{adj}(\Lambda)$ の各列は $1$ のスカラー倍である。よって、$\mathrm{adj}(\Lambda)$ の行はすべて等しい。
-次に、$\mathrm{adj}(\Lambda)\Lambda=O$ より、$\mathrm{adj}(\Lambda)$ の行 $\mu\in\mathbb{R}^n$ は $\mu\Lambda=0$ を満たす。
+次に、$\mathrm{adj}(\Lambda)\Lambda=O$ より、$\mathrm{adj}(\Lambda)$ の行 $\mu\in\mathbb{R}^S$ は $\mu\Lambda=0$ を満たす。
 ここで、$\mathrm{adj}(\Lambda)$ の行がすべて等しいことから
 \begin{align*}
 \mu_i &= \mathrm{adj}(\Lambda)_{i,i}\qquad\forall i\in S
@@ -363,10 +363,10 @@ DAGの頂点で出次数(外に出ていく有向辺の個数)が0のものを**
 マルコフ連鎖の同値類の遷移グラフにおいてシンクに対応する同値類やそれに含まれる状態を**再帰的**であるという。
 
 :::{#lem-stat-trans}
-マルコフ連鎖の定常状態を $\mu\in\mathbb{R}^n$ とすると、再帰的でない状態 $s\in S$ について $\mu(s)=0$ である。
+マルコフ連鎖の定常状態を $\mu\in\mathbb{R}^S$ とすると、再帰的でない状態 $s\in S$ について $\mu(s)=0$ である。
 :::
 :::{.proof}
-定常分布 $\mu\in\mathbb{R}^n$ が再帰的でない状態 $s\in S$ について$\mu(s)>0$ であると仮定する。
+定常分布 $\mu\in\mathbb{R}^S$ が再帰的でない状態 $s\in S$ について$\mu(s)>0$ であると仮定する。
 状態 $s$ に対して再帰的な状態 $t\in S$ が存在して、$s\le_T t$ である。
 この再帰的な状態 $t\in S$ が属する同値類を $C$ とおくと、定常分布におけるこの同値類の確率の総和
 \begin{align*}
