@@ -638,9 +638,9 @@ d(i) &amp;\coloneqq\mathrm{gcd}\left(S(i)\right)
 \mathrm{gcd}(0,n)&amp;=n
 \end{align*}\]</span> と定義することにする。任意の <span class="math inline">\(n\in\mathbb{Z}_{\ge 1}\)</span> は 0 を割り切るので自然な定義である。 唯一 <span class="math inline">\(\mathrm{gcd}(0, 0) = 0\)</span> だけ少し違和感を感じるかもしれないが、こうすると色々な観点からとても綺麗な定義になる。 「最大」公約数の「最大」というのを半順序 <span class="math inline">\(a\preceq b \defiff a \mid b\)</span> の意味で「最大」だと思うと 0 は「最大」の数なので自然である。 また、任意の <span class="math inline">\(a,b,d\in\mathbb{Z}_{\ge 0}\)</span> について <span class="math display">\[\begin{align*}
 \mathrm{gcd}(a,\,b) = d&amp;\iff
-\left\{sa + tb \mid s, t\in\mathbb{Z}\right\}\cap\mathbb{Z}_{\ge 0} = d\cdot \mathbb{Z}_{\ge 0}
+\left\{sa + tb \mid s, t\in\mathbb{Z}\right\} = d\cdot \mathbb{Z}
 \end{align*}\]</span> という特徴付けも <span class="math inline">\(a\)</span> や <span class="math inline">\(b\)</span> が 0 の場合も含めて成り立つ。 また、ユークリッドの互除法のアルゴリズムも</p>
-<div id="efd43ad3" class="cell" data-execution_count="1">
+<div id="f4de59f2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gcd(a, b):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> a <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> b</span>
