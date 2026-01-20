@@ -170,7 +170,7 @@ $a,b,c\in\mathbb{Z}_{\ge 1}$ について
 \mathrm{gcd}(a,\,b) = d&\iff
 \left\{sa + tb \mid s, t\in\mathbb{Z}\right\} = d\cdot \mathbb{Z}
 \end{align*}
-という特徴付けも $a$ や $b$ が 0 の場合も含めて成り立つ。
+という特徴付けも $a$ や $b$ が 0 の場合も含めて成り立つ(イデアルの生成元)。
 また、ユークリッドの互除法のアルゴリズムも
 
 ```{python}
